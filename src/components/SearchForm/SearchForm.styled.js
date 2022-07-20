@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { device } from "utils/mediaquery";
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -31,6 +32,10 @@ export const Input = styled.input`
     font-size: ${({ theme: {fontSizes}}) => fontSizes.small};
     color: ${({ theme: { colors } }) => colors.textMain};
     opacity: 0.7;
+  }
+
+  @media ${device.tablet} {
+    min-width: 400px;
   }
 `
 

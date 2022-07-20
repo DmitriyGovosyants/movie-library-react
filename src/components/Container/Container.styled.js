@@ -23,6 +23,10 @@ export const Container = styled.div`
   @media ${device.desktop} {
     width: ${size.desktop};
   }
+
+  @media ${device.desktopM} {
+    width: ${size.desktopM};
+  }
 `
 
 

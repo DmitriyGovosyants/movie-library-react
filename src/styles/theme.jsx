@@ -15,7 +15,7 @@ export const theme = Object.freeze({
     titleMain: '30px',
     // title: '2em',
     small: '14px',
-    // medium: '18px',
+    medium: '18px',
     // big: '26px',
   },
   spacing: value => `${4 * value}px`,

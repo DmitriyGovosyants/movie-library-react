@@ -1,5 +1,10 @@
-import { Header } from 'components';
+import { Header, GalleryList } from 'components';
 
 export const App = () => {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <GalleryList />
+    </>
+  );
 };

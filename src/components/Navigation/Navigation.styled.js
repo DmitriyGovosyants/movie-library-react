@@ -8,7 +8,7 @@ export const NavigationBox = styled.nav`
   align-items: center;
   margin-bottom: ${({ theme: { spacing } }) => spacing(10)};
   
-  @media ${device.mobileOnly} {
+  @media ${device.mobileOnlyL} {
     flex-direction: column;
   }
 `
@@ -17,7 +17,7 @@ export const Logo = styled.a`
   display: flex;
   align-items: center;
 
-  @media ${device.mobileOnly} {
+  @media ${device.mobileOnlyL} {
     margin-bottom: ${({ theme: { spacing } }) => spacing(5)};;
   }
 `

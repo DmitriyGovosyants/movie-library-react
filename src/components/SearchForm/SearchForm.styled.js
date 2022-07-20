@@ -18,8 +18,10 @@ export const Form = styled.form`
 export const Input = styled.input`
   padding-right: ${({theme: {spacing}}) => spacing(5)};
 
+  letter-spacing: 0.1em;
   color: ${({ theme: { colors } }) => colors.textMain};
   text-shadow: 2px 2px 4px black;
+  text-align: center;
 
   background-color: transparent;
   border: none;

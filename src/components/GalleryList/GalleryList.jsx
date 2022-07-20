@@ -26,11 +26,19 @@ export const GalleryList = () => {
   return (
     <Container>
       <Gallery>
-        {films.map(({ poster_path, original_title, id }) => {
-          return (
-            <GalleryItem key={id} poster={poster_path} title={original_title} />
-          );
-        })}
+        {films.map(
+          ({ id, poster_path, original_title, vote_average, release_date }) => {
+            return (
+              <GalleryItem
+                key={id}
+                poster={poster_path}
+                title={original_title}
+                rating={vote_average}
+                data={release_date}
+              />
+            );
+          }
+        )}
       </Gallery>
     </Container>
   );

@@ -51,6 +51,19 @@ export const FilmCard = styled.li`
   }
 `
 
+export const PosterThumb = styled.div`
+  position: relative;
+
+  @media ${device.desktop} {
+    transition: transform ${({theme: {animation}})=> animation.cubicBezier};
+
+    :hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  }
+`
+
 export const Poster = styled.img`
   width: 100%;
   margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
@@ -61,18 +74,38 @@ export const Poster = styled.img`
     height: 480px;
   }
 
-  @media ${device.desktop} {
-    transition: transform ${({theme: {animation}})=> animation.cubicBezier};
-
-    :hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-  }
-
   @media ${device.desktopM} {
     height: 380px;
   }
+`
+
+export const RatingData = styled.span`
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  background-color: red;
+  border-radius: 5px;
+`
+
+export const FilmYear = styled.span`
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
+  
+  font-weight: 600;
+  color: #fff;
+  
+  font-size: 20px;
+  text-shadow: -1px -1px 0 #a82727, 0 -1px 0 #a82727, 1px -1px 0 #a82727, 1px 0 0 #a82727, 1px 1px 0 #a82727, 0 1px 0 #a82727, -1px 1px 0 #a82727, -1px 0 0 #a82727;
 `
 
 export const FilmTitle = styled.p`

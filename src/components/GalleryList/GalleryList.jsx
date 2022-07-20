@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
-import { Container, GalleryItem } from 'components';
+import { Container, GalleryItem, Pagination } from 'components';
 import { fetchTrending } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = () => {
   const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const {
-          data: { results },
+          data: { results, total_pages },
         } = await fetchTrending(page);
 
+        setTotalPage(total_pages);
         setFilms([...results]);
         console.log(results);
       } catch (e) {
@@ -40,6 +42,7 @@ export const GalleryList = () => {
           }
         )}
       </Gallery>
+      <Pagination setPage={setPage} page={page} totalPage={totalPage} />
     </Container>
   );
 };

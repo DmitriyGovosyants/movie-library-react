@@ -37,6 +37,10 @@ export const FilmCard = styled.li`
   @media ${device.desktopM} {
     flex-basis: calc((100% - 66px) / 5);
 
+    :not(:nth-last-of-type(-n + 3)) {
+      margin-bottom: 0;
+    }
+
     :not(:nth-last-of-type(-n + 5)) {
       margin-bottom: 32px;
     }

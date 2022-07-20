@@ -7,13 +7,14 @@ export const GlobalStyles = css`
     scroll-behavior: smooth;
   }
   body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
-    background: ${theme.colors.mainBgc};
     min-height: 100vh;
+    margin: 0;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
     font-style: normal;
+
+    background: ${theme.colors.bgMain};
   }
   h1,
   h2,

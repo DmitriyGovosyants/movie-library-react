@@ -1,45 +1,17 @@
 import { PaginationBox, Btn, Dots } from './Pagination.styled';
 
 export const Pagination = ({ setPage, page, totalPage }) => {
-  const leftCentralBtn = () => {
+  const changePage = (start, middle, end) => {
     if (page <= 3) {
-      return setPage(2);
+      return setPage(start);
     }
 
     if (page > 3 && page <= totalPage - 3) {
-      return setPage(s => s - 1);
+      return setPage(s => s + middle);
     }
 
     if (page >= totalPage - 3) {
-      return setPage(totalPage - 3);
-    }
-  };
-
-  const centralBtn = () => {
-    if (page <= 3) {
-      return setPage(3);
-    }
-
-    if (page > 3 && page <= totalPage - 3) {
-      return setPage(s => s);
-    }
-
-    if (page >= totalPage - 3) {
-      return setPage(totalPage - 2);
-    }
-  };
-
-  const rightCentralBtn = () => {
-    if (page <= 3) {
-      return setPage(4);
-    }
-
-    if (page > 3 && page <= totalPage - 3) {
-      return setPage(s => s + 1);
-    }
-
-    if (page >= totalPage - 3) {
-      return setPage(totalPage - 1);
+      return setPage(totalPage + end);
     }
   };
 
@@ -49,13 +21,17 @@ export const Pagination = ({ setPage, page, totalPage }) => {
         1
       </Btn>
       {page > 3 && <Dots>...</Dots>}
-      <Btn onClick={() => leftCentralBtn()} type="button" disabled={page === 2}>
+      <Btn
+        onClick={() => changePage(2, -1, -3)}
+        type="button"
+        disabled={page === 2}
+      >
         {page <= 3 && 2}
         {page > 3 && page <= totalPage - 3 && page - 1}
         {page > totalPage - 3 && totalPage - 3}
       </Btn>
       <Btn
-        onClick={() => centralBtn()}
+        onClick={() => changePage(3, 0, -2)}
         type="button"
         disabled={page >= 3 && page <= totalPage - 2}
       >
@@ -64,7 +40,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
         {page > totalPage - 3 && totalPage - 2}
       </Btn>
       <Btn
-        onClick={() => rightCentralBtn()}
+        onClick={() => changePage(4, 1, -1)}
         type="button"
         disabled={page === totalPage - 1}
       >

@@ -4,9 +4,9 @@ import { fetchTrending } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = () => {
+  const [films, setFilms] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-  const [films, setFilms] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -17,16 +17,19 @@ export const GalleryList = () => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
-        window.scrollTo({
-          top: 0,
-          behavior: 'instant',
-        });
         console.log(results);
       } catch (e) {
         console.log(e);
       }
     };
     fetch();
+  }, [page]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
   }, [page]);
 
   return (

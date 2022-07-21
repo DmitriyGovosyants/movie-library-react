@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, GalleryItem, Pagination } from 'components';
+import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
 import { fetchTrending } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';
 
@@ -7,6 +7,7 @@ export const GalleryList = () => {
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetch = async () => {
@@ -19,7 +20,7 @@ export const GalleryList = () => {
         setFilms([...results]);
         console.log(results);
       } catch (e) {
-        console.log(e);
+        setError(e.message);
       }
     };
     fetch();
@@ -34,6 +35,7 @@ export const GalleryList = () => {
 
   return (
     <Container>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {
@@ -49,7 +51,9 @@ export const GalleryList = () => {
           }
         )}
       </Gallery>
-      <Pagination setPage={setPage} page={page} totalPage={totalPage} />
+      {films.length > 0 && (
+        <Pagination setPage={setPage} page={page} totalPage={totalPage} />
+      )}
     </Container>
   );
 };

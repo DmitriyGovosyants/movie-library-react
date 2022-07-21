@@ -17,6 +17,10 @@ export const GalleryList = () => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant',
+        });
         console.log(results);
       } catch (e) {
         console.log(e);

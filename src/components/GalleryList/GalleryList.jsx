@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
-import { fetchTrending } from 'services/filmsApi';
+import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = () => {
@@ -9,7 +9,12 @@ export const GalleryList = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
 
+  const query = 'batman';
+
   useEffect(() => {
+    if (query !== '') {
+      return;
+    }
     const fetch = async () => {
       try {
         const {
@@ -25,6 +30,26 @@ export const GalleryList = () => {
     };
     fetch();
   }, [page]);
+
+  useEffect(() => {
+    if (query === '') {
+      return;
+    }
+    const fetch = async () => {
+      try {
+        const {
+          data: { results, total_pages },
+        } = await fetchMoviesByName(page, query);
+
+        setTotalPage(total_pages);
+        setFilms([...results]);
+        console.log(results);
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+    fetch();
+  }, [page, query]);
 
   useEffect(() => {
     window.scrollTo({

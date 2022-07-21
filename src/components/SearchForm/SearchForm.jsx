@@ -6,10 +6,12 @@ import { FormWrapper, Form, Input, Submit } from './SearchForm.styled';
 export const SearchForm = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = ({ query }) => {
-    if (!query.trim()) {
+    const queryNormalized = query.trim();
+
+    if (!queryNormalized) {
       return toast('Please, enter the text');
     }
-    console.log(query.trim());
+    console.log(queryNormalized);
   };
 
   return (

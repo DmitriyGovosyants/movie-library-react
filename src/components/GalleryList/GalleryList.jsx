@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';
 
-export const GalleryList = () => {
+export const GalleryList = ({ query }) => {
   const [films, setFilms] = useState([]);
+  const [keyw, setKeyw] = useState('');
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
-
-  const query = 'batman';
+  console.log('очередной рендер в компоненте с запросом', films[0]);
 
   useEffect(() => {
     if (query !== '') {
@@ -29,10 +30,16 @@ export const GalleryList = () => {
       }
     };
     fetch();
-  }, [page]);
+  }, [page, query]);
 
   useEffect(() => {
     if (query === '') {
+      return;
+    }
+    if (query !== keyw) {
+      setKeyw(query);
+      setFilms([]);
+      setPage(1);
       return;
     }
     const fetch = async () => {
@@ -43,20 +50,20 @@ export const GalleryList = () => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
-        console.log(results);
+        console.log('Получение данных', results.length);
       } catch (e) {
         setError(e.message);
       }
     };
     fetch();
-  }, [page, query]);
+  }, [page, query, keyw]);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       behavior: 'instant',
     });
-  }, [page]);
+  }, [page, query]);
 
   return (
     <Container>

@@ -11,3 +11,7 @@ export const fetchTrending = async (pageNumber) => {
 export const fetchMoviesByName = async (name, page) => {
   return await axios.get(`search/movie?api_key=${API_KEY}&query=${page}&page=${name}`);
 }
+
+export const fetchMovieDetails = async (id) => {
+  return await axios.get(`movie/${id}?api_key=${API_KEY}`);
+}

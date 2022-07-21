@@ -7,3 +7,5 @@ export * from './GalleryList/GalleryList';
 export * from './GalleryItem/GalleryItem';
 export * from './Pagination/Pagination';
 export * from './ErrorMessage/ErrorMessage';
+export * from './Modal/Modal';
+export * from './MovieCard/MovieCard';

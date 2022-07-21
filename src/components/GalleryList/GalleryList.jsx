@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import { Gallery } from './GalleyList.styled';

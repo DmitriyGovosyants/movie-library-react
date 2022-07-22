@@ -70,12 +70,16 @@ export const PosterThumb = styled.div`
 
 export const Poster = styled.img`
   width: 100%;
-  height: 400px;
+  height: 420px;
   margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
   object-fit: cover;
   border-radius: 10px;
 
   @media ${device.mobileL} {
+    height: 600px;
+  }
+
+  @media ${device.tablet} {
     height: 500px;
   }
 

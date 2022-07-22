@@ -1,12 +1,30 @@
 import styled from "@emotion/styled";
+import { device } from "utils/mediaquery";
 
 export const PaginationBox = styled.div`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding-top: ${({ theme: { spacing } }) => spacing(10)};
   padding-bottom: ${({ theme: { spacing } }) => spacing(10)};
+`
+
+export const ArrowBox = styled.div`
+  display: flex;
+  margin-bottom: 40px;
+`
+
+export const BtnBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  @media ${device.mobileOnlyL} {
+    flex-direction: column;
+  }
 `
 
 export const Btn = styled.button`
@@ -27,6 +45,10 @@ export const Btn = styled.button`
   }
   :hover {
     background-color: red;
+  }
+
+  @media ${device.mobileOnlyL} {
+    margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
   }
 `
 

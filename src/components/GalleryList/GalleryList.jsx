@@ -76,6 +76,7 @@ export const GalleryList = ({ query }) => {
                 id={id}
                 poster={poster_path}
                 title={original_title}
+                g
                 rating={vote_average}
                 data={release_date}
               />

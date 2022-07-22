@@ -13,6 +13,7 @@ export const GlobalStyles = css`
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-style: normal;
+    letter-spacing: 0.03em;
 
     background: ${theme.colors.bgMain};
 

@@ -5,9 +5,10 @@ export const theme = Object.freeze({
     // textColorSecond: '#173d6e',
 
     bgMain: '#ffffff',
+    bgSecond: '#e0cbcb',
     textMain: '#ffffff',
     // secondBgc: '#e9bebe',
-
+    ffd: '#c3d1ff',
     // btnBgc: '#a16f6f',
     accentTextBtn: '#ff6b01',
   },

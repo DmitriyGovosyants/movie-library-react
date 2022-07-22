@@ -9,7 +9,13 @@ import {
   FilmTitle,
 } from './GalleryItem.styled';
 
-export const GalleryItem = ({ id, poster, title, rating, data }) => {
+export const GalleryItem = ({
+  id,
+  poster,
+  title = 'No title',
+  rating = 0,
+  data = '',
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   const filmPoster = poster
@@ -26,7 +32,7 @@ export const GalleryItem = ({ id, poster, title, rating, data }) => {
       <FilmTitle>{title}</FilmTitle>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <MovieCard id={id} />
+          <MovieCard id={id} setShowModal={setShowModal} />
         </Modal>
       )}
     </FilmCard>

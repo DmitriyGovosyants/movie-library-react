@@ -23,10 +23,10 @@ export const Btn = styled.button`
   cursor: pointer;
 
   :disabled {
-    background-color: red;
+    background-color: tomato;
   }
   :hover {
-    background-color: tomato;
+    background-color: red;
   }
 `
 

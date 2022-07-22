@@ -5,7 +5,7 @@ import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = ({ query }) => {
   const [films, setFilms] = useState([]);
-  const [keyw, setKeyw] = useState('');
+  const [queryKey, setQueryKey] = useState('');
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
@@ -35,8 +35,8 @@ export const GalleryList = ({ query }) => {
     if (query === '') {
       return;
     }
-    if (query !== keyw) {
-      setKeyw(query);
+    if (query !== queryKey) {
+      setQueryKey(query);
       setFilms([]);
       setPage(1);
       return;
@@ -55,7 +55,7 @@ export const GalleryList = ({ query }) => {
       }
     };
     fetch();
-  }, [page, query, keyw]);
+  }, [page, query, queryKey]);
 
   useEffect(() => {
     window.scrollTo({

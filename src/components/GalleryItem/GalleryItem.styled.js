@@ -70,12 +70,13 @@ export const PosterThumb = styled.div`
 
 export const Poster = styled.img`
   width: 100%;
+  height: 400px;
   margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
   object-fit: cover;
   border-radius: 10px;
 
-  @media ${device.tablet} {
-    height: 480px;
+  @media ${device.mobileL} {
+    height: 500px;
   }
 
   @media ${device.desktopM} {
@@ -112,7 +113,7 @@ export const FilmYear = styled.span`
   text-shadow: -1px -1px 0 #a82727, 0 -1px 0 #a82727, 1px -1px 0 #a82727, 1px 0 0 #a82727, 1px 1px 0 #a82727, 0 1px 0 #a82727, -1px 1px 0 #a82727, -1px 0 0 #a82727;
 `
 
-export const FilmTitle = styled.p`
+export const FilmTitle = styled.h2`
   font-size: ${({ theme: {fontSizes}}) => fontSizes.medium};
   font-weight: 500;
   line-height: 1.33;

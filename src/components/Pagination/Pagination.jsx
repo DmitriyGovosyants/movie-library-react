@@ -40,9 +40,11 @@ export const Pagination = ({ setPage, page, totalPage }) => {
           <AiOutlineArrowLeft size={26} />
         </Btn>
       )}
-      <Btn onClick={() => setPage(1)} type="button" disabled={page === 1}>
-        1
-      </Btn>
+      {totalPage !== 1 && (
+        <Btn onClick={() => setPage(1)} type="button" disabled={page === 1}>
+          1
+        </Btn>
+      )}
       {showLeftDots && <Dots>...</Dots>}
       {totalPage >= 2 && (
         <Btn

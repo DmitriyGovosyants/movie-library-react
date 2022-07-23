@@ -13,9 +13,11 @@ export const Modal = ({ children, toggleModal }) => {
       }
     };
 
+    window.document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      window.document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [toggleModal]);

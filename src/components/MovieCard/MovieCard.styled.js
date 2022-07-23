@@ -6,7 +6,6 @@ export const MovieCardBox = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 90%;
 
   background-color: ${({ theme: {colors}}) => colors.bgSecond};
   border-radius: 10px;
@@ -55,7 +54,6 @@ export const MovieCardWrapper = styled.div`
 
   @media ${device.tablet} {
     display: flex;
-    padding: ${({ theme: { spacing } }) => spacing(5)};
   }
 
   @media ${device.desktop} {
@@ -70,20 +68,18 @@ export const Poster = styled.img`
   @media ${device.mobileOnly} {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
   }
   
   @media ${device.tablet} {
     margin-right: ${({ theme: { spacing } }) => spacing(10)};
+    padding: ${({ theme: { spacing } }) => spacing(2)};
   }
 `
 
 export const MovieCardContent = styled.div`
   width: 100%;
-
-  @media ${device.mobileOnly} {
-    padding: ${({ theme: { spacing } }) => spacing(5)};
-  }
+  padding: ${({ theme: { spacing } }) => spacing(5)};
 `
 
 export const InfoList = styled.ul`
@@ -92,6 +88,7 @@ export const InfoList = styled.ul`
 
 export const InfoItem = styled.li`
   display: flex;
+  align-items: center;
 
   :not(:last-child) {
     margin-bottom: ${({ theme: { spacing } }) => spacing(2)};

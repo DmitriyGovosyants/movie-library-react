@@ -77,15 +77,15 @@ export const MovieCard = ({ id, setShowModal }) => {
             <MovieCardContent>
               <InfoList>
                 <InfoItem>
-                  <InfoLabel>Release date</InfoLabel>
+                  <InfoLabel>Release date:</InfoLabel>
                   <InfoValue>{release_date}</InfoValue>
                 </InfoItem>
                 <InfoItem>
-                  <InfoLabel>Original title</InfoLabel>
+                  <InfoLabel>Original title:</InfoLabel>
                   <InfoValue>{original_title}</InfoValue>
                 </InfoItem>
                 <InfoItem>
-                  <InfoLabel>Genre</InfoLabel>
+                  <InfoLabel>Genre:</InfoLabel>
                   <InfoValue>{genresName}</InfoValue>
                 </InfoItem>
               </InfoList>

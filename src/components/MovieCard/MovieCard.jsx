@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails } from 'services/filmsApi';
-import { ErrorMessage, Modal, Loader } from 'components';
+import { ErrorMessage, Loader } from 'components';
 import {
   MovieCardBox,
   Title,

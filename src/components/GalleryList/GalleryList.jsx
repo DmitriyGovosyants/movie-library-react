@@ -83,7 +83,7 @@ export const GalleryList = ({ query }) => {
 
   return (
     <Container>
-      <SearchStatusBar query={query} />
+      <SearchStatusBar query={query} page={page} />
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {showLoader && (
         <Modal>
@@ -99,7 +99,6 @@ export const GalleryList = ({ query }) => {
                 id={id}
                 poster={poster_path}
                 title={original_title}
-                g
                 rating={vote_average}
                 data={release_date}
               />

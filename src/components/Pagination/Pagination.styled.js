@@ -16,15 +16,29 @@ export const ArrowBox = styled.div`
   margin-bottom: 40px;
 `
 
+export const ArrowBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50px;
+  margin-right: ${({ theme: { spacing } }) => spacing(2)};
+  padding:${({ theme: { spacing } }) => spacing(2)};
+  
+  color: white;
+  background-color: gray;
+  border-radius: 5px;
+  cursor: pointer;
+
+  :hover {
+    background-color: red;
+  }
+`
+
 export const BtnBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  
-  @media ${device.mobileOnlyL} {
-    flex-direction: column;
-  }
 `
 
 export const Btn = styled.button`
@@ -33,7 +47,7 @@ export const Btn = styled.button`
   align-items: center;
   min-width: 50px;
   margin-right: ${({ theme: { spacing } }) => spacing(2)};
-  padding: ${({ theme: { spacing } }) => spacing(2)};
+  padding: ${({ theme: { spacing } }) => spacing(4)} ${({ theme: { spacing } }) => spacing(2)};
   
   color: white;
   background-color: gray;

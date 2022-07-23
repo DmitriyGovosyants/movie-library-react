@@ -60,19 +60,33 @@ export const MovieCardWrapper = styled.div`
   }
 `
 
+export const PosterBox = styled.div`
+  @media ${device.mobileOnlyL} {
+    position: relative;
+    padding-bottom: 150%;
+    height: 0;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`
 export const Poster = styled.img`
   @media ${device.mobileL} {
+    margin-left: auto;
+    margin-right: auto;
     max-width: 300px;
     height: 380px;
   }
-  @media ${device.mobileOnly} {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
+  @media ${device.mobileOnlyL} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   
   @media ${device.tablet} {
-    margin-right: ${({ theme: { spacing } }) => spacing(10)};
+    width: 253px;
     padding: ${({ theme: { spacing } }) => spacing(2)};
   }
 `

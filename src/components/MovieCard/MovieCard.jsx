@@ -8,6 +8,7 @@ import {
   Title,
   ModalCloseBtn,
   MovieCardWrapper,
+  PosterBox,
   Poster,
   MovieCardContent,
   InfoList,
@@ -69,21 +70,19 @@ export const MovieCard = ({ id, setShowModal }) => {
   console.log('рендер модалки');
 
   return (
-    <MovieCardBox>
-      {showLoader && (
-        <Modal>
-          <Loader />
-        </Modal>
-      )}
-      <Title>{title}</Title>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      {movieDetails && (
-        <>
+    <>
+      {showLoader && <Loader />}
+      {release_date && (
+        <MovieCardBox>
+          <Title>{title}</Title>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
           <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
             <FaRegWindowClose size={40} />
           </ModalCloseBtn>
           <MovieCardWrapper>
-            <Poster src={filmPoster} alt="" />
+            <PosterBox>
+              <Poster src={filmPoster} alt={title} />
+            </PosterBox>
             <MovieCardContent>
               <RatingList>
                 <RatingItem>
@@ -130,8 +129,8 @@ export const MovieCard = ({ id, setShowModal }) => {
               </ButtonList>
             </MovieCardContent>
           </MovieCardWrapper>
-        </>
+        </MovieCardBox>
       )}
-    </MovieCardBox>
+    </>
   );
 };

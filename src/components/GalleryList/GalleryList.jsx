@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import {
   Container,
+  SearchStatusBar,
+  ErrorMessage,
   GalleryItem,
   Pagination,
-  ErrorMessage,
   Modal,
   Loader,
 } from 'components';
-import { Gallery, SearchStatusBar } from './GalleyList.styled';
+import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = ({ query }) => {
   const [films, setFilms] = useState([]);
@@ -51,7 +52,7 @@ export const GalleryList = ({ query }) => {
       setQueryKey(query);
       setFilms([]);
       setPage(1);
-      return;
+      // return;
     }
     setShowLoader(true);
 
@@ -63,7 +64,7 @@ export const GalleryList = ({ query }) => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
-        // console.log('Получение данных', results.length);
+        console.log('Получение данных', results.length);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -82,17 +83,13 @@ export const GalleryList = ({ query }) => {
 
   return (
     <Container>
-      {query ? (
-        <SearchStatusBar>{query}</SearchStatusBar>
-      ) : (
-        <SearchStatusBar>Trending movie</SearchStatusBar>
-      )}
+      <SearchStatusBar query={query} />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       {showLoader && (
         <Modal>
           <Loader />
         </Modal>
       )}
-      {error && <ErrorMessage>{error}</ErrorMessage>}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {

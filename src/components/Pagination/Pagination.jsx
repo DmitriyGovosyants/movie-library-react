@@ -1,8 +1,9 @@
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import {
   PaginationBox,
-  BtnBox,
   ArrowBox,
+  ArrowBtn,
+  BtnBox,
   Btn,
   Dots,
 } from './Pagination.styled';
@@ -43,14 +44,14 @@ export const Pagination = ({ setPage, page, totalPage }) => {
     <PaginationBox>
       <ArrowBox>
         {page !== 1 && (
-          <Btn onClick={() => setPage(s => s - 1)} type="button">
+          <ArrowBtn onClick={() => setPage(s => s - 1)} type="button">
             <BiChevronLeft style={{ width: 120, height: 26 }} />
-          </Btn>
+          </ArrowBtn>
         )}
         {page !== totalPage && (
-          <Btn onClick={() => setPage(s => s + 1)} type="button">
+          <ArrowBtn onClick={() => setPage(s => s + 1)} type="button">
             <BiChevronRight style={{ width: 120, height: 26 }} />
-          </Btn>
+          </ArrowBtn>
         )}
       </ArrowBox>
       <BtnBox>

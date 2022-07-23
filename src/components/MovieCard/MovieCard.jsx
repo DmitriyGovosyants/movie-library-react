@@ -95,11 +95,11 @@ export const MovieCard = ({ id, setShowModal }) => {
                   <RatingValue color={'red'}>{voteAverage}</RatingValue>
                 </RatingItem>
                 <RatingItem>
-                  <RatingLabel>Votes</RatingLabel>
+                  <RatingLabel>votes</RatingLabel>
                   <RatingValue>{vote_count}</RatingValue>
                 </RatingItem>
                 <RatingItem>
-                  <RatingLabel>Popularity</RatingLabel>
+                  <RatingLabel>popularity</RatingLabel>
                   <RatingValue>{popularityTotal}</RatingValue>
                 </RatingItem>
               </RatingList>

@@ -111,10 +111,6 @@ export const InfoValue = styled.p`
 export const RatingList = styled.ul`
   display: flex;
   margin-bottom: ${({ theme: { spacing } }) => spacing(6)};
-
-  /* @media ${device.mobile} {
-    display: flex;
-  } */
 `
 
 export const RatingItem = styled.li`
@@ -139,9 +135,12 @@ export const RatingLabel = styled.p`
 `
 
 export const RatingValue = styled.span`
+  min-width: 50px;
   padding: ${({ theme: { spacing } }) => spacing(2)};
-  color: ${p => p.color === 'red' ? 'white' : 'inherit'};
+
   font-weight: ${p => p.color === 'red' ? 700 : 'inherit'};
+  text-align: center;
+  color: ${p => p.color === 'red' ? 'white' : 'inherit'};
   background-color: ${p => p.color === 'red' ? 'red' : 'white'};
   border-radius: 10px;
   border: 1px solid gray;

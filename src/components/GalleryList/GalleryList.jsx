@@ -90,11 +90,7 @@ export const GalleryList = ({ query }) => {
         setPage={setPage}
       />
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      {showLoader && (
-        <Modal>
-          <Loader />
-        </Modal>
-      )}
+      {showLoader && <Loader />}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {

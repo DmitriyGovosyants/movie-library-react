@@ -9,7 +9,7 @@ export const GalleryList = ({ query }) => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [error, setError] = useState(null);
-  console.log('очередной рендер в компоненте с запросом', films[0]);
+  console.log('очередной рендер в компоненте с запросом', films);
 
   useEffect(() => {
     if (query !== '') {
@@ -49,7 +49,7 @@ export const GalleryList = ({ query }) => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
-        console.log('Получение данных', results.length);
+        // console.log('Получение данных', results.length);
       } catch (e) {
         setError(e.message);
       }

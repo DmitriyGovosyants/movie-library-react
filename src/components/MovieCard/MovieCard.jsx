@@ -61,6 +61,8 @@ export const MovieCard = ({ id, setShowModal }) => {
   const voteAverage = vote_average ? vote_average.toFixed(1) : 0;
   const popularityTotal = popularity ? popularity.toFixed(0) : 0;
 
+  console.log('рендер модалки');
+
   return (
     <MovieCardBox>
       <Title>{title}</Title>

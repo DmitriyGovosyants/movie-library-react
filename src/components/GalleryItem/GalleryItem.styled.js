@@ -3,6 +3,9 @@ import { device } from "utils/mediaquery";
 
 export const FilmCard = styled.li`
   @media ${device.mobileOnly} {
+    display: flex;
+    flex-direction: column-reverse;
+    max-width: 400px;
     :not(:last-child) {
       margin-bottom: 30px;
     }
@@ -71,7 +74,7 @@ export const PosterThumb = styled.div`
 export const Poster = styled.img`
   width: 100%;
   height: 420px;
-  margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
+  
   object-fit: cover;
   border-radius: 10px;
 
@@ -81,6 +84,7 @@ export const Poster = styled.img`
 
   @media ${device.tablet} {
     height: 500px;
+    margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
   }
 
   @media ${device.desktopM} {
@@ -103,6 +107,10 @@ export const RatingData = styled.span`
   color: #fff;
   background-color: red;
   border-radius: 5px;
+
+  @media ${device.mobileOnly} {
+    font-size: 30px;
+  }
 `
 
 export const FilmYear = styled.span`
@@ -115,10 +123,20 @@ export const FilmYear = styled.span`
   
   font-size: 20px;
   text-shadow: -1px -1px 0 #a82727, 0 -1px 0 #a82727, 1px -1px 0 #a82727, 1px 0 0 #a82727, 1px 1px 0 #a82727, 0 1px 0 #a82727, -1px 1px 0 #a82727, -1px 0 0 #a82727;
+
+  @media ${device.mobileOnly} {
+    font-size: 30px;
+  }
 `
 
 export const FilmTitle = styled.h2`
   font-size: ${({ theme: {fontSizes}}) => fontSizes.medium};
   font-weight: 500;
   line-height: 1.33;
+
+  @media ${device.mobileOnly} {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
+  }
 `

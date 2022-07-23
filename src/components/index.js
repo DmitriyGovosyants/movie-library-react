@@ -11,3 +11,4 @@ export * from './Modal/Modal';
 export * from './MovieCard/MovieCard';
 export * from './Loader/Loader';
 export * from './SearchStatusBar/SearchStatusBar';
+export * from './PaginationArrow/PaginationArrow';

@@ -52,7 +52,7 @@ export const GalleryList = ({ query }) => {
       setQueryKey(query);
       setFilms([]);
       setPage(1);
-      // return;
+      return;
     }
     setShowLoader(true);
 
@@ -83,7 +83,12 @@ export const GalleryList = ({ query }) => {
 
   return (
     <Container>
-      <SearchStatusBar query={query} page={page} />
+      <SearchStatusBar
+        query={query}
+        page={page}
+        totalPage={totalPage}
+        setPage={setPage}
+      />
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {showLoader && (
         <Modal>

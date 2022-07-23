@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const SearchStatusBarBox = styled.div`
+export const NavigationStatusBox = styled.div`
   display: flex;
   margin-bottom: 10px;
 
@@ -9,13 +9,27 @@ export const SearchStatusBarBox = styled.div`
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;
-  color: blueviolet;
+  color: cadetblue;
 
   @media ${device.mobileOnly} {
     flex-direction: column;
   }
 
   @media ${device.tablet} {
-     align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
   }
 `
+
+export const SearchStatusList = styled.ul`
+  @media ${device.tablet} {
+    display: flex;
+    align-items: flex-end;
+  }
+`
+
+export const SearchStatusItem = styled.li`
+display: flex;
+  align-items: center;
+`
+

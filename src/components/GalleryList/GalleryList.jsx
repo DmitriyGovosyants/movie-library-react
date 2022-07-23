@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
+import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
 import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = ({ query }) => {
@@ -67,6 +67,11 @@ export const GalleryList = ({ query }) => {
   return (
     <Container>
       {error && <ErrorMessage>{error}</ErrorMessage>}
+      {query ? (
+        <p style={{ fontSize: '40px', textAlign: 'center' }}>{query}</p>
+      ) : (
+        <p style={{ fontSize: '40px', textAlign: 'center' }}>Trending movie</p>
+      )}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {

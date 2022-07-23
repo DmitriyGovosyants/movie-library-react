@@ -96,18 +96,24 @@ export const InfoItem = styled.li`
 `
 
 export const InfoLabel = styled.p`
-  width: 40%;
-  font-size: 18px;
-  font-weight: 500;
+  /* font-size: 18px; */
 `
 
 export const InfoValue = styled.p`
-  width: 60%;
+  margin-left: ${({ theme: { spacing } }) => spacing(2)};
+  font-size: 16px;
+  font-weight: 500;
 `
 
 export const RatingList = styled.ul`
   display: flex;
+  justify-content: center;
   margin-bottom: ${({ theme: { spacing } }) => spacing(6)};
+  padding: 10px 0;
+
+  /* background-color: white; */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 `
 
 export const RatingItem = styled.li`
@@ -127,20 +133,18 @@ export const RatingItem = styled.li`
 `
 
 export const RatingLabel = styled.p`
-  font-size: 18px;
-  font-weight: 500;
+  
 `
 
 export const RatingValue = styled.span`
+  display: flex;
+  align-items: center;
   min-width: 50px;
   padding: ${({ theme: { spacing } }) => spacing(2)};
 
-  font-weight: ${p => p.color === 'red' ? 700 : 'inherit'};
+  font-size: 18px;
+  font-weight: 700;
   text-align: center;
-  color: ${p => p.color === 'red' ? 'white' : 'inherit'};
-  background-color: ${p => p.color === 'red' ? 'red' : 'white'};
-  border-radius: 10px;
-  border: 1px solid gray;
 `
 
 export const AboutBox = styled.div`

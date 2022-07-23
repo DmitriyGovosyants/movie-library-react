@@ -1,13 +1,21 @@
 import { useState, useEffect } from 'react';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
-import { Container, GalleryItem, Pagination, ErrorMessage } from 'components';
-import { Gallery } from './GalleyList.styled';
+import {
+  Container,
+  GalleryItem,
+  Pagination,
+  ErrorMessage,
+  Modal,
+  Loader,
+} from 'components';
+import { Gallery, SearchStatusBar } from './GalleyList.styled';
 
 export const GalleryList = ({ query }) => {
   const [films, setFilms] = useState([]);
   const [queryKey, setQueryKey] = useState('');
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
+  const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(null);
   console.log('очередной рендер в компоненте с запросом', films);
 
@@ -15,6 +23,8 @@ export const GalleryList = ({ query }) => {
     if (query !== '') {
       return;
     }
+    setShowLoader(true);
+
     const fetch = async () => {
       try {
         const {
@@ -26,6 +36,8 @@ export const GalleryList = ({ query }) => {
         console.log(results);
       } catch (e) {
         setError(e.message);
+      } finally {
+        setShowLoader(false);
       }
     };
     fetch();
@@ -41,6 +53,8 @@ export const GalleryList = ({ query }) => {
       setPage(1);
       return;
     }
+    setShowLoader(true);
+
     const fetch = async () => {
       try {
         const {
@@ -52,6 +66,8 @@ export const GalleryList = ({ query }) => {
         // console.log('Получение данных', results.length);
       } catch (e) {
         setError(e.message);
+      } finally {
+        setShowLoader(false);
       }
     };
     fetch();
@@ -66,12 +82,17 @@ export const GalleryList = ({ query }) => {
 
   return (
     <Container>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
       {query ? (
-        <p style={{ fontSize: '40px', textAlign: 'center' }}>{query}</p>
+        <SearchStatusBar>{query}</SearchStatusBar>
       ) : (
-        <p style={{ fontSize: '40px', textAlign: 'center' }}>Trending movie</p>
+        <SearchStatusBar>Trending movie</SearchStatusBar>
       )}
+      {showLoader && (
+        <Modal>
+          <Loader />
+        </Modal>
+      )}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {

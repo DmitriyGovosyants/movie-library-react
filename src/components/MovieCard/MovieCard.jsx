@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
+import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails } from 'services/filmsApi';
-import { ErrorMessage } from 'components';
+import { ErrorMessage, Modal, Loader } from 'components';
 import {
   MovieCardBox,
   Title,
@@ -28,14 +29,18 @@ import {
 export const MovieCard = ({ id, setShowModal }) => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [error, setError] = useState(null);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
+    setShowLoader(true);
     const fetch = async () => {
       try {
         const { data } = await fetchMovieDetails(id);
         setMovieDetails(data);
       } catch (e) {
         setError(e.message);
+      } finally {
+        setShowLoader(false);
       }
     };
     fetch();
@@ -65,6 +70,11 @@ export const MovieCard = ({ id, setShowModal }) => {
 
   return (
     <MovieCardBox>
+      {showLoader && (
+        <Modal>
+          <Loader />
+        </Modal>
+      )}
       <Title>{title}</Title>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {movieDetails && (
@@ -75,6 +85,23 @@ export const MovieCard = ({ id, setShowModal }) => {
           <MovieCardWrapper>
             <Poster src={filmPoster} alt="" />
             <MovieCardContent>
+              <RatingList>
+                <RatingItem>
+                  <RatingValue>
+                    <AiFillStar color={'red'} />
+                    {voteAverage}
+                  </RatingValue>
+                  <RatingLabel>TMBD</RatingLabel>
+                </RatingItem>
+                <RatingItem>
+                  <RatingValue>{vote_count}</RatingValue>
+                  <RatingLabel>Votes</RatingLabel>
+                </RatingItem>
+                <RatingItem>
+                  <RatingValue>{popularityTotal}</RatingValue>
+                  <RatingLabel>Popular</RatingLabel>
+                </RatingItem>
+              </RatingList>
               <InfoList>
                 <InfoItem>
                   <InfoLabel>Release date:</InfoLabel>
@@ -89,22 +116,8 @@ export const MovieCard = ({ id, setShowModal }) => {
                   <InfoValue>{genresName}</InfoValue>
                 </InfoItem>
               </InfoList>
-              <RatingList>
-                <RatingItem>
-                  <RatingLabel>TMBD</RatingLabel>
-                  <RatingValue color={'red'}>{voteAverage}</RatingValue>
-                </RatingItem>
-                <RatingItem>
-                  <RatingLabel>votes</RatingLabel>
-                  <RatingValue>{vote_count}</RatingValue>
-                </RatingItem>
-                <RatingItem>
-                  <RatingLabel>popularity</RatingLabel>
-                  <RatingValue>{popularityTotal}</RatingValue>
-                </RatingItem>
-              </RatingList>
               <AboutBox>
-                <AboutLabel>About</AboutLabel>
+                <AboutLabel>StoryLine</AboutLabel>
                 <AboutText>{overview}</AboutText>
               </AboutBox>
               <ButtonList>

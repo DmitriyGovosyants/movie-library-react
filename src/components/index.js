@@ -9,3 +9,4 @@ export * from './Pagination/Pagination';
 export * from './ErrorMessage/ErrorMessage';
 export * from './Modal/Modal';
 export * from './MovieCard/MovieCard';
+export * from './Loader/Loader';

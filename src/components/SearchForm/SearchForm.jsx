@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { FormWrapper, Form, Input, Submit } from './SearchForm.styled';
 
 export const SearchForm = ({ onSearch }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = ({ query }) => {
     const queryNormalized = query.trim();
 
@@ -14,6 +14,7 @@ export const SearchForm = ({ onSearch }) => {
 
     console.log(queryNormalized);
     onSearch(queryNormalized);
+    reset();
   };
 
   return (

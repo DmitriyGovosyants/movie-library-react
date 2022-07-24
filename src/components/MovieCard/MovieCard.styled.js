@@ -21,15 +21,19 @@ export const MovieCardBox = styled.div`
 `
 
 export const Title = styled.h3`
-  padding: ${({ theme: { spacing } }) => spacing(1)} ${({ theme: { spacing } }) => spacing(12)};;
-  
+  padding-top: ${({ theme: { spacing } }) => spacing(1)};
+  padding-bottom: ${({ theme: { spacing } }) => spacing(1)};
+  padding-left: ${({ theme: { spacing } }) => spacing(2)};
+  padding-right: ${({ theme: { spacing } }) => spacing(12)};
+
+  font-size: 26px;
+  line-height: 1.5;
   text-align: center;
   background-image: linear-gradient( 35deg, #c3d1ff 10%, #9452A5 100%);
   border-top: 10px;
 
-  @media ${device.mobile} {
-    font-size: 26px;
-    line-height: 1.5;
+  @media ${device.mobileL} {
+    padding: ${({ theme: { spacing } }) => spacing(1)} ${({ theme: { spacing } }) => spacing(12)};
   }
 
   @media ${device.tablet} {
@@ -39,12 +43,16 @@ export const Title = styled.h3`
 
 export const ModalCloseBtn = styled.button`
   position: absolute;
-  top: 8px;
+  top: 4px;
   right: 8px;
   color: #FF2662;
 
   :hover {
     color: red;
+  }
+
+  @media ${device.tablet} {
+    top: 8px;
   }
 `
 

@@ -29,24 +29,32 @@ export const Btn = styled.button`
   color: white;
   background-color: gray;
   border-radius: 5px;
-  cursor: pointer;
-
+  
   :disabled {
     background-color: tomato;
-  }
-  :hover {
-    background-color: red;
   }
 
   @media ${device.mobileOnlyL} {
     margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
   }
+
+  @media ${device.desktop} {
+    :hover {
+      background-color: red;
+    }
+  }
 `
 
 export const Dots = styled.span`
   margin-right: ${({ theme: { spacing } }) => spacing(2)};
+  padding-bottom: ${({ theme: { spacing } }) => spacing(4)};
   min-width: 50px;
-
+  
+  font-size: 30px;
   letter-spacing: 0.2em;
   text-align: center;
+
+  @media ${device.mobileOnlyL} {
+    width: 100%;
+  }
 `

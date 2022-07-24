@@ -4,8 +4,8 @@ import { device } from "utils/mediaquery";
 export const FilmCard = styled.li`
   @media ${device.mobileOnly} {
     display: flex;
-    flex-direction: column-reverse;
-    max-width: 400px;
+    flex-direction: column;
+    max-width: 440px;
     :not(:last-child) {
       margin-bottom: 30px;
     }
@@ -60,6 +60,7 @@ export const FilmCard = styled.li`
 
 export const PosterThumb = styled.div`
   position: relative;
+  margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
 
   @media ${device.desktop} {
     transition: transform ${({theme: {animation}})=> animation.cubicBezier};
@@ -79,12 +80,11 @@ export const Poster = styled.img`
   border-radius: 10px;
 
   @media ${device.mobileL} {
-    height: 600px;
+    height: 640px;
   }
 
   @media ${device.tablet} {
     height: 500px;
-    margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
   }
 
   @media ${device.desktopM} {
@@ -136,7 +136,6 @@ export const FilmTitle = styled.h2`
 
   @media ${device.mobileOnly} {
     font-size: 24px;
-    text-align: center;
-    margin-bottom: ${({ theme: { spacing } }) => spacing(3)};
+    /* text-align: center; */
   }
 `

@@ -35,7 +35,6 @@ export const Pagination = ({ setPage, page, totalPage }) => {
 
   return (
     <PaginationBox>
-      <PaginationArrow setPage={setPage} page={page} totalPage={totalPage} />
       <BtnBox>
         {totalPage !== 1 && (
           <Btn onClick={() => setPage(1)} type="button" disabled={page === 1}>
@@ -56,7 +55,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
           <Btn
             onClick={() => handlePage(3, 0, -2)}
             type="button"
-            disabled={page >= 3 && page <= totalPage - 2}
+            disabled={page >= 3 && (page <= totalPage - 2 || totalPage === 3)}
           >
             {handleBtnName(3, 0, -2)}
           </Btn>
@@ -81,6 +80,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
           </Btn>
         )}
       </BtnBox>
+      <PaginationArrow setPage={setPage} page={page} totalPage={totalPage} />
     </PaginationBox>
   );
 };

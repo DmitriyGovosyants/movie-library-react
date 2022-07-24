@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
+import { device } from 'utils/mediaquery';
 
 export const ArrowBox = styled.div`
   display: flex;
-  padding: ${({ theme: { spacing } }) => spacing(2)};
+  padding: ${({ theme: { spacing } }) => spacing(2)} 0;
 
-  /* margin-bottom: 40px; */
+  @media ${device.mobileOnly} {
+    justify-content: space-between;
+  }
 `
 
 export const ArrowBtn = styled.button`
@@ -13,14 +16,15 @@ export const ArrowBtn = styled.button`
   align-items: center;
   min-width: 120px;
   margin-right: ${p => p.margin ? p.margin : '10px'};
-  padding: ${({ theme: { spacing } }) => spacing(2)};
+  padding: 0 ${({ theme: { spacing } }) => spacing(2)};
 
   color: white;
   background-color: cadetblue;
   border-radius: 5px;
-  cursor: pointer;
-
-  :hover {
-    background-color: red;
+  
+  @media ${device.desktop} {
+    :hover {
+      background-color: red;
+    }
   }
 `

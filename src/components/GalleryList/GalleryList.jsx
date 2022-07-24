@@ -6,7 +6,6 @@ import {
   ErrorMessage,
   GalleryItem,
   Pagination,
-  Modal,
   Loader,
 } from 'components';
 import { Gallery } from './GalleyList.styled';

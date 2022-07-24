@@ -6,7 +6,7 @@ export const PaginationArrow = ({ setPage, page, totalPage }) => {
     <ArrowBox>
       {page !== 1 && (
         <ArrowBtn onClick={() => setPage(s => s - 1)} type="button">
-          <BiChevronLeft size={22} />
+          <BiChevronLeft size={38} />
         </ArrowBtn>
       )}
       {page !== totalPage && (
@@ -15,7 +15,7 @@ export const PaginationArrow = ({ setPage, page, totalPage }) => {
           type="button"
           margin={'0'}
         >
-          <BiChevronRight size={22} />
+          <BiChevronRight size={38} />
         </ArrowBtn>
       )}
     </ArrowBox>

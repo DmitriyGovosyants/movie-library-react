@@ -11,7 +11,9 @@ export const App = () => {
   return (
     <>
       <Header onSearch={onSearch} />
-      <GalleryList query={search} />
+      <main>
+        <GalleryList query={search} />
+      </main>
     </>
   );
 };

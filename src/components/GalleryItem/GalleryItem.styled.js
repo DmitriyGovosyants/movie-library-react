@@ -63,10 +63,10 @@ export const PosterThumb = styled.div`
   margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
 
   @media ${device.desktop} {
-    transition: transform ${({theme: {animation}})=> animation.cubicBezier};
+    transition: box-shadow ${({theme: {animation}})=> animation.cubicBezier};
 
     :hover {
-      transform: scale(1.05);
+      box-shadow: 3px 3px 10px black;
       cursor: pointer;
     }
   }
@@ -77,14 +77,13 @@ export const Poster = styled.img`
   height: 420px;
   
   object-fit: cover;
-  border-radius: 10px;
 
   @media ${device.mobileL} {
     height: 640px;
   }
 
   @media ${device.tablet} {
-    height: 500px;
+    height: 465px;
   }
 
   @media ${device.desktopM} {

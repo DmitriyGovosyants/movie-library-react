@@ -1,26 +1,26 @@
 import {
   NavigationBox,
-  Logo,
+  LogoLink,
   Title,
   NavList,
   NavItem,
-  NavLink,
+  ActiveLink,
 } from './Navigation.styled';
 import { ReactComponent as LogoSVG } from '../../images/header/logo.svg';
 
 export const Navigation = () => {
   return (
     <NavigationBox>
-      <Logo href="./">
+      <LogoLink to="/">
         <LogoSVG />
         <Title>Filmoteka</Title>
-      </Logo>
+      </LogoLink>
       <NavList>
         <NavItem>
-          <NavLink href="./">home</NavLink>
+          <ActiveLink to="/">home</ActiveLink>
         </NavItem>
         <NavItem>
-          <NavLink href="./">my library</NavLink>
+          <ActiveLink to="/library">my library</ActiveLink>
         </NavItem>
       </NavList>
     </NavigationBox>

@@ -9,6 +9,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout setSearch={setSearch} />}>
         <Route index element={<GalleryList query={search} />} />
+        <Route path="library" element={<div>Let</div>} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

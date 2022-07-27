@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link, NavLink } from 'react-router-dom';
 import { device } from "utils/mediaquery";
 
 export const NavigationBox = styled.nav`
@@ -13,7 +14,7 @@ export const NavigationBox = styled.nav`
   }
 `
 
-export const Logo = styled.a`
+export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
 
@@ -39,7 +40,7 @@ export const NavItem = styled.li`
   }
 `
 
-export const NavLink = styled.a`
+export const ActiveLink = styled(NavLink)`
   font-size: ${({ theme: {fontSizes}}) => fontSizes.small};
   line-height: 1.17;
   font-weight: 500;
@@ -48,7 +49,8 @@ export const NavLink = styled.a`
 
   transition: color ${({theme: {animation}})=> animation.cubicBezier};
 
-  :hover {
+  :hover,
+  &.active {
     color: ${({ theme: {colors}}) => colors.accentTextBtn};
   }
 `

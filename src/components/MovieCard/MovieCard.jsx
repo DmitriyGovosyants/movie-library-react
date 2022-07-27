@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails } from 'services/filmsApi';
+import noPoster from 'images/gallery/no-poster.jpeg';
 import { ErrorMessage, Loader } from 'components';
 import {
   MovieCardBox,
@@ -60,8 +61,8 @@ export const MovieCard = ({ id, setShowModal }) => {
   } = movieDetails;
 
   const filmPoster = poster_path
-    ? `https://image.tmdb.org/t/p/original` + poster_path
-    : 'https://eiflixnob.live/assets/general/images/no_poster.jpg';
+    ? `https://image.tmdb.org/t/p/original${poster_path}`
+    : noPoster;
 
   const genresName = genres ? genres.map(e => e.name).join(', ') : null;
   const voteAverage = vote_average ? vote_average.toFixed(1) : 0;

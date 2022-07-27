@@ -19,7 +19,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   padding-right: ${({theme: {spacing}}) => spacing(5)};
 
-  letter-spacing: 0.1em;
+  letter-spacing: 0.03em;
   color: ${({ theme: { colors } }) => colors.textMain};
   text-shadow: 2px 2px 4px black;
 

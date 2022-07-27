@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import noPoster from 'images/gallery/no-poster.jpeg';
 import { Modal, MovieCard } from 'components';
 import {
   FilmCard,
@@ -19,8 +20,8 @@ export const GalleryItem = ({
   const [showModal, setShowModal] = useState(false);
 
   const filmPoster = poster
-    ? `https://image.tmdb.org/t/p/original` + poster
-    : 'https://eiflixnob.live/assets/general/images/no_poster.jpg';
+    ? `https://image.tmdb.org/t/p/original${poster}`
+    : noPoster;
 
   return (
     <FilmCard>

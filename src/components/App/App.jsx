@@ -1,19 +1,16 @@
 import { useState } from 'react';
-import { Header, GalleryList } from 'components';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { SharedLayout, GalleryList } from 'components';
 
 export const App = () => {
   const [search, setSearch] = useState('');
 
-  const onSearch = value => {
-    setSearch(value);
-  };
-
   return (
-    <>
-      <Header onSearch={onSearch} />
-      <main>
-        <GalleryList query={search} />
-      </main>
-    </>
+    <Routes>
+      <Route path="/" element={<SharedLayout setSearch={setSearch} />}>
+        <Route index element={<GalleryList query={search} />} />
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };

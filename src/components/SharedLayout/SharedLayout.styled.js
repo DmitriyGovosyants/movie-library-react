@@ -5,6 +5,7 @@ import desktopBg from '../../images/header/header-bg-desktop@1x.jpg';
 import { device } from "utils/mediaquery";
 
 export const HeaderBox = styled.header`
+  height: 180px;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -34,4 +35,14 @@ export const HeaderBox = styled.header`
       ),
       url(${desktopBg});
   }
+`
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 180px);
+`
+
+export const Main = styled.main`
+  flex-grow: 1;
 `

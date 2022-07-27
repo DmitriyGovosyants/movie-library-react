@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { usePrevious } from 'hooks/usePrevious';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import {
   Container,
@@ -12,25 +13,27 @@ import { Gallery } from './GalleyList.styled';
 
 export const GalleryList = ({ query }) => {
   const [films, setFilms] = useState([]);
-  const [queryKey, setQueryKey] = useState('');
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(null);
   console.log('очередной рендер в компоненте с запросом', films);
 
+  const prevQuery = usePrevious(query);
+
   useEffect(() => {
     if (query !== '') {
       return;
     }
-    setShowLoader(true);
 
     const fetch = async () => {
+      setShowLoader(true);
+      scrollToTop();
+
       try {
         const {
           data: { results, total_pages },
         } = await fetchTrending(page);
-
         setTotalPage(total_pages);
         setFilms([...results]);
         console.log(results);
@@ -47,15 +50,16 @@ export const GalleryList = ({ query }) => {
     if (query === '') {
       return;
     }
-    if (query !== queryKey) {
-      setQueryKey(query);
+    if (query !== prevQuery) {
       setFilms([]);
       setPage(1);
       return;
     }
-    setShowLoader(true);
 
     const fetch = async () => {
+      setShowLoader(true);
+      scrollToTop();
+
       try {
         const {
           data: { results, total_pages },
@@ -71,14 +75,14 @@ export const GalleryList = ({ query }) => {
       }
     };
     fetch();
-  }, [page, query, queryKey]);
+  }, [page, query, prevQuery]);
 
-  useEffect(() => {
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'instant',
     });
-  }, [page, query]);
+  };
 
   return (
     <Container>

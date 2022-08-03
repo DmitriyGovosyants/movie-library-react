@@ -4,15 +4,17 @@ import { device } from "utils/mediaquery";
 export const FilmCard = styled.li`
   flex-basis: calc((100% - 33px) / 3);
 
-  :not(:nth-last-of-type(-n + 3)) {
-    margin-bottom: 18px;
-  }
-
   :not(:nth-of-type(3n)) {
     margin-right: 16.5px;
   }
 
-  @media ${device.tablet} {
+  @media ${device.mobileOnly} {
+    :not(:nth-last-of-type(-n + 3)) {
+      margin-bottom: 18px;
+    }
+  }
+
+  @media ${device.tabletOnly} {
     :not(:nth-last-of-type(-n + 3)) {
       margin-bottom: 32px;
     }
@@ -20,10 +22,6 @@ export const FilmCard = styled.li`
 
   @media ${device.desktop} {
     flex-basis: calc((100% - 66px) / 5);
-
-    :not(:nth-last-of-type(-n + 3)) {
-      margin-bottom: 0;
-    }
 
     :not(:nth-last-of-type(-n + 5)) {
       margin-bottom: 32px;

@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter basename="/movie-library-react/">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
@@ -17,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <App />
       </ThemeProvider>
     </BrowserRouter>
-  // </React.StrictMode>
+  </React.StrictMode>
 );

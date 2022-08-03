@@ -1,6 +1,11 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Navigation, SearchForm } from 'components';
+import {
+  Container,
+  Navigation,
+  SearchForm,
+  IntersectonObserver,
+} from 'components';
 import { HeaderBox, FooterWrapper, Main } from './SharedLayout.styled';
 
 export const SharedLayout = ({ setSearch }) => {
@@ -18,7 +23,11 @@ export const SharedLayout = ({ setSearch }) => {
             <Outlet />
           </Suspense>
         </Main>
-        <footer>---Footer text---</footer>
+        <IntersectonObserver
+          onIntersect={() => console.log('Yes, it`s a footer')}
+        >
+          ---Footer text---
+        </IntersectonObserver>
       </FooterWrapper>
     </>
   );

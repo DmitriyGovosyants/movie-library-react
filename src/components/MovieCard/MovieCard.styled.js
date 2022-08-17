@@ -161,6 +161,7 @@ export const RatingLabel = styled.p`
 export const RatingValue = styled.span`
   display: flex;
   align-items: center;
+  justify-content: center;
   min-width: 50px;
   padding: ${({ theme: { spacing } }) => spacing(2)};
 

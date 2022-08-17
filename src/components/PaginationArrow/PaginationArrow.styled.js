@@ -22,6 +22,10 @@ export const ArrowBtn = styled.button`
   background-color: cadetblue;
   border-radius: 5px;
   
+  :disabled {
+    opacity: 0.5;
+  }
+  
   @media ${device.desktop} {
     :hover {
       background-color: red;

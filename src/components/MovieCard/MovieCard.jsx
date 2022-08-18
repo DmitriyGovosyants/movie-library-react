@@ -96,81 +96,83 @@ export const MovieCard = ({ id, setShowModal }) => {
   return (
     <>
       {showLoader && <Spinner />}
-      <MovieCardBox>
-        <Title>{title}</Title>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
-          <FaRegWindowClose size={40} />
-        </ModalCloseBtn>
-        <MovieCardWrapper>
-          <PosterBox>
-            <Poster src={filmPoster} alt={title} />
-          </PosterBox>
-          <MovieCardContent>
-            {trailersInfo?.length !== 0 && (
-              <MovieCardTrailer
-                trailersInfo={trailersInfo}
-                trailerActiveIndex={trailerActiveIndex}
-                setTrailerActiveIndex={setTrailerActiveIndex}
-              />
-            )}
-            <RatingList>
-              <RatingItem>
-                <RatingValue>
-                  <AiFillStar color={'red'} />
-                  {voteAverage}
-                </RatingValue>
-                <p>TMBD</p>
-              </RatingItem>
-              <RatingItem>
-                <RatingValue>{vote_count}</RatingValue>
-                <p>Votes</p>
-              </RatingItem>
-              <RatingItem>
-                <RatingValue>{popularityTotal}</RatingValue>
-                <p>Popular</p>
-              </RatingItem>
-            </RatingList>
-            {trailersInfo?.length === 0 && (
-              <>
-                <InfoList>
-                  <InfoItem>
-                    <p>Release date:</p>
-                    <InfoValue>{releaseDate}</InfoValue>
-                  </InfoItem>
-                  <InfoItem>
-                    <p>Original title:</p>
-                    <InfoValue>{original_title}</InfoValue>
-                  </InfoItem>
-                  <InfoItem>
-                    <p>Genre:</p>
-                    <InfoValue>{genresName}</InfoValue>
-                  </InfoItem>
-                </InfoList>
-                <AboutBox>
-                  <AboutLabel>StoryLine</AboutLabel>
-                  <AboutText>{overview}</AboutText>
-                </AboutBox>
-              </>
-            )}
-            <ButtonList>
-              <ButtonItem>
-                <LibraryBtn type="button">add to watched</LibraryBtn>
-              </ButtonItem>
-              <ButtonItem>
-                <LibraryBtn type="button">add to queue</LibraryBtn>
-              </ButtonItem>
-              <ButtonItem>
-                <LibraryBtn type="button" onClick={controlTrailer}>
-                  {trailersInfo?.length === 0
-                    ? 'watch trailer'
-                    : 'close trailer'}
-                </LibraryBtn>
-              </ButtonItem>
-            </ButtonList>
-          </MovieCardContent>
-        </MovieCardWrapper>
-      </MovieCardBox>
+      {movieDetails?.length !== 0 && (
+        <MovieCardBox>
+          <Title>{title}</Title>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
+            <FaRegWindowClose size={40} />
+          </ModalCloseBtn>
+          <MovieCardWrapper>
+            <PosterBox>
+              <Poster src={filmPoster} alt={title} />
+            </PosterBox>
+            <MovieCardContent>
+              {trailersInfo?.length !== 0 && (
+                <MovieCardTrailer
+                  trailersInfo={trailersInfo}
+                  trailerActiveIndex={trailerActiveIndex}
+                  setTrailerActiveIndex={setTrailerActiveIndex}
+                />
+              )}
+              <RatingList>
+                <RatingItem>
+                  <RatingValue>
+                    <AiFillStar color={'red'} />
+                    {voteAverage}
+                  </RatingValue>
+                  <p>TMBD</p>
+                </RatingItem>
+                <RatingItem>
+                  <RatingValue>{vote_count}</RatingValue>
+                  <p>Votes</p>
+                </RatingItem>
+                <RatingItem>
+                  <RatingValue>{popularityTotal}</RatingValue>
+                  <p>Popular</p>
+                </RatingItem>
+              </RatingList>
+              {trailersInfo?.length === 0 && (
+                <>
+                  <InfoList>
+                    <InfoItem>
+                      <p>Release date:</p>
+                      <InfoValue>{releaseDate}</InfoValue>
+                    </InfoItem>
+                    <InfoItem>
+                      <p>Original title:</p>
+                      <InfoValue>{original_title}</InfoValue>
+                    </InfoItem>
+                    <InfoItem>
+                      <p>Genre:</p>
+                      <InfoValue>{genresName}</InfoValue>
+                    </InfoItem>
+                  </InfoList>
+                  <AboutBox>
+                    <AboutLabel>StoryLine</AboutLabel>
+                    <AboutText>{overview}</AboutText>
+                  </AboutBox>
+                </>
+              )}
+              <ButtonList>
+                <ButtonItem>
+                  <LibraryBtn type="button">add to watched</LibraryBtn>
+                </ButtonItem>
+                <ButtonItem>
+                  <LibraryBtn type="button">add to queue</LibraryBtn>
+                </ButtonItem>
+                <ButtonItem>
+                  <LibraryBtn type="button" onClick={controlTrailer}>
+                    {trailersInfo?.length === 0
+                      ? 'watch trailer'
+                      : 'close trailer'}
+                  </LibraryBtn>
+                </ButtonItem>
+              </ButtonList>
+            </MovieCardContent>
+          </MovieCardWrapper>
+        </MovieCardBox>
+      )}
     </>
   );
 };

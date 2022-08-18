@@ -1,4 +1,3 @@
-- watch trailer
 - auth in firebase
 - DB in firebase - queue and watched
 - my library

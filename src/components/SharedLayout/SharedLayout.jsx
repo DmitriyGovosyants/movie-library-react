@@ -7,6 +7,7 @@ import {
   LoadingScreen,
 } from 'components';
 import { HeaderBox, FooterWrapper, Main } from './SharedLayout.styled';
+import { LogIn } from 'components/AuthFirebase/AuthFirebase';
 
 export const SharedLayout = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -19,6 +20,7 @@ export const SharedLayout = () => {
 
   return (
     <>
+      <LogIn />
       {showLoading && <LoadingScreen />}
       <HeaderBox>
         <Container>

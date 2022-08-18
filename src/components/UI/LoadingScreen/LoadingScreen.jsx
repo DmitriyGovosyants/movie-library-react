@@ -6,7 +6,7 @@ const screenRoot = document.querySelector('#screen-root');
 export const LoadingScreen = () => {
   return createPortal(
     <LoadOverlay>
-      <LoadText>Welcom to movie library react app!</LoadText>
+      <LoadText>Welcome to movie library!</LoadText>
     </LoadOverlay>,
     screenRoot
   );

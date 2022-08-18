@@ -17,6 +17,7 @@ export const theme = Object.freeze({
     small: '14px',
     medium: '18px',
     large: '24px',
+    loadScreenBig: '50px',
   },
   spacing: value => `${4 * value}px`,
   animation: {

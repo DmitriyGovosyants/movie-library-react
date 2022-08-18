@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movie-library-react/static/css/main.eb4cfae0.css",
-    "main.js": "/movie-library-react/static/js/main.687ed71c.js",
+    "main.js": "/movie-library-react/static/js/main.e18b7ef8.js",
     "static/media/header-bg-desktop@1x.jpg": "/movie-library-react/static/media/header-bg-desktop@1x.cc9d76381dba8f7edace.jpg",
     "static/media/header-bg-tablet@1x.jpg": "/movie-library-react/static/media/header-bg-tablet@1x.05402a4377c24acee85e.jpg",
     "static/media/header-bg-mobile@1x.jpg": "/movie-library-react/static/media/header-bg-mobile@1x.11b882366ae009ed3424.jpg",
@@ -9,10 +9,10 @@
     "index.html": "/movie-library-react/index.html",
     "static/media/logo.svg": "/movie-library-react/static/media/logo.931e65be6a74f2f6f5af466b9a7d9c1e.svg",
     "main.eb4cfae0.css.map": "/movie-library-react/static/css/main.eb4cfae0.css.map",
-    "main.687ed71c.js.map": "/movie-library-react/static/js/main.687ed71c.js.map"
+    "main.e18b7ef8.js.map": "/movie-library-react/static/js/main.e18b7ef8.js.map"
   },
   "entrypoints": [
     "static/css/main.eb4cfae0.css",
-    "static/js/main.687ed71c.js"
+    "static/js/main.e18b7ef8.js"
   ]
 }

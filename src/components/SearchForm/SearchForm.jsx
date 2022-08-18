@@ -12,7 +12,6 @@ export const SearchForm = ({ setSearch }) => {
       return toast('Please, enter the text');
     }
 
-    console.log(queryNormalized);
     setSearch(queryNormalized);
     reset();
   };
@@ -28,7 +27,7 @@ export const SearchForm = ({ setSearch }) => {
           autoFocus
         />
         <Submit type="submit">
-          <BsSearch size={30} color={'white'} />
+          <BsSearch size={30} color={'gray'} />
         </Submit>
       </Form>
     </FormWrapper>

@@ -11,7 +11,8 @@ import {
 } from 'components';
 import { Gallery } from './GalleyList.styled';
 
-export const GalleryList = ({ query }) => {
+export const GalleryList = () => {
+  const [search, setSearch] = useState('');
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -19,10 +20,10 @@ export const GalleryList = ({ query }) => {
   const [error, setError] = useState(null);
   console.log('очередной рендер в компоненте с запросом', films);
 
-  const prevQuery = usePrevious(query);
+  const prevQuery = usePrevious(search);
 
   useEffect(() => {
-    if (query !== '') {
+    if (search !== '') {
       return;
     }
 
@@ -44,13 +45,13 @@ export const GalleryList = ({ query }) => {
       }
     };
     fetch();
-  }, [page, query]);
+  }, [page, search]);
 
   useEffect(() => {
-    if (query === '') {
+    if (search === '') {
       return;
     }
-    if (query !== prevQuery) {
+    if (search !== prevQuery) {
       setFilms([]);
       setPage(1);
       return;
@@ -63,7 +64,7 @@ export const GalleryList = ({ query }) => {
       try {
         const {
           data: { results, total_pages },
-        } = await fetchMoviesByName(page, query);
+        } = await fetchMoviesByName(page, search);
 
         setTotalPage(total_pages);
         setFilms([...results]);
@@ -75,7 +76,7 @@ export const GalleryList = ({ query }) => {
       }
     };
     fetch();
-  }, [page, query, prevQuery]);
+  }, [page, search, prevQuery]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -87,7 +88,8 @@ export const GalleryList = ({ query }) => {
   return (
     <Container>
       <SearchStatusBar
-        query={query}
+        setSearch={setSearch}
+        search={search}
         page={page}
         totalPage={totalPage}
         setPage={setPage}

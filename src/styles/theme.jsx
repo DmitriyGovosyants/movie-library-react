@@ -2,6 +2,7 @@ export const theme = Object.freeze({
   colors: {
     textMain: '#ffffff',
     textSecond: 'gray',
+    textThird: 'black',
 
     bgMain: '#ffffff',
     bgSecond: '#e0cbcb',
@@ -10,9 +11,6 @@ export const theme = Object.freeze({
     accentColor: 'red',
     btnBg: '#FF2662',
     btnBgDisabled: 'tomato',
-
-    // ffd: '#c3d1ff',
-    // accentTextBtn: '#ff6b01',
   },
   fontSizes: {
     titleMain: '30px',

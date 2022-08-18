@@ -3,6 +3,7 @@ import { device } from "utils/mediaquery";
 
 export const NavigationStatusBox = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 10px;
 
   font-size: ${p => p.theme.fontSizes.medium};
@@ -15,7 +16,7 @@ export const NavigationStatusBox = styled.div`
   }
 
   ${device.tabletM} {
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
   }
 `
@@ -25,6 +26,7 @@ export const SearchStatusList = styled.ul`
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
+    margin-right: auto;
   }
 `
 

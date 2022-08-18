@@ -1,20 +1,14 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  Container,
-  Navigation,
-  SearchForm,
-  IntersectonObserver,
-} from 'components';
+import { Container, Navigation, IntersectonObserver } from 'components';
 import { HeaderBox, FooterWrapper, Main } from './SharedLayout.styled';
 
-export const SharedLayout = ({ setSearch }) => {
+export const SharedLayout = () => {
   return (
     <>
       <HeaderBox>
         <Container>
           <Navigation />
-          <SearchForm setSearch={setSearch} />
         </Container>
       </HeaderBox>
       <FooterWrapper>

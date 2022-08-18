@@ -1,26 +1,33 @@
 import { FiChevronsRight } from 'react-icons/fi';
-import { PaginationArrow } from 'components';
+import { PaginationArrow, SearchForm } from 'components';
 import {
   NavigationStatusBox,
   SearchStatusList,
   SearchStatusItem,
 } from './SearchStatusBar.styled';
 
-export const SearchStatusBar = ({ query, page, totalPage, setPage }) => {
+export const SearchStatusBar = ({
+  page,
+  totalPage,
+  setPage,
+  search,
+  setSearch,
+}) => {
   return (
     <>
       <NavigationStatusBox>
         <SearchStatusList>
           <SearchStatusItem>
             <FiChevronsRight />
-            {query && query}
-            {!query && 'Trending movie'}
+            {search && search}
+            {!search && 'Trending movie'}
           </SearchStatusItem>
           <SearchStatusItem>
             <FiChevronsRight />
             {'page - ' + page}
           </SearchStatusItem>
         </SearchStatusList>
+        <SearchForm setSearch={setSearch} />
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
       </NavigationStatusBox>
     </>

@@ -17,6 +17,7 @@ export const ArrowBtn = styled.button`
   color: ${p => p.theme.colors.textMain};
   background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
+  transition: background-color ${p => p.theme.animation.cubicBezier};
   
   :disabled {
     opacity: 0.5;

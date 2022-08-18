@@ -3,12 +3,18 @@ import { device } from "utils/mediaquery";
 
 export const FormWrapper = styled.div`
   display: flex;
-  justify-content: center;
-`
+  ${device.mobileOnly} {
+    margin-bottom: ${p => p.theme.spacing(3)};
+  }
+  ${device.tabletM} {
+    margin-right: 10px;
+  }
+` 
 
 export const Form = styled.form`
   position: relative;
-  border-bottom: 0.5px solid #ffffff;
+  display: flex;
+  border-bottom: 0.5px solid gray;
   transition: border-color ${p => p.theme.animation.cubicBezier};
 
   :hover {
@@ -21,16 +27,15 @@ export const Input = styled.input`
   padding-right: ${p => p.theme.spacing(5)};
 
   letter-spacing: 0.03em;
-  text-shadow: 2px 2px 4px black;
-  color: ${p => p.theme.colors.textMain};
+  color: ${p => p.theme.colors.textThird};
 
   background-color: transparent;
   border: none;
   outline: none;
 
   ::placeholder {
-    font-size: ${p => p.theme.fontSizes.small};
-    color: ${p => p.theme.colors.textMain};
+    font-size: ${p => p.theme.fontSizes.medium};
+    color: ${p => p.theme.colors.textThird};
     opacity: 0.7;
   }
 
@@ -41,6 +46,6 @@ export const Input = styled.input`
 
 export const Submit = styled.button`
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
 `

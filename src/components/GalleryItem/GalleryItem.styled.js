@@ -2,25 +2,31 @@ import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
 export const FilmCard = styled.li`
-  flex-basis: calc((100% - 33px) / 3);
+  ${device.mobileOnly} {
+    flex-basis: calc((100% - 16.5px) / 2);
 
-  :not(:nth-of-type(3n)) {
-    margin-right: 16.5px;
-  }
+    :not(:nth-of-type(2n)) {
+      margin-right: 16.5px;
+    }
 
-  @media ${device.mobileOnly} {
-    :not(:nth-last-of-type(-n + 3)) {
+    :not(:nth-last-of-type(-n + 2)) {
       margin-bottom: 18px;
     }
   }
 
-  @media ${device.tabletOnly} {
+  ${device.tabletOnly} {
+    flex-basis: calc((100% - 33px) / 3);
+
+    :not(:nth-of-type(3n)) {
+      margin-right: 16.5px;
+    }
+
     :not(:nth-last-of-type(-n + 3)) {
       margin-bottom: 32px;
     }
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     flex-basis: calc((100% - 66px) / 5);
 
     :not(:nth-last-of-type(-n + 5)) {
@@ -41,11 +47,11 @@ export const PosterThumb = styled.div`
   position: relative;
   margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     transition: box-shadow ${({theme: {animation}})=> animation.cubicBezier};
 
     :hover {
@@ -57,87 +63,73 @@ export const PosterThumb = styled.div`
 
 export const Poster = styled.img`
   width: 100%;
-  height: 125px;
+  height: 190px;
   
   object-fit: cover;
 
-  @media ${device.mobileL} {
-    height: 205px;
+  ${device.mobileM} {
+    height: 310px;
   }
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     height: 340px;
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     height: 271px;
   }
 
-  @media ${device.desktopM} {
+  ${device.desktopL} {
     height: 380px;
   }
 `
 
 export const RatingData = styled.span`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 5px;
+  left: 5px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3px;
+  padding: 5px;
 
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
   background-color: red;
   border-radius: 5px;
 
-  @media ${device.mobileL} {
-    bottom: 5px;
-    left: 5px;
-    padding: 5px;
-    font-size: 12px;
-  }
-
-  @media ${device.tablet} {
+  ${device.mobileM} {
     font-size: 22px;
   }
 `
 
 export const FilmYear = styled.span`
   position: absolute;
-  right: 1px;
-  bottom: 3px;
+  right: 5px;
+  bottom: 8px;
   
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
-  
-  font-size: 8px;
   text-shadow: -1px -1px 0 #a82727, 0 -1px 0 #a82727, 1px -1px 0 #a82727, 1px 0 0 #a82727, 1px 1px 0 #a82727, 0 1px 0 #a82727, -1px 1px 0 #a82727, -1px 0 0 #a82727;
 
-  @media ${device.mobileL} {
-    right: 5px;
-    bottom: 8px;
-    font-size: 12px;
-  }
-
-  @media ${device.tablet} {
+  ${device.mobileM} {
     font-size: 20px;
   }
 `
 
 export const FilmTitle = styled.h2`
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
 
-  @media ${device.mobileL} {
-    font-size: 12px;
+  ${device.mobileM} {
+    font-size: 16px;
   }
 
-  @media ${device.tablet} {
-    font-size: 16px;
+  ${device.desktopL} {
+    font-size: 20px;
   }
 `

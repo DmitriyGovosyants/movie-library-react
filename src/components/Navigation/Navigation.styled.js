@@ -9,7 +9,7 @@ export const NavigationBox = styled.nav`
   align-items: center;
   margin-bottom: ${({ theme: { spacing } }) => spacing(10)};
   
-  @media ${device.mobileOnlyL} {
+  ${device.mobileBelowM} {
     flex-direction: column;
   }
 `
@@ -18,7 +18,7 @@ export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
 
-  @media ${device.mobileOnlyL} {
+  ${device.mobileBelowM} {
     margin-bottom: ${({ theme: { spacing } }) => spacing(5)};;
   }
 `

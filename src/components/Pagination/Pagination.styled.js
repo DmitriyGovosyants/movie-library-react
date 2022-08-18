@@ -34,11 +34,11 @@ export const Btn = styled.button`
     background-color: tomato;
   }
 
-  @media ${device.mobileOnlyL} {
+  ${device.mobileBelowM} {
     margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     :hover {
       background-color: red;
     }
@@ -54,7 +54,7 @@ export const Dots = styled.span`
   letter-spacing: 0.2em;
   text-align: center;
 
-  @media ${device.mobileOnlyL} {
+  ${device.mobileBelowM} {
     width: 100%;
   }
 `

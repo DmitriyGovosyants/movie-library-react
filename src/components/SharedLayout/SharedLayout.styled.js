@@ -18,7 +18,7 @@ export const HeaderBox = styled.header`
     ),
     url(${mobileBg});
   
-  @media ${device.tablet} {
+  ${device.tabletM} {
     background-image: linear-gradient(
         to right,
         rgba(47, 48, 58, 0.4),
@@ -27,7 +27,7 @@ export const HeaderBox = styled.header`
       url(${tabletBg});
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     background-image: linear-gradient(
         to right,
         rgba(47, 48, 58, 0.4),

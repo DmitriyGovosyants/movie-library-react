@@ -11,18 +11,18 @@ export const NavigationStatusBox = styled.div`
   text-transform: uppercase;
   color: cadetblue;
 
-  @media ${device.mobileOnly} {
+  ${device.mobileOnly} {
     flex-direction: column;
   }
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     justify-content: space-between;
     align-items: center;
   }
 `
 
 export const SearchStatusList = styled.ul`
-  @media ${device.tablet} {
+  ${device.tabletM} {
     display: flex;
     align-items: flex-end;
   }

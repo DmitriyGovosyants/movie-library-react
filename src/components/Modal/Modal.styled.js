@@ -26,7 +26,7 @@ export const Overlay = styled.div`
     }
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     display: flex;
     justify-content: center;
     align-items: center;

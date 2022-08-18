@@ -33,7 +33,7 @@ export const Input = styled.input`
     opacity: 0.7;
   }
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     min-width: 400px;
   }
 `

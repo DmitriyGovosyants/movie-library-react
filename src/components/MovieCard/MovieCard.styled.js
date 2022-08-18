@@ -11,11 +11,11 @@ export const MovieCardBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     width: 700px
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
     width: 800px
   }
 `
@@ -32,11 +32,11 @@ export const Title = styled.h3`
   background-image: linear-gradient( 35deg, #c3d1ff 10%, #9452A5 100%);
   border-top: 10px;
 
-  @media ${device.mobileL} {
+  ${device.mobileM} {
     padding: ${({ theme: { spacing } }) => spacing(1)} ${({ theme: { spacing } }) => spacing(12)};
   }
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     line-height: 2;
   }
 `
@@ -51,7 +51,7 @@ export const ModalCloseBtn = styled.button`
     color: red;
   }
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     top: 8px;
   }
 `
@@ -60,40 +60,33 @@ export const MovieCardWrapper = styled.div`
   width: 100%;
   
 
-  @media ${device.tablet} {
+  ${device.tabletM} {
     display: flex;
   }
 
-  @media ${device.desktop} {
+  ${device.desktopM} {
   }
 `
 
 export const PosterBox = styled.div`
-  @media ${device.mobileOnlyL} {
-    position: relative;
+  ${device.mobileBelowM} {
+    /* position: relative; */
     padding-bottom: 150%;
     height: 0;
-    overflow: hidden;
+    /* overflow: hidden;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; */
   }
 `
 export const Poster = styled.img`
-  @media ${device.mobileL} {
+  ${device.mobileM} {
     margin-left: auto;
     margin-right: auto;
     max-width: 300px;
     height: 380px;
   }
-  @media ${device.mobileOnlyL} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
   
-  @media ${device.tablet} {
+  ${device.tabletM} {
     width: 253px;
     padding: ${({ theme: { spacing } }) => spacing(2)};
   }
@@ -148,7 +141,7 @@ export const RatingItem = styled.li`
     margin-right: 10px;
   }
 
-  @media ${device.mobileL} {
+  ${device.mobileM} {
     min-width: 100px;
   }
   

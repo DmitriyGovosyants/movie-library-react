@@ -6,26 +6,26 @@ export const Container = styled.div`
   padding-left: ${({theme: {spacing}}) => spacing(5)};
   padding-right: ${({theme: {spacing}}) => spacing(5)};
 
-  @media ${device.mobile} {
-    width: ${size.mobile};
+  ${device.mobileXS} {
+    width: ${size.mobileXS};
   }
 
-  @media ${device.mobileL} {
-    width: ${size.mobileL};
+  ${device.mobileM} {
+    width: ${size.mobileM};
   }
 
-  @media ${device.tablet} {
-    width: ${size.tablet};
+  ${device.tabletM} {
+    width: ${size.tabletM};
     padding-left: ${({theme: {spacing}}) => spacing(8)};
     padding-right: ${({theme: {spacing}}) => spacing(8)};
   }
 
-  @media ${device.desktop} {
-    width: ${size.desktop};
+  ${device.desktopM} {
+    width: ${size.desktopM};
   }
 
-  @media ${device.desktopM} {
-    width: ${size.desktopM};
+  ${device.desktopL} {
+    width: ${size.desktopL};
   }
 `
 

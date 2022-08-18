@@ -5,7 +5,7 @@ export const ArrowBox = styled.div`
   display: flex;
   padding: ${({ theme: { spacing } }) => spacing(2)} 0;
 
-  @media ${device.mobileOnly} {
+  ${device.mobileOnly} {
     justify-content: space-between;
   }
 `
@@ -26,7 +26,7 @@ export const ArrowBtn = styled.button`
     opacity: 0.5;
   }
   
-  @media ${device.desktop} {
+  ${device.desktopM} {
     :hover {
       background-color: red;
     }

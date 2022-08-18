@@ -1,23 +1,19 @@
 export const size = {
-  mobile: '320px',
-  mobileOnlyL: '479px',
-  mobileL: '480px',
-  mobileOnly: '767px',
-  tablet: '768px',
-  tabletOnly: '1023px',
-  desktop: '1024px',
-  desktopM: '1440px',
+  mobileXS: '320px',
+  mobileM: '480px',
+  tabletM: '768px',
+  desktopM: '1024px',
+  desktopL: '1440px',
 }
 
 export const device = {
-  mobile: `(min-width: ${size.mobile})`,
-  mobileOnlyL: `(max-width: ${size.mobileOnlyL})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  mobileOnly: `(max-width: ${size.mobileOnly})`,
+  mobileXS: `@media screen and (min-width: ${size.mobileXS})`,
+  mobileM: `@media screen and (min-width: ${size.mobileM})`,
+  tabletM: `@media screen and (min-width: ${size.tabletM})`,
+  desktopM: `@media screen and (min-width: ${size.desktopM})`,
+  desktopL: `@media screen and (min-width: ${size.desktopL})`,
 
-  tablet: `(min-width: ${size.tablet})`,
-  tabletOnly: `(min-width: ${size.tablet}) and (max-width: ${size.tabletOnly})`,
-
-  desktop: `(min-width: ${size.desktop})`,
-  desktopM: `(min-width: ${size.desktopM})`,
+  mobileBelowM: `@media screen and (max-width: 479.99px)`,
+  mobileOnly: `@media screen and (max-width: 767.99px)`,
+  tabletOnly: `@media screen and (min-width: ${size.tabletM}) and (max-width: 1023.99px)`,
 }

@@ -13,7 +13,6 @@ export const LoaderContainer = styled.div`
   align-items: center;
 
   background-color: rgba(0, 0, 0, 0.6);
-  overflow-y: scroll;
   animation-name: backdrop;
   animation-duration: 500ms;
   animation-timing-function: ease;

@@ -4,6 +4,7 @@ import { device } from "utils/mediaquery";
 export const FormWrapper = styled.div`
   display: flex;
   ${device.mobileOnly} {
+    margin-top: ${p => p.theme.spacing(3)};
     margin-bottom: ${p => p.theme.spacing(3)};
   }
   ${device.tabletM} {

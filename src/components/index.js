@@ -1,4 +1,4 @@
-export * from './App/App';
+export * from '../App';
 export * from './Container/Container.styled';
 export * from './SharedLayout/SharedLayout';
 export * from './Navigation/Navigation';

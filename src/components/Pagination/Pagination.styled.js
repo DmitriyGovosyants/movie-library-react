@@ -7,8 +7,8 @@ export const PaginationBox = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-top: ${({ theme: { spacing } }) => spacing(10)};
-  padding-bottom: ${({ theme: { spacing } }) => spacing(10)};
+  padding-top: ${p => p.theme.spacing(10)};
+  padding-bottom: ${p => p.theme.spacing(10)};
 `
 
 export const BtnBox = styled.div`
@@ -23,31 +23,31 @@ export const Btn = styled.button`
   justify-content: center;
   align-items: center;
   min-width: 50px;
-  margin-right: ${({ theme: { spacing } }) => spacing(2)};
-  padding: ${({ theme: { spacing } }) => spacing(4)} ${({ theme: { spacing } }) => spacing(2)};
+  margin-right: ${p => p.theme.spacing(2)};
+  padding: ${p => p.theme.spacing(4)} ${p => p.theme.spacing(2)};
   
-  color: white;
-  background-color: gray;
+  color: ${p => p.theme.colors.textMain};
+  background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
   
   :disabled {
-    background-color: tomato;
+    background-color: ${p => p.theme.colors.btnBgDisabled};
   }
 
   ${device.mobileBelowM} {
-    margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
+    margin-bottom: ${p => p.theme.spacing(1)};
   }
 
   ${device.desktopM} {
     :hover {
-      background-color: red;
+      background-color: ${p => p.theme.colors.accentColor};
     }
   }
 `
 
 export const Dots = styled.span`
-  margin-right: ${({ theme: { spacing } }) => spacing(2)};
-  padding-bottom: ${({ theme: { spacing } }) => spacing(4)};
+  margin-right: ${p => p.theme.spacing(2)};
+  padding-bottom: ${p => p.theme.spacing(4)};
   min-width: 50px;
   
   font-size: 30px;

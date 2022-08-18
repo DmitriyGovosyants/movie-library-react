@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { App } from 'components';
+import { App } from 'App';
 import 'modern-normalize';
 import { Global, ThemeProvider } from '@emotion/react';
 import { GlobalStyles, theme } from 'styles';

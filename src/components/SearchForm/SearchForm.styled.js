@@ -9,27 +9,28 @@ export const FormWrapper = styled.div`
 export const Form = styled.form`
   position: relative;
   border-bottom: 0.5px solid #ffffff;
-  transition: border-color ${({theme: {animation}})=> animation.cubicBezier};
+  transition: border-color ${p => p.theme.animation.cubicBezier};
 
   :hover {
-    border-color: ${({ theme: {colors}}) => colors.accentTextBtn};
+    border-color: ${p => p.theme.colors.accentColor};
   }
 `
 
 export const Input = styled.input`
-  padding-right: ${({theme: {spacing}}) => spacing(5)};
+  height: 40px;
+  padding-right: ${p => p.theme.spacing(5)};
 
   letter-spacing: 0.03em;
-  color: ${({ theme: { colors } }) => colors.textMain};
   text-shadow: 2px 2px 4px black;
+  color: ${p => p.theme.colors.textMain};
 
   background-color: transparent;
   border: none;
   outline: none;
 
   ::placeholder {
-    font-size: ${({ theme: {fontSizes}}) => fontSizes.small};
-    color: ${({ theme: { colors } }) => colors.textMain};
+    font-size: ${p => p.theme.fontSizes.small};
+    color: ${p => p.theme.colors.textMain};
     opacity: 0.7;
   }
 

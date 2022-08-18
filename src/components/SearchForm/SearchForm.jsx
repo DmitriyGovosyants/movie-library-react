@@ -28,7 +28,7 @@ export const SearchForm = ({ setSearch }) => {
           autoFocus
         />
         <Submit type="submit">
-          <BsSearch size={14} color={'white'} />
+          <BsSearch size={30} color={'white'} />
         </Submit>
       </Form>
     </FormWrapper>

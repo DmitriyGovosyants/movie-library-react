@@ -3,8 +3,8 @@ import { device, size } from "utils/mediaquery";
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding-left: ${({theme: {spacing}}) => spacing(5)};
-  padding-right: ${({theme: {spacing}}) => spacing(5)};
+  padding-left: ${p => p.theme.spacing(5)};
+  padding-right: ${p => p.theme.spacing(5)};
 
   ${device.mobileXS} {
     width: ${size.mobileXS};
@@ -16,8 +16,7 @@ export const Container = styled.div`
 
   ${device.tabletM} {
     width: ${size.tabletM};
-    padding-left: ${({theme: {spacing}}) => spacing(8)};
-    padding-right: ${({theme: {spacing}}) => spacing(8)};
+    padding: 0 ${p => p.theme.spacing(8)};
   }
 
   ${device.desktopM} {

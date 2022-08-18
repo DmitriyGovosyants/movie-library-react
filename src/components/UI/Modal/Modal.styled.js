@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   height: 100%;
   padding: 20px;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   overflow-y: scroll;
   z-index: 1200;
   animation-name: backdrop;
@@ -31,8 +31,4 @@ export const Overlay = styled.div`
     justify-content: center;
     align-items: center;
   }
-`
-
-export const ModalContent = styled.div`
-
 `

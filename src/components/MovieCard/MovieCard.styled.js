@@ -7,35 +7,33 @@ export const MovieCardBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  background-color: ${({ theme: {colors}}) => colors.bgSecond};
+  background-color: ${p => p.theme.colors.bgMain};
   border-radius: 10px;
   overflow: hidden;
 
   ${device.tabletM} {
     width: 700px
   }
-
   ${device.desktopM} {
     width: 800px
   }
 `
 
 export const Title = styled.h3`
-  padding-top: ${({ theme: { spacing } }) => spacing(1)};
-  padding-bottom: ${({ theme: { spacing } }) => spacing(1)};
-  padding-left: ${({ theme: { spacing } }) => spacing(2)};
-  padding-right: ${({ theme: { spacing } }) => spacing(12)};
+  padding-top: ${p => p.theme.spacing(1)};
+  padding-bottom: ${p => p.theme.spacing(1)};
+  padding-left: ${p => p.theme.spacing(2)};
+  padding-right: ${p => p.theme.spacing(12)};
 
-  font-size: 26px;
+  font-size: ${p => p.theme.fontSizes.large};
   line-height: 1.5;
   text-align: center;
   background-image: linear-gradient( 35deg, #c3d1ff 10%, #9452A5 100%);
   border-top: 10px;
 
   ${device.mobileM} {
-    padding: ${({ theme: { spacing } }) => spacing(1)} ${({ theme: { spacing } }) => spacing(12)};
+    padding: ${p => p.theme.spacing(1)} ${p => p.theme.spacing(12)};
   }
-
   ${device.tabletM} {
     line-height: 2;
   }
@@ -45,10 +43,9 @@ export const ModalCloseBtn = styled.button`
   position: absolute;
   top: 4px;
   right: 8px;
-  color: #FF2662;
 
   :hover {
-    color: red;
+    color: ${p => p.theme.colors.accentColor};
   }
 
   ${device.tabletM} {
@@ -57,25 +54,15 @@ export const ModalCloseBtn = styled.button`
 `
 
 export const MovieCardWrapper = styled.div`
-  width: 100%;
-  
-
   ${device.tabletM} {
     display: flex;
-  }
-
-  ${device.desktopM} {
   }
 `
 
 export const PosterBox = styled.div`
   ${device.mobileBelowM} {
-    /* position: relative; */
     padding-bottom: 150%;
     height: 0;
-    /* overflow: hidden;
-    margin-left: auto;
-    margin-right: auto; */
   }
 `
 export const Poster = styled.img`
@@ -88,17 +75,17 @@ export const Poster = styled.img`
   
   ${device.tabletM} {
     width: 253px;
-    padding: ${({ theme: { spacing } }) => spacing(2)};
+    padding: ${p => p.theme.spacing(2)};
   }
 `
 
 export const MovieCardContent = styled.div`
   width: 100%;
-  padding: ${({ theme: { spacing } }) => spacing(5)};
+  padding: ${p => p.theme.spacing(5)};
 `
 
 export const InfoList = styled.ul`
-  margin-bottom: ${({ theme: { spacing } }) => spacing(6)};
+  margin-bottom: ${p => p.theme.spacing(6)};
 `
 
 export const InfoItem = styled.li`
@@ -106,27 +93,22 @@ export const InfoItem = styled.li`
   align-items: center;
 
   :not(:last-child) {
-    margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
+    margin-bottom: ${p => p.theme.spacing(2)};
   }
 `
 
-export const InfoLabel = styled.p`
-  /* font-size: 18px; */
-`
-
 export const InfoValue = styled.p`
-  margin-left: ${({ theme: { spacing } }) => spacing(2)};
-  font-size: 16px;
+  margin-left: ${p => p.theme.spacing(2)};
+  font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
 `
 
 export const RatingList = styled.ul`
   display: flex;
   justify-content: center;
-  margin-bottom: ${({ theme: { spacing } }) => spacing(6)};
+  margin-bottom: ${p => p.theme.spacing(6)};
   padding: 10px 0;
 
-  /* background-color: white; */
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 `
@@ -147,34 +129,30 @@ export const RatingItem = styled.li`
   
 `
 
-export const RatingLabel = styled.p`
-  
-`
-
 export const RatingValue = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 50px;
-  padding: ${({ theme: { spacing } }) => spacing(2)};
+  padding: ${p => p.theme.spacing(2)};
 
-  font-size: 18px;
+  font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 700;
   text-align: center;
 `
 
 export const AboutBox = styled.div`
-  margin-bottom: ${({ theme: { spacing } }) => spacing(6)};
+  margin-bottom: ${p => p.theme.spacing(6)};
 `
 
 export const AboutLabel = styled.p`
-  margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
-  font-size: 18px;
+  margin-bottom: ${p => p.theme.spacing(2)};
+  font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
 `
 
 export const AboutText = styled.p`
-  font-size: 14px;
+  font-size: ${p => p.theme.fontSizes.small};
   line-height: 1.5;
 `
 
@@ -190,14 +168,15 @@ export const ButtonItem = styled.li`
 `
 
 export const LibraryBtn = styled.button`
-  padding: ${({ theme: { spacing } }) => spacing(4)};
+  padding: ${p => p.theme.spacing(4)};
 
-  color: white;
+  color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;
-  background-color: #FF2662;
+
+  background-color: ${p => p.theme.colors.btnBg};
   border-radius: 10px;
 
   :hover {
-    background-color: red;
+    background-color: ${p => p.theme.colors.accentColor};
   }
 `

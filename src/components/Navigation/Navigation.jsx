@@ -6,7 +6,7 @@ import {
   NavItem,
   ActiveLink,
 } from './Navigation.styled';
-import { ReactComponent as LogoSVG } from '../../images/header/logo.svg';
+import { ReactComponent as LogoSVG } from '../../data/images/header/logo.svg';
 
 export const Navigation = () => {
   return (

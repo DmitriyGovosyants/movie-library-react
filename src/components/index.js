@@ -1,15 +1,18 @@
-export * from '../App';
-export * from './Container/Container.styled';
 export * from './SharedLayout/SharedLayout';
 export * from './Navigation/Navigation';
 export * from './SearchForm/SearchForm';
 export * from './GalleryList/GalleryList';
 export * from './GalleryItem/GalleryItem';
 export * from './Pagination/Pagination';
-export * from './ErrorMessage/ErrorMessage';
-export * from './Modal/Modal';
+
 export * from './MovieCard/MovieCard';
-export * from './Loader/Loader';
 export * from './SearchStatusBar/SearchStatusBar';
 export * from './PaginationArrow/PaginationArrow';
-export * from './IntersectionObserver/IntersectionObserver';
+
+export * from './UI/Modal/Modal';
+export * from './UI/Loader/Loader';
+export * from './UI/ErrorMessage/ErrorMessage';
+
+export * from './UI/Container/Container.styled';
+
+export * from '../helpers/IntersectionObserver/IntersectionObserver';

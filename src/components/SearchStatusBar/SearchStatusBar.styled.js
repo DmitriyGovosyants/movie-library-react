@@ -5,11 +5,10 @@ export const NavigationStatusBox = styled.div`
   display: flex;
   margin-bottom: 10px;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 20px;
+  font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
   text-transform: uppercase;
-  color: cadetblue;
+  color: ${p => p.theme.colors.textSecond};
 
   ${device.mobileOnly} {
     flex-direction: column;
@@ -24,12 +23,13 @@ export const NavigationStatusBox = styled.div`
 export const SearchStatusList = styled.ul`
   ${device.tabletM} {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-end;
   }
 `
 
 export const SearchStatusItem = styled.li`
-display: flex;
+  display: flex;
   align-items: center;
 `
 

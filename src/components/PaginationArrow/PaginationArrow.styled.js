@@ -3,11 +3,7 @@ import { device } from 'utils/mediaquery';
 
 export const ArrowBox = styled.div`
   display: flex;
-  padding: ${({ theme: { spacing } }) => spacing(2)} 0;
-
-  ${device.mobileOnly} {
-    justify-content: space-between;
-  }
+  padding: ${p => p.theme.spacing(2)} 0;
 `
 
 export const ArrowBtn = styled.button`
@@ -16,10 +12,10 @@ export const ArrowBtn = styled.button`
   align-items: center;
   min-width: 120px;
   margin-right: ${p => p.margin ? p.margin : '10px'};
-  padding: 0 ${({ theme: { spacing } }) => spacing(2)};
+  padding: 0 ${p => p.theme.spacing(2)};
 
-  color: white;
-  background-color: cadetblue;
+  color: ${p => p.theme.colors.textMain};
+  background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
   
   :disabled {
@@ -28,7 +24,7 @@ export const ArrowBtn = styled.button`
   
   ${device.desktopM} {
     :hover {
-      background-color: red;
+      background-color: ${p => p.theme.colors.accentColor};
     }
   }
 `

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails } from 'services/filmsApi';
-import noPoster from 'images/gallery/no-poster.jpeg';
+import noPoster from 'data/images/gallery/no-poster.jpeg';
 import { ErrorMessage, Loader } from 'components';
 import {
   MovieCardBox,
@@ -14,11 +14,9 @@ import {
   MovieCardContent,
   InfoList,
   InfoItem,
-  InfoLabel,
   InfoValue,
   RatingList,
   RatingItem,
-  RatingLabel,
   RatingValue,
   AboutBox,
   AboutLabel,
@@ -91,28 +89,28 @@ export const MovieCard = ({ id, setShowModal }) => {
                     <AiFillStar color={'red'} />
                     {voteAverage}
                   </RatingValue>
-                  <RatingLabel>TMBD</RatingLabel>
+                  <p>TMBD</p>
                 </RatingItem>
                 <RatingItem>
                   <RatingValue>{vote_count}</RatingValue>
-                  <RatingLabel>Votes</RatingLabel>
+                  <p>Votes</p>
                 </RatingItem>
                 <RatingItem>
                   <RatingValue>{popularityTotal}</RatingValue>
-                  <RatingLabel>Popular</RatingLabel>
+                  <p>Popular</p>
                 </RatingItem>
               </RatingList>
               <InfoList>
                 <InfoItem>
-                  <InfoLabel>Release date:</InfoLabel>
+                  <p>Release date:</p>
                   <InfoValue>{release_date}</InfoValue>
                 </InfoItem>
                 <InfoItem>
-                  <InfoLabel>Original title:</InfoLabel>
+                  <p>Original title:</p>
                   <InfoValue>{original_title}</InfoValue>
                 </InfoItem>
                 <InfoItem>
-                  <InfoLabel>Genre:</InfoLabel>
+                  <p>Genre:</p>
                   <InfoValue>{genresName}</InfoValue>
                 </InfoItem>
               </InfoList>

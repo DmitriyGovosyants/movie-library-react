@@ -4,11 +4,9 @@ import { device } from "utils/mediaquery";
 export const FilmCard = styled.li`
   ${device.mobileOnly} {
     flex-basis: calc((100% - 16.5px) / 2);
-
     :not(:nth-of-type(2n)) {
       margin-right: 16.5px;
     }
-
     :not(:nth-last-of-type(-n + 2)) {
       margin-bottom: 18px;
     }
@@ -16,11 +14,9 @@ export const FilmCard = styled.li`
 
   ${device.tabletOnly} {
     flex-basis: calc((100% - 33px) / 3);
-
     :not(:nth-of-type(3n)) {
       margin-right: 16.5px;
     }
-
     :not(:nth-last-of-type(-n + 3)) {
       margin-bottom: 32px;
     }
@@ -28,15 +24,9 @@ export const FilmCard = styled.li`
 
   ${device.desktopM} {
     flex-basis: calc((100% - 66px) / 5);
-
     :not(:nth-last-of-type(-n + 5)) {
       margin-bottom: 32px;
     }
-
-    :not(:nth-of-type(3n)) {
-      margin-right: 0;
-    }
-
     :not(:nth-of-type(5n)) {
       margin-right: 16.5px;
     }
@@ -45,14 +35,13 @@ export const FilmCard = styled.li`
 
 export const PosterThumb = styled.div`
   position: relative;
-  margin-bottom: ${({ theme: { spacing } }) => spacing(1)};
+  margin-bottom: ${p => p.theme.spacing(1)};
 
   ${device.tabletM} {
-    margin-bottom: ${({ theme: { spacing } }) => spacing(2)};
+    margin-bottom: ${p => p.theme.spacing(2)};
   }
-
   ${device.desktopM} {
-    transition: box-shadow ${({theme: {animation}})=> animation.cubicBezier};
+    transition: box-shadow ${p => p.theme.animation.cubicBezier};
 
     :hover {
       box-shadow: 3px 3px 10px black;
@@ -64,21 +53,17 @@ export const PosterThumb = styled.div`
 export const Poster = styled.img`
   width: 100%;
   height: 190px;
-  
   object-fit: cover;
 
   ${device.mobileM} {
     height: 310px;
   }
-
   ${device.tabletM} {
     height: 340px;
   }
-
   ${device.desktopM} {
     height: 271px;
   }
-
   ${device.desktopL} {
     height: 380px;
   }
@@ -110,9 +95,9 @@ export const FilmYear = styled.span`
   right: 5px;
   bottom: 8px;
   
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.small};
   font-weight: 600;
-  color: #fff;
+  color: ${p => p.theme.colors.textMain};
   text-shadow: -1px -1px 0 #a82727, 0 -1px 0 #a82727, 1px -1px 0 #a82727, 1px 0 0 #a82727, 1px 1px 0 #a82727, 0 1px 0 #a82727, -1px 1px 0 #a82727, -1px 0 0 #a82727;
 
   ${device.mobileM} {
@@ -121,15 +106,15 @@ export const FilmYear = styled.span`
 `
 
 export const FilmTitle = styled.h2`
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.small};
   font-weight: 500;
   line-height: 1.33;
 
   ${device.mobileM} {
-    font-size: 16px;
+    font-size: ${p => p.theme.fontSizes.medium};
   }
 
   ${device.desktopL} {
-    font-size: 20px;
+    font-size: ${p => p.theme.fontSizes.large};
   }
 `

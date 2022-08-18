@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import noPoster from 'images/gallery/no-poster.jpeg';
+import noPoster from 'data/images/gallery/no-poster.jpeg';
 import { Modal, MovieCard } from 'components';
 import {
   FilmCard,

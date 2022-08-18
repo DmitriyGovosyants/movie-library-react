@@ -1,14 +1,30 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Container, Navigation, IntersectonObserver } from 'components';
+import {
+  Container,
+  Navigation,
+  IntersectonObserver,
+  LoadingScreen,
+} from 'components';
 import { HeaderBox, FooterWrapper, Main } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
+  const [showLoading, setShowLoading] = useState(true);
+
+  const onPageLoad = () => {
+    setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
+  };
+
   return (
     <>
+      {showLoading && <LoadingScreen />}
       <HeaderBox>
         <Container>
-          <Navigation />
+          <IntersectonObserver onIntersect={onPageLoad}>
+            <Navigation />
+          </IntersectonObserver>
         </Container>
       </HeaderBox>
       <FooterWrapper>
@@ -17,11 +33,7 @@ export const SharedLayout = () => {
             <Outlet />
           </Suspense>
         </Main>
-        <IntersectonObserver
-          onIntersect={() => console.log('Yes, it`s a footer')}
-        >
-          ---Footer text---
-        </IntersectonObserver>
+        <footer>---Footer text---</footer>
       </FooterWrapper>
     </>
   );

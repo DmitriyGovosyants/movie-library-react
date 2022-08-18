@@ -10,8 +10,9 @@ export * from './SearchStatusBar/SearchStatusBar';
 export * from './PaginationArrow/PaginationArrow';
 
 export * from './UI/Modal/Modal';
-export * from './UI/Loader/Loader';
+export * from './UI/Spinner/Spinner';
 export * from './UI/ErrorMessage/ErrorMessage';
+export * from './UI/LoadingScreen/LoadingScreen';
 
 export * from './UI/Container/Container.styled';
 

@@ -7,7 +7,7 @@ import {
   ErrorMessage,
   GalleryItem,
   Pagination,
-  Loader,
+  Spinner,
 } from 'components';
 import { Gallery } from './GalleyList.styled';
 
@@ -18,7 +18,6 @@ export const GalleryList = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(null);
-  console.log('очередной рендер в компоненте с запросом', films);
 
   const prevQuery = usePrevious(search);
 
@@ -37,7 +36,6 @@ export const GalleryList = () => {
         } = await fetchTrending(page);
         setTotalPage(total_pages);
         setFilms([...results]);
-        console.log(results);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -68,7 +66,6 @@ export const GalleryList = () => {
 
         setTotalPage(total_pages);
         setFilms([...results]);
-        console.log('Получение данных', results.length);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -95,7 +92,7 @@ export const GalleryList = () => {
         setPage={setPage}
       />
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      {showLoader && <Loader />}
+      {showLoader && <Spinner />}
       <Gallery>
         {films.map(
           ({ id, poster_path, original_title, vote_average, release_date }) => {

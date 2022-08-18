@@ -9,7 +9,7 @@ export const IntersectonObserver = ({
   children,
   onIntersect,
   options,
-  triggerOnce = false,
+  triggerOnce = true,
 }) => {
   const ref = useRef(null);
 

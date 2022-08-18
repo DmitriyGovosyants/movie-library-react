@@ -3,7 +3,7 @@ import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails } from 'services/filmsApi';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
-import { ErrorMessage, Loader } from 'components';
+import { ErrorMessage, Spinner } from 'components';
 import {
   MovieCardBox,
   Title,
@@ -70,7 +70,7 @@ export const MovieCard = ({ id, setShowModal }) => {
 
   return (
     <>
-      {showLoader && <Loader />}
+      {showLoader && <Spinner />}
       {release_date && (
         <MovieCardBox>
           <Title>{title}</Title>

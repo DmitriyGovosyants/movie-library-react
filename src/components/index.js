@@ -6,6 +6,7 @@ export * from './GalleryItem/GalleryItem';
 export * from './Pagination/Pagination';
 
 export * from './MovieCard/MovieCard';
+export * from './MovieCardTrailer/MovieCardTrailer';
 export * from './SearchStatusBar/SearchStatusBar';
 export * from './PaginationArrow/PaginationArrow';
 

@@ -1,3 +1,10 @@
+- watch trailer
+- auth in firebase
+- DB in firebase - queue and watched
+- my library
+- add ?page=
+- add ?query=
+
 **Read in other languages: [Русский](README.md), [Polska](README.pl.md).**
 
 # React homework template

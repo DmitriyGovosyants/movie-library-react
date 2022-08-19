@@ -1,8 +1,8 @@
 export * from './Authentication/userContext/userContext';
 export * from './SharedLayout/SharedLayout';
 export * from './Header/Header';
-export * from './Authentication/LoginForm/LoginForm';
-export * from './Authentication/SigninForm/SigninForm';
+export * from './Authentication/Form/LoginForm';
+export * from './Authentication/Form/SigninForm';
 export * from './UserMenu/UserMenu';
 
 export * from './SearchForm/SearchForm';
@@ -22,5 +22,6 @@ export * from './UI/ErrorMessage/ErrorMessage';
 export * from './UI/LoadingScreen/LoadingScreen';
 
 export * from './UI/Container/Container.styled';
+export * from './UI/Section/Section.styled';
 
 export * from '../helpers/IntersectionObserver/IntersectionObserver';

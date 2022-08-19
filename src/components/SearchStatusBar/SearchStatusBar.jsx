@@ -4,6 +4,7 @@ import {
   NavigationStatusBox,
   SearchStatusList,
   SearchStatusItem,
+  BtnBox,
   TrendBtn,
 } from './SearchStatusBar.styled';
 
@@ -17,13 +18,21 @@ export const SearchStatusBar = ({
   return (
     <>
       <NavigationStatusBox>
-        <TrendBtn
-          type="button"
-          visible={search}
-          onClick={() => window.location.reload()}
-        >
-          GO TO TREND
-        </TrendBtn>
+        <BtnBox>
+          <PaginationArrow
+            page={page}
+            totalPage={totalPage}
+            setPage={setPage}
+          />
+          <TrendBtn
+            type="button"
+            visible={search}
+            onClick={() => window.location.reload()}
+          >
+            GO TO TREND
+          </TrendBtn>
+        </BtnBox>
+
         <SearchStatusList>
           <SearchStatusItem>
             {search && search}
@@ -36,7 +45,6 @@ export const SearchStatusBar = ({
         </SearchStatusList>
 
         <SearchForm setSearch={setSearch} />
-        <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
       </NavigationStatusBox>
     </>
   );

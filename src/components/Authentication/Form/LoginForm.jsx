@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
+import { Section, Container } from 'components';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -35,24 +36,29 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        name="email"
-        placeholder="email"
-        value={email}
-        onChange={handleChange}
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        value={password}
-        onChange={handleChange}
-        required
-      />
-      <input type="submit" />
-    </form>
+    <Section>
+      <Container>
+        <form onSubmit={handleLogin}>
+          <h2>Login</h2>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            value={email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Log in</button>
+        </form>
+      </Container>
+    </Section>
   );
 };

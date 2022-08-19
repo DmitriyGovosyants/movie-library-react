@@ -7,9 +7,6 @@ export const FormWrapper = styled.div`
     margin-top: ${p => p.theme.spacing(3)};
     margin-bottom: ${p => p.theme.spacing(3)};
   }
-  ${device.tabletM} {
-    margin-right: ${p => p.theme.spacing(5)};
-  }
 ` 
 
 export const Form = styled.form`

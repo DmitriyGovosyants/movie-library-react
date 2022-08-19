@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { usePrevious } from 'hooks/usePrevious';
 import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
 import {
+  Section,
   Container,
   SearchStatusBar,
   ErrorMessage,
@@ -83,35 +84,43 @@ export const GalleryList = () => {
   };
 
   return (
-    <Container>
-      <SearchStatusBar
-        setSearch={setSearch}
-        search={search}
-        page={page}
-        totalPage={totalPage}
-        setPage={setPage}
-      />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-      {showLoader && <Spinner />}
-      <Gallery>
-        {films.map(
-          ({ id, poster_path, original_title, vote_average, release_date }) => {
-            return (
-              <GalleryItem
-                key={id}
-                id={id}
-                poster={poster_path}
-                title={original_title}
-                rating={vote_average}
-                data={release_date}
-              />
-            );
-          }
+    <Section>
+      <Container>
+        <SearchStatusBar
+          setSearch={setSearch}
+          search={search}
+          page={page}
+          totalPage={totalPage}
+          setPage={setPage}
+        />
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {showLoader && <Spinner />}
+        <Gallery>
+          {films.map(
+            ({
+              id,
+              poster_path,
+              original_title,
+              vote_average,
+              release_date,
+            }) => {
+              return (
+                <GalleryItem
+                  key={id}
+                  id={id}
+                  poster={poster_path}
+                  title={original_title}
+                  rating={vote_average}
+                  data={release_date}
+                />
+              );
+            }
+          )}
+        </Gallery>
+        {films.length > 0 && (
+          <Pagination setPage={setPage} page={page} totalPage={totalPage} />
         )}
-      </Gallery>
-      {films.length > 0 && (
-        <Pagination setPage={setPage} page={page} totalPage={totalPage} />
-      )}
-    </Container>
+      </Container>
+    </Section>
   );
 };

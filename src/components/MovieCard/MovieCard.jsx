@@ -77,7 +77,7 @@ export const MovieCard = ({ id, setShowModal }) => {
           data: { results },
         } = await fetchMovieTrailer(id);
         if (results?.length === 0) {
-          setError('No trailers');
+          setError('> No trailers found <');
           return;
         }
         setTrailersInfo(results);
@@ -99,7 +99,6 @@ export const MovieCard = ({ id, setShowModal }) => {
       {movieDetails?.length !== 0 && (
         <MovieCardBox>
           <Title>{title}</Title>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
           <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
             <FaRegWindowClose size={40} />
           </ModalCloseBtn>
@@ -154,6 +153,7 @@ export const MovieCard = ({ id, setShowModal }) => {
                   </AboutBox>
                 </>
               )}
+              {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               <ButtonList>
                 <ButtonItem>
                   <LibraryBtn type="button">add to watched</LibraryBtn>

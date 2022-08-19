@@ -4,6 +4,7 @@ import {
   NavigationStatusBox,
   SearchStatusList,
   SearchStatusItem,
+  TrendBtn,
 } from './SearchStatusBar.styled';
 
 export const SearchStatusBar = ({
@@ -18,7 +19,6 @@ export const SearchStatusBar = ({
       <NavigationStatusBox>
         <SearchStatusList>
           <SearchStatusItem>
-            <FiChevronsRight />
             {search && search}
             {!search && 'Trending movie'}
           </SearchStatusItem>
@@ -27,6 +27,13 @@ export const SearchStatusBar = ({
             {'page - ' + page}
           </SearchStatusItem>
         </SearchStatusList>
+        <TrendBtn
+          type="button"
+          visible={search}
+          onClick={() => window.location.reload()}
+        >
+          GO TO TREND
+        </TrendBtn>
         <SearchForm setSearch={setSearch} />
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
       </NavigationStatusBox>

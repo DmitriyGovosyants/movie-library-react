@@ -5,6 +5,8 @@ export const NavigationStatusBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  padding-top: ${p => p.theme.spacing(2)};
+  padding-bottom: ${p => p.theme.spacing(2)};
 
   font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
@@ -22,9 +24,11 @@ export const NavigationStatusBox = styled.div`
 `
 
 export const SearchStatusList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: ${p => p.theme.spacing(2)};
+  padding-bottom: ${p => p.theme.spacing(2)};
   ${device.tabletM} {
-    display: flex;
-    flex-wrap: wrap;
     align-items: flex-end;
     margin-right: auto;
   }
@@ -33,5 +37,26 @@ export const SearchStatusList = styled.ul`
 export const SearchStatusItem = styled.li`
   display: flex;
   align-items: center;
+`
+
+export const TrendBtn = styled.button`
+  display: ${p => p.visible ? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  /* margin-top: ${p => p.theme.spacing(2)}; */
+  margin-right: ${p => p.theme.spacing(10)};
+  padding: ${p => p.theme.spacing(2.5)};
+
+  color: ${p => p.theme.colors.textMain};
+  background-color: ${p => p.theme.colors.btnBg};
+  border-radius: 5px;
+  transition: background-color ${p => p.theme.animation.cubicBezier};
+  
+  ${device.desktopM} {
+    :hover {
+      background-color: ${p => p.theme.colors.accentColor};
+    }
+  }
 `
 

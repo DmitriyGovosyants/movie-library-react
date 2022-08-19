@@ -30,10 +30,10 @@ export const Header = () => {
               {!user && (
                 <>
                   <NavItem>
-                    <ActiveLink to="/login">log in</ActiveLink>
+                    <ActiveLink to="/signin">sign in</ActiveLink>
                   </NavItem>
                   <NavItem>
-                    <ActiveLink to="/signin">sign in</ActiveLink>
+                    <ActiveLink to="/login">log in</ActiveLink>
                   </NavItem>
                 </>
               )}

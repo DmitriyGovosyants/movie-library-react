@@ -4,6 +4,7 @@ export const UserMenuBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
+  margin-left: ${p => p.theme.spacing(10)};
 `
 
 export const UserName = styled.p`

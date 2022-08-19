@@ -8,21 +8,38 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  console.log(isRefreshing);
+
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, user => {
+  //     if (user) {
+  //       setUser(user);
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
+    setIsRefreshing(true);
+
     onAuthStateChanged(auth, user => {
-      if (user) setUser(user);
-      else setUser(null);
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+      setIsRefreshing(false);
     });
+    // .then(console.log)
+    // .catch(console.log)
+    // .finally(setIsRefreshing(false));
   }, []);
 
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, isRefreshing }}>
+      {children}
+    </UserContext.Provider>
   );
 };
-
-// export default UserContext;
-
-// export const UserState = () => {
-//   return useContext(UserContext);
-// };

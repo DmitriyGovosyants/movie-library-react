@@ -47,7 +47,6 @@ export const HeaderWrapper = styled.div`
 export const NavigationBox = styled.nav`
   display: flex;
   flex-grow: 1;
-  margin-right: ${p => p.theme.spacing(10)};
   
   justify-content: space-between;
   align-items: center;

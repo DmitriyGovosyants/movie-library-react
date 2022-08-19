@@ -1,34 +1,44 @@
 import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, IntersectonObserver, LoadingScreen } from 'components';
+import {
+  Header,
+  IntersectonObserver,
+  LoadingScreen,
+  Spinner,
+  useUser,
+} from 'components';
 import { FooterWrapper, Main } from './SharedLayout.styled';
-import { LogIn, SignIn } from 'components/Authentication/LogIn';
 
 export const SharedLayout = () => {
-  const [showLoading, setShowLoading] = useState(true);
+  // const [showLoading, setShowLoading] = useState(true);
+  const { isRefreshing } = useUser();
+  // console.log(isRefreshing);
 
-  const onPageLoad = () => {
-    setTimeout(() => {
-      setShowLoading(false);
-    }, 1000);
-  };
+  // const onPageLoad = () => {
+  //   setTimeout(() => {
+  //     setShowLoading(false);
+  //   }, 0);
+  // };
 
   return (
     <>
-      <SignIn />
-      <LogIn />
-      {showLoading && <LoadingScreen />}
-      <IntersectonObserver onIntersect={onPageLoad}>
-        <Header />
-      </IntersectonObserver>
-      <FooterWrapper>
-        <Main>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Outlet />
-          </Suspense>
-        </Main>
-        <footer>---Footer text---</footer>
-      </FooterWrapper>
+      {isRefreshing && <Spinner />}
+      {!isRefreshing && (
+        <>
+          {/* {showLoading && <LoadingScreen />} */}
+          {/* <IntersectonObserver onIntersect={onPageLoad}> */}
+          <Header />
+          {/* </IntersectonObserver> */}
+          <FooterWrapper>
+            <Main>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Outlet />
+              </Suspense>
+            </Main>
+            <footer>---Footer text---</footer>
+          </FooterWrapper>
+        </>
+      )}
     </>
   );
 };

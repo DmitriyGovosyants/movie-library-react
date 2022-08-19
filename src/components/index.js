@@ -1,9 +1,13 @@
+export * from './Authentication/userContext/userContext';
 export * from './SharedLayout/SharedLayout';
-export * from './Navigation/Navigation';
+export * from './Header/Header';
+export * from './UserMenu/UserMenu';
+
 export * from './SearchForm/SearchForm';
 export * from './GalleryList/GalleryList';
 export * from './GalleryItem/GalleryItem';
 export * from './Pagination/Pagination';
+
 
 export * from './MovieCard/MovieCard';
 export * from './MovieCardTrailer/MovieCardTrailer';

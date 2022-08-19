@@ -1,7 +1,6 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
 } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
@@ -82,7 +81,6 @@ export const SignIn = () => {
 export const LogIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -98,13 +96,12 @@ export const LogIn = () => {
     }
   };
 
-  const createAccount = async e => {
+  const handleLogin = async e => {
     e.preventDefault();
 
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      console.log(result.user.email);
-      setIsLoggedIn(true);
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('You are logged!');
     } catch (error) {
       console.log(error);
     }
@@ -114,7 +111,7 @@ export const LogIn = () => {
   };
 
   return (
-    <form onSubmit={createAccount}>
+    <form onSubmit={handleLogin}>
       <input
         type="email"
         name="email"
@@ -133,13 +130,5 @@ export const LogIn = () => {
       />
       <input type="submit" />
     </form>
-  );
-};
-
-export const SignOut = () => {
-  return (
-    <button type="button" onClick={() => signOut(auth)}>
-      Sign Out
-    </button>
   );
 };

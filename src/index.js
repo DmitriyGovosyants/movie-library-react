@@ -7,6 +7,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import { GlobalStyles, theme } from 'styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from 'components';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
           <ToastContainer autoClose={2500} />
-            <App />
+            <UserProvider>
+              <App />
+            </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

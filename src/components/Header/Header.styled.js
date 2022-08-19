@@ -1,13 +1,56 @@
 import styled from "@emotion/styled";
 import { Link, NavLink } from 'react-router-dom';
 import { device } from "utils/mediaquery";
+import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
+import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
+import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
+
+export const HeaderBox = styled.header`
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-image: linear-gradient(
+      to right,
+      rgba(47, 48, 58, 0.4),
+      rgba(47, 48, 58, 0.4)
+    ),
+    url(${mobileBg});
+  
+  ${device.tabletM} {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url(${tabletBg});
+  }
+
+  ${device.desktopM} {
+    background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url(${desktopBg});
+  }
+`
+
+export const HeaderWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  
+`
 
 export const NavigationBox = styled.nav`
   display: flex;
+  flex-grow: 1;
+  margin-right: ${p => p.theme.spacing(10)};
   
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${p => p.theme.spacing(10)};
   
   ${device.mobileBelowM} {
     flex-direction: column;

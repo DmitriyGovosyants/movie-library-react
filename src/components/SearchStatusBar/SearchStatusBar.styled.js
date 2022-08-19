@@ -26,8 +26,7 @@ export const NavigationStatusBox = styled.div`
 export const SearchStatusList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  padding-top: ${p => p.theme.spacing(2)};
-  padding-bottom: ${p => p.theme.spacing(2)};
+  padding: ${p => p.theme.spacing(4)} 0;
   ${device.tabletM} {
     align-items: flex-end;
     margin-right: auto;
@@ -44,8 +43,7 @@ export const TrendBtn = styled.button`
   justify-content: center;
   align-items: center;
   width: 150px;
-  /* margin-top: ${p => p.theme.spacing(2)}; */
-  margin-right: ${p => p.theme.spacing(10)};
+  margin-right: ${p => p.theme.spacing(5)};
   padding: ${p => p.theme.spacing(2.5)};
 
   color: ${p => p.theme.colors.textMain};

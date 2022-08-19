@@ -17,6 +17,13 @@ export const SearchStatusBar = ({
   return (
     <>
       <NavigationStatusBox>
+        <TrendBtn
+          type="button"
+          visible={search}
+          onClick={() => window.location.reload()}
+        >
+          GO TO TREND
+        </TrendBtn>
         <SearchStatusList>
           <SearchStatusItem>
             {search && search}
@@ -27,13 +34,7 @@ export const SearchStatusBar = ({
             {'page - ' + page}
           </SearchStatusItem>
         </SearchStatusList>
-        <TrendBtn
-          type="button"
-          visible={search}
-          onClick={() => window.location.reload()}
-        >
-          GO TO TREND
-        </TrendBtn>
+
         <SearchForm setSearch={setSearch} />
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
       </NavigationStatusBox>

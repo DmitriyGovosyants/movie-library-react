@@ -8,7 +8,7 @@ import {
 } from './Navigation.styled';
 import { ReactComponent as LogoSVG } from '../../data/images/header/logo.svg';
 
-export const Navigation = () => {
+export const Navigation = ({ user }) => {
   return (
     <NavigationBox>
       <LogoLink to="/">
@@ -19,9 +19,21 @@ export const Navigation = () => {
         <NavItem>
           <ActiveLink to="/">home</ActiveLink>
         </NavItem>
-        <NavItem>
-          <ActiveLink to="/library">my library</ActiveLink>
-        </NavItem>
+        {!user && (
+          <>
+            <NavItem>
+              <ActiveLink to="/login">log in</ActiveLink>
+            </NavItem>
+            <NavItem>
+              <ActiveLink to="/signin">sign in</ActiveLink>
+            </NavItem>
+          </>
+        )}
+        {user && (
+          <NavItem>
+            <ActiveLink to="/library">my library</ActiveLink>
+          </NavItem>
+        )}
       </NavList>
     </NavigationBox>
   );

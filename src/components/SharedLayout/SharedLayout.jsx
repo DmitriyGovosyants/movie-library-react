@@ -1,4 +1,6 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from 'services/firebase/frebaseConfig';
 import { Outlet } from 'react-router-dom';
 import {
   Container,
@@ -7,10 +9,11 @@ import {
   LoadingScreen,
 } from 'components';
 import { HeaderBox, FooterWrapper, Main } from './SharedLayout.styled';
-import { LogIn } from 'components/AuthFirebase/AuthFirebase';
+import { LogIn, SignIn, SignOut } from 'components/Authentication/LogIn';
 
 export const SharedLayout = () => {
   const [showLoading, setShowLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   const onPageLoad = () => {
     setTimeout(() => {
@@ -18,14 +21,23 @@ export const SharedLayout = () => {
     }, 1000);
   };
 
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) setUser(user);
+      else setUser(null);
+    });
+  }, []);
+
   return (
     <>
+      <SignIn />
       <LogIn />
+      <SignOut />
       {showLoading && <LoadingScreen />}
       <HeaderBox>
         <Container>
           <IntersectonObserver onIntersect={onPageLoad}>
-            <Navigation />
+            <Navigation user={user} />
           </IntersectonObserver>
         </Container>
       </HeaderBox>

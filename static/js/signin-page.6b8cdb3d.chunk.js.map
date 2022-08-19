@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/signin-page.6b8cdb3d.chunk.js","mappings":"qKAMA,UAJe,WACb,OAAO,SAAC,KAAD","sources":["pages/Signin.jsx"],"sourcesContent":["import { SigninForm } from 'components';\n\nconst Signin = () => {\n  return <SigninForm />;\n};\n\nexport default Signin;\n"],"names":[],"sourceRoot":""}

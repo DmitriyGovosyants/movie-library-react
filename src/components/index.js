@@ -1,6 +1,7 @@
 export * from './Authentication/userContext/userContext';
 export * from './SharedLayout/SharedLayout';
 export * from './Header/Header';
+export * from './Footer/Footer';
 export * from './Authentication/Form/LoginForm';
 export * from './Authentication/Form/SigninForm';
 export * from './UserMenu/UserMenu';

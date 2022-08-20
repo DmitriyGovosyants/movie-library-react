@@ -3,6 +3,7 @@ import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
 import { Section, Container, Button } from 'components';
 import { Form, FormTitle, FormInput } from './AuthForm.styled';
+import { toast } from 'react-toastify';
 
 export const SigninForm = () => {
   const [email, setEmail] = useState('');
@@ -30,18 +31,18 @@ export const SigninForm = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log('password does not match');
+      toast.warn('Password does not match');
       return;
     }
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log('Created new user!');
+      toast.success(`Created user ${email}`);
       setEmail('');
       setPassword('');
       setConfirmPassword('');
     } catch (error) {
-      console.log(error);
+      toast.error('Could not create a new user');
     }
   };
 

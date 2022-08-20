@@ -3,6 +3,7 @@ import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
 import { Section, Container, Button } from 'components';
 import { Form, FormTitle, FormInput } from './AuthForm.styled';
+import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -27,13 +28,12 @@ export const LoginForm = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log('You are logged!');
+      toast.success('You are logged!');
+      setEmail('');
+      setPassword('');
     } catch (error) {
-      console.log(error);
+      toast.error('Cannot login to your account');
     }
-
-    setEmail('');
-    setPassword('');
   };
 
   return (

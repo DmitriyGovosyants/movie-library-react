@@ -25,7 +25,11 @@ export const SearchStatusBar = ({
             setPage={setPage}
           />
           <TrendBox>
-            <Button visible={search} onClick={() => window.location.reload()}>
+            <Button
+              size={'small'}
+              visible={search}
+              onClick={() => setSearch('')}
+            >
               GO TO TREND
             </Button>
           </TrendBox>

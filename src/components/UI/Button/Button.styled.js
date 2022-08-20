@@ -4,6 +4,7 @@ export const BtnStyled = styled.button`
   display: ${p => p.visible ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
   padding: ${p => p.size === 'small' ? '8px' : '16px'};
 
   color: ${p => p.theme.colors.textMain};

@@ -85,29 +85,24 @@ export const MovieCardContent = styled.div`
   padding: ${p => p.theme.spacing(5)};
 `
 
-export const InfoList = styled.ul`
-  margin-bottom: ${p => p.theme.spacing(6)};
-`
-
-export const InfoItem = styled.li`
+export const ButtonList = styled.ul`
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: ${p => p.theme.spacing(2)};
+`
+export const ButtonItem = styled.li`
+  display: inline-block;
+  margin-bottom: 10px;
 
   :not(:last-child) {
-    margin-bottom: ${p => p.theme.spacing(2)};
+    margin-right: 10px;
   }
-`
-
-export const InfoValue = styled.p`
-  margin-left: ${p => p.theme.spacing(2)};
-  font-size: ${p => p.theme.fontSizes.medium};
-  font-weight: 500;
 `
 
 export const RatingList = styled.ul`
   display: flex;
   justify-content: center;
-  margin-bottom: ${p => p.theme.spacing(6)};
+  margin-bottom: ${p => p.theme.spacing(3)};
   padding: 10px 0;
 
   border-top: 1px solid black;
@@ -127,7 +122,6 @@ export const RatingItem = styled.li`
   ${device.mobileM} {
     min-width: 100px;
   }
-  
 `
 
 export const RatingValue = styled.span`
@@ -142,8 +136,27 @@ export const RatingValue = styled.span`
   text-align: center;
 `
 
-export const AboutBox = styled.div`
+export const InfoList = styled.ul`
   margin-bottom: ${p => p.theme.spacing(6)};
+`
+
+export const InfoItem = styled.li`
+  display: flex;
+  align-items: center;
+
+  :not(:last-child) {
+    margin-bottom: ${p => p.theme.spacing(2)};
+  }
+`
+
+export const InfoLabel = styled.p`
+  min-width: 100px;
+`
+
+export const InfoValue = styled.p`
+  margin-left: ${p => p.theme.spacing(2)};
+  font-size: ${p => p.theme.fontSizes.medium};
+  font-weight: 500;
 `
 
 export const AboutLabel = styled.p`
@@ -155,18 +168,4 @@ export const AboutLabel = styled.p`
 export const AboutText = styled.p`
   font-size: ${p => p.theme.fontSizes.small};
   line-height: 1.5;
-`
-
-export const ButtonList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-`
-
-export const ButtonItem = styled.li`
-  display: inline-block;
-  margin-bottom: 10px;
-
-  :not(:last-child) {
-    margin-right: 10px;
-  }
 `

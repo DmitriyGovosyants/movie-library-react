@@ -14,11 +14,11 @@ import {
   MovieCardContent,
   InfoList,
   InfoItem,
+  InfoLabel,
   InfoValue,
   RatingList,
   RatingItem,
   RatingValue,
-  AboutBox,
   AboutLabel,
   AboutText,
   ButtonList,
@@ -106,13 +106,22 @@ export const MovieCard = ({ id, setShowModal }) => {
               <Poster src={filmPoster} alt={title} />
             </PosterBox>
             <MovieCardContent>
-              {trailersInfo?.length !== 0 && (
-                <MovieCardTrailer
-                  trailersInfo={trailersInfo}
-                  trailerActiveIndex={trailerActiveIndex}
-                  setTrailerActiveIndex={setTrailerActiveIndex}
-                />
-              )}
+              <ButtonList>
+                <ButtonItem>
+                  <Button>add to watched</Button>
+                </ButtonItem>
+                <ButtonItem>
+                  <Button>add to queue</Button>
+                </ButtonItem>
+                <ButtonItem>
+                  <Button onClick={controlTrailer}>
+                    {trailersInfo?.length === 0
+                      ? '>> trailer <<'
+                      : '>> film info <<'}
+                  </Button>
+                </ButtonItem>
+              </ButtonList>
+              {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               <RatingList>
                 <RatingItem>
                   <RatingValue>
@@ -130,44 +139,35 @@ export const MovieCard = ({ id, setShowModal }) => {
                   <p>Popular</p>
                 </RatingItem>
               </RatingList>
+              {trailersInfo?.length !== 0 && (
+                <MovieCardTrailer
+                  trailersInfo={trailersInfo}
+                  trailerActiveIndex={trailerActiveIndex}
+                  setTrailerActiveIndex={setTrailerActiveIndex}
+                />
+              )}
               {trailersInfo?.length === 0 && (
                 <>
                   <InfoList>
                     <InfoItem>
-                      <p>Release date:</p>
+                      <InfoLabel>Release date:</InfoLabel>
                       <InfoValue>{releaseDate}</InfoValue>
                     </InfoItem>
                     <InfoItem>
-                      <p>Original title:</p>
+                      <InfoLabel>Original title:</InfoLabel>
                       <InfoValue>{original_title}</InfoValue>
                     </InfoItem>
                     <InfoItem>
-                      <p>Genre:</p>
+                      <InfoLabel>Genre:</InfoLabel>
                       <InfoValue>{genresName}</InfoValue>
                     </InfoItem>
                   </InfoList>
-                  <AboutBox>
+                  <div>
                     <AboutLabel>StoryLine</AboutLabel>
                     <AboutText>{overview}</AboutText>
-                  </AboutBox>
+                  </div>
                 </>
               )}
-              {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
-              <ButtonList>
-                <ButtonItem>
-                  <Button>add to watched</Button>
-                </ButtonItem>
-                <ButtonItem>
-                  <Button>add to queue</Button>
-                </ButtonItem>
-                <ButtonItem>
-                  <Button onClick={controlTrailer}>
-                    {trailersInfo?.length === 0
-                      ? 'watch trailer'
-                      : 'close trailer'}
-                  </Button>
-                </ButtonItem>
-              </ButtonList>
             </MovieCardContent>
           </MovieCardWrapper>
         </MovieCardBox>

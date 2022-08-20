@@ -45,7 +45,9 @@ export const BtnBox = styled.div`
   flex-wrap: wrap;
 `
 
-export const TrendBox = styled.button`
+export const TrendBox = styled.div`
+  display: flex;
+  justify-content: center;
   ${device.mobileM} {
     margin-left: ${p => p.theme.spacing(5)};
   }

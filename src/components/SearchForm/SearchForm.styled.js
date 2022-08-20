@@ -46,4 +46,11 @@ export const Submit = styled.button`
   position: absolute;
   top: 5px;
   right: 0;
+
+  color: ${p => p.theme.colors.btnBg};
+  transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
+
+  :hover {
+    color: ${p => p.theme.colors.accentColor};
+  }
 `

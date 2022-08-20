@@ -28,7 +28,7 @@ export const GalleryItem = ({
     return setPosterImg(`https://image.tmdb.org/t/p/original${poster}`);
   }, [poster]);
 
-  const handleErrorPosterLoad = input => {
+  const handlePosterLoadError = input => {
     if (!input) {
       return;
     }
@@ -39,7 +39,7 @@ export const GalleryItem = ({
     <FilmCard>
       <PosterThumb onClick={() => setShowModal(s => !s)}>
         <Poster
-          ref={handleErrorPosterLoad}
+          ref={handlePosterLoadError}
           loading="lazy"
           src={posterImg}
           alt={title}

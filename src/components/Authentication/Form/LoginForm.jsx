@@ -1,7 +1,8 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
-import { Section, Container } from 'components';
+import { Section, Container, Button } from 'components';
+import { Form, FormTitle, FormInput } from './AuthForm.styled';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -38,9 +39,9 @@ export const LoginForm = () => {
   return (
     <Section>
       <Container>
-        <form onSubmit={handleLogin}>
-          <h2>Login</h2>
-          <input
+        <Form onSubmit={handleLogin}>
+          <FormTitle>Login</FormTitle>
+          <FormInput
             type="email"
             name="email"
             placeholder="email"
@@ -48,7 +49,7 @@ export const LoginForm = () => {
             onChange={handleChange}
             required
           />
-          <input
+          <FormInput
             type="password"
             name="password"
             placeholder="password"
@@ -56,8 +57,8 @@ export const LoginForm = () => {
             onChange={handleChange}
             required
           />
-          <button type="submit">Log in</button>
-        </form>
+          <Button type="submit">Log in</Button>
+        </Form>
       </Container>
     </Section>
   );

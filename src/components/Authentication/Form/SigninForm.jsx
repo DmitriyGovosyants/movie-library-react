@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
-import { Section, Container } from 'components';
+import { Section, Container, Button } from 'components';
+import { Form, FormTitle, FormInput } from './AuthForm.styled';
 
 export const SigninForm = () => {
   const [email, setEmail] = useState('');
@@ -36,21 +37,20 @@ export const SigninForm = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log('Created new user!');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
     } catch (error) {
       console.log(error);
     }
-
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
   };
 
   return (
     <Section>
       <Container>
-        <form onSubmit={createAccount}>
-          <h2>Signin</h2>
-          <input
+        <Form onSubmit={createAccount}>
+          <FormTitle>Signin</FormTitle>
+          <FormInput
             type="email"
             name="email"
             placeholder="email"
@@ -58,24 +58,26 @@ export const SigninForm = () => {
             onChange={handleChange}
             required
           />
-          <input
+          <FormInput
             type="password"
             name="password"
             placeholder="password"
             value={password}
             onChange={handleChange}
             required
+            minLength={6}
           />
-          <input
+          <FormInput
             type="password"
             name="confirmPassword"
             placeholder="confirm password"
             value={confirmPassword}
             onChange={handleChange}
             required
+            minLength={6}
           />
-          <button type="submit">Sign in</button>
-        </form>
+          <Button type="submit">Sign in</Button>
+        </Form>
       </Container>
     </Section>
   );

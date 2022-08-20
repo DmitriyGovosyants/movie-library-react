@@ -24,7 +24,7 @@ export const MovieCardTrailer = ({
             totalPage={trailersInfo?.length}
           />
           <TotalTrailer>
-            {trailerActiveIndex + 1} from {trailersInfo?.length}
+            {trailerActiveIndex + 1} / {trailersInfo?.length}
           </TotalTrailer>
         </>
       )}

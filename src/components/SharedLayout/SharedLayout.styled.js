@@ -6,9 +6,9 @@ export const FooterWrapper = styled.div`
   flex-direction: column;
   height: calc(100vh - 120px);
 
-  ${device.tabletM} {
+  /* ${device.tabletM} {
     height: calc(100vh - 160px);
-  }
+  } */
 `
 
 export const Main = styled.main`

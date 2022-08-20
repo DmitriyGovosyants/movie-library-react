@@ -43,7 +43,7 @@ export const SearchStatusBar = ({
           </SearchStatusItem>
           <SearchStatusItem>
             <FiChevronsRight />
-            {'page: ' + page}
+            pages: {page} / {totalPage}
           </SearchStatusItem>
         </SearchStatusList>
 

@@ -16,7 +16,7 @@ export const SharedLayout = () => {
           {/* </IntersectonObserver> */}
           <FooterWrapper>
             <Main>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <Outlet />
               </Suspense>
             </Main>

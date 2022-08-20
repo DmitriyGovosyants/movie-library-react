@@ -8,7 +8,6 @@ import {
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
-  console.log(currentYear);
 
   const yearsSiteExistence =
     currentYear === 2022 ? currentYear : `2022-${currentYear}`;

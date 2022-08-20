@@ -43,7 +43,7 @@ export const ModalCloseBtn = styled.button`
   position: absolute;
   top: 4px;
   right: 8px;
-  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
     color: ${p => p.theme.colors.accentColor};
@@ -168,20 +168,5 @@ export const ButtonItem = styled.li`
 
   :not(:last-child) {
     margin-right: 10px;
-  }
-`
-
-export const LibraryBtn = styled.button`
-  padding: ${p => p.theme.spacing(4)};
-
-  color: ${p => p.theme.colors.textMain};
-  text-transform: uppercase;
-
-  background-color: ${p => p.theme.colors.btnBg};
-  border-radius: 10px;
-  transition: background-color ${p => p.theme.animation.cubicBezier};
-
-  :hover {
-    background-color: ${p => p.theme.colors.accentColor};
   }
 `

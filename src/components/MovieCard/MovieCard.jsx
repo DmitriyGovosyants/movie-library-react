@@ -3,7 +3,7 @@ import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/filmsApi';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
-import { ErrorMessage, Spinner, MovieCardTrailer } from 'components';
+import { ErrorMessage, Spinner, MovieCardTrailer, Button } from 'components';
 import {
   MovieCardBox,
   Title,
@@ -23,7 +23,6 @@ import {
   AboutText,
   ButtonList,
   ButtonItem,
-  LibraryBtn,
 } from './MovieCard.styled';
 
 export const MovieCard = ({ id, setShowModal }) => {
@@ -156,17 +155,17 @@ export const MovieCard = ({ id, setShowModal }) => {
               {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               <ButtonList>
                 <ButtonItem>
-                  <LibraryBtn type="button">add to watched</LibraryBtn>
+                  <Button>add to watched</Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <LibraryBtn type="button">add to queue</LibraryBtn>
+                  <Button>add to queue</Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <LibraryBtn type="button" onClick={controlTrailer}>
+                  <Button onClick={controlTrailer}>
                     {trailersInfo?.length === 0
                       ? 'watch trailer'
                       : 'close trailer'}
-                  </LibraryBtn>
+                  </Button>
                 </ButtonItem>
               </ButtonList>
             </MovieCardContent>

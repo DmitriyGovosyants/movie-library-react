@@ -1,11 +1,11 @@
 import { FiChevronsRight } from 'react-icons/fi';
-import { PaginationArrow, SearchForm } from 'components';
+import { PaginationArrow, SearchForm, Button } from 'components';
 import {
   NavigationStatusBox,
   SearchStatusList,
   SearchStatusItem,
   BtnBox,
-  TrendBtn,
+  TrendBox,
 } from './SearchStatusBar.styled';
 
 export const SearchStatusBar = ({
@@ -24,13 +24,11 @@ export const SearchStatusBar = ({
             totalPage={totalPage}
             setPage={setPage}
           />
-          <TrendBtn
-            type="button"
-            visible={search}
-            onClick={() => window.location.reload()}
-          >
-            GO TO TREND
-          </TrendBtn>
+          <TrendBox>
+            <Button visible={search} onClick={() => window.location.reload()}>
+              GO TO TREND
+            </Button>
+          </TrendBox>
         </BtnBox>
 
         <SearchStatusList>
@@ -40,7 +38,7 @@ export const SearchStatusBar = ({
           </SearchStatusItem>
           <SearchStatusItem>
             <FiChevronsRight />
-            {'page - ' + page}
+            {'page: ' + page}
           </SearchStatusItem>
         </SearchStatusList>
 

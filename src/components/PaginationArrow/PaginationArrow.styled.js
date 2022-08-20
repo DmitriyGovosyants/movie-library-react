@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { device } from 'utils/mediaquery';
 
 export const ArrowBox = styled.div`
   display: flex;
@@ -17,15 +16,13 @@ export const ArrowBtn = styled.button`
   color: ${p => p.theme.colors.textMain};
   background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
-  transition: background-color ${p => p.theme.animation.cubicBezier};
+  transition: background-color ${p => p.theme.animation.cubicBezierMaxSpeed};
   
   :disabled {
     opacity: 0.5;
   }
   
-  ${device.desktopM} {
-    :hover {
-      background-color: ${p => p.theme.colors.accentColor};
-    }
+  :hover {
+    background-color: ${p => p.theme.colors.accentColor};
   }
 `

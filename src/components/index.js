@@ -17,6 +17,7 @@ export * from './SearchStatusBar/SearchStatusBar';
 export * from './PaginationArrow/PaginationArrow';
 
 export * from './UI/Modal/Modal';
+export * from './UI/Button/Button';
 export * from './UI/Spinner/Spinner';
 export * from './UI/ErrorMessage/ErrorMessage';
 export * from './UI/LoadingScreen/LoadingScreen';

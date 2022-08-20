@@ -31,6 +31,7 @@ export const SearchStatusList = styled.ul`
   padding: ${p => p.theme.spacing(4)} 0;
   ${device.tabletM} {
     align-items: flex-end;
+    padding: ${p => p.theme.spacing(4)};
   }
 `
 
@@ -44,26 +45,9 @@ export const BtnBox = styled.div`
   flex-wrap: wrap;
 `
 
-export const TrendBtn = styled.button`
-  display: ${p => p.visible ? 'flex' : 'none'};
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  padding: ${p => p.theme.spacing(2.5)};
-
-  color: ${p => p.theme.colors.textMain};
-  background-color: ${p => p.theme.colors.btnBg};
-  border-radius: 5px;
-  transition: background-color ${p => p.theme.animation.cubicBezier};
-
+export const TrendBox = styled.button`
   ${device.mobileM} {
     margin-left: ${p => p.theme.spacing(5)};
-  }
-  
-  ${device.desktopM} {
-    :hover {
-      background-color: ${p => p.theme.colors.accentColor};
-    }
   }
 `
 

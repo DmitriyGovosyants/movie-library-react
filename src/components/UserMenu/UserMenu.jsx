@@ -1,14 +1,15 @@
 import { signOut } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
-import { UserMenuBox, UserName, LogoutBtn } from './UserMenu.styled';
+import { UserMenuBox, UserName } from './UserMenu.styled';
+import { Button } from 'components';
 
 export const UserMenu = ({ user }) => {
   return (
     <UserMenuBox>
       <UserName>{user}</UserName>
-      <LogoutBtn type="button" onClick={() => signOut(auth)}>
+      <Button size={'small'} onClick={() => signOut(auth)}>
         Log out
-      </LogoutBtn>
+      </Button>
     </UserMenuBox>
   );
 };

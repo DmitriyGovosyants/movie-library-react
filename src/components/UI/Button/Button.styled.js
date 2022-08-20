@@ -1,0 +1,19 @@
+import styled from "@emotion/styled";
+
+export const BtnStyled = styled.button`
+  display: ${p => p.visible ? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+  padding: ${p => p.size === 'small' ? '8px' : '16px'};
+
+  color: ${p => p.theme.colors.textMain};
+  text-transform: uppercase;
+
+  background-color: ${p => p.theme.colors.btnBg};
+  border-radius: 10px;
+  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
+
+  :hover {
+    background-color: ${p => p.theme.colors.accentColor};
+  }
+`

@@ -29,7 +29,7 @@ export const Btn = styled.button`
   color: ${p => p.theme.colors.textMain};
   background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
-  transition: background-color ${p => p.theme.animation.cubicBezier};
+  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
   
   :disabled {
     background-color: ${p => p.theme.colors.btnBgDisabled};

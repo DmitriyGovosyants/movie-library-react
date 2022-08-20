@@ -13,7 +13,7 @@ export const Form = styled.form`
   position: relative;
   display: flex;
   border-bottom: 0.5px solid gray;
-  transition: border-color ${p => p.theme.animation.cubicBezier};
+  transition: border-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
     border-color: ${p => p.theme.colors.accentColor};

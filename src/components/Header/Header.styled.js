@@ -78,18 +78,20 @@ export const NavList = styled.ul`
 
 export const NavItem = styled.li`
   :not(:last-child) {
-    margin-right: ${p => p.theme.spacing(10)};
+    margin-right: ${p => p.theme.spacing(5)};
   }
 `
 
 export const ActiveLink = styled(NavLink)`
+  padding: ${p => p.theme.spacing(3)};
+
   font-size: ${p => p.theme.fontSizes.small};
   line-height: 1.17;
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;
 
-  transition: color ${p => p.theme.animation.cubicBezier};
+  transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover,
   &.active {

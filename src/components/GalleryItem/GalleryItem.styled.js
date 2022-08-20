@@ -41,7 +41,7 @@ export const PosterThumb = styled.div`
     margin-bottom: ${p => p.theme.spacing(2)};
   }
   ${device.desktopM} {
-    transition: box-shadow ${p => p.theme.animation.cubicBezier};
+    transition: box-shadow ${p => p.theme.animation.cubicBezierAverageSpeed};
 
     :hover {
       box-shadow: 3px 3px 10px black;

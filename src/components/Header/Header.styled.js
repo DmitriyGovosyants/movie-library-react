@@ -4,6 +4,7 @@ import { device } from "utils/mediaquery";
 import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
 import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
 import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
+import { theme } from "styles";
 
 export const HeaderBox = styled.header`
   display: flex;
@@ -70,6 +71,10 @@ export const Title = styled.h1`
   font-size: ${p => p.theme.fontSizes.titleMain};
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
+
+  ${device.desktopM} {
+    font-size: ${p => p.theme.fontSizes.titleBig};
+  }
 `
 
 export const NavList = styled.ul`
@@ -96,5 +101,9 @@ export const ActiveLink = styled(NavLink)`
   :hover,
   &.active {
     color: ${p => p.theme.colors.accentColor};
+  }
+
+  ${device.desktopM} {
+    font-size: ${p => p.theme.fontSizes.medium};
   }
 `

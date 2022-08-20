@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
+import brokenImg from 'data/images/gallery/broken-image.png';
 import { Modal, MovieCard } from 'components';
 import {
   FilmCard,
@@ -18,15 +19,31 @@ export const GalleryItem = ({
   data = '',
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const [posterImg, setPosterImg] = useState(null);
 
-  const filmPoster = poster
-    ? `https://image.tmdb.org/t/p/original${poster}`
-    : noPoster;
+  useEffect(() => {
+    if (!poster) {
+      return setPosterImg(noPoster);
+    }
+    return setPosterImg(`https://image.tmdb.org/t/p/original${poster}`);
+  }, [poster]);
+
+  const handleErrorPosterLoad = input => {
+    if (!input) {
+      return;
+    }
+    input.onerror = () => setPosterImg(brokenImg);
+  };
 
   return (
     <FilmCard>
       <PosterThumb onClick={() => setShowModal(s => !s)}>
-        <Poster loading="lazy" src={filmPoster} alt={title} />
+        <Poster
+          ref={handleErrorPosterLoad}
+          loading="lazy"
+          src={posterImg}
+          alt={title}
+        />
         <RatingData>{rating.toFixed(1)}</RatingData>
         <FilmYear>{data.slice(0, 4)}</FilmYear>
       </PosterThumb>

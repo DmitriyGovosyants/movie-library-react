@@ -15,6 +15,11 @@ export const SearchStatusBar = ({
   search,
   setSearch,
 }) => {
+  const handleGoToTrend = () => {
+    setSearch('');
+    setPage(1);
+  };
+
   return (
     <>
       <NavigationStatusBox>
@@ -25,11 +30,7 @@ export const SearchStatusBar = ({
             setPage={setPage}
           />
           <TrendBox>
-            <Button
-              size={'small'}
-              visible={search}
-              onClick={() => setSearch('')}
-            >
+            <Button size={'small'} visible={search} onClick={handleGoToTrend}>
               GO TO TREND
             </Button>
           </TrendBox>

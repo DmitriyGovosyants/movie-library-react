@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/home-page.26cc1bfd.chunk.js","mappings":"qKAUA,UARa,WACX,OACE,+BACE,SAAC,KAAD","sources":["pages/Home.jsx"],"sourcesContent":["import { GalleryList } from 'components';\n\nconst Home = () => {\n  return (\n    <>\n      <GalleryList />\n    </>\n  );\n};\n\nexport default Home;\n"],"names":[],"sourceRoot":""}

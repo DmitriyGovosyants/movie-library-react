@@ -28,13 +28,12 @@ export const FooterText = styled.p`
 `
 
 export const FooterLink = styled.a`
-  /* margin-left: 10px; */
-  font-weight: 700;
+  font-weight: 500;
   color: ${p => p.theme.colors.textFourth};
 
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
-    color: ${p => p.theme.colors.accentColor};
+    color: ${p => p.theme.colors.textLinkColor};
   }
 `

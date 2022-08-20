@@ -3,7 +3,8 @@ export const theme = Object.freeze({
     textMain: '#ffffff',
     textSecond: 'gray',
     textThird: 'black',
-    textFourth: '#c4c0df',
+    textFourth: '#cecbcb',
+    textLinkColor: '#382661',
 
     bgMain: '#ffffff',
     bgSecond: '#e0cbcb',

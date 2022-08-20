@@ -3,15 +3,18 @@ import { device } from "utils/mediaquery";
 
 export const FormWrapper = styled.div`
   display: flex;
+  margin-left: auto;
+  
   ${device.mobileOnly} {
-    margin-top: ${p => p.theme.spacing(3)};
-    margin-bottom: ${p => p.theme.spacing(3)};
+    width: 100%;
+    margin: ${p => p.theme.spacing(3)} 0;
   }
 ` 
 
 export const Form = styled.form`
   position: relative;
   display: flex;
+  width: 100%;
   border-bottom: 0.5px solid gray;
   transition: border-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
@@ -38,7 +41,7 @@ export const Input = styled.input`
   }
 
   ${device.tabletM} {
-    min-width: 400px;
+    min-width: 250px;
   }
 `
 

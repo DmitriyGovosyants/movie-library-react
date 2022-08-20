@@ -4,7 +4,6 @@ import { device } from "utils/mediaquery";
 import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
 import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
 import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
-import { theme } from "styles";
 
 export const HeaderBox = styled.header`
   display: flex;

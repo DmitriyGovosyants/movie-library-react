@@ -110,6 +110,10 @@ export const FilmTitle = styled.h2`
   font-weight: 500;
   line-height: 1.33;
 
+  ${device.mobileOnly} {
+    text-align: center;
+  }
+
   ${device.mobileM} {
     font-size: ${p => p.theme.fontSizes.medium};
   }

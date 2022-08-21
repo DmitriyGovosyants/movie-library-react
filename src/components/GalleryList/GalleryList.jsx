@@ -83,6 +83,8 @@ export const GalleryList = () => {
     });
   };
 
+  console.log(films);
+
   return (
     <Section>
       <Container>
@@ -97,19 +99,13 @@ export const GalleryList = () => {
         {showLoader && <Spinner />}
         <Gallery>
           {films.map(
-            ({
-              id,
-              poster_path,
-              original_title,
-              vote_average,
-              release_date,
-            }) => {
+            ({ id, poster_path, title, vote_average, release_date }) => {
               return (
                 <GalleryItem
                   key={id}
                   id={id}
                   poster={poster_path}
-                  title={original_title}
+                  title={title}
                   rating={vote_average}
                   data={release_date}
                 />

@@ -8,7 +8,7 @@ import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
 export const HeaderBox = styled.header`
   display: flex;
   align-items: center;
-  height: 120px;
+  height: 180px;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -18,6 +18,10 @@ export const HeaderBox = styled.header`
       rgba(47, 48, 58, 0.4)
     ),
     url(${mobileBg});
+
+  ${device.mobileM} {
+    height: 120px;
+  }
   
   ${device.tabletM} {
     background-image: linear-gradient(
@@ -53,6 +57,11 @@ export const NavigationBox = styled.nav`
   
   ${device.mobileBelowM} {
     flex-direction: column;
+    margin-bottom: ${p => p.theme.spacing(5)};
+  }
+
+  ${device.mobileOnly} {
+    margin-bottom: ${p => p.theme.spacing(5)};
   }
 `
 
@@ -78,9 +87,16 @@ export const Title = styled.h1`
 
 export const NavList = styled.ul`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `
 
 export const NavItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   :not(:last-child) {
     margin-right: ${p => p.theme.spacing(5)};
   }

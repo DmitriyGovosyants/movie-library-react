@@ -1,11 +1,15 @@
 import styled from "@emotion/styled";
+import { device } from "utils/mediaquery";
 
 export const UserMenuBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-left: ${p => p.theme.spacing(10)};
-  /* margin-left: auto */
+  margin-left: auto;
+  
+  ${device.tabletM} {
+    margin-left: ${p => p.theme.spacing(5)};
+  }
 `
 
 export const UserName = styled.p`

@@ -82,13 +82,15 @@ export const Poster = styled.img`
 
 export const MovieCardContent = styled.div`
   width: 100%;
-  padding: ${p => p.theme.spacing(5)};
+  padding-top: ${p => p.theme.spacing(2)};
+  padding-bottom: ${p => p.theme.spacing(5)};
+  padding-left: ${p => p.theme.spacing(5)};
+  padding-right: ${p => p.theme.spacing(5)};
 `
 
 export const ButtonList = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: ${p => p.theme.spacing(2)};
 `
 export const ButtonItem = styled.li`
   display: inline-block;

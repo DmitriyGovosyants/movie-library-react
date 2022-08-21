@@ -76,7 +76,7 @@ export const MovieCard = ({ id, setShowModal }) => {
           data: { results },
         } = await fetchMovieTrailer(id);
         if (results?.length === 0) {
-          setError('> No trailers found <');
+          setError('>> No trailers found <<');
           return;
         }
         setTrailersInfo(results);

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/library-page.cfef49cd.chunk.js","mappings":"qKAMA,UAJgB,WACd,OAAO,SAAC,KAAD","sources":["pages/Library.jsx"],"sourcesContent":["import { MyLibrary } from 'components';\n\nconst Library = () => {\n  return <MyLibrary />;\n};\n\nexport default Library;\n"],"names":[],"sourceRoot":""}

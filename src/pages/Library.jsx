@@ -1,11 +1,7 @@
-// import { Library } from 'components';
+import { MyLibrary } from 'components';
 
 const Library = () => {
-  return (
-    <>
-      <div>Let</div>
-    </>
-  );
+  return <MyLibrary />;
 };
 
 export default Library;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Gallery = styled.ul`
+export const GalleryListStyled = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

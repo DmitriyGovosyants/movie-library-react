@@ -43,6 +43,9 @@ export const Input = styled.input`
   ${device.tabletM} {
     min-width: 250px;
   }
+  ${device.desktopL} {
+    min-width: 350px;
+  }
 `
 
 export const Submit = styled.button`

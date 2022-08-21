@@ -8,11 +8,11 @@ export const GalleryList = ({ films }) => {
         return (
           <GalleryItem
             key={id}
-            id={id}
-            poster={poster_path}
-            title={title}
-            rating={vote_average}
-            data={release_date}
+            itemId={id}
+            itemPoster={poster_path}
+            itemTitle={title}
+            itemRating={vote_average}
+            itemData={release_date}
           />
         );
       })}

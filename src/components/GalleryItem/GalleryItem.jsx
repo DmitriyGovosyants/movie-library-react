@@ -12,28 +12,33 @@ import {
 } from './GalleryItem.styled';
 
 export const GalleryItem = ({
-  id,
-  poster,
-  title = 'No title',
-  rating = 0,
-  data = '',
+  itemId,
+  itemPoster,
+  itemTitle = 'No title',
+  itemRating = 0,
+  itemData = '',
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [posterImg, setPosterImg] = useState(null);
+  const [posterReadyToLoad, setPosterReadyToLoad] = useState(null);
 
   useEffect(() => {
-    if (!poster) {
-      return setPosterImg(noPoster);
+    if (!itemPoster) {
+      return setPosterReadyToLoad(noPoster);
     }
-    return setPosterImg(`https://image.tmdb.org/t/p/original${poster}`);
-  }, [poster]);
+    return setPosterReadyToLoad(
+      `https://image.tmdb.org/t/p/original${itemPoster}`
+    );
+  }, [itemPoster]);
 
   const handlePosterLoadError = input => {
     if (!input) {
       return;
     }
-    input.onerror = () => setPosterImg(brokenImg);
+    input.onerror = () => setPosterReadyToLoad(brokenImg);
   };
+
+  const ratingFixed = itemRating?.toFixed(1);
+  const dataYear = itemData?.slice(0, 4);
 
   return (
     <FilmCard>
@@ -41,16 +46,23 @@ export const GalleryItem = ({
         <Poster
           ref={handlePosterLoadError}
           loading="lazy"
-          src={posterImg}
-          alt={title}
+          src={posterReadyToLoad}
+          alt={itemTitle}
         />
-        <RatingData>{rating.toFixed(1)}</RatingData>
-        <FilmYear>{data.slice(0, 4)}</FilmYear>
+        <RatingData>{ratingFixed}</RatingData>
+        <FilmYear>{dataYear}</FilmYear>
       </PosterThumb>
-      <FilmTitle>{title}</FilmTitle>
+      <FilmTitle>{itemTitle}</FilmTitle>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <MovieCard id={id} setShowModal={setShowModal} />
+          <MovieCard
+            itemId={itemId}
+            itemTitle={itemTitle}
+            itemRating={itemRating}
+            itemData={itemData}
+            itemPoster={itemPoster}
+            setShowModal={setShowModal}
+          />
         </Modal>
       )}
     </FilmCard>

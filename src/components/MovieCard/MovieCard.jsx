@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
+import { ref, set, get, child, update, remove } from 'firebase/database';
+import { db } from 'services/firebase/frebaseConfig';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/filmsApi';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
-import { ErrorMessage, Spinner, MovieCardTrailer, Button } from 'components';
+import {
+  ErrorMessage,
+  Spinner,
+  MovieCardTrailer,
+  Button,
+  useUser,
+} from 'components';
 import {
   MovieCardBox,
   Title,
@@ -24,20 +32,30 @@ import {
   ButtonList,
   ButtonItem,
 } from './MovieCard.styled';
+import { toast } from 'react-toastify';
 
-export const MovieCard = ({ id, setShowModal }) => {
+export const MovieCard = ({
+  itemId,
+  itemTitle,
+  itemRating,
+  itemData,
+  itemPoster,
+  setShowModal,
+}) => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [trailersInfo, setTrailersInfo] = useState([]);
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
+  const { user } = useUser();
+  const [movieStatus, setMovieStatus] = useState(false);
 
   useEffect(() => {
     setShowLoader(true);
 
     const fetch = async () => {
       try {
-        const { data } = await fetchMovieDetails(id);
+        const { data } = await fetchMovieDetails(itemId);
         setMovieDetails(data);
       } catch (e) {
         setError(e.message);
@@ -46,7 +64,22 @@ export const MovieCard = ({ id, setShowModal }) => {
       }
     };
     fetch();
-  }, [id]);
+  }, [itemId]);
+
+  useEffect(() => {
+    const getFilmStatus = async () => {
+      try {
+        const snapshot = await get(child(ref(db), `/users/${user?.uid}`));
+        if (snapshot.exists()) {
+          const status = snapshot.val().films[itemId].status;
+          setMovieStatus(status);
+        }
+      } catch (error) {
+        toast.error(`We can not get film status from database`);
+      }
+    };
+    getFilmStatus();
+  }, [itemId, user?.uid]);
 
   const {
     title,
@@ -74,7 +107,7 @@ export const MovieCard = ({ id, setShowModal }) => {
       try {
         const {
           data: { results },
-        } = await fetchMovieTrailer(id);
+        } = await fetchMovieTrailer(itemId);
         if (results?.length === 0) {
           setError('>> No trailers found <<');
           return;
@@ -92,6 +125,53 @@ export const MovieCard = ({ id, setShowModal }) => {
     }
   };
 
+  const addToLibrary = async status => {
+    if (!user) {
+      return toast.info('Please, log in');
+    }
+    if (!movieStatus) {
+      console.log('добавление нового фильма');
+      try {
+        await set(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+          status: [status],
+          id: itemId,
+          poster_path: itemPoster,
+          title: itemTitle,
+          vote_average: itemRating,
+          release_date: itemData,
+        });
+        setMovieStatus([status]);
+        toast.success(`"${title}" has been added to ${status}`);
+      } catch (error) {
+        toast.error(`We can not add "${title}" to ${status}`);
+      }
+      return;
+    }
+    if (movieStatus?.includes?.(status)) {
+      try {
+        await remove(ref(db, `/users/${user?.uid}/films/${itemId}/status`));
+        console.log(`/users/${user?.uid}/films/${itemId}/status[0]`);
+        setMovieStatus(s => s.filter(e => e !== status));
+        toast.success(`"${title}" has been updated to ${status}`);
+      } catch (error) {
+        toast.error(`We can not add "${title}" to ${status}`);
+      }
+      return;
+    }
+
+    try {
+      await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+        status: [...movieStatus, status],
+      });
+      setMovieStatus(s => [...s, status]);
+      toast.success(`"${title}" has been updated to ${status}`);
+    } catch (error) {
+      toast.error(`We can not add "${title}" to ${status}`);
+    }
+  };
+  console.log(movieStatus);
+  // console.log(movieStatus?.includes?.('watched'));
+
   return (
     <>
       {showLoader && <Spinner />}
@@ -108,10 +188,18 @@ export const MovieCard = ({ id, setShowModal }) => {
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button>add to watched</Button>
+                  <Button onClick={() => addToLibrary('watched')}>
+                    {movieStatus?.includes?.('watched')
+                      ? 'delete watched'
+                      : 'add to watched'}
+                  </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button>add to queue</Button>
+                  <Button onClick={() => addToLibrary('queue')}>
+                    {movieStatus?.includes?.('queue')
+                      ? 'delete queue'
+                      : 'add to queue'}
+                  </Button>
                 </ButtonItem>
                 <ButtonItem>
                   <Button onClick={controlTrailer}>
@@ -121,6 +209,13 @@ export const MovieCard = ({ id, setShowModal }) => {
                   </Button>
                 </ButtonItem>
               </ButtonList>
+              {trailersInfo?.length !== 0 && (
+                <MovieCardTrailer
+                  trailersInfo={trailersInfo}
+                  trailerActiveIndex={trailerActiveIndex}
+                  setTrailerActiveIndex={setTrailerActiveIndex}
+                />
+              )}
               {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               <RatingList>
                 <RatingItem>
@@ -139,13 +234,6 @@ export const MovieCard = ({ id, setShowModal }) => {
                   <p>Popular</p>
                 </RatingItem>
               </RatingList>
-              {trailersInfo?.length !== 0 && (
-                <MovieCardTrailer
-                  trailersInfo={trailersInfo}
-                  trailerActiveIndex={trailerActiveIndex}
-                  setTrailerActiveIndex={setTrailerActiveIndex}
-                />
-              )}
               {trailersInfo?.length === 0 && (
                 <>
                   <InfoList>

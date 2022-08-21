@@ -48,7 +48,7 @@ export const MovieCard = ({
   const [error, setError] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
   const { user } = useUser();
-  const [movieStatus, setMovieStatus] = useState(false);
+  const [movieStatus, setMovieStatus] = useState([]);
 
   useEffect(() => {
     setShowLoader(true);
@@ -72,11 +72,11 @@ export const MovieCard = ({
         const snapshot = await get(child(ref(db), `/users/${user?.uid}`));
         if (snapshot.exists()) {
           const status = snapshot.val().films[itemId].status;
-          setMovieStatus(status);
+          if (status) {
+            setMovieStatus(status);
+          }
         }
-      } catch (error) {
-        toast.error(`We can not get film status from database`);
-      }
+      } catch (error) {}
     };
     getFilmStatus();
   }, [itemId, user?.uid]);
@@ -125,11 +125,12 @@ export const MovieCard = ({
     }
   };
 
-  const addToLibrary = async status => {
+  const controlLibrary = async status => {
+    console.log(movieStatus?.length === 0);
     if (!user) {
       return toast.info('Please, log in');
     }
-    if (!movieStatus) {
+    if (movieStatus?.length === 0) {
       console.log('добавление нового фильма');
       try {
         await set(ref(db, `/users/${user?.uid}/films/${itemId}`), {
@@ -147,10 +148,24 @@ export const MovieCard = ({
       }
       return;
     }
-    if (movieStatus?.includes?.(status)) {
+    if (movieStatus?.includes?.(status) && movieStatus?.length === 1) {
+      console.log('очищение библиотеки если элемент один');
       try {
-        await remove(ref(db, `/users/${user?.uid}/films/${itemId}/status`));
-        console.log(`/users/${user?.uid}/films/${itemId}/status[0]`);
+        await remove(ref(db, `/users/${user?.uid}/films/${itemId}`));
+        setMovieStatus(s => s.filter(e => e !== status));
+        toast.success(`"${title}" has been updated to ${status}`);
+      } catch (error) {
+        toast.error(`We can not add "${title}" to ${status}`);
+      }
+      return;
+    }
+    if (movieStatus?.includes?.(status)) {
+      console.log('очищение элемента библиотеки если элемента два');
+      const reversStatus = status === 'watched' ? 'queue' : 'watched';
+      try {
+        await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+          status: [reversStatus],
+        });
         setMovieStatus(s => s.filter(e => e !== status));
         toast.success(`"${title}" has been updated to ${status}`);
       } catch (error) {
@@ -159,6 +174,7 @@ export const MovieCard = ({
       return;
     }
 
+    console.log('добавление второго статуса в массив');
     try {
       await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
         status: [...movieStatus, status],
@@ -169,8 +185,6 @@ export const MovieCard = ({
       toast.error(`We can not add "${title}" to ${status}`);
     }
   };
-  console.log(movieStatus);
-  // console.log(movieStatus?.includes?.('watched'));
 
   return (
     <>
@@ -188,14 +202,14 @@ export const MovieCard = ({
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button onClick={() => addToLibrary('watched')}>
+                  <Button onClick={() => controlLibrary('watched')}>
                     {movieStatus?.includes?.('watched')
                       ? 'delete watched'
                       : 'add to watched'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button onClick={() => addToLibrary('queue')}>
+                  <Button onClick={() => controlLibrary('queue')}>
                     {movieStatus?.includes?.('queue')
                       ? 'delete queue'
                       : 'add to queue'}

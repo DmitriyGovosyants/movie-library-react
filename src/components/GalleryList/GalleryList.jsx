@@ -1,7 +1,7 @@
 import { GalleryItem } from 'components';
 import { GalleryListStyled } from './GalleryList.styled';
 
-export const GalleryList = ({ films }) => {
+export const GalleryList = ({ films, getFilmsByStatus, searchParams }) => {
   return (
     <GalleryListStyled>
       {films.map(({ id, poster_path, title, vote_average, release_date }) => {
@@ -13,6 +13,8 @@ export const GalleryList = ({ films }) => {
             itemTitle={title}
             itemRating={vote_average}
             itemData={release_date}
+            getFilmsByStatus={getFilmsByStatus}
+            searchParams={searchParams}
           />
         );
       })}

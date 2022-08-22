@@ -17,6 +17,8 @@ export const GalleryItem = ({
   itemTitle = 'No title',
   itemRating = 0,
   itemData = '',
+  getFilmsByStatus,
+  searchParams,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [posterReadyToLoad, setPosterReadyToLoad] = useState(null);
@@ -62,6 +64,8 @@ export const GalleryItem = ({
             itemData={itemData}
             itemPoster={itemPoster}
             setShowModal={setShowModal}
+            getFilmsByStatus={getFilmsByStatus}
+            searchParams={searchParams}
           />
         </Modal>
       )}

@@ -3,62 +3,61 @@ import { db } from 'services/firebase/frebaseConfig';
 import { toast } from 'react-toastify';
 import { child, get, ref } from 'firebase/database';
 import { useState } from 'react';
-// import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export const MyLibrary = () => {
-  // СДЕЛАТЬ ОБНОВЛЕНИЕ СПИСКА ПРИ УДАЛЕНИИ ИЗ СПИСКА!!!
-  const [films, setFilms] = useState([]);
-  // const [filmsByStatus, setFilmsByStatus] = useState([]);
+  const [filmsByStatus, setFilmsByStatus] = useState([]);
+  const [currentStatus, setCurrentStatus] = useState('');
   const { user } = useUser();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const getFilms = async status => {
+  const getFilmsByStatus = async status => {
     try {
       const snapshot = await get(child(ref(db), `/users/${user?.uid}/films`));
       if (snapshot.exists()) {
         const libraryFilms = Object.values(snapshot.val());
-        const filteredFilms = libraryFilms.filter(film =>
-          film.status.includes(status)
+        const filteredFilms = libraryFilms.filter(
+          film => film[status] === true
         );
-        setFilms(filteredFilms);
+        setFilmsByStatus(filteredFilms);
+        setCurrentStatus(status);
       }
     } catch (error) {
       toast.error(`We can not receive you watched films`);
     }
   };
 
-  // useEffect(() => {
-  //   const getFilms = async () => {
-  //     try {
-  //       const snapshot = await get(child(ref(db), `/users/${user?.uid}/films`));
-  //       if (snapshot.exists()) {
-  //         const loadedFilms = Object.values(snapshot.val());
-  //         setFilms(loadedFilms);
-  //       }
-  //     } catch (error) {
-  //       toast.error(`We can not receive you watched films`);
-  //     }
-  //   };
-  //   getFilms();
-  // }, [user?.uid]);
-
-  // const getWatched = () => {
-  //   const filteredFilms = films.filter(film => film.status.includes('watched'));
-  //   setFilmsByStatus(filteredFilms);
-  // };
-
-  // const getQueue = () => {
-  //   const filteredFilms = films.filter(film => film.status.includes('queue'));
-  //   setFilmsByStatus(filteredFilms);
-  // };
-
-  // console.dir(films, filmsByStatus);
+  const setSearch = status => {
+    setSearchParams(status);
+  };
 
   return (
     <Section>
       <Container>
-        <Button onClick={() => getFilms('watched')}>Watched</Button>
-        <Button onClick={() => getFilms('queue')}>Queue</Button>
-        {films?.length !== 0 && <GalleryList films={films} />}
+        <Button
+          onClick={() => {
+            getFilmsByStatus('watched');
+            setSearch({ view: 'watched' });
+          }}
+        >
+          Watched
+        </Button>
+        <Button
+          onClick={() => {
+            getFilmsByStatus('queue');
+            setSearch({ view: 'queue' });
+          }}
+        >
+          Queue
+        </Button>
+        {currentStatus}
+        {filmsByStatus?.length !== 0 && (
+          <GalleryList
+            films={filmsByStatus}
+            getFilmsByStatus={getFilmsByStatus}
+            searchParams={searchParams}
+          />
+        )}
       </Container>
     </Section>
   );

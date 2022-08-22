@@ -3,6 +3,7 @@ import { ref, set, get, child, update, remove } from 'firebase/database';
 import { db } from 'services/firebase/frebaseConfig';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/filmsApi';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
 import {
@@ -32,7 +33,7 @@ import {
   ButtonList,
   ButtonItem,
 } from './MovieCard.styled';
-import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 export const MovieCard = ({
   itemId,
@@ -41,14 +42,19 @@ export const MovieCard = ({
   itemData,
   itemPoster,
   setShowModal,
+  getFilmsByStatus,
+  searchParams,
 }) => {
+  const location = useLocation();
+  const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
   const [trailersInfo, setTrailersInfo] = useState([]);
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
-  const { user } = useUser();
-  const [movieStatus, setMovieStatus] = useState([]);
+
+  const [watchedStatus, setWatchedStatus] = useState(false);
+  const [queueStatus, setQueueStatus] = useState(false);
 
   useEffect(() => {
     setShowLoader(true);
@@ -69,12 +75,14 @@ export const MovieCard = ({
   useEffect(() => {
     const getFilmStatus = async () => {
       try {
-        const snapshot = await get(child(ref(db), `/users/${user?.uid}`));
+        const snapshot = await get(
+          child(ref(db), `/users/${user?.uid}/films/${itemId}`)
+        );
         if (snapshot.exists()) {
-          const status = snapshot.val().films[itemId].status;
-          if (status) {
-            setMovieStatus(status);
-          }
+          const watchedValue = snapshot.val().watched;
+          const queueValue = snapshot.val().queue;
+          setWatchedStatus(watchedValue);
+          setQueueStatus(queueValue);
         }
       } catch (error) {}
     };
@@ -125,64 +133,83 @@ export const MovieCard = ({
     }
   };
 
-  const controlLibrary = async status => {
-    console.log(movieStatus?.length === 0);
+  const libraryFirebaseAPI = async status => {
     if (!user) {
       return toast.info('Please, log in');
     }
-    if (movieStatus?.length === 0) {
-      console.log('добавление нового фильма');
+    if (!watchedStatus && !queueStatus) {
+      console.log('Add new film in library');
       try {
         await set(ref(db, `/users/${user?.uid}/films/${itemId}`), {
-          status: [status],
+          watched: false,
+          queue: false,
+          [status]: true,
           id: itemId,
           poster_path: itemPoster,
           title: itemTitle,
           vote_average: itemRating,
           release_date: itemData,
         });
-        setMovieStatus([status]);
+
+        status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
       } catch (error) {
         toast.error(`We can not add "${title}" to ${status}`);
       }
       return;
     }
-    if (movieStatus?.includes?.(status) && movieStatus?.length === 1) {
-      console.log('очищение библиотеки если элемент один');
+    if (watchedStatus && queueStatus) {
+      console.log('If all status true - delete one of them');
       try {
-        await remove(ref(db, `/users/${user?.uid}/films/${itemId}`));
-        setMovieStatus(s => s.filter(e => e !== status));
-        toast.success(`"${title}" has been updated to ${status}`);
+        await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+          [status]: false,
+        });
+
+        status === 'watched' ? setWatchedStatus(false) : setQueueStatus(false);
+        toast.success(`"${title}" has been deleted from ${status}`);
       } catch (error) {
-        toast.error(`We can not add "${title}" to ${status}`);
+        toast.error(`We can not delete "${title}" from ${status}`);
       }
       return;
     }
-    if (movieStatus?.includes?.(status)) {
-      console.log('очищение элемента библиотеки если элемента два');
-      const reversStatus = status === 'watched' ? 'queue' : 'watched';
+    if (
+      (status === 'watched' && watchedStatus && !queueStatus) ||
+      (status === 'queue' && !watchedStatus && queueStatus)
+    ) {
+      console.log('Delete from library if all status false');
       try {
-        await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
-          status: [reversStatus],
-        });
-        setMovieStatus(s => s.filter(e => e !== status));
-        toast.success(`"${title}" has been updated to ${status}`);
+        await remove(ref(db, `/users/${user?.uid}/films/${itemId}`));
+        setWatchedStatus(false);
+        setQueueStatus(false);
+        toast.success(`"${title}" has been deleted from ${status}`);
       } catch (error) {
-        toast.error(`We can not add "${title}" to ${status}`);
+        toast.error(`We can not delete "${title}" from ${status}`);
       }
       return;
     }
 
-    console.log('добавление второго статуса в массив');
+    console.log('Update 2-d status to true');
     try {
       await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
-        status: [...movieStatus, status],
+        [status]: true,
       });
-      setMovieStatus(s => [...s, status]);
-      toast.success(`"${title}" has been updated to ${status}`);
+
+      status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
+      toast.success(`"${title}" has been added to ${status}`);
     } catch (error) {
       toast.error(`We can not add "${title}" to ${status}`);
+    }
+  };
+
+  const handleLibrary = status => {
+    libraryFirebaseAPI(status);
+
+    if (location.pathname === '/library') {
+      const gets = searchParams.get('view');
+
+      if (gets === status) {
+        getFilmsByStatus(status);
+      }
     }
   };
 
@@ -202,17 +229,13 @@ export const MovieCard = ({
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('watched')}>
-                    {movieStatus?.includes?.('watched')
-                      ? 'delete watched'
-                      : 'add to watched'}
+                  <Button onClick={() => handleLibrary('watched')}>
+                    {watchedStatus ? 'delete watched' : 'add to watched'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('queue')}>
-                    {movieStatus?.includes?.('queue')
-                      ? 'delete queue'
-                      : 'add to queue'}
+                  <Button onClick={() => handleLibrary('queue')}>
+                    {queueStatus ? 'delete queue' : 'add to queue'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>

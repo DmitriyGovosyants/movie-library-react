@@ -212,13 +212,13 @@ export const MovieCard = ({
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('watched')}>
-                    {watchedStatus ? 'delete watched' : 'add to watched'}
+                  <Button onClick={() => controlLibrary('queue')}>
+                    {queueStatus ? 'delete queue' : 'add to queue'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('queue')}>
-                    {queueStatus ? 'delete queue' : 'add to queue'}
+                  <Button onClick={() => controlLibrary('watched')}>
+                    {watchedStatus ? 'delete watched' : 'add to watched'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>

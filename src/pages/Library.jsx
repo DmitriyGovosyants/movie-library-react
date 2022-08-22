@@ -28,19 +28,19 @@ export const Library = () => {
       <Container>
         <Button
           onClick={() => {
-            getMoviesByStatus('watched');
-            setSearchParams({ view: 'watched' });
-          }}
-        >
-          Watched
-        </Button>
-        <Button
-          onClick={() => {
             getMoviesByStatus('queue');
             setSearchParams({ view: 'queue' });
           }}
         >
           Queue
+        </Button>
+        <Button
+          onClick={() => {
+            getMoviesByStatus('watched');
+            setSearchParams({ view: 'watched' });
+          }}
+        >
+          Watched
         </Button>
         {currentStatus}
         {moviesByStatus?.length !== 0 && (

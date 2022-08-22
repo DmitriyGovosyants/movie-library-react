@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { child, get, ref } from 'firebase/database';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export const Library = () => {
   const [moviesByStatus, setMoviesByStatus] = useState([]);

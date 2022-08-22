@@ -4,6 +4,7 @@ import { db } from 'services/firebase/frebaseConfig';
 import { ref, set, get, child, update, remove } from 'firebase/database';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import { FaRegWindowClose } from 'react-icons/fa';
+import { MdLibraryAddCheck, MdLibraryAdd } from 'react-icons/md';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
 import { toast } from 'react-toastify';
 import {
@@ -127,7 +128,7 @@ export const MovieCard = ({
         });
 
         status === 'watched' ? setWatchedStatus(false) : setQueueStatus(false);
-        toast.success(`"${title}" has been deleted from ${status}`);
+        toast.info(`"${title}" has been deleted from ${status}`);
       } catch (error) {
         toast.error(`We cannot delete "${title}" from ${status}`);
       }
@@ -142,7 +143,7 @@ export const MovieCard = ({
         await remove(ref(db, `/users/${user?.uid}/movies/${itemId}`));
         setWatchedStatus(false);
         setQueueStatus(false);
-        toast.success(`"${title}" has been deleted from ${status}`);
+        toast.info(`"${title}" has been deleted from ${status}`);
       } catch (error) {
         toast.error(`We cannot delete "${title}" from ${status}`);
       }
@@ -214,13 +215,29 @@ export const MovieCard = ({
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('queue')}>
-                    {queueStatus ? 'delete queue' : 'add to queue'}
+                  <Button
+                    size={'small'}
+                    onClick={() => controlLibrary('queue')}
+                  >
+                    queue
+                    {queueStatus ? (
+                      <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
+                    ) : (
+                      <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
+                    )}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button onClick={() => controlLibrary('watched')}>
-                    {watchedStatus ? 'delete watched' : 'add to watched'}
+                  <Button
+                    size={'small'}
+                    onClick={() => controlLibrary('watched')}
+                  >
+                    watched
+                    {watchedStatus ? (
+                      <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
+                    ) : (
+                      <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
+                    )}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>

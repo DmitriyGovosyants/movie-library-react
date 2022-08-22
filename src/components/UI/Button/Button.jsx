@@ -6,9 +6,16 @@ export const Button = ({
   visible = 'false',
   type = 'button',
   size = 'medium',
+  isCheck,
 }) => {
   return (
-    <BtnStyled type={type} onClick={onClick} visible={visible} size={size}>
+    <BtnStyled
+      type={type}
+      onClick={onClick}
+      visible={visible}
+      size={size}
+      isCheck={isCheck}
+    >
       {children}
     </BtnStyled>
   );

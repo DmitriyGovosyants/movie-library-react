@@ -10,11 +10,11 @@ export const BtnStyled = styled.button`
   color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;
 
-  background-color: ${p => p.theme.colors.btnBg};
+  background-color: ${p => p.isCheck ? p => p.theme.colors.checkColor : p => p.theme.colors.btnBg};
   border-radius: 10px;
   transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
-    background-color: ${p => p.theme.colors.accentColor};
+    background-color: ${p => p.isCheck ? p.theme.colors.checkColor : p => p.theme.colors.accentColor};
   }
 `

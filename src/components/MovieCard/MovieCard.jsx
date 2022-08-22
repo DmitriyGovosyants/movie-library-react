@@ -4,16 +4,15 @@ import { db } from 'services/firebase/frebaseConfig';
 import { ref, set, get, child, update, remove } from 'firebase/database';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import { FaRegWindowClose } from 'react-icons/fa';
-import { MdLibraryAddCheck, MdLibraryAdd } from 'react-icons/md';
-import noPoster from 'data/images/gallery/no-poster.jpeg';
+import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
 import {
   ErrorMessage,
   Spinner,
   MovieCardTrailer,
   MovieCardInfo,
-  Button,
   useUser,
+  MovieCardControl,
 } from 'components';
 import {
   MovieCardBox,
@@ -23,8 +22,6 @@ import {
   PosterBox,
   Poster,
   MovieCardContent,
-  ButtonList,
-  ButtonItem,
 } from './MovieCard.styled';
 
 export const MovieCard = ({
@@ -213,10 +210,18 @@ export const MovieCard = ({
               <Poster src={moviePoster} alt={title} />
             </PosterBox>
             <MovieCardContent>
-              <ButtonList>
+              <MovieCardControl
+                queueStatus={queueStatus}
+                watchedStatus={watchedStatus}
+                controlLibrary={controlLibrary}
+                controlTrailer={controlTrailer}
+                trailersInfo={trailersInfo}
+              />
+              {/* <ButtonList>
                 <ButtonItem>
                   <Button
                     size={'small'}
+                    isCheck={queueStatus}
                     onClick={() => controlLibrary('queue')}
                   >
                     queue
@@ -230,6 +235,7 @@ export const MovieCard = ({
                 <ButtonItem>
                   <Button
                     size={'small'}
+                    isCheck={watchedStatus}
                     onClick={() => controlLibrary('watched')}
                   >
                     watched
@@ -247,7 +253,7 @@ export const MovieCard = ({
                       : '>> info <<'}
                   </Button>
                 </ButtonItem>
-              </ButtonList>
+              </ButtonList> */}
               {trailersInfo?.length !== 0 && (
                 <MovieCardTrailer trailersInfo={trailersInfo} />
               )}

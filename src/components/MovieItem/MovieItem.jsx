@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import noPoster from 'data/images/gallery/no-poster.jpeg';
-import brokenImg from 'data/images/gallery/broken-image.png';
+import noPoster from 'data/images/movies/no-poster.jpeg';
+import brokenImg from 'data/images/movies/broken-image.png';
 import { Modal, MovieCard } from 'components';
 import {
   MovieItemStyled,

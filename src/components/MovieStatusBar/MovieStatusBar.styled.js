@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const NavigationStatusBox = styled.div`
+export const StatusBox = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

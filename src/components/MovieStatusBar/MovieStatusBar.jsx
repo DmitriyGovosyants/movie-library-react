@@ -1,12 +1,12 @@
 import { FiChevronsRight } from 'react-icons/fi';
 import { PaginationArrow, SearchForm, Button } from 'components';
 import {
-  NavigationStatusBox,
+  StatusBox,
   SearchStatusList,
   SearchStatusItem,
   BtnBox,
   TrendBox,
-} from './SearchStatusBar.styled';
+} from './MovieStatusBar.styled';
 
 export const SearchStatusBar = ({
   page,
@@ -22,7 +22,7 @@ export const SearchStatusBar = ({
 
   return (
     <>
-      <NavigationStatusBox>
+      <StatusBox>
         <BtnBox>
           <PaginationArrow
             page={page}
@@ -48,7 +48,7 @@ export const SearchStatusBar = ({
         </SearchStatusList>
 
         <SearchForm setSearch={setSearch} />
-      </NavigationStatusBox>
+      </StatusBox>
     </>
   );
 };

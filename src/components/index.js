@@ -7,10 +7,11 @@ export * from './UserMenu/UserMenu';
 export * from './MovieList/MovieList';
 export * from './MovieItem/MovieItem';
 export * from './MovieCard/MovieCard';
+export * from './MovieCardControl/MovieCardControl';
 export * from './MovieCardTrailer/MovieCardTrailer';
 export * from './MovieCardInfo/MovieCardInfo';
 
-export * from './SearchStatusBar/SearchStatusBar';
+export * from './MovieStatusBar/MovieStatusBar';
 export * from './SearchForm/SearchForm';
 export * from './Pagination/Pagination';
 export * from './PaginationArrow/PaginationArrow';

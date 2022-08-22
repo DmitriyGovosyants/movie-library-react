@@ -87,16 +87,3 @@ export const MovieCardContent = styled.div`
   padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)};
 `
-
-export const ButtonList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-`
-export const ButtonItem = styled.li`
-  display: inline-block;
-  margin-bottom: 10px;
-
-  :not(:last-child) {
-    margin-right: 10px;
-  }
-`

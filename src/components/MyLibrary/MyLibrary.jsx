@@ -15,20 +15,16 @@ export const MyLibrary = () => {
     try {
       const snapshot = await get(child(ref(db), `/users/${user?.uid}/films`));
       if (snapshot.exists()) {
-        const libraryFilms = Object.values(snapshot.val());
-        const filteredFilms = libraryFilms.filter(
+        const filmsFromLibrary = Object.values(snapshot.val());
+        const filmsByStatus = filmsFromLibrary.filter(
           film => film[status] === true
         );
-        setFilmsByStatus(filteredFilms);
+        setFilmsByStatus(filmsByStatus);
         setCurrentStatus(status);
       }
     } catch (error) {
-      toast.error(`We can not receive you watched films`);
+      toast.error(`We cannot receive you watched films`);
     }
-  };
-
-  const setSearch = status => {
-    setSearchParams(status);
   };
 
   return (
@@ -37,7 +33,7 @@ export const MyLibrary = () => {
         <Button
           onClick={() => {
             getFilmsByStatus('watched');
-            setSearch({ view: 'watched' });
+            setSearchParams({ view: 'watched' });
           }}
         >
           Watched
@@ -45,7 +41,7 @@ export const MyLibrary = () => {
         <Button
           onClick={() => {
             getFilmsByStatus('queue');
-            setSearch({ view: 'queue' });
+            setSearchParams({ view: 'queue' });
           }}
         >
           Queue

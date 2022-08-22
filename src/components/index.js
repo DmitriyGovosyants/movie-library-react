@@ -14,6 +14,7 @@ export * from './PaginationArrow/PaginationArrow';
 
 export * from './MovieCard/MovieCard';
 export * from './MovieCardTrailer/MovieCardTrailer';
+export * from './MovieCardInfo/MovieCardInfo';
 
 export * from './UI/Modal/Modal';
 export * from './UI/Button/Button';

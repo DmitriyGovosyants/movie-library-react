@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { ref, set, get, child, update, remove } from 'firebase/database';
+import { useLocation } from 'react-router-dom';
 import { db } from 'services/firebase/frebaseConfig';
-import { FaRegWindowClose } from 'react-icons/fa';
-import { AiFillStar } from 'react-icons/ai';
-import { toast } from 'react-toastify';
+import { ref, set, get, child, update, remove } from 'firebase/database';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/filmsApi';
+import { FaRegWindowClose } from 'react-icons/fa';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
+import { toast } from 'react-toastify';
 import {
   ErrorMessage,
   Spinner,
   MovieCardTrailer,
+  MovieCardInfo,
   Button,
   useUser,
 } from 'components';
@@ -21,19 +22,9 @@ import {
   PosterBox,
   Poster,
   MovieCardContent,
-  InfoList,
-  InfoItem,
-  InfoLabel,
-  InfoValue,
-  RatingList,
-  RatingItem,
-  RatingValue,
-  AboutLabel,
-  AboutText,
   ButtonList,
   ButtonItem,
 } from './MovieCard.styled';
-import { useLocation } from 'react-router-dom';
 
 export const MovieCard = ({
   itemId,
@@ -64,7 +55,7 @@ export const MovieCard = ({
         const { data } = await fetchMovieDetails(itemId);
         setMovieDetails(data);
       } catch (e) {
-        setError(e.message);
+        toast.error(e.message);
       } finally {
         setShowLoader(false);
       }
@@ -105,34 +96,6 @@ export const MovieCard = ({
     ? `https://image.tmdb.org/t/p/original${poster_path}`
     : noPoster;
 
-  const releaseDate = release_date ? release_date : 'none';
-  const genresName = genres ? genres.map(e => e.name).join(', ') : null;
-  const voteAverage = vote_average ? vote_average.toFixed(1) : 0;
-  const popularityTotal = popularity ? popularity.toFixed(0) : 0;
-
-  const controlTrailer = async () => {
-    if (trailersInfo?.length === 0) {
-      try {
-        const {
-          data: { results },
-        } = await fetchMovieTrailer(itemId);
-        if (results?.length === 0) {
-          setError('>> No trailers found <<');
-          return;
-        }
-        setTrailersInfo(results);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setShowLoader(false);
-      }
-    }
-
-    if (trailersInfo?.length) {
-      setTrailersInfo([]);
-    }
-  };
-
   const libraryFirebaseAPI = async status => {
     if (!user) {
       return toast.info('Please, log in');
@@ -154,7 +117,7 @@ export const MovieCard = ({
         status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
       } catch (error) {
-        toast.error(`We can not add "${title}" to ${status}`);
+        toast.error(`We cannot add "${title}" to ${status}`);
       }
       return;
     }
@@ -168,7 +131,7 @@ export const MovieCard = ({
         status === 'watched' ? setWatchedStatus(false) : setQueueStatus(false);
         toast.success(`"${title}" has been deleted from ${status}`);
       } catch (error) {
-        toast.error(`We can not delete "${title}" from ${status}`);
+        toast.error(`We cannot delete "${title}" from ${status}`);
       }
       return;
     }
@@ -183,7 +146,7 @@ export const MovieCard = ({
         setQueueStatus(false);
         toast.success(`"${title}" has been deleted from ${status}`);
       } catch (error) {
-        toast.error(`We can not delete "${title}" from ${status}`);
+        toast.error(`We cannot delete "${title}" from ${status}`);
       }
       return;
     }
@@ -197,11 +160,11 @@ export const MovieCard = ({
       status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
       toast.success(`"${title}" has been added to ${status}`);
     } catch (error) {
-      toast.error(`We can not add "${title}" to ${status}`);
+      toast.error(`We cannot add "${title}" to ${status}`);
     }
   };
 
-  const handleLibrary = status => {
+  const controlLibrary = status => {
     libraryFirebaseAPI(status);
 
     if (location.pathname === '/library') {
@@ -210,6 +173,29 @@ export const MovieCard = ({
       if (gets === status) {
         getFilmsByStatus(status);
       }
+    }
+  };
+
+  const controlTrailer = async () => {
+    if (trailersInfo?.length === 0) {
+      try {
+        const {
+          data: { results },
+        } = await fetchMovieTrailer(itemId);
+        if (results?.length === 0) {
+          setError('>> No trailers found <<');
+          return;
+        }
+        setTrailersInfo(results);
+      } catch (e) {
+        toast.error(e.message);
+      } finally {
+        setShowLoader(false);
+      }
+    }
+
+    if (trailersInfo?.length) {
+      setTrailersInfo([]);
     }
   };
 
@@ -229,12 +215,12 @@ export const MovieCard = ({
             <MovieCardContent>
               <ButtonList>
                 <ButtonItem>
-                  <Button onClick={() => handleLibrary('watched')}>
+                  <Button onClick={() => controlLibrary('watched')}>
                     {watchedStatus ? 'delete watched' : 'add to watched'}
                   </Button>
                 </ButtonItem>
                 <ButtonItem>
-                  <Button onClick={() => handleLibrary('queue')}>
+                  <Button onClick={() => controlLibrary('queue')}>
                     {queueStatus ? 'delete queue' : 'add to queue'}
                   </Button>
                 </ButtonItem>
@@ -242,7 +228,7 @@ export const MovieCard = ({
                   <Button onClick={controlTrailer}>
                     {trailersInfo?.length === 0
                       ? '>> trailer <<'
-                      : '>> film info <<'}
+                      : '>> info <<'}
                   </Button>
                 </ButtonItem>
               </ButtonList>
@@ -254,45 +240,16 @@ export const MovieCard = ({
                 />
               )}
               {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
-              <RatingList>
-                <RatingItem>
-                  <RatingValue>
-                    <AiFillStar color={'red'} />
-                    {voteAverage}
-                  </RatingValue>
-                  <p>TMBD</p>
-                </RatingItem>
-                <RatingItem>
-                  <RatingValue>{vote_count}</RatingValue>
-                  <p>Votes</p>
-                </RatingItem>
-                <RatingItem>
-                  <RatingValue>{popularityTotal}</RatingValue>
-                  <p>Popular</p>
-                </RatingItem>
-              </RatingList>
-              {trailersInfo?.length === 0 && (
-                <>
-                  <InfoList>
-                    <InfoItem>
-                      <InfoLabel>Release date:</InfoLabel>
-                      <InfoValue>{releaseDate}</InfoValue>
-                    </InfoItem>
-                    <InfoItem>
-                      <InfoLabel>Original title:</InfoLabel>
-                      <InfoValue>{original_title}</InfoValue>
-                    </InfoItem>
-                    <InfoItem>
-                      <InfoLabel>Genre:</InfoLabel>
-                      <InfoValue>{genresName}</InfoValue>
-                    </InfoItem>
-                  </InfoList>
-                  <div>
-                    <AboutLabel>StoryLine</AboutLabel>
-                    <AboutText>{overview}</AboutText>
-                  </div>
-                </>
-              )}
+              <MovieCardInfo
+                vote_average={vote_average}
+                vote_count={vote_count}
+                popularity={popularity}
+                trailersInfo={trailersInfo}
+                release_date={release_date}
+                original_title={original_title}
+                genres={genres}
+                overview={overview}
+              />
             </MovieCardContent>
           </MovieCardWrapper>
         </MovieCardBox>

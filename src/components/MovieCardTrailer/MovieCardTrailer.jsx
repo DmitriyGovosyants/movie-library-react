@@ -1,11 +1,10 @@
+import { useState } from 'react';
 import { PaginationArrow } from 'components';
 import { TrailerContainer, TotalTrailer } from './MovieCardTrailer.styled';
 
-export const MovieCardTrailer = ({
-  trailerActiveIndex,
-  setTrailerActiveIndex,
-  trailersInfo,
-}) => {
+export const MovieCardTrailer = ({ trailersInfo }) => {
+  const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
+
   return (
     <TrailerContainer>
       <iframe

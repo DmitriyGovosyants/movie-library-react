@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { usePrevious } from 'hooks/usePrevious';
-import { fetchTrending, fetchMoviesByName } from 'services/filmsApi';
+import { fetchMoviesOnTrend, fetchMoviesByName } from 'services/movieApi';
+import { scrollToTop } from 'helpers/srcollToTop';
 import {
   Section,
   Container,
   SearchStatusBar,
   ErrorMessage,
-  GalleryList,
+  MovieList,
   Pagination,
   Spinner,
 } from 'components';
 
 const Home = () => {
   const [search, setSearch] = useState('');
-  const [films, setFilms] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
@@ -33,9 +34,9 @@ const Home = () => {
       try {
         const {
           data: { results, total_pages },
-        } = await fetchTrending(page);
+        } = await fetchMoviesOnTrend(page);
         setTotalPage(total_pages);
-        setFilms([...results]);
+        setMovies([...results]);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -50,7 +51,7 @@ const Home = () => {
       return;
     }
     if (search !== prevQuery) {
-      setFilms([]);
+      setMovies([]);
       setPage(1);
       return;
     }
@@ -65,7 +66,7 @@ const Home = () => {
         } = await fetchMoviesByName(page, search);
 
         setTotalPage(total_pages);
-        setFilms([...results]);
+        setMovies([...results]);
       } catch (e) {
         setError(e.message);
       } finally {
@@ -74,13 +75,6 @@ const Home = () => {
     };
     fetch();
   }, [page, search, prevQuery]);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant',
-    });
-  };
 
   return (
     <Section>
@@ -94,8 +88,8 @@ const Home = () => {
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
         {showLoader && <Spinner />}
-        {films.length !== 0 && <GalleryList films={films} />}
-        {films.length > 0 && (
+        {movies.length !== 0 && <MovieList movies={movies} />}
+        {movies.length > 0 && (
           <Pagination setPage={setPage} page={page} totalPage={totalPage} />
         )}
       </Container>

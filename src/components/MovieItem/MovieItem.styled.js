@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const FilmCard = styled.li`
+export const MovieItemStyled = styled.li`
   ${device.mobileOnly} {
     flex-basis: calc((100% - 16.5px) / 2);
     :not(:nth-of-type(2n)) {
@@ -90,7 +90,7 @@ export const RatingData = styled.span`
   }
 `
 
-export const FilmYear = styled.span`
+export const MovieYear = styled.span`
   position: absolute;
   right: 5px;
   bottom: 8px;
@@ -105,7 +105,7 @@ export const FilmYear = styled.span`
   }
 `
 
-export const FilmTitle = styled.h2`
+export const MovieTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.small};
   font-weight: 500;
   line-height: 1.33;

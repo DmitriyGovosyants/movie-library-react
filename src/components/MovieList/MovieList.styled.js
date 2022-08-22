@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const GalleryListStyled = styled.ul`
+export const MovieListStyled = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

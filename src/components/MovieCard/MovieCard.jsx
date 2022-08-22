@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from 'services/firebase/frebaseConfig';
 import { ref, set, get, child, update, remove } from 'firebase/database';
-import { fetchMovieDetails, fetchMovieTrailer } from 'services/filmsApi';
+import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import { FaRegWindowClose } from 'react-icons/fa';
 import noPoster from 'data/images/gallery/no-poster.jpeg';
 import { toast } from 'react-toastify';
@@ -33,14 +33,13 @@ export const MovieCard = ({
   itemData,
   itemPoster,
   setShowModal,
-  getFilmsByStatus,
+  getMoviesByStatus,
   searchParams,
 }) => {
   const location = useLocation();
   const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
   const [trailersInfo, setTrailersInfo] = useState([]);
-  const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
   const [error, setError] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -64,20 +63,18 @@ export const MovieCard = ({
   }, [itemId]);
 
   useEffect(() => {
-    const getFilmStatus = async () => {
-      try {
-        const snapshot = await get(
-          child(ref(db), `/users/${user?.uid}/films/${itemId}`)
-        );
-        if (snapshot.exists()) {
-          const watchedValue = snapshot.val().watched;
-          const queueValue = snapshot.val().queue;
-          setWatchedStatus(watchedValue);
-          setQueueStatus(queueValue);
-        }
-      } catch (error) {}
+    const getMovieStatus = async () => {
+      const snapshot = await get(
+        child(ref(db), `/users/${user?.uid}/movies/${itemId}`)
+      );
+      if (snapshot.exists()) {
+        const watchedValue = snapshot.val().watched;
+        const queueValue = snapshot.val().queue;
+        setWatchedStatus(watchedValue);
+        setQueueStatus(queueValue);
+      }
     };
-    getFilmStatus();
+    getMovieStatus();
   }, [itemId, user?.uid]);
 
   const {
@@ -92,7 +89,7 @@ export const MovieCard = ({
     release_date,
   } = movieDetails;
 
-  const filmPoster = poster_path
+  const moviePoster = poster_path
     ? `https://image.tmdb.org/t/p/original${poster_path}`
     : noPoster;
 
@@ -101,9 +98,9 @@ export const MovieCard = ({
       return toast.info('Please, log in');
     }
     if (!watchedStatus && !queueStatus) {
-      console.log('Add new film in library');
+      console.log('Add new movie in library');
       try {
-        await set(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+        await set(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
           watched: false,
           queue: false,
           [status]: true,
@@ -124,7 +121,7 @@ export const MovieCard = ({
     if (watchedStatus && queueStatus) {
       console.log('If all status true - delete one of them');
       try {
-        await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+        await update(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
           [status]: false,
         });
 
@@ -141,7 +138,7 @@ export const MovieCard = ({
     ) {
       console.log('Delete from library if all status false');
       try {
-        await remove(ref(db, `/users/${user?.uid}/films/${itemId}`));
+        await remove(ref(db, `/users/${user?.uid}/movies/${itemId}`));
         setWatchedStatus(false);
         setQueueStatus(false);
         toast.success(`"${title}" has been deleted from ${status}`);
@@ -153,7 +150,7 @@ export const MovieCard = ({
 
     console.log('Update 2-d status to true');
     try {
-      await update(ref(db, `/users/${user?.uid}/films/${itemId}`), {
+      await update(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
         [status]: true,
       });
 
@@ -171,7 +168,7 @@ export const MovieCard = ({
       const gets = searchParams.get('view');
 
       if (gets === status) {
-        getFilmsByStatus(status);
+        getMoviesByStatus(status);
       }
     }
   };
@@ -210,7 +207,7 @@ export const MovieCard = ({
           </ModalCloseBtn>
           <MovieCardWrapper>
             <PosterBox>
-              <Poster src={filmPoster} alt={title} />
+              <Poster src={moviePoster} alt={title} />
             </PosterBox>
             <MovieCardContent>
               <ButtonList>
@@ -233,11 +230,7 @@ export const MovieCard = ({
                 </ButtonItem>
               </ButtonList>
               {trailersInfo?.length !== 0 && (
-                <MovieCardTrailer
-                  trailersInfo={trailersInfo}
-                  trailerActiveIndex={trailerActiveIndex}
-                  setTrailerActiveIndex={setTrailerActiveIndex}
-                />
+                <MovieCardTrailer trailersInfo={trailersInfo} />
               )}
               {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               <MovieCardInfo

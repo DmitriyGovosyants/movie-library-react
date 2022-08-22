@@ -104,6 +104,7 @@ export const MovieCard = ({
           watched: false,
           queue: false,
           [status]: true,
+          [`${status}DateAdded`]: Date.now(),
           id: itemId,
           poster_path: itemPoster,
           title: itemTitle,
@@ -152,6 +153,7 @@ export const MovieCard = ({
     try {
       await update(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
         [status]: true,
+        [`${status}DateAdded`]: Date.now(),
       });
 
       status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);

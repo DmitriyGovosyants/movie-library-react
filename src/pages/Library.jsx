@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { child, get, ref } from 'firebase/database';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const Library = () => {
   const [moviesByStatus, setMoviesByStatus] = useState([]);
@@ -15,7 +16,10 @@ export const Library = () => {
     try {
       const snapshot = await get(child(ref(db), `/users/${user?.uid}/movies`));
       const allMovies = Object.values(snapshot.val());
-      const moviesByStatus = allMovies.filter(movie => movie[status] === true);
+      const moviesByStatus = allMovies
+        .filter(movie => movie[status] === true)
+        .sort((a, b) => b[`${status}DateAdded`] - a[`${status}DateAdded`]);
+
       setMoviesByStatus(moviesByStatus);
       setCurrentStatus(status);
     } catch (error) {

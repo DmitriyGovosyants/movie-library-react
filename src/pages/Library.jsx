@@ -21,9 +21,11 @@ export const Library = () => {
         .sort((a, b) => b[`${status}DateAdded`] - a[`${status}DateAdded`]);
 
       setMoviesByStatus(moviesByStatus);
-      setCurrentStatus(status);
     } catch (error) {
       toast.info(`You have no movies in ${status}`);
+      setMoviesByStatus([]);
+    } finally {
+      setCurrentStatus(status);
     }
   };
 

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { PaginationArrow } from 'components';
-import { TrailerContainer, TotalTrailer } from './MovieCardTrailer.styled';
+import { TrailerBox, TotalCount } from './MovieCardTrailer.styled';
 
 export const MovieCardTrailer = ({ trailersInfo }) => {
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
 
   return (
-    <TrailerContainer>
+    <TrailerBox>
       <iframe
         height={'300px'}
         width={'100%'}
@@ -22,11 +22,11 @@ export const MovieCardTrailer = ({ trailersInfo }) => {
             page={trailerActiveIndex + 1}
             totalPage={trailersInfo?.length}
           />
-          <TotalTrailer>
+          <TotalCount>
             {trailerActiveIndex + 1} / {trailersInfo?.length}
-          </TotalTrailer>
+          </TotalCount>
         </>
       )}
-    </TrailerContainer>
+    </TrailerBox>
   );
 };

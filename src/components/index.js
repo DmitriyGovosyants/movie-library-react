@@ -1,4 +1,3 @@
-export * from '../context/userContext';
 export * from './SharedLayout/SharedLayout';
 export * from './Header/Header';
 export * from './Footer/Footer';
@@ -9,6 +8,7 @@ export * from './MovieItem/MovieItem';
 export * from './MovieCard/MovieCard';
 export * from './MovieCardControl/MovieCardControl';
 export * from './MovieCardTrailer/MovieCardTrailer';
+export * from './MovieCardRating/MovieCardRating';
 export * from './MovieCardInfo/MovieCardInfo';
 
 export * from './MovieStatusBar/MovieStatusBar';

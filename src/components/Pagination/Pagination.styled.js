@@ -11,7 +11,7 @@ export const PaginationBox = styled.div`
   padding-bottom: ${p => p.theme.spacing(10)};
 `
 
-export const BtnBox = styled.div`
+export const BtnList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const LoaderContainer = styled.div`
+export const LoaderOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;

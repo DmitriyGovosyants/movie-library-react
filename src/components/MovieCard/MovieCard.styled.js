@@ -54,7 +54,7 @@ export const ModalCloseBtn = styled.button`
   }
 `
 
-export const MovieCardWrapper = styled.div`
+export const FlexContainer = styled.div`
   ${device.tabletM} {
     display: flex;
   }

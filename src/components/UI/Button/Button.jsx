@@ -1,4 +1,4 @@
-import { BtnStyled } from './Button.styled';
+import { Btn } from './Button.styled';
 
 export const Button = ({
   children,
@@ -9,7 +9,7 @@ export const Button = ({
   isCheck,
 }) => {
   return (
-    <BtnStyled
+    <Btn
       type={type}
       onClick={onClick}
       visible={visible}
@@ -17,6 +17,6 @@ export const Button = ({
       isCheck={isCheck}
     >
       {children}
-    </BtnStyled>
+    </Btn>
   );
 };

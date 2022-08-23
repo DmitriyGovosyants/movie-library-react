@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const FormWrapper = styled.div`
+export const FormBox = styled.div`
   display: flex;
   margin-left: auto;
   
@@ -48,7 +48,7 @@ export const Input = styled.input`
   }
 `
 
-export const Submit = styled.button`
+export const SubmitBtn = styled.button`
   position: absolute;
   top: 5px;
   right: 0;

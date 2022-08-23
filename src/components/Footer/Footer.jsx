@@ -1,7 +1,7 @@
 import { Section, Container } from 'components';
 import {
-  FooterStyled,
   FooterBox,
+  FlexContainer,
   FooterText,
   FooterLink,
 } from './Footer.styled';
@@ -13,10 +13,10 @@ export const Footer = () => {
     currentYear === 2022 ? currentYear : `2022-${currentYear}`;
 
   return (
-    <FooterStyled>
+    <FooterBox>
       <Section>
         <Container>
-          <FooterBox>
+          <FlexContainer>
             <FooterText>
               &copy; {yearsSiteExistence} Movie Library React. All Rights
               Reserved.
@@ -29,9 +29,9 @@ export const Footer = () => {
             >
               Developed by Dmitro Govosyants
             </FooterLink>
-          </FooterBox>
+          </FlexContainer>
         </Container>
       </Section>
-    </FooterStyled>
+    </FooterBox>
   );
 };

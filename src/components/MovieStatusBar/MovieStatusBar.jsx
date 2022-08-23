@@ -21,34 +21,28 @@ export const SearchStatusBar = ({
   };
 
   return (
-    <>
-      <StatusBox>
-        <BtnBox>
-          <PaginationArrow
-            page={page}
-            totalPage={totalPage}
-            setPage={setPage}
-          />
-          <TrendBox>
-            <Button size={'small'} visible={search} onClick={handleGoToTrend}>
-              GO TO TREND
-            </Button>
-          </TrendBox>
-        </BtnBox>
+    <StatusBox>
+      <BtnBox>
+        <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
+        <TrendBox>
+          <Button size={'small'} visible={search} onClick={handleGoToTrend}>
+            GO TO TREND
+          </Button>
+        </TrendBox>
+      </BtnBox>
 
-        <SearchStatusList>
-          <SearchStatusItem>
-            {search && search}
-            {!search && 'Trending movie'}
-          </SearchStatusItem>
-          <SearchStatusItem>
-            <FiChevronsRight />
-            pages: {page} / {totalPage}
-          </SearchStatusItem>
-        </SearchStatusList>
+      <SearchStatusList>
+        <SearchStatusItem>
+          {search && search}
+          {!search && 'Trending movie'}
+        </SearchStatusItem>
+        <SearchStatusItem>
+          <FiChevronsRight />
+          pages: {page} / {totalPage}
+        </SearchStatusItem>
+      </SearchStatusList>
 
-        <SearchForm setSearch={setSearch} />
-      </StatusBox>
-    </>
+      <SearchForm setSearch={setSearch} />
+    </StatusBox>
   );
 };

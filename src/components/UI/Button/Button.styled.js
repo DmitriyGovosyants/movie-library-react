@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const BtnStyled = styled.button`
+export const Btn = styled.button`
   display: ${p => p.visible ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;

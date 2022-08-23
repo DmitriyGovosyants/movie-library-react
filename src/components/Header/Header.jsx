@@ -1,6 +1,6 @@
 import {
   HeaderBox,
-  HeaderWrapper,
+  FlexContainer,
   NavigationBox,
   LogoLink,
   Title,
@@ -8,8 +8,9 @@ import {
   NavItem,
   ActiveLink,
 } from './Header.styled';
-import { ReactComponent as LogoSVG } from '../../data/images/header/logo.svg';
-import { Container, UserMenu, useUser } from 'components';
+import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
+import { Container, UserMenu } from 'components';
+import { useUser } from 'context/userContext';
 
 export const Header = () => {
   const { user } = useUser();
@@ -17,10 +18,10 @@ export const Header = () => {
   return (
     <HeaderBox>
       <Container>
-        <HeaderWrapper>
+        <FlexContainer>
           <NavigationBox>
             <LogoLink to="/">
-              <LogoSVG />
+              <Logo />
               <Title>Filmoteka</Title>
             </LogoLink>
             <NavList>
@@ -45,7 +46,7 @@ export const Header = () => {
             </NavList>
           </NavigationBox>
           {user && <UserMenu user={user?.email} />}
-        </HeaderWrapper>
+        </FlexContainer>
       </Container>
     </HeaderBox>
   );

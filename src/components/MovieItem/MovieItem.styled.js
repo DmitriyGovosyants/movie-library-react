@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const MovieItemStyled = styled.li`
+export const MovieItemBox = styled.li`
   ${device.mobileOnly} {
     flex-basis: calc((100% - 16.5px) / 2);
     :not(:nth-of-type(2n)) {
@@ -33,7 +33,7 @@ export const MovieItemStyled = styled.li`
   }
 `
 
-export const PosterThumb = styled.div`
+export const PosterBox = styled.div`
   position: relative;
   margin-bottom: ${p => p.theme.spacing(1)};
 
@@ -69,7 +69,7 @@ export const Poster = styled.img`
   }
 `
 
-export const RatingData = styled.span`
+export const MovieRating = styled.span`
   position: absolute;
   bottom: 5px;
   left: 5px;

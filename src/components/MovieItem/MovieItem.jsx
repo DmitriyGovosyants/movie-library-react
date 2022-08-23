@@ -3,10 +3,10 @@ import noPoster from 'data/images/movies/no-poster.jpeg';
 import brokenImg from 'data/images/movies/broken-image.png';
 import { Modal, MovieCard } from 'components';
 import {
-  MovieItemStyled,
-  PosterThumb,
+  MovieItemBox,
+  PosterBox,
   Poster,
-  RatingData,
+  MovieRating,
   MovieYear,
   MovieTitle,
 } from './MovieItem.styled';
@@ -17,7 +17,7 @@ export const MovieItem = ({
   itemTitle = 'No title',
   itemRating = 0,
   itemData = '',
-  getMoviesByStatus,
+  fetchLibraryMovies,
   searchParams,
 }) => {
   const [showModal, setShowModal] = useState(false);
@@ -43,17 +43,17 @@ export const MovieItem = ({
   const dataYear = itemData?.slice(0, 4);
 
   return (
-    <MovieItemStyled>
-      <PosterThumb onClick={() => setShowModal(s => !s)}>
+    <MovieItemBox>
+      <PosterBox onClick={() => setShowModal(s => !s)}>
         <Poster
           ref={handlePosterLoadError}
           loading="lazy"
           src={posterReadyToLoad}
           alt={itemTitle}
         />
-        <RatingData>{ratingFixed}</RatingData>
+        <MovieRating>{ratingFixed}</MovieRating>
         <MovieYear>{dataYear}</MovieYear>
-      </PosterThumb>
+      </PosterBox>
       <MovieTitle>{itemTitle}</MovieTitle>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
@@ -64,11 +64,11 @@ export const MovieItem = ({
             itemData={itemData}
             itemPoster={itemPoster}
             setShowModal={setShowModal}
-            getMoviesByStatus={getMoviesByStatus}
+            fetchLibraryMovies={fetchLibraryMovies}
             searchParams={searchParams}
           />
         </Modal>
       )}
-    </MovieItemStyled>
+    </MovieItemBox>
   );
 };

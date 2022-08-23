@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header, Footer, Spinner, useUser } from 'components';
-import { FooterWrapper, Main } from './SharedLayout.styled';
+import { Header, Footer, Spinner } from 'components';
+import { useUser } from 'context/userContext';
+import { FooterPressDown, Main } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   const { isRefreshing } = useUser();
@@ -14,14 +15,14 @@ export const SharedLayout = () => {
           {/* <IntersectonObserver onIntersect={onPageLoad}> */}
           <Header />
           {/* </IntersectonObserver> */}
-          <FooterWrapper>
+          <FooterPressDown>
             <Main>
               <Suspense fallback={<Spinner />}>
                 <Outlet />
               </Suspense>
             </Main>
             <Footer />
-          </FooterWrapper>
+          </FooterPressDown>
         </>
       )}
     </>

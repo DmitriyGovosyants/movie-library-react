@@ -1,9 +1,10 @@
-import { Section, Container, Button, useUser, MovieList } from 'components';
 import { db } from 'services/firebase/frebaseConfig';
-import { toast } from 'react-toastify';
 import { child, get, ref } from 'firebase/database';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Section, Container, Button, MovieList } from 'components';
+import { useUser } from 'context/userContext';
 
 export const Library = () => {
   const [moviesByStatus, setMoviesByStatus] = useState([]);
@@ -11,7 +12,7 @@ export const Library = () => {
   const { user } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const getMoviesByStatus = async status => {
+  const fetchLibraryMovies = async status => {
     try {
       const snapshot = await get(child(ref(db), `/users/${user?.uid}/movies`));
       const allMovies = Object.values(snapshot.val());
@@ -31,7 +32,7 @@ export const Library = () => {
       <Container>
         <Button
           onClick={() => {
-            getMoviesByStatus('queue');
+            fetchLibraryMovies('queue');
             setSearchParams({ view: 'queue' });
           }}
         >
@@ -39,7 +40,7 @@ export const Library = () => {
         </Button>
         <Button
           onClick={() => {
-            getMoviesByStatus('watched');
+            fetchLibraryMovies('watched');
             setSearchParams({ view: 'watched' });
           }}
         >
@@ -49,7 +50,7 @@ export const Library = () => {
         {moviesByStatus?.length !== 0 && (
           <MovieList
             movies={moviesByStatus}
-            getMoviesByStatus={getMoviesByStatus}
+            fetchLibraryMovies={fetchLibraryMovies}
             searchParams={searchParams}
           />
         )}

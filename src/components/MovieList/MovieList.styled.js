@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MovieListStyled = styled.ul`
+export const MovieListBox= styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

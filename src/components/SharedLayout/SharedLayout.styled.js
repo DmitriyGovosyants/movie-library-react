@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { device } from "utils/mediaquery";
 
-export const FooterWrapper = styled.div`
+export const FooterPressDown = styled.div`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 180px);
 
-  /* ${device.tabletM} {
-    height: calc(100vh - 160px);
-  } */
+  ${device.mobileM} {
+    height: calc(100vh - 120px);
+  }
 `
 
 export const Main = styled.main`

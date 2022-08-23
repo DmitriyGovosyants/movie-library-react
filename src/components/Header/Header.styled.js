@@ -42,16 +42,14 @@ export const HeaderBox = styled.header`
   }
 `
 
-export const HeaderWrapper = styled.div`
+export const FlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  
 `
 
 export const NavigationBox = styled.nav`
   display: flex;
   flex-grow: 1;
-  
   justify-content: space-between;
   align-items: center;
   
@@ -97,6 +95,7 @@ export const NavItem = styled.li`
   justify-content: center;
   align-items: center;
   height: 100%;
+  
   :not(:last-child) {
     margin-right: ${p => p.theme.spacing(5)};
   }

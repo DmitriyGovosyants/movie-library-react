@@ -1,5 +1,5 @@
 import { PaginationArrow } from 'components';
-import { PaginationBox, BtnBox, Btn, Dots } from './Pagination.styled';
+import { PaginationBox, BtnList, Btn, Dots } from './Pagination.styled';
 
 export const Pagination = ({ setPage, page, totalPage }) => {
   const handlePage = (start, middle, end) => {
@@ -35,7 +35,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
 
   return (
     <PaginationBox>
-      <BtnBox>
+      <BtnList>
         {totalPage !== 1 && (
           <Btn onClick={() => setPage(1)} type="button" disabled={page === 1}>
             1
@@ -79,7 +79,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
             {totalPage}
           </Btn>
         )}
-      </BtnBox>
+      </BtnList>
       <PaginationArrow setPage={setPage} page={page} totalPage={totalPage} />
     </PaginationBox>
   );

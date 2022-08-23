@@ -6,19 +6,20 @@ import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import { FaRegWindowClose } from 'react-icons/fa';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
+import { useUser } from 'context/userContext';
 import {
   ErrorMessage,
   Spinner,
-  MovieCardTrailer,
-  MovieCardInfo,
-  useUser,
   MovieCardControl,
+  MovieCardTrailer,
+  MovieCardRating,
+  MovieCardInfo,
 } from 'components';
 import {
   MovieCardBox,
   Title,
   ModalCloseBtn,
-  MovieCardWrapper,
+  FlexContainer,
   PosterBox,
   Poster,
   MovieCardContent,
@@ -31,7 +32,7 @@ export const MovieCard = ({
   itemData,
   itemPoster,
   setShowModal,
-  getMoviesByStatus,
+  fetchLibraryMovies,
   searchParams,
 }) => {
   const location = useLocation();
@@ -61,7 +62,7 @@ export const MovieCard = ({
   }, [itemId]);
 
   useEffect(() => {
-    const getMovieStatus = async () => {
+    const fetchLibraryMovieStatus = async () => {
       const snapshot = await get(
         child(ref(db), `/users/${user?.uid}/movies/${itemId}`)
       );
@@ -72,7 +73,7 @@ export const MovieCard = ({
         setQueueStatus(queueValue);
       }
     };
-    getMovieStatus();
+    fetchLibraryMovieStatus();
   }, [itemId, user?.uid]);
 
   const {
@@ -165,10 +166,10 @@ export const MovieCard = ({
     libraryFirebaseAPI(status);
 
     if (location.pathname === '/library') {
-      const gets = searchParams.get('view');
+      const viewParams = searchParams.get('view');
 
-      if (gets === status) {
-        getMoviesByStatus(status);
+      if (viewParams === status) {
+        fetchLibraryMovies(status);
       }
     }
   };
@@ -205,7 +206,7 @@ export const MovieCard = ({
           <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
             <FaRegWindowClose size={40} />
           </ModalCloseBtn>
-          <MovieCardWrapper>
+          <FlexContainer>
             <PosterBox>
               <Poster src={moviePoster} alt={title} />
             </PosterBox>
@@ -217,59 +218,26 @@ export const MovieCard = ({
                 controlTrailer={controlTrailer}
                 trailersInfo={trailersInfo}
               />
-              {/* <ButtonList>
-                <ButtonItem>
-                  <Button
-                    size={'small'}
-                    isCheck={queueStatus}
-                    onClick={() => controlLibrary('queue')}
-                  >
-                    queue
-                    {queueStatus ? (
-                      <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
-                    ) : (
-                      <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
-                    )}
-                  </Button>
-                </ButtonItem>
-                <ButtonItem>
-                  <Button
-                    size={'small'}
-                    isCheck={watchedStatus}
-                    onClick={() => controlLibrary('watched')}
-                  >
-                    watched
-                    {watchedStatus ? (
-                      <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
-                    ) : (
-                      <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
-                    )}
-                  </Button>
-                </ButtonItem>
-                <ButtonItem>
-                  <Button onClick={controlTrailer}>
-                    {trailersInfo?.length === 0
-                      ? '>> trailer <<'
-                      : '>> info <<'}
-                  </Button>
-                </ButtonItem>
-              </ButtonList> */}
+              {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
               {trailersInfo?.length !== 0 && (
                 <MovieCardTrailer trailersInfo={trailersInfo} />
               )}
-              {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
-              <MovieCardInfo
+              <MovieCardRating
                 vote_average={vote_average}
                 vote_count={vote_count}
                 popularity={popularity}
-                trailersInfo={trailersInfo}
-                release_date={release_date}
-                original_title={original_title}
-                genres={genres}
-                overview={overview}
               />
+              {trailersInfo?.length === 0 && (
+                <MovieCardInfo
+                  trailersInfo={trailersInfo}
+                  release_date={release_date}
+                  original_title={original_title}
+                  genres={genres}
+                  overview={overview}
+                />
+              )}
             </MovieCardContent>
-          </MovieCardWrapper>
+          </FlexContainer>
         </MovieCardBox>
       )}
     </>

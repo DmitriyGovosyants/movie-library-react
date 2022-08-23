@@ -7,7 +7,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import { GlobalStyles, theme } from 'styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserProvider } from 'components';
+import { UserProvider } from 'context/userContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -1,9 +1,9 @@
 import { MovieItem } from 'components';
-import { MovieListStyled } from './MovieList.styled';
+import { MovieListBox } from './MovieList.styled';
 
-export const MovieList = ({ movies, getMoviesByStatus, searchParams }) => {
+export const MovieList = ({ movies, fetchLibraryMovies, searchParams }) => {
   return (
-    <MovieListStyled>
+    <MovieListBox>
       {movies.map(({ id, poster_path, title, vote_average, release_date }) => {
         return (
           <MovieItem
@@ -13,11 +13,11 @@ export const MovieList = ({ movies, getMoviesByStatus, searchParams }) => {
             itemTitle={title}
             itemRating={vote_average}
             itemData={release_date}
-            getMoviesByStatus={getMoviesByStatus}
+            fetchLibraryMovies={fetchLibraryMovies}
             searchParams={searchParams}
           />
         );
       })}
-    </MovieListStyled>
+    </MovieListBox>
   );
 };

@@ -43,6 +43,7 @@ export const ModalCloseBtn = styled.button`
   position: absolute;
   top: 4px;
   right: 8px;
+  color: ${p => p.theme.colors.bgSecond};
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {

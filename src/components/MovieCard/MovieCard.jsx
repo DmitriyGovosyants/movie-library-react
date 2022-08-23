@@ -27,10 +27,6 @@ import {
 
 export const MovieCard = ({
   itemId,
-  itemTitle,
-  itemRating,
-  itemData,
-  itemPoster,
   setShowModal,
   fetchLibraryMovies,
   searchParams,
@@ -76,26 +72,14 @@ export const MovieCard = ({
     fetchLibraryMovieStatus();
   }, [itemId, user?.uid]);
 
-  const {
-    title,
-    poster_path,
-    vote_average,
-    vote_count,
-    popularity,
-    original_title,
-    genres,
-    overview,
-    release_date,
-  } = movieDetails;
-
-  const moviePoster = poster_path
-    ? `https://image.tmdb.org/t/p/original${poster_path}`
-    : noPoster;
-
   const libraryFirebaseAPI = async status => {
     if (!user) {
       return toast.info('Please, log in');
     }
+
+    const { title, poster_path, vote_average, release_date, genres } =
+      movieDetails;
+    const genresNames = genres ? genres.map(e => e.name).join(', ') : null;
 
     if (!watchedStatus && !queueStatus) {
       console.log('Add new movie in library');
@@ -106,10 +90,11 @@ export const MovieCard = ({
           [status]: true,
           [`${status}DateAdded`]: Date.now(),
           id: itemId,
-          poster_path: itemPoster,
-          title: itemTitle,
-          vote_average: itemRating,
-          release_date: itemData,
+          poster_path,
+          title,
+          vote_average,
+          release_date,
+          genres: genresNames,
         });
 
         status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
@@ -206,18 +191,22 @@ export const MovieCard = ({
     }
   };
 
+  const moviePoster = movieDetails?.poster_path
+    ? `https://image.tmdb.org/t/p/original${movieDetails?.poster_path}`
+    : noPoster;
+
   return (
     <>
       {showLoader && <Spinner />}
       {movieDetails?.length !== 0 && (
         <MovieCardBox>
-          <Title>{title}</Title>
+          <Title>{movieDetails?.title}</Title>
           <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
             <FaRegWindowClose size={40} />
           </ModalCloseBtn>
           <FlexContainer>
             <PosterBox>
-              <Poster src={moviePoster} alt={title} />
+              <Poster src={moviePoster} alt={movieDetails?.title} />
             </PosterBox>
             <MovieCardContent>
               <MovieCardControl
@@ -231,19 +220,9 @@ export const MovieCard = ({
               {movieTrailers?.length !== 0 && (
                 <MovieCardTrailer movieTrailers={movieTrailers} />
               )}
-              <MovieCardRating
-                vote_average={vote_average}
-                vote_count={vote_count}
-                popularity={popularity}
-              />
+              <MovieCardRating movieDetails={movieDetails} />
               {movieTrailers?.length === 0 && (
-                <MovieCardInfo
-                  movieTrailers={movieTrailers}
-                  release_date={release_date}
-                  original_title={original_title}
-                  genres={genres}
-                  overview={overview}
-                />
+                <MovieCardInfo movieDetails={movieDetails} />
               )}
             </MovieCardContent>
           </FlexContainer>

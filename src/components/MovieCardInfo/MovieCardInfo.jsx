@@ -7,13 +7,9 @@ import {
   AboutText,
 } from './MovieCardInfo.styled';
 
-export const MovieCardInfo = ({
-  movieTrailers,
-  release_date,
-  original_title,
-  genres,
-  overview,
-}) => {
+export const MovieCardInfo = ({ movieDetails }) => {
+  const { release_date, original_title, genres, overview } = movieDetails;
+
   const releaseDate = release_date ? release_date : 'none';
   const genresNames = genres ? genres.map(e => e.name).join(', ') : null;
 

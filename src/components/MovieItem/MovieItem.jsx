@@ -59,10 +59,6 @@ export const MovieItem = ({
         <Modal toggleModal={() => setShowModal(s => !s)}>
           <MovieCard
             itemId={itemId}
-            itemTitle={itemTitle}
-            itemRating={itemRating}
-            itemData={itemData}
-            itemPoster={itemPoster}
             setShowModal={setShowModal}
             fetchLibraryMovies={fetchLibraryMovies}
             searchParams={searchParams}

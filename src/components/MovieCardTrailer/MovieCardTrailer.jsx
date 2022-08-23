@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { PaginationArrow } from 'components';
 import { TrailerBox, TotalCount } from './MovieCardTrailer.styled';
 
-export const MovieCardTrailer = ({ trailersInfo }) => {
+export const MovieCardTrailer = ({ movieTrailers }) => {
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
 
   return (
@@ -11,19 +11,19 @@ export const MovieCardTrailer = ({ trailersInfo }) => {
         height={'300px'}
         width={'100%'}
         title="Youtube trailer"
-        src={`https://www.youtube.com/embed/${trailersInfo[trailerActiveIndex].key}?autoplay=1&mute=0&controls=1`}
+        src={`https://www.youtube.com/embed/${movieTrailers[trailerActiveIndex].key}?autoplay=1&mute=0&controls=1`}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
-      {trailersInfo?.length > 1 && (
+      {movieTrailers?.length > 1 && (
         <>
           <PaginationArrow
             setPage={setTrailerActiveIndex}
             page={trailerActiveIndex + 1}
-            totalPage={trailersInfo?.length}
+            totalPage={movieTrailers?.length}
           />
           <TotalCount>
-            {trailerActiveIndex + 1} / {trailersInfo?.length}
+            {trailerActiveIndex + 1} / {movieTrailers?.length}
           </TotalCount>
         </>
       )}

@@ -24,7 +24,6 @@ export const SearchForm = ({ setSearch }) => {
           type="text"
           placeholder="Movie Search"
           autoComplete="off"
-          autoFocus
         />
         <SubmitBtn type="submit">
           <BsSearch size={30} color={'inherit'} />

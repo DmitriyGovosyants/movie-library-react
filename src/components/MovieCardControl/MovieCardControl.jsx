@@ -7,7 +7,7 @@ export const MovieCardControl = ({
   watchedStatus,
   controlLibrary,
   controlTrailer,
-  trailersInfo,
+  movieTrailers,
 }) => {
   return (
     <ButtonList>
@@ -41,7 +41,7 @@ export const MovieCardControl = ({
       </ButtonItem>
       <ButtonItem>
         <Button onClick={controlTrailer}>
-          {trailersInfo?.length === 0 ? '>> trailer <<' : '>> info <<'}
+          {movieTrailers?.length === 0 ? '>> trailer <<' : '>> info <<'}
         </Button>
       </ButtonItem>
     </ButtonList>

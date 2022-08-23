@@ -38,7 +38,7 @@ export const MovieCard = ({
   const location = useLocation();
   const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
-  const [trailersInfo, setTrailersInfo] = useState([]);
+  const [movieTrailers, setMovieTrailers] = useState([]);
   const [error, setError] = useState(null);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -96,6 +96,7 @@ export const MovieCard = ({
     if (!user) {
       return toast.info('Please, log in');
     }
+
     if (!watchedStatus && !queueStatus) {
       console.log('Add new movie in library');
       try {
@@ -118,6 +119,26 @@ export const MovieCard = ({
       }
       return;
     }
+
+    if (
+      (status === 'watched' && !watchedStatus && queueStatus) ||
+      (status === 'queue' && watchedStatus && !queueStatus)
+    ) {
+      console.log('Add second status to true');
+      try {
+        await update(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
+          [status]: true,
+          [`${status}DateAdded`]: Date.now(),
+        });
+
+        status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
+        toast.success(`"${title}" has been added to ${status}`);
+      } catch (error) {
+        toast.error(`We cannot add "${title}" to ${status}`);
+      }
+      return;
+    }
+
     if (watchedStatus && queueStatus) {
       console.log('If all status true - delete one of them');
       try {
@@ -132,6 +153,7 @@ export const MovieCard = ({
       }
       return;
     }
+
     if (
       (status === 'watched' && watchedStatus && !queueStatus) ||
       (status === 'queue' && !watchedStatus && queueStatus)
@@ -146,19 +168,6 @@ export const MovieCard = ({
         toast.error(`We cannot delete "${title}" from ${status}`);
       }
       return;
-    }
-
-    console.log('Update 2-d status to true');
-    try {
-      await update(ref(db, `/users/${user?.uid}/movies/${itemId}`), {
-        [status]: true,
-        [`${status}DateAdded`]: Date.now(),
-      });
-
-      status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
-      toast.success(`"${title}" has been added to ${status}`);
-    } catch (error) {
-      toast.error(`We cannot add "${title}" to ${status}`);
     }
   };
 
@@ -175,7 +184,7 @@ export const MovieCard = ({
   };
 
   const controlTrailer = async () => {
-    if (trailersInfo?.length === 0) {
+    if (movieTrailers?.length === 0) {
       try {
         const {
           data: { results },
@@ -184,7 +193,7 @@ export const MovieCard = ({
           setError('>> No trailers found <<');
           return;
         }
-        setTrailersInfo(results);
+        setMovieTrailers(results);
       } catch (e) {
         toast.error(e.message);
       } finally {
@@ -192,8 +201,8 @@ export const MovieCard = ({
       }
     }
 
-    if (trailersInfo?.length) {
-      setTrailersInfo([]);
+    if (movieTrailers?.length) {
+      setMovieTrailers([]);
     }
   };
 
@@ -216,20 +225,20 @@ export const MovieCard = ({
                 watchedStatus={watchedStatus}
                 controlLibrary={controlLibrary}
                 controlTrailer={controlTrailer}
-                trailersInfo={trailersInfo}
+                movieTrailers={movieTrailers}
               />
               {error && <ErrorMessage size={'small'}>{error}</ErrorMessage>}
-              {trailersInfo?.length !== 0 && (
-                <MovieCardTrailer trailersInfo={trailersInfo} />
+              {movieTrailers?.length !== 0 && (
+                <MovieCardTrailer movieTrailers={movieTrailers} />
               )}
               <MovieCardRating
                 vote_average={vote_average}
                 vote_count={vote_count}
                 popularity={popularity}
               />
-              {trailersInfo?.length === 0 && (
+              {movieTrailers?.length === 0 && (
                 <MovieCardInfo
-                  trailersInfo={trailersInfo}
+                  movieTrailers={movieTrailers}
                   release_date={release_date}
                   original_title={original_title}
                   genres={genres}

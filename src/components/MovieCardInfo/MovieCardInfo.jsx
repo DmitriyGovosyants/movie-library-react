@@ -8,7 +8,7 @@ import {
 } from './MovieCardInfo.styled';
 
 export const MovieCardInfo = ({
-  trailersInfo,
+  movieTrailers,
   release_date,
   original_title,
   genres,

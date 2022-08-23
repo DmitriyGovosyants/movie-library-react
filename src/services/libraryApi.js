@@ -1,6 +1,10 @@
 import { ref, set, get, child, update, remove } from 'firebase/database';
 import { db } from 'services/firebase/frebaseConfig';
 
+export const fetchAllLibraryMovies = async (user) => {
+  return await get(child(ref(db), `/users/${user?.uid}/movies`));
+}
+
 export const fetchLibraryMovieStatus = async (user, itemId) => {
   return await get(child(ref(db), `/users/${user?.uid}/movies/${itemId}`));
 }

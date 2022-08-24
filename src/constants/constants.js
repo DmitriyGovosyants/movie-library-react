@@ -4,4 +4,9 @@ export const SortStatus = {
   YEAR: 'year',
 };
 
-// добавить queue, watched, view
+export const ViewStatus = {
+  QUEUE: 'queue',
+  WATCHED: 'watched',
+}
+
+// добавить view

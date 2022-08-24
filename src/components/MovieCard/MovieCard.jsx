@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import {
   fetchLibraryMovieStatus,
@@ -8,6 +8,7 @@ import {
   removeFromLibrary,
   removeOneOfTwoStatus,
 } from 'services/libraryApi';
+import { ViewStatus } from 'constants/constants';
 import { IoMdClose } from 'react-icons/io';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
@@ -30,7 +31,7 @@ import {
   MovieCardContent,
 } from './MovieCard.styled';
 
-export const MovieCard = ({ itemId, setShowModal, ...props }) => {
+export const MovieCard = ({ itemId, setShowModal, setRefreshPage }) => {
   const location = useLocation();
   const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
@@ -40,6 +41,7 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
 
   const [watchedStatus, setWatchedStatus] = useState(false);
   const [queueStatus, setQueueStatus] = useState(false);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     setShowLoader(true);
@@ -92,7 +94,9 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
           id
         );
 
-        status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
+        status === ViewStatus.WATCHED
+          ? setWatchedStatus(true)
+          : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
       } catch (error) {
         toast.error(`We cannot add "${title}" to ${status}`);
@@ -101,13 +105,15 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
     }
 
     if (
-      (status === 'watched' && !watchedStatus && queueStatus) ||
-      (status === 'queue' && watchedStatus && !queueStatus)
+      (status === ViewStatus.WATCHED && !watchedStatus && queueStatus) ||
+      (status === ViewStatus.QUEUE && watchedStatus && !queueStatus)
     ) {
       try {
         await addSecondStatus(status, user, id);
 
-        status === 'watched' ? setWatchedStatus(true) : setQueueStatus(true);
+        status === ViewStatus.WATCHED
+          ? setWatchedStatus(true)
+          : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
       } catch (error) {
         toast.error(`We cannot add "${title}" to ${status}`);
@@ -119,7 +125,9 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
       try {
         await removeOneOfTwoStatus(status, user, id);
 
-        status === 'watched' ? setWatchedStatus(false) : setQueueStatus(false);
+        status === ViewStatus.WATCHED
+          ? setWatchedStatus(false)
+          : setQueueStatus(false);
         toast.info(`"${title}" has been deleted from ${status}`);
       } catch (error) {
         toast.error(`We cannot delete "${title}" from ${status}`);
@@ -128,8 +136,8 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
     }
 
     if (
-      (status === 'watched' && watchedStatus && !queueStatus) ||
-      (status === 'queue' && !watchedStatus && queueStatus)
+      (status === ViewStatus.WATCHED && watchedStatus && !queueStatus) ||
+      (status === ViewStatus.QUEUE && !watchedStatus && queueStatus)
     ) {
       try {
         await removeFromLibrary(user, id);
@@ -144,13 +152,12 @@ export const MovieCard = ({ itemId, setShowModal, ...props }) => {
   };
 
   const refreshLibraryPage = status => {
-    const { fetchLibraryMovies, searchParams, sortStatus, filterStatus } =
-      props;
     if (location.pathname === '/library') {
       const viewParams = searchParams.get('view');
 
       if (viewParams === status) {
-        fetchLibraryMovies(status, sortStatus, filterStatus);
+        console.log(viewParams, status);
+        setRefreshPage(true);
       }
     }
   };

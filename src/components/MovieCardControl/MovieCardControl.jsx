@@ -1,6 +1,7 @@
 import { MdLibraryAddCheck, MdLibraryAdd } from 'react-icons/md';
 import { Button } from 'components';
 import { ButtonList, ButtonItem } from './MovieCardControl.styled';
+import { ViewStatus } from 'constants/constants';
 
 export const MovieCardControl = ({
   queueStatus,
@@ -15,7 +16,7 @@ export const MovieCardControl = ({
         <Button
           size={'small'}
           isCheck={queueStatus}
-          onClick={() => controlLibrary('queue')}
+          onClick={() => controlLibrary(ViewStatus.QUEUE)}
         >
           queue
           {queueStatus ? (
@@ -29,7 +30,7 @@ export const MovieCardControl = ({
         <Button
           size={'small'}
           isCheck={watchedStatus}
-          onClick={() => controlLibrary('watched')}
+          onClick={() => controlLibrary(ViewStatus.WATCHED)}
         >
           watched
           {watchedStatus ? (

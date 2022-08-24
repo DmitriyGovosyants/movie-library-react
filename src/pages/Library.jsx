@@ -4,65 +4,88 @@ import { toast } from 'react-toastify';
 import { Section, Container, Button, MovieList } from 'components';
 import { useUser } from 'context/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
-import { SortStatus } from 'constants/constants';
+import { SortStatus, ViewStatus } from 'constants/constants';
+import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 export const Library = () => {
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [sortStatus, setSortStatus] = useState(SortStatus.LATEST);
   const [filterStatus, setFilterStatus] = useState('');
+  const [viewStatus, setViewStatus] = useState(ViewStatus.QUEUE);
   const [allGenres, setAllGenres] = useState([]);
+  const [refreshPage, setRefreshPage] = useState(false);
   const { user } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const fetchLibraryMovies = async (viewStatus, sortStatus, filterStatus) => {
-    setSearchParams({ view: viewStatus });
-    try {
-      const snapshot = await fetchAllLibraryMovies(user);
-      const moviesByStatus = Object.values(snapshot.val()).filter(
-        movie => movie[viewStatus] === true
-      );
-
-      const sortMovies = sortBy(sortStatus, moviesByStatus, viewStatus);
-
-      getUniqueGenres(sortMovies);
-
-      if (filterStatus) {
-        const filterMovies = filterBy(sortMovies, filterStatus);
-        setLibraryMovies(filterMovies);
+  const sortBy = useCallback(
+    moviesByStatus => {
+      if (sortStatus === SortStatus.LATEST) {
+        return [...moviesByStatus].sort(
+          (a, b) => b[`${viewStatus}DateAdded`] - a[`${viewStatus}DateAdded`]
+        );
       }
-
-      if (!filterStatus) {
-        setLibraryMovies(sortMovies);
+      if (sortStatus === SortStatus.RATING) {
+        return [...moviesByStatus].sort(
+          (a, b) => b.vote_average - a.vote_average
+        );
       }
-    } catch (error) {
-      toast.info(`You have no movies in ${viewStatus}`);
-      setLibraryMovies([]);
-    }
-  };
+      if (sortStatus === SortStatus.YEAR) {
+        return [...moviesByStatus].sort((a, b) =>
+          b.release_date.localeCompare(a.release_date)
+        );
+      }
+    },
+    [sortStatus, viewStatus]
+  );
 
-  const sortBy = (sortStatus, moviesByStatus, viewStatus) => {
-    if (sortStatus === SortStatus.LATEST) {
-      return [...moviesByStatus].sort(
-        (a, b) => b[`${viewStatus}DateAdded`] - a[`${viewStatus}DateAdded`]
-      );
-    }
-    if (sortStatus === SortStatus.RATING) {
-      return [...moviesByStatus].sort(
-        (a, b) => b.vote_average - a.vote_average
-      );
-    }
-    if (sortStatus === SortStatus.YEAR) {
-      return [...moviesByStatus].sort((a, b) =>
-        b.release_date.localeCompare(a.release_date)
-      );
-    }
-  };
+  const filterBy = useCallback(
+    sortMovies => {
+      return sortMovies.filter(movie => {
+        return movie.genres.includes(filterStatus);
+      });
+    },
+    [filterStatus]
+  );
 
-  const filterBy = (sortMovies, filterStatus) => {
-    return sortMovies.filter(movie => {
-      return movie.genres.includes(filterStatus);
-    });
-  };
+  useEffect(() => {
+    const fetchLibraryMovies = async () => {
+      setRefreshPage(false);
+      setSearchParams({ view: viewStatus });
+
+      try {
+        const snapshot = await fetchAllLibraryMovies(user);
+        const moviesByStatus = Object.values(snapshot.val()).filter(
+          movie => movie[viewStatus] === true
+        );
+
+        const sortMovies = sortBy(moviesByStatus);
+
+        getUniqueGenres(sortMovies);
+
+        if (filterStatus) {
+          const filterMovies = filterBy(sortMovies);
+          setLibraryMovies(filterMovies);
+        }
+
+        if (!filterStatus) {
+          setLibraryMovies(sortMovies);
+        }
+      } catch (error) {
+        toast.info(`You have no movies in ${viewStatus}`);
+        setLibraryMovies([]);
+      }
+    };
+    fetchLibraryMovies();
+  }, [
+    filterBy,
+    filterStatus,
+    refreshPage,
+    setSearchParams,
+    sortBy,
+    user,
+    viewStatus,
+  ]);
 
   const getUniqueGenres = movieArr => {
     const uniqueGenres = movieArr
@@ -71,24 +94,6 @@ export const Library = () => {
 
     setAllGenres(uniqueGenres);
   };
-
-  const handleSortChange = e => {
-    const viewValue = searchParams.get('view');
-    const sortValue = e.target.value;
-
-    fetchLibraryMovies(viewValue, sortValue, filterStatus); //должно автоматом useEffect
-    setSortStatus(sortValue);
-  };
-
-  const handleGenreChange = e => {
-    const viewValue = searchParams.get('view');
-    const filterValue = e.target.value;
-
-    fetchLibraryMovies(viewValue, sortStatus, filterValue); //должно автоматом useEffect
-    setFilterStatus(filterValue);
-  };
-
-  console.log('STATUS: ', filterStatus);
 
   return (
     <Section>
@@ -100,7 +105,7 @@ export const Library = () => {
             checked={sortStatus === SortStatus.LATEST}
             name="sortBy"
             value={SortStatus.LATEST}
-            onChange={handleSortChange}
+            onChange={e => setSortStatus(e.target.value)}
           />
         </label>
         <label>
@@ -110,7 +115,7 @@ export const Library = () => {
             checked={sortStatus === SortStatus.RATING}
             name="sortBy"
             value={SortStatus.RATING}
-            onChange={handleSortChange}
+            onChange={e => setSortStatus(e.target.value)}
           />
         </label>
         <label>
@@ -120,7 +125,7 @@ export const Library = () => {
             checked={sortStatus === SortStatus.YEAR}
             name="sortBy"
             value={SortStatus.YEAR}
-            onChange={handleSortChange}
+            onChange={e => setSortStatus(e.target.value)}
           />
         </label>
         <label>
@@ -128,7 +133,7 @@ export const Library = () => {
           <select
             name="genres"
             value={filterStatus}
-            onChange={handleGenreChange}
+            onChange={e => setFilterStatus(e.target.value)}
           >
             <option value=""></option>
             {allGenres.map(genre => {
@@ -141,28 +146,14 @@ export const Library = () => {
           </select>
         </label>
 
-        <Button
-          onClick={() => fetchLibraryMovies('queue', sortStatus, filterStatus)} //должно автоматом useEffect при изменение viewstatus, который надо добавить
-        >
-          Queue
-        </Button>
-        <Button
-          onClick={
-            () => fetchLibraryMovies('watched', sortStatus, filterStatus) //должно автоматом useEffect при изменение viewstatus, который надо добавить
-          }
-        >
+        <Button onClick={() => setViewStatus(ViewStatus.QUEUE)}>Queue</Button>
+        <Button onClick={() => setViewStatus(ViewStatus.WATCHED)}>
           Watched
         </Button>
         {searchParams.get('view')}
         {libraryMovies?.length}
         {libraryMovies?.length !== 0 && (
-          <MovieList
-            movies={libraryMovies}
-            fetchLibraryMovies={fetchLibraryMovies}
-            searchParams={searchParams}
-            sortStatus={sortStatus}
-            filterStatus={filterStatus}
-          />
+          <MovieList movies={libraryMovies} setRefreshPage={setRefreshPage} />
         )}
       </Container>
     </Section>

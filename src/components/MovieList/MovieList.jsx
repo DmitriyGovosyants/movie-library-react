@@ -1,7 +1,7 @@
 import { MovieItem } from 'components';
 import { MovieListBox } from './MovieList.styled';
 
-export const MovieList = ({ movies, ...props }) => {
+export const MovieList = ({ movies, setRefreshPage }) => {
   return (
     <MovieListBox>
       {movies.map(({ id, poster_path, title, vote_average, release_date }) => {
@@ -13,7 +13,7 @@ export const MovieList = ({ movies, ...props }) => {
             itemTitle={title}
             itemRating={vote_average}
             itemData={release_date}
-            {...props}
+            setRefreshPage={setRefreshPage}
           />
         );
       })}

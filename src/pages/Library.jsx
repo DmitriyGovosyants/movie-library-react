@@ -24,10 +24,10 @@ export const Library = () => {
 
       const sortMovies = sortBy(sortStatus, moviesByStatus, viewStatus);
 
-      const genres = sortMovies
+      const uniqueGenres = sortMovies
         .flatMap(movie => movie.genres.split(','))
         .filter((movie, index, array) => array.indexOf(movie) === index);
-      setAllGenres(genres);
+      setAllGenres(uniqueGenres);
 
       if (filterStatus) {
         const filterMovies = filterBy(sortMovies, filterStatus);

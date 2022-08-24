@@ -52,8 +52,8 @@ export const PosterBox = styled.div`
 
 export const Poster = styled.img`
   width: 100%;
-  height: 190px;
   object-fit: cover;
+  height: 60vw;
 
   ${device.mobileM} {
     height: 310px;

@@ -9,7 +9,6 @@ import {
   removeOneOfTwoStatus,
 } from 'services/libraryApi';
 import { ViewStatus } from 'constants/constants';
-import { IoMdClose } from 'react-icons/io';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
 import { useUser } from 'context/userContext';
@@ -20,11 +19,11 @@ import {
   MovieCardTrailer,
   MovieCardRating,
   MovieCardInfo,
+  ButtonClose,
 } from 'components';
 import {
   MovieCardBox,
   Title,
-  ModalCloseBtn,
   FlexContainer,
   PosterBox,
   Poster,
@@ -200,9 +199,7 @@ export const MovieCard = ({ itemId, setShowModal, setRefreshPage }) => {
       {movieDetails?.length !== 0 && (
         <MovieCardBox>
           <Title>{movieDetails?.title}</Title>
-          <ModalCloseBtn type="button" onClick={() => setShowModal(s => !s)}>
-            <IoMdClose size={40} />
-          </ModalCloseBtn>
+          <ButtonClose onClick={() => setShowModal(s => !s)} />
           <FlexContainer>
             <PosterBox>
               <Poster src={moviePoster} alt={movieDetails?.title} />

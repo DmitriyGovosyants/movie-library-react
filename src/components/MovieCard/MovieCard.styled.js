@@ -39,22 +39,6 @@ export const Title = styled.h3`
   }
 `
 
-export const ModalCloseBtn = styled.button`
-  position: absolute;
-  top: 4px;
-  right: 8px;
-  color: ${p => p.theme.colors.bgSecond};
-  transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
-
-  :hover {
-    color: ${p => p.theme.colors.accentColor};
-  }
-
-  ${device.tabletM} {
-    top: 8px;
-  }
-`
-
 export const FlexContainer = styled.div`
   ${device.tabletM} {
     display: flex;

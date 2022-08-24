@@ -15,7 +15,7 @@ export const GlobalStyles = css`
     font-style: normal;
     letter-spacing: 0.03em;
 
-    background: ${theme.colors.bgMain};
+    background-color: ${theme.colors.bgMain};
 
     overflow: auto;
     -ms-overflow-style: none;

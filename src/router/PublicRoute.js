@@ -5,9 +5,5 @@ export const PublicRoute = ({ restricted, redirectTo = '/' }) => {
   const { user } = useUser();
   const shouldRedirect = user && restricted;
 
-  if (shouldRedirect) {
-    return <Navigate to={redirectTo} replace />;
-  }
-
-  return <Outlet />;
+  return shouldRedirect ? <Navigate to={redirectTo} replace /> : <Outlet />;
 };

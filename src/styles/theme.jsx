@@ -10,6 +10,8 @@ export const theme = Object.freeze({
     bgSecond: '#e0cbcb',
     bgThird: 'gray',
 
+    bg: '#7f7b83',
+
     accentColor: 'red',
     checkColor: '#9452A5',
     btnBg: '#FF2662',

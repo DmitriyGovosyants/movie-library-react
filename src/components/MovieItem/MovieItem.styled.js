@@ -2,34 +2,13 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
 export const MovieItemBox = styled.li`
-  ${device.mobileOnly} {
-    flex-basis: calc((100% - 16.5px) / 2);
-    :not(:nth-of-type(2n)) {
-      margin-right: 16.5px;
-    }
-    :not(:nth-last-of-type(-n + 2)) {
-      margin-bottom: 18px;
-    }
-  }
+  flex-basis: calc((100% - 16.5px) / 2);
 
-  ${device.tabletOnly} {
+  ${device.tabletM} {
     flex-basis: calc((100% - 33px) / 3);
-    :not(:nth-of-type(3n)) {
-      margin-right: 16.5px;
-    }
-    :not(:nth-last-of-type(-n + 3)) {
-      margin-bottom: 32px;
-    }
   }
-
   ${device.desktopM} {
     flex-basis: calc((100% - 66px) / 5);
-    :not(:nth-last-of-type(-n + 5)) {
-      margin-bottom: 32px;
-    }
-    :not(:nth-of-type(5n)) {
-      margin-right: 16.5px;
-    }
   }
 `
 

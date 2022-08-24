@@ -1,5 +1,6 @@
 import { PaginationArrow } from 'components';
-import { PaginationBox, BtnList, Btn, Dots } from './Pagination.styled';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { PaginationBox, BtnList, Btn } from './Pagination.styled';
 
 export const Pagination = ({ setPage, page, totalPage }) => {
   const handlePage = (start, middle, end) => {
@@ -41,7 +42,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
             1
           </Btn>
         )}
-        {showLeftDots && <Dots>...</Dots>}
+        {showLeftDots && <HiDotsHorizontal size={30} />}
         {totalPage >= 2 && (
           <Btn
             onClick={() => handlePage(2, -1, -3)}
@@ -69,7 +70,7 @@ export const Pagination = ({ setPage, page, totalPage }) => {
             {handleBtnName(4, 1, -1)}
           </Btn>
         )}
-        {showRightDots && <Dots>...</Dots>}
+        {showRightDots && <HiDotsHorizontal size={30} />}
         {totalPage >= 5 && (
           <Btn
             onClick={() => setPage(totalPage)}

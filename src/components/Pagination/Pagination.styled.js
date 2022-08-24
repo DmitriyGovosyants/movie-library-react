@@ -16,16 +16,22 @@ export const BtnList = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  column-gap: ${p => p.theme.spacing(1)};
+  row-gap: ${p => p.theme.spacing(1)};
+  
+  ${device.mobileM} {
+    column-gap: ${p => p.theme.spacing(2)};
+  }
 `
 
 export const Btn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 50px;
-  margin-right: ${p => p.theme.spacing(2)};
-  padding: ${p => p.theme.spacing(4)} ${p => p.theme.spacing(2)};
+  min-width: 30px;
+  padding: 3vw 2vw;
   
+  font-size: 14px;
   color: ${p => p.theme.colors.textMain};
   background-color: ${p => p.theme.colors.bgThird};
   border-radius: 5px;
@@ -35,27 +41,15 @@ export const Btn = styled.button`
     background-color: ${p => p.theme.colors.btnBgDisabled};
   }
 
-  ${device.mobileBelowM} {
-    margin-bottom: ${p => p.theme.spacing(1)};
+  ${device.mobileM} {
+    min-width: 50px;
+    padding: 16px 8px;
+    font-size: 16px;
   }
 
   ${device.desktopM} {
-    :hover {
+    :hover:enabled {
       background-color: ${p => p.theme.colors.accentColor};
     }
-  }
-`
-
-export const Dots = styled.span`
-  margin-right: ${p => p.theme.spacing(2)};
-  padding-bottom: ${p => p.theme.spacing(4)};
-  min-width: 50px;
-  
-  font-size: 30px;
-  letter-spacing: 0.2em;
-  text-align: center;
-
-  ${device.mobileBelowM} {
-    width: 100%;
   }
 `

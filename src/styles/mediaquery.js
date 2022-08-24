@@ -1,5 +1,4 @@
 export const size = {
-  mobileXS: '320px',
   mobileM: '480px',
   tabletM: '768px',
   desktopM: '1024px',
@@ -7,7 +6,6 @@ export const size = {
 }
 
 export const device = {
-  mobileXS: `@media screen and (min-width: ${size.mobileXS})`,
   mobileM: `@media screen and (min-width: ${size.mobileM})`,
   tabletM: `@media screen and (min-width: ${size.tabletM})`,
   desktopM: `@media screen and (min-width: ${size.desktopM})`,

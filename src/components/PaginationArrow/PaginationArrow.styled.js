@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const ArrowBox = styled.div`
   display: flex;
   padding: ${p => p.theme.spacing(2)} 0;
+  column-gap: ${p => p.theme.spacing(2.5)} 
 `
 
 export const ArrowBtn = styled.button`
@@ -10,7 +11,6 @@ export const ArrowBtn = styled.button`
   justify-content: center;
   align-items: center;
   min-width: 120px;
-  margin-right: ${p => p.margin ? p.margin : '10px'};
   padding: 0 ${p => p.theme.spacing(2)};
 
   color: ${p => p.theme.colors.textMain};
@@ -22,7 +22,7 @@ export const ArrowBtn = styled.button`
     opacity: 0.5;
   }
   
-  :hover {
+  :hover:enabled {
     background-color: ${p => p.theme.colors.accentColor};
   }
 `

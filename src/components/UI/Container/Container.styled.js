@@ -6,9 +6,6 @@ export const Container = styled.div`
   padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)};
 
-  /* ${device.mobileXS} {
-    width: ${size.mobileXS};
-  } */
   ${device.mobileM} {
     width: ${size.mobileM};
   }

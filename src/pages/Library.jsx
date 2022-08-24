@@ -4,110 +4,157 @@ import { toast } from 'react-toastify';
 import { Section, Container, Button, MovieList } from 'components';
 import { useUser } from 'context/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
+import { SortStatus } from 'constants/constants';
 
 export const Library = () => {
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [sortStatus, setSortStatus] = useState('date');
+  const [libraryMovies, setLibraryMovies] = useState([]);
+  const [sortStatus, setSortStatus] = useState(SortStatus.LATEST);
+  const [filterStatus, setFilterStatus] = useState('');
+  const [allGenres, setAllGenres] = useState([]);
   const { user } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const fetchLibraryMovies = async (viewValue, sortValue) => {
+  const fetchLibraryMovies = async (viewStatus, sortStatus, filterStatus) => {
+    setSearchParams({ view: viewStatus });
     try {
       const snapshot = await fetchAllLibraryMovies(user);
       const moviesByStatus = Object.values(snapshot.val()).filter(
-        movie => movie[viewValue] === true
+        movie => movie[viewStatus] === true
       );
 
-      const sortMovies = sortBy(sortValue, moviesByStatus, viewValue);
-      setFilteredMovies(sortMovies);
+      const sortMovies = sortBy(sortStatus, moviesByStatus, viewStatus);
+
+      const genres = sortMovies
+        .flatMap(movie => movie.genres.split(','))
+        .filter((movie, index, array) => array.indexOf(movie) === index);
+      setAllGenres(genres);
+
+      if (filterStatus) {
+        const filterMovies = filterBy(sortMovies, filterStatus);
+        setLibraryMovies(filterMovies);
+      }
+
+      if (!filterStatus) {
+        setLibraryMovies(sortMovies);
+      }
     } catch (error) {
-      toast.info(`You have no movies in ${viewValue}`);
-      // setMoviesByStatus([]);
+      toast.info(`You have no movies in ${viewStatus}`);
+      setLibraryMovies([]);
     }
   };
 
-  console.log(sortStatus);
-
-  const sortBy = (sortValue, moviesByStatus, viewValue) => {
-    if (sortValue === 'date') {
-      return [...moviesByStatus].sort((a, b) => {
-        return b[`${viewValue}DateAdded`] - a[`${viewValue}DateAdded`];
-      });
+  const sortBy = (sortStatus, moviesByStatus, viewStatus) => {
+    if (sortStatus === SortStatus.LATEST) {
+      return [...moviesByStatus].sort(
+        (a, b) => b[`${viewStatus}DateAdded`] - a[`${viewStatus}DateAdded`]
+      );
     }
-    if (sortValue === 'rating') {
-      return [...moviesByStatus].sort((a, b) => {
-        return b['vote_average'] - a['vote_average'];
-      });
+    if (sortStatus === SortStatus.RATING) {
+      return [...moviesByStatus].sort(
+        (a, b) => b.vote_average - a.vote_average
+      );
     }
-    // по году
-    // по жанру
+    if (sortStatus === SortStatus.YEAR) {
+      return [...moviesByStatus].sort((a, b) =>
+        b.release_date.localeCompare(a.release_date)
+      );
+    }
   };
 
-  // const sortByDate = (moviesByStatus, viewValue) => {
-  //   return [...moviesByStatus].sort((a, b) => {
-  //     return b[`${viewValue}DateAdded`] - a[`${viewValue}DateAdded`];
-  //   });
-  // };
+  const filterBy = (sortMovies, filterStatus) => {
+    return sortMovies.filter(movie => {
+      return movie.genres.includes(filterStatus);
+    });
+  };
 
-  // const sortByRating = moviesByStatus => {
-  //   return [...moviesByStatus].sort((a, b) => {
-  //     return b['vote_average'] - a['vote_average'];
-  //   });
-  // };
-
-  const handleChange = e => {
+  const handleSortChange = e => {
     const viewValue = searchParams.get('view');
     const sortValue = e.target.value;
-    fetchLibraryMovies(viewValue, sortValue);
+    fetchLibraryMovies(viewValue, sortValue, filterStatus);
     setSortStatus(sortValue);
   };
+
+  const handleGenreChange = e => {
+    const viewValue = searchParams.get('view');
+    const filterValue = e.target.value;
+    fetchLibraryMovies(viewValue, sortStatus, filterValue);
+    setFilterStatus(filterValue);
+  };
+
+  console.log('STATUS: ', filterStatus);
 
   return (
     <Section>
       <Container>
         <label>
-          DATE
+          LATEST
           <input
             type="radio"
-            checked={sortStatus === 'date'}
+            checked={sortStatus === SortStatus.LATEST}
             name="sortBy"
-            value={'date'}
-            onChange={handleChange}
+            value={SortStatus.LATEST}
+            onChange={handleSortChange}
           />
         </label>
         <label>
           RATING
           <input
             type="radio"
-            checked={sortStatus === 'rating'}
+            checked={sortStatus === SortStatus.RATING}
             name="sortBy"
-            value={'rating'}
-            onChange={handleChange}
+            value={SortStatus.RATING}
+            onChange={handleSortChange}
           />
+        </label>
+        <label>
+          YEAR
+          <input
+            type="radio"
+            checked={sortStatus === SortStatus.YEAR}
+            name="sortBy"
+            value={SortStatus.YEAR}
+            onChange={handleSortChange}
+          />
+        </label>
+        <label>
+          Choose genre
+          <select
+            name="genres"
+            value={filterStatus}
+            onChange={handleGenreChange}
+          >
+            <option value=""></option>
+            {allGenres.map(genre => {
+              return (
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
+              );
+            })}
+          </select>
         </label>
 
         <Button
-          onClick={() => {
-            setSearchParams({ view: 'queue' });
-            fetchLibraryMovies('queue', sortStatus);
-          }}
+          onClick={() => fetchLibraryMovies('queue', sortStatus, filterStatus)}
         >
           Queue
         </Button>
         <Button
-          onClick={() => {
-            setSearchParams({ view: 'watched' });
-            fetchLibraryMovies('watched', sortStatus);
-          }}
+          onClick={() =>
+            fetchLibraryMovies('watched', sortStatus, filterStatus)
+          }
         >
           Watched
         </Button>
         {searchParams.get('view')}
-        {filteredMovies?.length !== 0 && (
+        {libraryMovies?.length}
+        {libraryMovies?.length !== 0 && (
           <MovieList
-            movies={filteredMovies}
+            movies={libraryMovies}
             fetchLibraryMovies={fetchLibraryMovies}
             searchParams={searchParams}
+            sortStatus={sortStatus}
+            filterStatus={filterStatus}
           />
         )}
       </Container>

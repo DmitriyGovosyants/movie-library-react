@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Link, NavLink } from 'react-router-dom';
-import { device } from "utils/mediaquery";
+import { device } from "styles/mediaquery";
 import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
 import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
 import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';

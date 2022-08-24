@@ -30,12 +30,7 @@ import {
   MovieCardContent,
 } from './MovieCard.styled';
 
-export const MovieCard = ({
-  itemId,
-  setShowModal,
-  fetchLibraryMovies,
-  searchParams,
-}) => {
+export const MovieCard = ({ itemId, setShowModal, ...props }) => {
   const location = useLocation();
   const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
@@ -149,11 +144,13 @@ export const MovieCard = ({
   };
 
   const refreshLibraryPage = status => {
+    const { fetchLibraryMovies, searchParams, sortStatus, filterStatus } =
+      props;
     if (location.pathname === '/library') {
       const viewParams = searchParams.get('view');
 
       if (viewParams === status) {
-        fetchLibraryMovies(status);
+        fetchLibraryMovies(status, sortStatus, filterStatus);
       }
     }
   };

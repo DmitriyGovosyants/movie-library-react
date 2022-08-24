@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { device } from "utils/mediaquery";
+import { device } from "styles/mediaquery";
 
 export const FooterPressDown = styled.div`
   display: flex;

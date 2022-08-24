@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { device, size } from "utils/mediaquery";
+import { device, size } from "styles/mediaquery";
 
 export const Container = styled.div`
   margin: 0 auto;

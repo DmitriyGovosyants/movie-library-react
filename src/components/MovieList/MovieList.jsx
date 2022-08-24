@@ -1,7 +1,7 @@
 import { MovieItem } from 'components';
 import { MovieListBox } from './MovieList.styled';
 
-export const MovieList = ({ movies, fetchLibraryMovies, searchParams }) => {
+export const MovieList = ({ movies, ...props }) => {
   return (
     <MovieListBox>
       {movies.map(({ id, poster_path, title, vote_average, release_date }) => {
@@ -13,8 +13,7 @@ export const MovieList = ({ movies, fetchLibraryMovies, searchParams }) => {
             itemTitle={title}
             itemRating={vote_average}
             itemData={release_date}
-            fetchLibraryMovies={fetchLibraryMovies}
-            searchParams={searchParams}
+            {...props}
           />
         );
       })}

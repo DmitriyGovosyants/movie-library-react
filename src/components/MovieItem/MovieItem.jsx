@@ -17,8 +17,7 @@ export const MovieItem = ({
   itemTitle = 'No title',
   itemRating = 0,
   itemData = '',
-  fetchLibraryMovies,
-  searchParams,
+  ...props
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [posterReadyToLoad, setPosterReadyToLoad] = useState(null);
@@ -57,12 +56,7 @@ export const MovieItem = ({
       <MovieTitle>{itemTitle}</MovieTitle>
       {showModal && (
         <Modal toggleModal={() => setShowModal(s => !s)}>
-          <MovieCard
-            itemId={itemId}
-            setShowModal={setShowModal}
-            fetchLibraryMovies={fetchLibraryMovies}
-            searchParams={searchParams}
-          />
+          <MovieCard itemId={itemId} setShowModal={setShowModal} {...props} />
         </Modal>
       )}
     </MovieItemBox>

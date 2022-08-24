@@ -24,10 +24,7 @@ export const Library = () => {
 
       const sortMovies = sortBy(sortStatus, moviesByStatus, viewStatus);
 
-      const uniqueGenres = sortMovies
-        .flatMap(movie => movie.genres.split(','))
-        .filter((movie, index, array) => array.indexOf(movie) === index);
-      setAllGenres(uniqueGenres);
+      getUniqueGenres(sortMovies);
 
       if (filterStatus) {
         const filterMovies = filterBy(sortMovies, filterStatus);
@@ -67,17 +64,27 @@ export const Library = () => {
     });
   };
 
+  const getUniqueGenres = movieArr => {
+    const uniqueGenres = movieArr
+      .flatMap(movie => movie.genres.split(','))
+      .filter((movie, index, array) => array.indexOf(movie) === index);
+
+    setAllGenres(uniqueGenres);
+  };
+
   const handleSortChange = e => {
     const viewValue = searchParams.get('view');
     const sortValue = e.target.value;
-    fetchLibraryMovies(viewValue, sortValue, filterStatus);
+
+    fetchLibraryMovies(viewValue, sortValue, filterStatus); //должно автоматом useEffect
     setSortStatus(sortValue);
   };
 
   const handleGenreChange = e => {
     const viewValue = searchParams.get('view');
     const filterValue = e.target.value;
-    fetchLibraryMovies(viewValue, sortStatus, filterValue);
+
+    fetchLibraryMovies(viewValue, sortStatus, filterValue); //должно автоматом useEffect
     setFilterStatus(filterValue);
   };
 
@@ -135,13 +142,13 @@ export const Library = () => {
         </label>
 
         <Button
-          onClick={() => fetchLibraryMovies('queue', sortStatus, filterStatus)}
+          onClick={() => fetchLibraryMovies('queue', sortStatus, filterStatus)} //должно автоматом useEffect при изменение viewstatus, который надо добавить
         >
           Queue
         </Button>
         <Button
-          onClick={() =>
-            fetchLibraryMovies('watched', sortStatus, filterStatus)
+          onClick={
+            () => fetchLibraryMovies('watched', sortStatus, filterStatus) //должно автоматом useEffect при изменение viewstatus, который надо добавить
           }
         >
           Watched

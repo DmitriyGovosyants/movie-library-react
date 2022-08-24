@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter basename="/movie-library-react/">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
-          <ToastContainer autoClose={2500} />
+          <ToastContainer autoClose={2500} position="bottom-center" />
             <UserProvider>
               <App />
             </UserProvider>

@@ -29,21 +29,31 @@ export const UserBar = styled.div`
 `
 
 export const UserName = styled.p`
-  /* display: block; */
   margin-top: ${p => p.theme.spacing(5)};
   margin-bottom: auto;
   width: 300px;
-  /* word-wrap: break-all; */
-  overflow-wrap: break-word;
 
   font-size: ${p => p.theme.fontSizes.large};
   text-align: center;
+  overflow-wrap: break-word;
   color: ${p => p.theme.colors.textMain};
 `
 
 export const Avatar = styled.img`
-  width: ${p => p.big ? '150px' : '50px'};
-  width: ${p => p.big ? '150px' : '50px'};
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
+`
+
+export const AvatarBig = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform ${p => p.theme.animation.cubicBezierAverageSpeed};
+
+  :hover {
+    transform: scale(1.05);
+  }
 `

@@ -87,8 +87,9 @@ export const Library = () => {
 
   const getUniqueGenres = movieArr => {
     const uniqueGenres = movieArr
-      .flatMap(movie => movie.genres.split(','))
-      .filter((movie, index, array) => array.indexOf(movie) === index);
+      .flatMap(movie => movie.genres.split(', '))
+      .filter((movie, index, array) => array.indexOf(movie) === index)
+      .sort((a, b) => a.localeCompare(b));
 
     setAllGenres(uniqueGenres);
   };

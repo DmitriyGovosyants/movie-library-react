@@ -9,14 +9,14 @@ import { useEffect } from 'react';
 import { useCallback } from 'react';
 
 export const Library = () => {
-  const [libraryMovies, setLibraryMovies] = useState([]);
-  const [sortStatus, setSortStatus] = useState(SortStatus.LATEST);
-  const [filterStatus, setFilterStatus] = useState('');
-  const [viewStatus, setViewStatus] = useState(ViewStatus.QUEUE);
-  const [allGenres, setAllGenres] = useState([]);
-  const [refreshPage, setRefreshPage] = useState(false);
   const { user } = useUser();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [libraryMovies, setLibraryMovies] = useState([]);
+  const [allGenres, setAllGenres] = useState([]);
+  const [viewStatus, setViewStatus] = useState(ViewStatus.QUEUE);
+  const [sortStatus, setSortStatus] = useState(SortStatus.LATEST);
+  const [filterStatus, setFilterStatus] = useState('');
+  const [refreshPage, setRefreshPage] = useState(false);
 
   const sortBy = useCallback(
     moviesByStatus => {
@@ -41,9 +41,15 @@ export const Library = () => {
 
   const filterBy = useCallback(
     sortMovies => {
-      return sortMovies.filter(movie => {
-        return movie.genres.includes(filterStatus);
-      });
+      if (!filterStatus) {
+        return sortMovies;
+      }
+
+      if (filterStatus) {
+        return sortMovies.filter(movie => {
+          return movie.genres.includes(filterStatus);
+        });
+      }
     },
     [filterStatus]
   );
@@ -59,18 +65,10 @@ export const Library = () => {
           movie => movie[viewStatus] === true
         );
 
+        getUniqueGenres(moviesByStatus);
         const sortMovies = sortBy(moviesByStatus);
-
-        getUniqueGenres(sortMovies);
-
-        if (filterStatus) {
-          const filterMovies = filterBy(sortMovies);
-          setLibraryMovies(filterMovies);
-        }
-
-        if (!filterStatus) {
-          setLibraryMovies(sortMovies);
-        }
+        const filterMovies = filterBy(sortMovies);
+        setLibraryMovies(filterMovies);
       } catch (error) {
         toast.info(`You have no movies in ${viewStatus}`);
         setLibraryMovies([]);
@@ -143,6 +141,7 @@ export const Library = () => {
                 </option>
               );
             })}
+            <option value=""> - ALL - </option>
           </select>
         </label>
 

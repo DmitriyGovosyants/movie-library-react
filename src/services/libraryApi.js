@@ -48,3 +48,13 @@ export const removeOneOfTwoStatus = async (status, user, id) => {
 export const removeFromLibrary = async (user, id) => {
   return await remove(ref(db, `/users/${user?.uid}/movies/${id}`));
 }
+
+export const addAvatar = async (user, avatarId) => {
+  return await set(ref(db, `/users/${user?.uid}/avatar`), {
+    avatarId,
+  })
+}
+
+export const fetchAvatar = async (user) => {
+  return await get(child(ref(db), `/users/${user?.uid}/avatar`));
+}

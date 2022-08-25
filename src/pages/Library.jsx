@@ -127,24 +127,22 @@ export const Library = () => {
             onChange={e => setSortStatus(e.target.value)}
           />
         </label>
-        <label>
-          Choose genre
-          <select
-            name="genres"
-            value={filterStatus}
-            onChange={e => setFilterStatus(e.target.value)}
-          >
-            <option value=""></option>
-            {allGenres.map(genre => {
-              return (
-                <option key={genre} value={genre}>
-                  {genre}
-                </option>
-              );
-            })}
-            <option value=""> - ALL - </option>
-          </select>
-        </label>
+
+        <select
+          name="genres"
+          value={filterStatus}
+          onChange={e => setFilterStatus(e.target.value)}
+        >
+          <option value="">CHOOSE GENRE</option>
+          {allGenres.map(genre => {
+            return (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            );
+          })}
+          <option value=""> - ALL - </option>
+        </select>
 
         <Button onClick={() => setViewStatus(ViewStatus.QUEUE)}>Queue</Button>
         <Button onClick={() => setViewStatus(ViewStatus.WATCHED)}>

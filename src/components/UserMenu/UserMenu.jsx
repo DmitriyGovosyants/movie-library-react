@@ -12,11 +12,24 @@ import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { avatarArr } from 'helpers/avatarChange';
 import { CSSTransition } from 'react-transition-group';
+import { addAvatar, fetchAvatar } from 'services/libraryApi';
+import { useEffect } from 'react';
 
 export const UserMenu = ({ user }) => {
   const nodeRef = useRef(null);
   const [showUserBar, setShowUserBar] = useState(false);
   const [avatarIndex, setAvatarIndex] = useState(0);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const snapshot = await fetchAvatar(user);
+      if (snapshot.exists()) {
+        const avatarId = snapshot.val().avatarId;
+        setAvatarIndex(avatarId);
+      }
+    };
+    fetch();
+  }, [user]);
 
   const handleLogOut = () => {
     signOut(auth);
@@ -25,10 +38,20 @@ export const UserMenu = ({ user }) => {
 
   const changeAvatar = () => {
     if (avatarArr.length === avatarIndex + 1) {
+      addAvatarInLibrary(0);
       return setAvatarIndex(0);
     }
 
+    addAvatarInLibrary(avatarIndex + 1);
     setAvatarIndex(s => s + 1);
+  };
+
+  const addAvatarInLibrary = async avatarId => {
+    try {
+      await addAvatar(user, avatarId);
+    } catch (error) {
+      toast.error(`We cannot add avatar in Library`);
+    }
   };
 
   return (
@@ -53,7 +76,7 @@ export const UserMenu = ({ user }) => {
               src={avatarArr[avatarIndex]}
               alt="avatar"
             />
-            <UserName>{user}</UserName>
+            <UserName>{user?.email}</UserName>
             <Button onClick={handleLogOut}>Log out</Button>
           </UserBar>
         </Modal>

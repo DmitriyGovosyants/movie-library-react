@@ -41,17 +41,17 @@ export const Library = () => {
 
   const filterBy = useCallback(
     sortMovies => {
-      if (!filterStatus) {
+      if (!filterStatus.value) {
         return sortMovies;
       }
 
-      if (filterStatus) {
+      if (filterStatus.value) {
         return sortMovies.filter(movie => {
-          return movie.genres.includes(filterStatus);
+          return movie.genres.includes(filterStatus.value);
         });
       }
     },
-    [filterStatus]
+    [filterStatus.value]
   );
 
   useEffect(() => {

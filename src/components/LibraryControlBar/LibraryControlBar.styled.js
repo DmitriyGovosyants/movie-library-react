@@ -62,5 +62,24 @@ export const SortInputIsHidden = styled.input`
   width: 0;
 `
 
-export const FilterGenre = styled.select`
-`
+export const selectStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    borderBottom: '1px dotted pink',
+    color: state.isSelected ? 'white' : 'gray',
+    padding: 20,
+  }),
+  control: () => ({
+    // none of react-select's styles are passed to <Control />
+    display: 'flex',
+    width: 250,
+    border: '1px solid gray',
+    // backgroundColor: 'red',
+  }),
+  singleValue: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+
+    return { ...provided, opacity, transition };
+  },
+};

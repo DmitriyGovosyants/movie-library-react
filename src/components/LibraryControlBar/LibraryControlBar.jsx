@@ -1,4 +1,5 @@
 import { SortStatus, ViewStatus } from 'constants/constants';
+import Select from 'react-select';
 import { Button } from 'components';
 import {
   StatusBox,
@@ -6,6 +7,7 @@ import {
   SortBox,
   SortBtn,
   SortInputIsHidden,
+  selectStyles,
 } from './LibraryControlBar.styled';
 
 export const LibraryControlBar = ({
@@ -17,8 +19,13 @@ export const LibraryControlBar = ({
   setViewStatus,
   allGenres,
   libraryMovies,
-  FilterGenre,
 }) => {
+  // console.log(allGenres);
+  const genresOption = allGenres.reduce((genres, genre) => {
+    return [...genres, { value: genre, label: genre }];
+  }, []);
+  // console.log(genresOption);
+  console.log(filterStatus);
   return (
     <StatusBox>
       <BtnBox>
@@ -67,8 +74,14 @@ export const LibraryControlBar = ({
             onChange={e => setSortStatus(e.target.value)}
           />
         </SortBtn>
+        <Select
+          defaultValue={filterStatus}
+          onChange={setFilterStatus}
+          options={genresOption}
+          styles={selectStyles}
+        />
 
-        <select
+        {/* <select
           name="genres"
           value={filterStatus}
           onChange={e => setFilterStatus(e.target.value)}
@@ -82,7 +95,7 @@ export const LibraryControlBar = ({
             );
           })}
           <option value=""> - ALL - </option>
-        </select>
+        </select> */}
       </SortBox>
     </StatusBox>
   );

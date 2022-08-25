@@ -1,43 +1,39 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
-// StatusBox сделать отдельным компонентом для двух страниц???
-
-export const StatusBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: ${p => p.theme.spacing(4)};
-  padding: ${p => p.theme.spacing(2)};
-  height: 100%; // может не надо
-
-  font-size: ${p => p.theme.fontSizes.medium};
-  font-weight: 500;
-  text-transform: uppercase;
-  color: ${p => p.theme.colors.textSecond};
-  box-shadow: inset 1px 1px 20px ${p => p.theme.colors.bgSecond},
-   inset -1px -1px 20px ${p => p.theme.colors.bgSecond},
-   inset 1px -1px 20px ${p => p.theme.colors.bgSecond},
-   inset -1px 1px 20px ${p => p.theme.colors.bgSecond};
-
-  ${device.mobileOnly} {
-    flex-direction: column;
-  }
-  ${device.tabletM} {
-    align-items: center;
-  }
-`
-
 export const BtnBox = styled.div`
   display: flex;
   justify-content: space-between;
   column-gap: ${p => p.theme.spacing(3)};
 `
 
+export const Breadcrumbs = styled.p`
+  display: block;
+  padding: ${p => p.theme.spacing(4)} 0;
+
+  ${device.tabletM} {
+    padding: ${p => p.theme.spacing(4)};
+  }
+`
+
+export const FormElement = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  
+  justify-content: center;
+  ${device.mobileOnly} {
+    width: 100%;
+  }
+  ${device.tabletOnly} {
+    width: 100%;
+  }
+`
+
 export const SortBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   column-gap: ${p => p.theme.spacing(3)};
+  padding: ${p => p.theme.spacing(2)} 0;
 `
 
 export const SortBtn = styled.label`
@@ -62,19 +58,27 @@ export const SortInputIsHidden = styled.input`
   width: 0;
 `
 
+export const SelectBox = styled.div`
+  ${device.tabletM} {
+    margin-left: auto;
+  }
+  ${device.desktopM} {
+    margin-left: 15px;
+  }
+`
+
 export const selectStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',
     color: state.isSelected ? 'white' : 'gray',
-    padding: 20,
+    padding: 18,
   }),
   control: () => ({
-    // none of react-select's styles are passed to <Control />
     display: 'flex',
     width: 250,
+    padding: 5,
     border: '1px solid gray',
-    // backgroundColor: 'red',
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
@@ -82,4 +86,5 @@ export const selectStyles = {
 
     return { ...provided, opacity, transition };
   },
-};
+}
+

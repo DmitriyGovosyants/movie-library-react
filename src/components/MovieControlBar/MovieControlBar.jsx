@@ -1,7 +1,6 @@
 import { FiChevronsRight } from 'react-icons/fi';
-import { PaginationArrow, SearchForm, Button } from 'components';
+import { PaginationArrow, SearchForm, Button, StatusBox } from 'components';
 import {
-  StatusBox,
   SearchStatusList,
   SearchStatusItem,
   BtnBox,
@@ -23,22 +22,24 @@ export const MovieControlBar = ({
   return (
     <StatusBox>
       <BtnBox>
-        <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
         <TrendBox>
-          <Button size={'small'} visible={search} onClick={handleGoToTrend}>
+          <Button visible={search} onClick={handleGoToTrend}>
             GO TO TREND
           </Button>
         </TrendBox>
+        <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
       </BtnBox>
 
       <SearchStatusList>
         <SearchStatusItem>
-          {search && search}
-          {!search && 'Trending movie'}
+          {search && <p>{search}</p>}
+          {!search && <p>Trending movie</p>}
         </SearchStatusItem>
         <SearchStatusItem>
           <FiChevronsRight />
-          pages: {page} / {totalPage}
+          <p>
+            pages: {page} / {totalPage}
+          </p>
         </SearchStatusItem>
       </SearchStatusList>
 

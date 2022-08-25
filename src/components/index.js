@@ -27,5 +27,6 @@ export * from './UI/LoadingScreen/LoadingScreen';
 export * from './UI/Container/Container.styled';
 export * from './UI/Section/Section.styled';
 export * from './UI/AuthForm/AuthForm.styled';
+export * from './UI/StatusBox/StatusBox.styled';
 
 export * from '../helpers/IntersectionObserver';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Section, Container, Button, MovieList } from 'components';
+import { Section, Container, MovieList, LibraryControlBar } from 'components';
 import { useUser } from 'context/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { SortStatus, ViewStatus } from 'constants/constants';
@@ -10,7 +10,7 @@ import { useCallback } from 'react';
 
 export const Library = () => {
   const { user } = useUser();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);
   const [viewStatus, setViewStatus] = useState(ViewStatus.QUEUE);
@@ -97,59 +97,17 @@ export const Library = () => {
   return (
     <Section>
       <Container>
-        <label>
-          LATEST
-          <input
-            type="radio"
-            checked={sortStatus === SortStatus.LATEST}
-            name="sortBy"
-            value={SortStatus.LATEST}
-            onChange={e => setSortStatus(e.target.value)}
-          />
-        </label>
-        <label>
-          RATING
-          <input
-            type="radio"
-            checked={sortStatus === SortStatus.RATING}
-            name="sortBy"
-            value={SortStatus.RATING}
-            onChange={e => setSortStatus(e.target.value)}
-          />
-        </label>
-        <label>
-          YEAR
-          <input
-            type="radio"
-            checked={sortStatus === SortStatus.YEAR}
-            name="sortBy"
-            value={SortStatus.YEAR}
-            onChange={e => setSortStatus(e.target.value)}
-          />
-        </label>
+        <LibraryControlBar
+          sortStatus={sortStatus}
+          setSortStatus={setSortStatus}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          viewStatus={viewStatus}
+          setViewStatus={setViewStatus}
+          allGenres={allGenres}
+          libraryMovies={libraryMovies}
+        />
 
-        <select
-          name="genres"
-          value={filterStatus}
-          onChange={e => setFilterStatus(e.target.value)}
-        >
-          <option value="">CHOOSE GENRE</option>
-          {allGenres.map(genre => {
-            return (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            );
-          })}
-          <option value=""> - ALL - </option>
-        </select>
-
-        <Button onClick={() => setViewStatus(ViewStatus.QUEUE)}>Queue</Button>
-        <Button onClick={() => setViewStatus(ViewStatus.WATCHED)}>
-          Watched
-        </Button>
-        {searchParams.get('view')}
-        {libraryMovies?.length}
         {libraryMovies?.length !== 0 && (
           <MovieList movies={libraryMovies} setRefreshPage={setRefreshPage} />
         )}

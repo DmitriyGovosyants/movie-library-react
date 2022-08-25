@@ -5,7 +5,7 @@ import { scrollToTop } from 'helpers/srcollToTop';
 import {
   Section,
   Container,
-  SearchStatusBar,
+  MovieControlBar,
   ErrorMessage,
   MovieList,
   Pagination,
@@ -79,7 +79,7 @@ const Home = () => {
   return (
     <Section>
       <Container>
-        <SearchStatusBar
+        <MovieControlBar
           setSearch={setSearch}
           search={search}
           page={page}

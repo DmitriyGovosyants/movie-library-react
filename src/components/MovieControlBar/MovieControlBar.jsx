@@ -6,9 +6,9 @@ import {
   SearchStatusItem,
   BtnBox,
   TrendBox,
-} from './MovieStatusBar.styled';
+} from './MovieControlBar.styled';
 
-export const SearchStatusBar = ({
+export const MovieControlBar = ({
   page,
   totalPage,
   setPage,

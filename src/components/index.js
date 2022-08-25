@@ -11,8 +11,9 @@ export * from './MovieCardTrailer/MovieCardTrailer';
 export * from './MovieCardRating/MovieCardRating';
 export * from './MovieCardInfo/MovieCardInfo';
 
-export * from './MovieStatusBar/MovieStatusBar';
+export * from './MovieControlBar/MovieControlBar';
 export * from './SearchForm/SearchForm';
+export * from './LibraryControlBar/LibraryControlBar';
 export * from './Pagination/Pagination';
 export * from './PaginationArrow/PaginationArrow';
 

@@ -5,11 +5,11 @@ import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ children, toggleModal }) => {
+export const Modal = ({ children, closeModal }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        toggleModal();
+        closeModal();
       }
     };
 
@@ -20,11 +20,11 @@ export const Modal = ({ children, toggleModal }) => {
       window.document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [toggleModal]);
+  }, [closeModal]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      toggleModal();
+      closeModal();
     }
   };
 

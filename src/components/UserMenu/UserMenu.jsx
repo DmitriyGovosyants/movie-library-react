@@ -8,11 +8,13 @@ import {
   AvatarBig,
 } from './UserMenu.styled';
 import { Button, ButtonClose, Modal } from 'components';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { avatarArr } from 'helpers/avatarChange';
+import { CSSTransition } from 'react-transition-group';
 
 export const UserMenu = ({ user }) => {
+  const nodeRef = useRef(null);
   const [showUserBar, setShowUserBar] = useState(false);
   const [avatarIndex, setAvatarIndex] = useState(0);
 
@@ -36,9 +38,15 @@ export const UserMenu = ({ user }) => {
         src={avatarArr[avatarIndex]}
         alt="avatar"
       />
-      {showUserBar && (
-        <Modal toggleModal={() => setShowUserBar(s => !s)}>
-          <UserBar>
+      <CSSTransition
+        in={showUserBar}
+        timeout={350}
+        nodeRef={nodeRef}
+        unmountOnExit={true}
+        classNames="userBar"
+      >
+        <Modal closeModal={() => setShowUserBar(false)}>
+          <UserBar ref={nodeRef}>
             <ButtonClose onClick={() => setShowUserBar(false)} />
             <AvatarBig
               onClick={changeAvatar}
@@ -49,7 +57,7 @@ export const UserMenu = ({ user }) => {
             <Button onClick={handleLogOut}>Log out</Button>
           </UserBar>
         </Modal>
-      )}
+      </CSSTransition>
     </UserMenuBox>
   );
 };

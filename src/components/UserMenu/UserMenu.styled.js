@@ -13,9 +13,10 @@ export const UserMenuBox = styled.div`
 `
 
 export const UserBar = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  z-index: 2000;
 
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ export const UserBar = styled.div`
   padding: ${p => p.theme.spacing(7)} ${p => p.theme.spacing(5)};
 
   background: linear-gradient(to right, rgb(90, 63, 55), rgb(44, 119, 68));
-  box-shadow: -3px -3px 10px white;
+  box-shadow: -3px -3px 10px black;
 `
 
 export const UserName = styled.p`
@@ -47,9 +48,9 @@ export const Avatar = styled.img`
 `
 
 export const AvatarBig = styled.img`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
   cursor: pointer;
   transition: transform ${p => p.theme.animation.cubicBezierAverageSpeed};
 

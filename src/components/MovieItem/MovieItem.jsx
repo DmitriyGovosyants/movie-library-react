@@ -55,7 +55,7 @@ export const MovieItem = ({
       </PosterBox>
       <MovieTitle>{itemTitle}</MovieTitle>
       {showModal && (
-        <Modal toggleModal={() => setShowModal(s => !s)}>
+        <Modal closeModal={() => setShowModal(false)}>
           <MovieCard
             itemId={itemId}
             setShowModal={setShowModal}

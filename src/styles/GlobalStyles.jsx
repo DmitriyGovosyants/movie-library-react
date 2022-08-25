@@ -62,4 +62,22 @@ export const GlobalStyles = css`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+  .userBar-enter {
+    transform: translateX(120%);
+  }
+  .userBar-enter-active {
+    transform: translateX(0);
+    transition: transform 350ms ease;
+  }
+  .userBar-exit {
+    transform: translateX(0);
+  }
+  .userBar-exit-active {
+    transform: translateX(120%);
+    transition: transform 350ms ease;
+  }
+  .userBar-exit-done {
+    transform: translateX(120%);
+  }
 `;

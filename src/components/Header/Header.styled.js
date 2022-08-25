@@ -55,11 +55,6 @@ export const NavigationBox = styled.nav`
   
   ${device.mobileBelowM} {
     flex-direction: column;
-    margin-bottom: ${p => p.theme.spacing(5)};
-  }
-
-  ${device.mobileOnly} {
-    margin-bottom: ${p => p.theme.spacing(5)};
   }
 `
 
@@ -88,6 +83,7 @@ export const NavList = styled.ul`
   justify-content: center;
   align-items: center;
   height: 100%;
+  column-gap: ${p => p.theme.spacing(3)};
 `
 
 export const NavItem = styled.li`
@@ -95,10 +91,6 @@ export const NavItem = styled.li`
   justify-content: center;
   align-items: center;
   height: 100%;
-  
-  :not(:last-child) {
-    margin-right: ${p => p.theme.spacing(5)};
-  }
 `
 
 export const ActiveLink = styled(NavLink)`

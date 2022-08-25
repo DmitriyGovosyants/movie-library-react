@@ -4,11 +4,10 @@ import { device } from "styles/mediaquery";
 export const UserMenuBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: end;
-  margin-left: auto;
+  margin-left: ${p => p.theme.spacing(3)};
   
-  ${device.tabletM} {
-    margin-left: ${p => p.theme.spacing(5)};
+  ${device.mobileM} {
+    margin-left: ${p => p.theme.spacing(3)};
   }
 `
 
@@ -45,13 +44,16 @@ export const Avatar = styled.img`
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+  outline: 3px solid white;
 `
 
 export const AvatarBig = styled.img`
+  position: relative;
   width: 180px;
   height: 180px;
   border-radius: 10px;
   cursor: pointer;
+  border: 3px solid white;
   transition: transform ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {

@@ -2,10 +2,13 @@ import { signOut } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import {
   UserMenuBox,
-  UserName,
-  UserBar,
   Avatar,
+  UserBar,
   AvatarBig,
+  UserName,
+  UserContent,
+  Title,
+  Link,
 } from './UserMenu.styled';
 import { Button, ButtonClose, Modal } from 'components';
 import { useState, useRef } from 'react';
@@ -77,6 +80,25 @@ export const UserMenu = ({ user }) => {
               alt="avatar"
             />
             <UserName>{user?.email}</UserName>
+            <UserContent>
+              <Title>- Useful links -</Title>
+              <Link
+                href="https://github.com/DmitriyGovosyants/movie-library-react"
+                rel={'noopener noreferrer'}
+                target={'_blank'}
+                aria-label="Developer Linkedin Contact"
+              >
+                {'>>'} Movie Library documentation
+              </Link>
+              <Link
+                href="https://spacerangers.gitlab.io/#/quests"
+                rel={'noopener noreferrer'}
+                target={'_blank'}
+                aria-label="text quests"
+              >
+                {'>>'} SpaceRangers text quests
+              </Link>
+            </UserContent>
             <Button onClick={handleLogOut}>Log out</Button>
           </UserBar>
         </Modal>

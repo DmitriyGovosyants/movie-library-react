@@ -69,9 +69,13 @@ export const LogoLink = styled(Link)`
 
 export const Title = styled.h1`
   margin-left: ${p => p.theme.spacing(2.5)};
-  font-size: ${p => p.theme.fontSizes.titleMain};
+  font-size: 10vw;
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
+
+  ${device.mobileM} {
+    font-size: ${p => p.theme.fontSizes.titleMain};
+  }
 
   ${device.desktopM} {
     font-size: ${p => p.theme.fontSizes.titleBig};
@@ -96,7 +100,7 @@ export const NavItem = styled.li`
 export const ActiveLink = styled(NavLink)`
   padding: ${p => p.theme.spacing(3)};
 
-  font-size: ${p => p.theme.fontSizes.small};
+  font-size: 5vw;
   line-height: 1.17;
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
@@ -109,7 +113,11 @@ export const ActiveLink = styled(NavLink)`
     color: ${p => p.theme.colors.accentColor};
   }
 
-  ${device.desktopM} {
+  ${device.mobileM} {
+    font-size: ${p => p.theme.fontSizes.small};
+  }
+
+  ${device.tabletM} {
     font-size: ${p => p.theme.fontSizes.medium};
   }
 `

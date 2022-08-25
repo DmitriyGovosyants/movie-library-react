@@ -7,8 +7,8 @@ export const PaginationBox = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-top: ${p => p.theme.spacing(10)};
-  padding-bottom: ${p => p.theme.spacing(10)};
+  padding-top: ${p => p.theme.spacing(5)};
+  padding-bottom: ${p => p.theme.spacing(5)};
 `
 
 export const BtnList = styled.div`
@@ -18,6 +18,7 @@ export const BtnList = styled.div`
   align-items: center;
   column-gap: ${p => p.theme.spacing(1)};
   row-gap: ${p => p.theme.spacing(1)};
+  margin-bottom: ${p => p.theme.spacing(2)};
   
   ${device.mobileM} {
     column-gap: ${p => p.theme.spacing(2)};
@@ -28,7 +29,7 @@ export const Btn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 30px;
+  min-width: 35px;
   padding: 3vw 2vw;
   
   font-size: 14px;

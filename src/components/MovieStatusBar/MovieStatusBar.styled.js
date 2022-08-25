@@ -5,7 +5,7 @@ export const StatusBox = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin-bottom: ${p => p.theme.spacing(4)};
   padding: ${p => p.theme.spacing(2)};
 
   font-size: ${p => p.theme.fontSizes.medium};
@@ -42,6 +42,7 @@ export const SearchStatusItem = styled.li`
 
 export const BtnBox = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 `
 

@@ -21,7 +21,7 @@ export const UserBar = styled.div`
   flex-direction: column;
   align-items: center;
   width: 320px;
-  height: 100vh;
+  height: 100%;
   padding: ${p => p.theme.spacing(7)} ${p => p.theme.spacing(5)};
 
   background: linear-gradient(to right, rgb(90, 63, 55), rgb(44, 119, 68));

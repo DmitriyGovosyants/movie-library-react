@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUser } from 'context/userContext';
+import { useUser } from 'hooks/userContext';
 
 export const PublicRoute = ({ restricted, redirectTo = '/' }) => {
   const { user } = useUser();

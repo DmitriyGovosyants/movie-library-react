@@ -10,7 +10,7 @@ import {
 } from './Header.styled';
 import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
 import { Container, UserMenu } from 'components';
-import { useUser } from 'context/userContext';
+import { useUser } from 'hooks/userContext';
 
 export const Header = () => {
   const { user } = useUser();

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import {
   fetchLibraryMovieStatus,
@@ -11,7 +12,7 @@ import {
 import { ViewStatus } from 'constants/constants';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
-import { useUser } from 'context/userContext';
+import { useUser } from 'hooks/userContext';
 import {
   ErrorMessage,
   Spinner,
@@ -33,6 +34,7 @@ import {
 } from './MovieCard.styled';
 import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
 import { useRef } from 'react';
+import { useSwipe } from 'hooks/useSwipe';
 
 export const MovieCard = ({
   itemId,
@@ -90,42 +92,68 @@ export const MovieCard = ({
     fetch();
   }, [itemId, user]);
 
-  useEffect(() => {
-    const ref = movieCardRef.current;
-    const SWIPE_DISTANCE_RIGTH = 250;
-    const SWIPE_DISTANCE_LEFT = -250;
-    const MAX_VERTICAL = 150;
-    let startX = null;
-    let startY = null;
+  useSwipe(movieCardRef.current, controlCardSwitch, movieDetails.length);
 
-    const handleSwipeMovieCard = e => {
-      let endX = e.changedTouches[0].clientX;
-      let endY = e.changedTouches[0].clientY;
-      const moveLengthX = endX - startX;
-      const moveLengthY = Math.abs(endY - startY);
+  // useEffect(() => {
+  //   const ref = movieCardRef.current;
+  //   const SWIPE_DISTANCE_RIGTH = 250;
+  //   const SWIPE_DISTANCE_LEFT = -250;
+  //   const MAX_VERTICAL = 150;
+  //   let startX = null;
+  //   let startY = null;
+  //   const movePoints = [];
 
-      if (moveLengthX > SWIPE_DISTANCE_RIGTH && moveLengthY < MAX_VERTICAL) {
-        controlCardSwitch(-1);
-      }
-      if (moveLengthX < -SWIPE_DISTANCE_LEFT && moveLengthY < MAX_VERTICAL) {
-        controlCardSwitch(1);
-      }
-    };
+  //   const createPointsArray = e => {
+  //     let movePoint = e.changedTouches[0].clientY;
+  //     movePoints.push(movePoint);
+  //   };
 
-    ref?.addEventListener('touchstart', e => {
-      startX = e.changedTouches[0].clientX;
-      startY = e.changedTouches[0].clientY;
-    });
-    ref?.addEventListener('touchend', handleSwipeMovieCard);
+  //   const swipeMovieCard = e => {
+  //     let endX = e.changedTouches[0].clientX;
+  //     let endY = e.changedTouches[0].clientY;
+  //     const lengthX = endX - startX;
+  //     const lengthY = Math.abs(endY - startY);
+  //     const minMoveY = Math.min(...movePoints);
+  //     const maxMoveY = Math.max(...movePoints);
+  //     const moveLengthY = maxMoveY - minMoveY;
+  //     console.log(movePoints);
 
-    return () => {
-      ref?.removeEventListener('touchstart', e => {
-        startX = e.changedTouches[0].clientX;
-        startY = e.changedTouches[0].clientY;
-      });
-      ref?.removeEventListener('touchend', handleSwipeMovieCard);
-    };
-  }, [controlCardSwitch, movieDetails.length]);
+  //     if (
+  //       lengthX > SWIPE_DISTANCE_RIGTH &&
+  //       lengthY < MAX_VERTICAL &&
+  //       moveLengthY < MAX_VERTICAL
+  //     ) {
+  //       controlCardSwitch(-1);
+  //       console.log('LEFT');
+  //     }
+  //     if (
+  //       lengthX < SWIPE_DISTANCE_LEFT &&
+  //       lengthY < MAX_VERTICAL &&
+  //       moveLengthY < MAX_VERTICAL
+  //     ) {
+  //       controlCardSwitch(1);
+  //       console.log('RIGHT');
+  //     }
+
+  //     movePoints.splice(0, movePoints.length);
+  //   };
+
+  //   ref?.addEventListener('touchstart', e => {
+  //     startX = e.changedTouches[0].clientX;
+  //     startY = e.changedTouches[0].clientY;
+  //   });
+  //   ref?.addEventListener('touchmove', createPointsArray);
+  //   ref?.addEventListener('touchend', swipeMovieCard);
+
+  //   return () => {
+  //     ref?.removeEventListener('touchstart', e => {
+  //       startX = e.changedTouches[0].clientX;
+  //       startY = e.changedTouches[0].clientY;
+  //     });
+  //     ref?.removeEventListener('touchmove', createPointsArray);
+  //     ref?.removeEventListener('touchend', swipeMovieCard);
+  //   };
+  // }, [controlCardSwitch, movieDetails?.length]);
 
   const libraryApi = async status => {
     if (!user) {

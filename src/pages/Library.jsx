@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Section, Container, MovieList, LibraryControlBar } from 'components';
-import { useUser } from 'context/userContext';
+import { useUser } from 'hooks/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { SortStatus, ViewStatus } from 'constants/constants';
 import { useEffect } from 'react';

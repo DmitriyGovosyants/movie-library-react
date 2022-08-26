@@ -10,7 +10,10 @@ export const PresentationBox = styled.div`
   padding-bottom: 10px;
 
   border-radius: 20px;
-  border: 5px solid white;
+  box-shadow: 3px 3px 10px white,
+   -3px 3px 10px white,
+    3px -3px 10px white,
+     -3px -3px 10px white;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -29,11 +32,13 @@ export const PresentationBox = styled.div`
   }
   ${device.desktopM} {
     height: 50vh;
-    width: 70vw;
+    width: 50vw;
   }
 `
 
 export const StartText = styled.div`
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin-left: auto;
+  padding-right: 10px;
   width: 250px;
 `

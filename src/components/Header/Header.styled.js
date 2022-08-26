@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { device } from "styles/mediaquery";
 import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
 import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
@@ -58,7 +58,7 @@ export const NavigationBox = styled.nav`
   }
 `
 
-export const LogoLink = styled(Link)`
+export const LogoBtn = styled.button`
   display: flex;
   align-items: center;
 

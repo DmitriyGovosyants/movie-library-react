@@ -54,8 +54,6 @@ export const MovieCard = ({
   const [searchParams] = useSearchParams();
   const movieCardRef = useRef(null);
 
-  console.log('RENDER');
-
   const controlCardSwitch = useCallback(
     payload => {
       handleChangeMovieCard(payload);

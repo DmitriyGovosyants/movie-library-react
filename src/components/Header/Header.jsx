@@ -2,52 +2,61 @@ import {
   HeaderBox,
   FlexContainer,
   NavigationBox,
-  LogoLink,
+  LogoBtn,
   Title,
   NavList,
   NavItem,
   ActiveLink,
 } from './Header.styled';
 import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
-import { Container, UserMenu } from 'components';
+import { Container, Modal, Presentation, UserMenu } from 'components';
 import { useUser } from 'hooks/userContext';
+import { useState } from 'react';
 
 export const Header = () => {
   const { user } = useUser();
+  const [showModal, setShowModal] = useState(false);
 
   return (
-    <HeaderBox>
-      <Container>
-        <FlexContainer>
-          <NavigationBox>
-            <LogoLink to="/">
-              <Logo />
-              <Title>Filmoteka</Title>
-            </LogoLink>
-            <NavList>
-              <NavItem>
-                <ActiveLink to="/">home</ActiveLink>
-              </NavItem>
-              {!user && (
-                <>
-                  <NavItem>
-                    <ActiveLink to="/signin">sign in</ActiveLink>
-                  </NavItem>
-                  <NavItem>
-                    <ActiveLink to="/login">log in</ActiveLink>
-                  </NavItem>
-                </>
-              )}
-              {user && (
+    <>
+      <HeaderBox>
+        <Container>
+          <FlexContainer>
+            <NavigationBox>
+              <LogoBtn type="button" onClick={() => setShowModal(true)}>
+                <Logo />
+                <Title>Filmoteka</Title>
+              </LogoBtn>
+              <NavList>
                 <NavItem>
-                  <ActiveLink to="/library">my library</ActiveLink>
+                  <ActiveLink to="/">home</ActiveLink>
                 </NavItem>
-              )}
-            </NavList>
-          </NavigationBox>
-          {user && <UserMenu user={user} />}
-        </FlexContainer>
-      </Container>
-    </HeaderBox>
+                {!user && (
+                  <>
+                    <NavItem>
+                      <ActiveLink to="/signin">sign in</ActiveLink>
+                    </NavItem>
+                    <NavItem>
+                      <ActiveLink to="/login">log in</ActiveLink>
+                    </NavItem>
+                  </>
+                )}
+                {user && (
+                  <NavItem>
+                    <ActiveLink to="/library">my library</ActiveLink>
+                  </NavItem>
+                )}
+              </NavList>
+            </NavigationBox>
+            {user && <UserMenu user={user} />}
+          </FlexContainer>
+        </Container>
+      </HeaderBox>
+      {showModal && (
+        <Modal closeModal={setShowModal}>
+          <Presentation />
+        </Modal>
+      )}
+    </>
   );
 };

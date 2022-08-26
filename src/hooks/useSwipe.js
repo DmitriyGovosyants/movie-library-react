@@ -3,11 +3,11 @@ import { throttle } from 'throttle-debounce';
 
 export const useSwipe = (currentRef, swipeFn, deps) => {
   return useEffect(() => {
-    console.log(currentRef, swipeFn, deps)
+    // console.log(currentRef, swipeFn, deps)
     if (!currentRef.current) {
       return;
     }
-    console.log('YEEEEES!!!')
+    // console.log('YEEEEES!!!')
     const MAX_VERTICAL = 150;
     
     let swipeDistanceRigth = 180;

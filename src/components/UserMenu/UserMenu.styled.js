@@ -87,14 +87,16 @@ export const Title = styled.h3`
   padding: ${p => p.theme.spacing(2)};
 
   font-size: ${p => p.theme.fontSizes.large};
+  letter-spacing: 0.06em;
   color: ${p => p.theme.colors.textThird};
-  background-color: ${p => p.theme.colors.bgSecond};
-  border-radius: 10px;
+  /* background-color: ${p => p.theme.colors.checkColor}; */
+  border-bottom: 2px solid #382661;
+  /* border-radius: 10px; */
 `
 
 export const Link = styled.a`
   padding: ${p => p.theme.spacing(2)} 0;
-  font-size: ${p => p.theme.fontSizes.small};
+  font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
   color: ${p => p.theme.colors.textFourth};
 

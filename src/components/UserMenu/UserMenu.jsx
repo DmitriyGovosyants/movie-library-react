@@ -13,7 +13,7 @@ import {
 import { Button, ButtonClose, Modal } from 'components';
 import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
-import { avatarArr } from 'helpers/avatarChange';
+import { avatarArr } from 'helpers/avatarArray';
 import { CSSTransition } from 'react-transition-group';
 import { addAvatar, fetchAvatar } from 'services/libraryApi';
 import { useEffect } from 'react';

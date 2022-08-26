@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import {
@@ -20,22 +20,25 @@ import {
   MovieCardRating,
   MovieCardInfo,
   ButtonClose,
-  Button,
 } from 'components';
 import {
   MovieCardBox,
+  TitleBox,
   Title,
   FlexContainer,
   PosterBox,
   Poster,
   MovieCardContent,
+  NavBtn,
 } from './MovieCard.styled';
+import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
+import { useRef } from 'react';
 
 export const MovieCard = ({
   itemId,
   setShowModal,
   setRefreshPage,
-  handleNextMovieCard,
+  handleChangeMovieCard,
 }) => {
   const location = useLocation();
   const { user } = useUser();
@@ -47,6 +50,16 @@ export const MovieCard = ({
   const [watchedStatus, setWatchedStatus] = useState(false);
   const [queueStatus, setQueueStatus] = useState(false);
   const [searchParams] = useSearchParams();
+  const movieCardRef = useRef(null);
+
+  const controlCardSwitch = useCallback(
+    payload => {
+      handleChangeMovieCard(payload);
+      setMovieTrailers([]);
+      setError(null);
+    },
+    [handleChangeMovieCard]
+  );
 
   useEffect(() => {
     setShowLoader(true);
@@ -76,6 +89,43 @@ export const MovieCard = ({
     };
     fetch();
   }, [itemId, user]);
+
+  useEffect(() => {
+    const ref = movieCardRef.current;
+    const SWIPE_DISTANCE_RIGTH = 250;
+    const SWIPE_DISTANCE_LEFT = -250;
+    const MAX_VERTICAL = 150;
+    let startX = null;
+    let startY = null;
+
+    const handleSwipeMovieCard = e => {
+      let endX = e.changedTouches[0].clientX;
+      let endY = e.changedTouches[0].clientY;
+      const moveLengthX = endX - startX;
+      const moveLengthY = Math.abs(endY - startY);
+
+      if (moveLengthX > SWIPE_DISTANCE_RIGTH && moveLengthY < MAX_VERTICAL) {
+        controlCardSwitch(-1);
+      }
+      if (moveLengthX < -SWIPE_DISTANCE_LEFT && moveLengthY < MAX_VERTICAL) {
+        controlCardSwitch(1);
+      }
+    };
+
+    ref?.addEventListener('touchstart', e => {
+      startX = e.changedTouches[0].clientX;
+      startY = e.changedTouches[0].clientY;
+    });
+    ref?.addEventListener('touchend', handleSwipeMovieCard);
+
+    return () => {
+      ref?.removeEventListener('touchstart', e => {
+        startX = e.changedTouches[0].clientX;
+        startY = e.changedTouches[0].clientY;
+      });
+      ref?.removeEventListener('touchend', handleSwipeMovieCard);
+    };
+  }, [controlCardSwitch, movieDetails.length]);
 
   const libraryApi = async status => {
     if (!user) {
@@ -203,16 +253,10 @@ export const MovieCard = ({
     <>
       {showLoader && <Spinner />}
       {movieDetails?.length !== 0 && (
-        <MovieCardBox>
-          <Button
-            onClick={() => {
-              handleNextMovieCard();
-              setMovieTrailers([]);
-            }}
-          >
-            NEXT
-          </Button>
-          <Title>{movieDetails?.title}</Title>
+        <MovieCardBox ref={movieCardRef}>
+          <TitleBox>
+            <Title>{movieDetails?.title}</Title>
+          </TitleBox>
           <ButtonClose onClick={() => setShowModal(false)} />
           <FlexContainer>
             <PosterBox>
@@ -236,6 +280,22 @@ export const MovieCard = ({
               )}
             </MovieCardContent>
           </FlexContainer>
+          <NavBtn
+            onClick={() => {
+              controlCardSwitch(-1);
+            }}
+            left
+          >
+            <GoTriangleLeft size={'100'} />
+          </NavBtn>
+          <NavBtn
+            onClick={() => {
+              controlCardSwitch(1);
+            }}
+            rigth
+          >
+            <GoTriangleRight size={'100'} />
+          </NavBtn>
         </MovieCardBox>
       )}
     </>

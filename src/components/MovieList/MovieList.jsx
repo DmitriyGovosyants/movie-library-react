@@ -6,12 +6,22 @@ export const MovieList = ({ movies, setRefreshPage }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentId, setCurrentId] = useState(null);
 
-  const moviesIds = movies.map(movie => movie.id); //total = moviesIds.length
+  const handleChangeMovieCard = payload => {
+    const moviesIds = movies.map(movie => movie.id);
+    const currentIdx = moviesIds.indexOf(currentId);
+    const nextIdx = currentIdx + payload;
 
-  const handleNextMovieCard = () => {
-    const currentIdx = moviesIds.indexOf(currentId); //page = page + 1
-    const nextIdx = currentIdx + 1; //setPage
+    if (nextIdx < 0) {
+      return setCurrentId(moviesIds[moviesIds.length - 1]);
+    }
+
+    if (nextIdx === moviesIds.length) {
+      return setCurrentId(moviesIds[0]);
+    }
+
+    // if (nextIdx >= 0 && nextIdx !== moviesIds.length) {
     setCurrentId(moviesIds[nextIdx]);
+    // }
   };
 
   return (
@@ -40,7 +50,7 @@ export const MovieList = ({ movies, setRefreshPage }) => {
             itemId={currentId}
             setShowModal={setShowModal}
             setRefreshPage={setRefreshPage}
-            handleNextMovieCard={handleNextMovieCard}
+            handleChangeMovieCard={handleChangeMovieCard}
           />
         </Modal>
       )}

@@ -8,8 +8,7 @@ export const MovieCardBox = styled.div`
   flex-direction: column;
 
   background-color: ${p => p.theme.colors.bgMain};
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 15px;
 
   ${device.tabletM} {
     width: 700px
@@ -17,6 +16,12 @@ export const MovieCardBox = styled.div`
   ${device.desktopM} {
     width: 800px
   }
+`
+
+export const TitleBox = styled.div`
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 `
 
 export const Title = styled.h3`
@@ -71,4 +76,29 @@ export const MovieCardContent = styled.div`
   padding-bottom: ${p => p.theme.spacing(5)};
   padding-left: ${p => p.theme.spacing(5)};
   padding-right: ${p => p.theme.spacing(5)};
+`
+
+export const NavBtn = styled.button`
+  display: none;
+  
+  ${device.desktopM} {
+    position: absolute;
+    top: 50%;
+    left: ${p => p.left ? '-100px' : '100%'};
+    transform: translateY(-50%);
+
+    display: block;
+    height: 200px;
+    color: white;
+    
+    border-bottom-left-radius: ${p => p.left ? '200px' : '0'};
+    border-bottom-right-radius: ${p => p.rigth ? '200px' : '0'};
+    border-top-left-radius: ${p => p.left ? '200px' : '0'};
+    border-top-right-radius: ${p => p.rigth ? '200px' : '0'};
+    transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
+
+    :active {
+      background-color: ${p => p.theme.colors.btnArrowBg};
+    }
+  }
 `

@@ -3,14 +3,25 @@ import { throttle } from 'throttle-debounce';
 
 export const useSwipe = (currentRef, swipeFn, deps) => {
   return useEffect(() => {
-    const ref = currentRef;
-    const SWIPE_DISTANCE_RIGTH = 250;
-    const SWIPE_DISTANCE_LEFT = -250;
     const MAX_VERTICAL = 150;
+
+    let swipeDistanceRigth = 180;
+    let swipeDistanceLeft = -180;
+    if (window.innerWidth >= 480) {
+      swipeDistanceRigth = 200
+      swipeDistanceLeft = -200;
+    }
+    if (window.innerWidth >= 768) {
+      swipeDistanceRigth = 250
+      swipeDistanceLeft = -250;
+    }
+
+    const ref = currentRef;
+    
+    const movePoints = [];
     let startX = null;
     let startY = null;
-    const movePoints = [];
-
+    
     const createPointsArray = e => {
       let movePoint = e.changedTouches[0].clientY;
       movePoints.push(movePoint);
@@ -27,7 +38,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       // console.log(movePoints);
 
       if (
-        lengthX > SWIPE_DISTANCE_RIGTH &&
+        lengthX > swipeDistanceRigth &&
         lengthY < MAX_VERTICAL &&
         moveLengthY < MAX_VERTICAL
       ) {
@@ -35,7 +46,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
         console.log('LEFT');
       }
       if (
-        lengthX < SWIPE_DISTANCE_LEFT &&
+        lengthX < swipeDistanceLeft &&
         lengthY < MAX_VERTICAL &&
         moveLengthY < MAX_VERTICAL
       ) {

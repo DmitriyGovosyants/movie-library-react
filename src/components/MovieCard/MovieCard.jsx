@@ -20,6 +20,7 @@ import {
   MovieCardRating,
   MovieCardInfo,
   ButtonClose,
+  Button,
 } from 'components';
 import {
   MovieCardBox,
@@ -30,7 +31,12 @@ import {
   MovieCardContent,
 } from './MovieCard.styled';
 
-export const MovieCard = ({ itemId, setShowModal, setRefreshPage }) => {
+export const MovieCard = ({
+  itemId,
+  setShowModal,
+  setRefreshPage,
+  handleNextMovieCard,
+}) => {
   const location = useLocation();
   const { user } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
@@ -155,8 +161,8 @@ export const MovieCard = ({ itemId, setShowModal, setRefreshPage }) => {
       const viewParams = searchParams.get('view');
 
       if (viewParams === status) {
-        console.log(viewParams, status);
         setRefreshPage(true);
+        setShowModal(false);
       }
     }
   };
@@ -198,8 +204,16 @@ export const MovieCard = ({ itemId, setShowModal, setRefreshPage }) => {
       {showLoader && <Spinner />}
       {movieDetails?.length !== 0 && (
         <MovieCardBox>
+          <Button
+            onClick={() => {
+              handleNextMovieCard();
+              setMovieTrailers([]);
+            }}
+          >
+            NEXT
+          </Button>
           <Title>{movieDetails?.title}</Title>
-          <ButtonClose onClick={() => setShowModal(s => !s)} />
+          <ButtonClose onClick={() => setShowModal(false)} />
           <FlexContainer>
             <PosterBox>
               <Poster src={moviePoster} alt={movieDetails?.title} />

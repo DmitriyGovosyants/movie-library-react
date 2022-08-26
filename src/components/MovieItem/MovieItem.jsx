@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import brokenImg from 'data/images/movies/broken-image.png';
-import { Modal, MovieCard } from 'components';
+
 import {
   MovieItemBox,
   PosterBox,
@@ -17,9 +17,9 @@ export const MovieItem = ({
   itemTitle = 'No title',
   itemRating = 0,
   itemData = '',
-  setRefreshPage,
+  setShowModal,
+  setCurrentId,
 }) => {
-  const [showModal, setShowModal] = useState(false);
   const [posterReadyToLoad, setPosterReadyToLoad] = useState(null);
 
   useEffect(() => {
@@ -43,7 +43,12 @@ export const MovieItem = ({
 
   return (
     <MovieItemBox>
-      <PosterBox onClick={() => setShowModal(s => !s)}>
+      <PosterBox
+        onClick={() => {
+          setShowModal(true);
+          setCurrentId(itemId);
+        }}
+      >
         <Poster
           ref={handlePosterLoadError}
           loading="lazy"
@@ -54,15 +59,6 @@ export const MovieItem = ({
         <MovieYear>{dataYear}</MovieYear>
       </PosterBox>
       <MovieTitle>{itemTitle}</MovieTitle>
-      {showModal && (
-        <Modal closeModal={() => setShowModal(false)}>
-          <MovieCard
-            itemId={itemId}
-            setShowModal={setShowModal}
-            setRefreshPage={setRefreshPage}
-          />
-        </Modal>
-      )}
     </MovieItemBox>
   );
 };

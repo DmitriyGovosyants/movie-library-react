@@ -54,6 +54,8 @@ export const MovieCard = ({
   const [searchParams] = useSearchParams();
   const movieCardRef = useRef(null);
 
+  console.log('RENDER');
+
   const controlCardSwitch = useCallback(
     payload => {
       handleChangeMovieCard(payload);
@@ -92,68 +94,7 @@ export const MovieCard = ({
     fetch();
   }, [itemId, user]);
 
-  useSwipe(movieCardRef.current, controlCardSwitch, movieDetails.length);
-
-  // useEffect(() => {
-  //   const ref = movieCardRef.current;
-  //   const SWIPE_DISTANCE_RIGTH = 250;
-  //   const SWIPE_DISTANCE_LEFT = -250;
-  //   const MAX_VERTICAL = 150;
-  //   let startX = null;
-  //   let startY = null;
-  //   const movePoints = [];
-
-  //   const createPointsArray = e => {
-  //     let movePoint = e.changedTouches[0].clientY;
-  //     movePoints.push(movePoint);
-  //   };
-
-  //   const swipeMovieCard = e => {
-  //     let endX = e.changedTouches[0].clientX;
-  //     let endY = e.changedTouches[0].clientY;
-  //     const lengthX = endX - startX;
-  //     const lengthY = Math.abs(endY - startY);
-  //     const minMoveY = Math.min(...movePoints);
-  //     const maxMoveY = Math.max(...movePoints);
-  //     const moveLengthY = maxMoveY - minMoveY;
-  //     console.log(movePoints);
-
-  //     if (
-  //       lengthX > SWIPE_DISTANCE_RIGTH &&
-  //       lengthY < MAX_VERTICAL &&
-  //       moveLengthY < MAX_VERTICAL
-  //     ) {
-  //       controlCardSwitch(-1);
-  //       console.log('LEFT');
-  //     }
-  //     if (
-  //       lengthX < SWIPE_DISTANCE_LEFT &&
-  //       lengthY < MAX_VERTICAL &&
-  //       moveLengthY < MAX_VERTICAL
-  //     ) {
-  //       controlCardSwitch(1);
-  //       console.log('RIGHT');
-  //     }
-
-  //     movePoints.splice(0, movePoints.length);
-  //   };
-
-  //   ref?.addEventListener('touchstart', e => {
-  //     startX = e.changedTouches[0].clientX;
-  //     startY = e.changedTouches[0].clientY;
-  //   });
-  //   ref?.addEventListener('touchmove', createPointsArray);
-  //   ref?.addEventListener('touchend', swipeMovieCard);
-
-  //   return () => {
-  //     ref?.removeEventListener('touchstart', e => {
-  //       startX = e.changedTouches[0].clientX;
-  //       startY = e.changedTouches[0].clientY;
-  //     });
-  //     ref?.removeEventListener('touchmove', createPointsArray);
-  //     ref?.removeEventListener('touchend', swipeMovieCard);
-  //   };
-  // }, [controlCardSwitch, movieDetails?.length]);
+  useSwipe(movieCardRef, controlCardSwitch, movieDetails.length);
 
   const libraryApi = async status => {
     if (!user) {

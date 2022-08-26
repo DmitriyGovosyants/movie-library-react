@@ -3,8 +3,13 @@ import { throttle } from 'throttle-debounce';
 
 export const useSwipe = (currentRef, swipeFn, deps) => {
   return useEffect(() => {
+    console.log(currentRef, swipeFn, deps)
+    if (!currentRef.current) {
+      return;
+    }
+    console.log('YEEEEES!!!')
     const MAX_VERTICAL = 150;
-
+    
     let swipeDistanceRigth = 180;
     let swipeDistanceLeft = -180;
     if (window.innerWidth >= 480) {
@@ -16,7 +21,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       swipeDistanceLeft = -250;
     }
 
-    const ref = currentRef;
+    const ref = currentRef.current;
     
     const movePoints = [];
     let startX = null;
@@ -57,20 +62,20 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       movePoints.splice(0, movePoints.length);
     };
 
-    ref?.addEventListener('touchstart', e => {
+    ref.addEventListener('touchstart', e => {
       startX = e.changedTouches[0].clientX;
       startY = e.changedTouches[0].clientY;
     });
-    ref?.addEventListener('touchmove', throttle(100, e => createPointsArray(e)));
-    ref?.addEventListener('touchend', swipeMovieCard);
+    ref.addEventListener('touchmove', throttle(100, e => createPointsArray(e)));
+    ref.addEventListener('touchend', swipeMovieCard);
 
     return () => {
-      ref?.removeEventListener('touchstart', e => {
+      ref.removeEventListener('touchstart', e => {
         startX = e.changedTouches[0].clientX;
         startY = e.changedTouches[0].clientY;
       });
-      ref?.removeEventListener('touchmove', throttle(100, e => createPointsArray(e)));
-      ref?.removeEventListener('touchend', swipeMovieCard);
+      ref.removeEventListener('touchmove', throttle(100, e => createPointsArray(e)));
+      ref.removeEventListener('touchend', swipeMovieCard);
     };
   }, [currentRef, swipeFn, deps]);
 }

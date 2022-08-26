@@ -1,6 +1,12 @@
 import { FiChevronsRight } from 'react-icons/fi';
-import { PaginationArrow, SearchForm, Button, StatusBox } from 'components';
-import { BtnBox, TrendBox, Breadcrumbs } from './MovieControlBar.styled';
+import {
+  PaginationArrow,
+  SearchForm,
+  Button,
+  StatusBox,
+  Breadcrumbs,
+} from 'components';
+import { BtnBox, TrendBox } from './MovieControlBar.styled';
 
 export const MovieControlBar = ({
   page,

@@ -1,14 +1,13 @@
 import { SortStatus, ViewStatus } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
 import Select from 'react-select';
-import { Button, StatusBox } from 'components';
+import { Button, StatusBox, Breadcrumbs } from 'components';
 import {
   BtnBox,
   SortBox,
   SortBtn,
   SortInputIsHidden,
   selectStyles,
-  Breadcrumbs,
   FormElement,
   SelectBox,
 } from './LibraryControlBar.styled';

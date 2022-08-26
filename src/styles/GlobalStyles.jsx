@@ -15,7 +15,12 @@ export const GlobalStyles = css`
     font-style: normal;
     letter-spacing: 0.03em;
 
-    background-color: ${theme.colors.bgMain};
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(180, 140, 180, 1) 60%,
+      rgba(255, 255, 255, 1) 100%
+    );
 
     overflow: auto;
     -ms-overflow-style: none;

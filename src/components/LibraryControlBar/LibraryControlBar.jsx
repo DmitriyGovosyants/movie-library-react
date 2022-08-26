@@ -1,4 +1,5 @@
 import { SortStatus, ViewStatus } from 'constants/constants';
+import { FiChevronsRight } from 'react-icons/fi';
 import Select from 'react-select';
 import { Button, StatusBox } from 'components';
 import {
@@ -43,7 +44,9 @@ export const LibraryControlBar = ({
         </Button>
       </BtnBox>
       <Breadcrumbs>
-        {viewStatus}: {libraryMovies?.length}
+        <span>{viewStatus}</span>
+        <FiChevronsRight />
+        <span>{libraryMovies?.length}</span>
       </Breadcrumbs>
       <FormElement>
         <SortBox>

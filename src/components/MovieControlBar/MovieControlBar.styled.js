@@ -1,22 +1,6 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
-export const SearchStatusList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: ${p => p.theme.spacing(4)} 0;
-  ${device.tabletM} {
-    align-items: flex-end;
-    padding: ${p => p.theme.spacing(4)};
-  }
-`
-
-export const SearchStatusItem = styled.li`
-  display: flex;
-  align-items: center;
-`
-
 export const BtnBox = styled.div`
   display: flex;
   justify-content: center;
@@ -29,3 +13,14 @@ export const TrendBox = styled.div`
   justify-content: center;
 `
 
+export const Breadcrumbs = styled.p`
+  display: flex;
+  align-items: center;
+  padding: ${p => p.theme.spacing(4)} 0;
+  column-gap: ${p => p.theme.spacing(2)};
+  color: ${p => p.theme.colors.textLinkColor};
+
+  ${device.tabletM} {
+    padding: ${p => p.theme.spacing(4)};
+  }
+`

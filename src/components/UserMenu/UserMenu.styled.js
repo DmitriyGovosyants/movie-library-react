@@ -24,13 +24,15 @@ export const UserBar = styled.div`
   top: 0;
   right: 0;
   z-index: 2000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 320px;
   height: 100%;
-  padding: ${p => p.theme.spacing(7)} ${p => p.theme.spacing(5)};
+  padding: ${p => p.theme.spacing(7)} ${p => p.theme.spacing(10)};
 
   background: linear-gradient(to right, rgb(90, 63, 55), rgb(44, 119, 68));
   box-shadow: -3px -3px 10px black;

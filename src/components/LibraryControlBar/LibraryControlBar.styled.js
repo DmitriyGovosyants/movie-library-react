@@ -8,8 +8,11 @@ export const BtnBox = styled.div`
 `
 
 export const Breadcrumbs = styled.p`
-  display: block;
+  display: flex;
+  align-items: center;
   padding: ${p => p.theme.spacing(4)} 0;
+  column-gap: ${p => p.theme.spacing(2)};
+  color: ${p => p.theme.colors.textLinkColor};
 
   ${device.tabletM} {
     padding: ${p => p.theme.spacing(4)};

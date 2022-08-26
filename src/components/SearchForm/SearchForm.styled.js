@@ -37,7 +37,7 @@ export const Input = styled.input`
   ::placeholder {
     font-size: ${p => p.theme.fontSizes.medium};
     color: ${p => p.theme.colors.textThird};
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   ${device.tabletM} {

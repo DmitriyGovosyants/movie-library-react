@@ -105,6 +105,8 @@ export const ActiveLink = styled(NavLink)`
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;
+  border-radius: 5px;
+  background-color: transparent;
 
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 

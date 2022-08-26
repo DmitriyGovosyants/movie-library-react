@@ -67,6 +67,7 @@ export const selectStyles = {
   }),
   control: () => ({
     display: 'flex',
+    backgroundColor: 'white',
     width: 250,
     padding: 5,
     border: '1px solid gray',

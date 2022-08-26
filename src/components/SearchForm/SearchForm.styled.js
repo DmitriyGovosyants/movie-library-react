@@ -6,7 +6,6 @@ export const FormBox = styled.div`
   margin-left: auto;
   
   ${device.mobileOnly} {
-    width: 100%;
     margin: ${p => p.theme.spacing(3)} 0;
   }
 ` 
@@ -15,22 +14,24 @@ export const Form = styled.form`
   position: relative;
   display: flex;
   width: 100%;
-  border-bottom: 0.5px solid gray;
+
+  border: 1px solid ${p => p.theme.colors.bgThird};;
   transition: border-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
-    border-color: ${p => p.theme.colors.accentColor};
+    border-color: ${p => p.theme.colors.checkColor};
   }
 `
 
 export const Input = styled.input`
-  height: 40px;
-  padding-right: ${p => p.theme.spacing(5)};
+  height: 46px;
+  padding-left: ${p => p.theme.spacing(4)};
+  padding-right: ${p => p.theme.spacing(10)};
 
   letter-spacing: 0.03em;
   color: ${p => p.theme.colors.textThird};
-
-  background-color: transparent;
+  
+  background-color: ${p => p.theme.colors.bgMain};
   border: none;
   outline: none;
 
@@ -38,6 +39,7 @@ export const Input = styled.input`
     font-size: ${p => p.theme.fontSizes.medium};
     color: ${p => p.theme.colors.textThird};
     opacity: 0.5;
+    text-transform: uppercase;
   }
 
   ${device.tabletM} {
@@ -45,15 +47,16 @@ export const Input = styled.input`
   }
   ${device.desktopL} {
     min-width: 350px;
+    font-size: ${p => p.theme.fontSizes.large};
   }
 `
 
 export const SubmitBtn = styled.button`
   position: absolute;
-  top: 5px;
-  right: 0;
+  top: 8px;
+  right: 4px;
 
-  color: ${p => p.theme.colors.btnBg};
+  color: ${p => p.theme.colors.bgThird};
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {

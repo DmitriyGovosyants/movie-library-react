@@ -36,6 +36,10 @@ export const UserBar = styled.div`
 
   background: linear-gradient(to right, rgb(90, 63, 55), rgb(44, 119, 68));
   box-shadow: -3px -3px 10px black;
+
+  ${device.tabletM} {
+    width: 500px;
+  }
 `
 
 export const AvatarBig = styled.img`

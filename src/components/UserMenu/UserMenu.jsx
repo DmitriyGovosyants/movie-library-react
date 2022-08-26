@@ -88,7 +88,7 @@ export const UserMenu = ({ user }) => {
                 target={'_blank'}
                 aria-label="Developer Linkedin Contact"
               >
-                {'>>'} Movie Library documentation
+                {'>>'} Movie Library documentation!
               </Link>
               <Link
                 href="https://spacerangers.gitlab.io/#/quests"
@@ -96,7 +96,7 @@ export const UserMenu = ({ user }) => {
                 target={'_blank'}
                 aria-label="text quests"
               >
-                {'>>'} SpaceRangers text quests
+                {'>>'} Space Rangers text quests app
               </Link>
             </UserContent>
             <Button onClick={handleLogOut}>Log out</Button>

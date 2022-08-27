@@ -17,7 +17,7 @@ export * from './LibraryControlBar/LibraryControlBar';
 export * from './Pagination/Pagination';
 export * from './PaginationArrow/PaginationArrow';
 
-export * from './Presentation/Presentation';
+export * from '../easteregg/Launch/Launch';
 
 export * from './UI/Modal/Modal';
 export * from './UI/Button/Button';

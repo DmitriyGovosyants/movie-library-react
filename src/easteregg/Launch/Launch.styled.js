@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 import starship from '../../data/images/movies/spacex-starship.webp';
 
-export const PresentationBox = styled.div`
+export const LaunchBox = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
   height: 180px;
-  padding-bottom: 10px;
+  padding: 10px;
 
   border-radius: 20px;
   box-shadow: 3px 3px 10px white,
@@ -37,8 +37,6 @@ export const PresentationBox = styled.div`
 `
 
 export const StartText = styled.div`
-  /* margin: 0 auto; */
   margin-left: auto;
-  padding-right: 10px;
   width: 250px;
 `

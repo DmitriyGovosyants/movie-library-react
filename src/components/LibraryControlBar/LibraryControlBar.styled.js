@@ -36,12 +36,13 @@ export const SortBtn = styled.label`
   background-color: ${p => p.isCheck ? p => p.theme.colors.checkColor : p => p.theme.colors.btnBg};
   border-radius: 10px;
   transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
-  cursor: pointer;
-
+  
   :hover {
     background-color: ${p => p.isCheck ? p.theme.colors.checkColor : p => p.theme.colors.accentColor};
   }
-  
+  ${device.desktopM} {
+    cursor: pointer;
+  }
 `
 
 export const SortInputIsHidden = styled.input`

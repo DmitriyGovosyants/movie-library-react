@@ -9,7 +9,7 @@ import {
   ActiveLink,
 } from './Header.styled';
 import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
-import { Container, Modal, Presentation, UserMenu } from 'components';
+import { Container, Modal, Launch, UserMenu } from 'components';
 import { useUser } from 'hooks/userContext';
 import { useState } from 'react';
 
@@ -54,7 +54,7 @@ export const Header = () => {
       </HeaderBox>
       {showModal && (
         <Modal closeModal={setShowModal}>
-          <Presentation />
+          <Launch />
         </Modal>
       )}
     </>

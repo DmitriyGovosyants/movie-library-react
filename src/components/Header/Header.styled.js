@@ -65,6 +65,10 @@ export const LogoBtn = styled.button`
   ${device.mobileBelowM} {
     margin-bottom: ${p => p.theme.spacing(5)};
   }
+
+  :focus, :hover {
+    background-color: transparent;
+  }
 `
 
 export const Title = styled.h1`
@@ -107,6 +111,7 @@ export const ActiveLink = styled(NavLink)`
   text-transform: uppercase;
   border-radius: 5px;
   background-color: transparent;
+  cursor: default;
 
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
@@ -114,12 +119,13 @@ export const ActiveLink = styled(NavLink)`
   &.active {
     color: ${p => p.theme.colors.accentColor};
   }
-
   ${device.mobileM} {
     font-size: ${p => p.theme.fontSizes.small};
   }
-
   ${device.tabletM} {
     font-size: ${p => p.theme.fontSizes.medium};
+  }
+  ${device.desktopM} {
+    cursor: pointer;
   }
 `

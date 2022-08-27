@@ -51,7 +51,10 @@ export const GlobalStyles = css`
     font: inherit;
     color: inherit;
     background-color: transparent;
-    cursor: pointer;
+
+    @media screen and (min-width: 1024px) {
+      cursor: pointer;
+    }
   }
   a {
     text-decoration: none;

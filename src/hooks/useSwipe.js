@@ -40,23 +40,22 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       const minMoveY = Math.min(...movePoints);
       const maxMoveY = Math.max(...movePoints);
       const moveLengthY = maxMoveY - minMoveY;
-      // console.log(movePoints);
 
       if (
         lengthX > swipeDistanceRigth &&
         lengthY < MAX_VERTICAL &&
         moveLengthY < MAX_VERTICAL
       ) {
-        swipeFn(-1);
-        console.log('LEFT');
+        swipeFn(1);
+        console.log('RIGHT');
       }
       if (
         lengthX < swipeDistanceLeft &&
         lengthY < MAX_VERTICAL &&
         moveLengthY < MAX_VERTICAL
       ) {
-        swipeFn(1);
-        console.log('RIGHT');
+        swipeFn(-1);
+        console.log('LEFT');
       }
 
       movePoints.splice(0, movePoints.length);

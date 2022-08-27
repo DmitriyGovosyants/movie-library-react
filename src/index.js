@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from 'hooks/userContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter basename="/movie-library-react/">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
@@ -20,5 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
-  // </React.StrictMode>
+  </React.StrictMode>
 );

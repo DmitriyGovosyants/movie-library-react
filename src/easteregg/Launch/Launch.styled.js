@@ -18,8 +18,8 @@ export const LaunchBox = styled.div`
   background-position: center;
   background-image: linear-gradient(
       to right,
-      rgba(47, 48, 58, 0.2),
-      rgba(47, 48, 58, 0.2)
+      rgba(47, 48, 58, 0.1),
+      rgba(47, 48, 58, 0.1)
     ),
     url(${starship});
 
@@ -169,6 +169,40 @@ export const TypingTextSecondPart = styled.div`
   @keyframes blinkTwo {
     50% {
       border-color: transparent
+    }
+  }
+`
+
+export const WhoWeAreText = styled.p`
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: ${p => p.theme.fontSizes.titleBig};
+  letter-spacing: 0.1em;
+  color: white;
+  z-index: 1;
+  opacity: 0;
+
+  animation-name: appearance;
+  animation-duration: 11000ms;
+  animation-timing-function: ease-in-out;
+
+  @keyframes appearance {
+    0% {
+      opacity: 0;
+      transform: scale(1)
+    }
+
+    22% {
+      opacity: 1;
+    }
+
+    33% {
+      opacity: 1;
+      transform: scale(1)
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(10)
     }
   }
 `

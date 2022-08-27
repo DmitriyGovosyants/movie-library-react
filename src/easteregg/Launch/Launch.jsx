@@ -51,7 +51,7 @@ export const Launch = () => {
           {overlay && <Overlay />}
           <LaunchVideo
             poster={starlinkImg}
-            controls
+            // controls
             autoPlay
             onPlay={stepTwoAddOverlay}
           >

@@ -5,7 +5,7 @@ import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ children, closeModal }) => {
+export const Modal = ({ children, closeModal, fullWidth }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -29,7 +29,9 @@ export const Modal = ({ children, closeModal }) => {
   };
 
   return createPortal(
-    <Overlay onClick={handleBackdropClick}>{children}</Overlay>,
+    <Overlay onClick={handleBackdropClick} fullWidth={fullWidth}>
+      {children}
+    </Overlay>,
     modalRoot
   );
 };

@@ -7,10 +7,11 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: ${p => p.fullWidth ? '0' : '20px'};
 
   background-color: rgba(0, 0, 0, 0.6);
-  overflow-y: scroll;
+
+  overflow-y: ${p => p.fullWidth ? 'none' : 'scroll'};
   z-index: 1200;
   animation-name: backdrop;
   animation-duration: 300ms;

@@ -54,7 +54,7 @@ export const Header = () => {
       </HeaderBox>
       {showModal && (
         <Modal closeModal={setShowModal} fullWidth>
-          <Launch />
+          <Launch closeModal={setShowModal} />
         </Modal>
       )}
     </>

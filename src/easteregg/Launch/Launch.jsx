@@ -117,7 +117,7 @@ export const Launch = ({ closeModal }) => {
         </LaunchBox>
       )}
       {/* launch */}
-      {playQueue === -1 && (
+      {playQueue === 1 && (
         <Video poster={starlink} autoPlay onPlay={addOverlay}>
           <source src={shuttle} type="video/mp4" />
           Your browser does not support the <code>video</code> element.
@@ -192,7 +192,7 @@ export const Launch = ({ closeModal }) => {
         </InsideOverlay>
       )}
       {/* tablets */}
-      {playQueue === 1 && (
+      {playQueue === 5 && (
         <TabletsOverlay>
           <audio
             onLoadedData={() => setIsAudioLoaded(true)}

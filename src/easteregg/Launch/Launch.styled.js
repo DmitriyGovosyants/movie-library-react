@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 // import { device } from "styles/mediaquery";
-import starship from '../../data/images/movies/spacex-starship.webp';
+import starship from '../data/images/launchImg.webp';
 
 export const BlackBox = styled.div`
   display: flex;
@@ -10,52 +10,6 @@ export const BlackBox = styled.div`
   width: 100%;
   height: 100%;
   background-color: black;
-`
-
-export const LaunchBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
-  box-shadow: 3px 3px 10px white,
-   -3px 3px 10px white,
-    3px -3px 10px white,
-     -3px -3px 10px white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.1),
-      rgba(47, 48, 58, 0.1)
-    ),
-    url(${starship});
-`
-
-export const LaunchBtn = styled.button`
-  width: 250px;
-  height: 250px;
-  font-size: ${p => p.theme.fontSizes.titleBig};
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: ${p => p.theme.colors.textMain};
-  background-color: ${p => p.theme.colors.launchBtn};
-  border-radius: 50%;
-  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
-
-  :hover {
-    background-color: ${p => p.theme.colors.launchBtnHover};
-  }
-`
-
-export const LaunchVideo = styled.video`
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
 `
 
 export const Overlay = styled.div`
@@ -82,7 +36,52 @@ export const Overlay = styled.div`
   }
 `
 
+export const LaunchBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 
+  box-shadow: 3px 3px 10px white,
+   -3px 3px 10px white,
+    3px -3px 10px white,
+     -3px -3px 10px white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(
+      to right,
+      rgba(47, 48, 58, 0.1),
+      rgba(47, 48, 58, 0.1)
+    ),
+    url(${starship});
+`
+
+export const LaunchBtn = styled.button`
+  width: 300px;
+  height: 300px;
+  font-size: ${p => p.theme.fontSizes.titleBig};
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: ${p => p.theme.colors.textMain};
+  background-color: ${p => p.theme.colors.launchBtn};
+  border-radius: 50%;
+  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
+
+  :hover {
+    background-color: ${p => p.theme.colors.launchBtnHover};
+  }
+`
+
+export const LaunchVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+`
 
 export const TypingTextFirstPart = styled.div`
   margin-bottom: ${p => p.theme.spacing(3)};
@@ -163,12 +162,14 @@ export const TypingTextSecondPart = styled.div`
 `
 
 export const WhoWeAreText = styled.p`
-  font-family: Comic Sans MS, Comic Sans, cursive;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: ${p => p.theme.fontSizes.titleBig};
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   color: white;
   z-index: 1;
   opacity: 0;
+  padding-left: 10px;
 
   animation-name: appearance;
   animation-duration: 11000ms;

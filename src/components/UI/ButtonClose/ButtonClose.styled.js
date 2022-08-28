@@ -5,7 +5,7 @@ export const BtnClose = styled.button`
   position: absolute;
   top: 4px;
   right: 8px;
-  z-index: 1;
+  z-index: 10000;
   color: ${p => p.theme.colors.bgSecond};
   transition: color ${p => p.theme.animation.cubicBezierAverageSpeed};
 

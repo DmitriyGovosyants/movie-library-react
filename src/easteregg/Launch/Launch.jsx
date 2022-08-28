@@ -1,11 +1,10 @@
-import { Button, ButtonClose } from 'components';
+import { ButtonClose } from 'components';
 import {
+  BlackBox,
   LaunchBox,
-  StartText,
-  VideoBox,
+  LaunchBtn,
   LaunchVideo,
   Overlay,
-  BlackBox,
   TypingTextFirstPart,
   TypingTextSecondPart,
   WhoWeAreText,
@@ -19,28 +18,26 @@ import whoWeAreVideo from '../data/video/who-we-are.webm';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export const Launch = ({ closeModal }) => {
   const [playQueue, setPlayQueue] = useState(0);
   const [overlay, setOverlay] = useState(false);
   const [textOneReady, setTextOneReady] = useState(false);
   const [textTwoReady, setTextTwoReady] = useState(false);
-  const [isPlayWhoWeAre, setIsPlayWhoWeAre] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(0);
   const timerId = useRef(null);
   const videoRef = useRef(null);
   const audioRef = useRef(null);
+  const fullwidth = useRef(null);
 
   useEffect(() => {
-    if (isPlayWhoWeAre !== 2) {
+    if (isLoaded !== 2) {
       return;
     }
     videoRef.current.play();
     audioRef.current.play();
-  }, [isPlayWhoWeAre]);
-
-  const stepOneLaunch = () => {
-    setPlayQueue(1);
-  };
+  }, [isLoaded]);
 
   const addOverlay = () => {
     let tick = 0;
@@ -58,49 +55,51 @@ export const Launch = ({ closeModal }) => {
     }, 1000);
   };
 
-  // const stepTwoAddOverlay = () => {
-  //   let tick = 0;
-  //   timerId.current = setInterval(() => {
-  //     tick += 1;
+  const launchRocket = () => {
+    const orientation = window.screen.orientation.type;
+    if (
+      orientation === 'portrait-primary' ||
+      orientation === 'portrait-secondary'
+    ) {
+      return toast.info('Please, flip the device to landscape mode');
+    }
+    setOverlay(true);
 
-  //     if (tick === 15) {
-  //       setOverlay(true);
-  //     }
-  //     if (tick === 19) {
-  //       clearInterval(timerId.current);
-  //       setOverlay(false);
-  //       setPlayQueue(3);
-  //     }
-  //   }, 1000);
-  // };
+    setTimeout(() => {
+      setOverlay(false);
+      setPlayQueue(1);
+    }, 3000);
 
-  const playInside = () => {
-    setPlayQueue(4);
+    fullwidth.current
+      .requestFullscreen({ navigationUI: 'hide' })
+      .catch(err => console.log(err)); // проверка на ошибки если не может быть включен фуллскрин, что с ней делать?
+    // fullwidth.current.exitFullscreen() - выход из Fullscreen, применить в конце
   };
 
   return (
-    <>
-      {playQueue > 0 && <ButtonClose onClick={() => closeModal(false)} />}
+    <BlackBox ref={fullwidth}>
+      {playQueue >= 0 && <ButtonClose onClick={() => closeModal(false)} />}
       {playQueue === 0 && (
-        <LaunchBox>
-          <StartText>
-            <Button onClick={stepOneLaunch}>
-              {`>>`} launch {`<<`}
-            </Button>
-          </StartText>
-        </LaunchBox>
+        <>
+          {overlay && <Overlay timing={'3000ms'} />}
+          <LaunchBox>
+            <LaunchBtn type="button" onClick={launchRocket}>
+              into space
+            </LaunchBtn>
+          </LaunchBox>
+        </>
       )}
       {playQueue === 1 && (
-        <VideoBox>
+        <>
           {overlay && <Overlay timing={'4000ms'} />}
           <LaunchVideo poster={starlinkImg} autoPlay onPlay={addOverlay}>
             <source src={startShutle} type="video/mp4" />
             Your browser does not support the <code>video</code> element.
           </LaunchVideo>
-        </VideoBox>
+        </>
       )}
       {playQueue === 2 && (
-        <BlackBox>
+        <>
           {overlay && <Overlay timing={'4000ms'} />}
           {textOneReady && (
             <>
@@ -122,16 +121,15 @@ export const Launch = ({ closeModal }) => {
             <source src={smallStep} type="audio/mp3" />
             Your browser does not support the <code>audio</code> element.
           </audio>
-        </BlackBox>
+        </>
       )}
       {playQueue === 3 && (
-        <BlackBox>
+        <>
           {textTwoReady && <WhoWeAreText>Who we are?</WhoWeAreText>}
 
           <LaunchVideo
             ref={videoRef}
-            onLoadedData={() => setIsPlayWhoWeAre(s => s + 1)}
-            onPlay={() => setTextTwoReady(true)}
+            onLoadedData={() => setIsLoaded(s => s + 1)}
           >
             <source src={whoWeAreVideo} type="video/webm" />
             Your browser does not support the <code>video</code> element.
@@ -139,20 +137,21 @@ export const Launch = ({ closeModal }) => {
 
           <audio
             ref={audioRef}
-            onLoadedData={() => setIsPlayWhoWeAre(s => s + 1)}
-            onEnded={playInside}
+            onLoadedData={() => setIsLoaded(s => s + 1)}
+            onPlay={() => setTextTwoReady(true)}
+            onEnded={() => setPlayQueue(4)}
           >
             <source src={whoWeAreAudio} type="audio/mp3" />
             Your browser does not support the <code>audio</code> element.
           </audio>
-        </BlackBox>
+        </>
       )}
       {/* Сделать уменьшение текста на п.4 в экраны телевизоров */}
       {playQueue === 4 && (
-        <BlackBox>
+        <>
           <WhoWeAreText>You are inside!</WhoWeAreText>
-        </BlackBox>
+        </>
       )}
-    </>
+    </BlackBox>
   );
 };

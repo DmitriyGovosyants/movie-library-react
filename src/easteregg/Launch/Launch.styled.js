@@ -1,13 +1,23 @@
 import styled from "@emotion/styled";
-import { device } from "styles/mediaquery";
+// import { device } from "styles/mediaquery";
 import starship from '../../data/images/movies/spacex-starship.webp';
+
+export const BlackBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+`
 
 export const LaunchBox = styled.div`
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 180px;
-  padding: 10px;
+  height: 100%;
 
   box-shadow: 3px 3px 10px white,
    -3px 3px 10px white,
@@ -22,32 +32,22 @@ export const LaunchBox = styled.div`
       rgba(47, 48, 58, 0.1)
     ),
     url(${starship});
-
-  ${device.mobileM} {
-    height: 300px;
-  }
-  ${device.tabletM} {
-    height: 400px;
-  }
-  ${device.desktopM} {
-    height: 50vh;
-    width: 50vw;
-
-    border-radius: 20px;
-  }
 `
 
-export const StartText = styled.div`
-  margin-left: auto;
-  width: 200px;
-`
+export const LaunchBtn = styled.button`
+  width: 250px;
+  height: 250px;
+  font-size: ${p => p.theme.fontSizes.titleBig};
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: ${p => p.theme.colors.textMain};
+  background-color: ${p => p.theme.colors.launchBtn};
+  border-radius: 50%;
+  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
-export const VideoBox = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden; 
-  background-color: black;
+  :hover {
+    background-color: ${p => p.theme.colors.launchBtnHover};
+  }
 `
 
 export const LaunchVideo = styled.video`
@@ -56,9 +56,6 @@ export const LaunchVideo = styled.video`
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
-  /* width: 100%; */
-  /* width: 1500px; */
-  /* overflow: hidden; */
 `
 
 export const Overlay = styled.div`
@@ -85,15 +82,7 @@ export const Overlay = styled.div`
   }
 `
 
-export const BlackBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-`
+
 
 export const TypingTextFirstPart = styled.div`
   margin-bottom: ${p => p.theme.spacing(3)};

@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { device } from "styles/mediaquery";
 import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
 import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
-import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
+// import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
+import desktopBg from '../../data/images/header/star-wars.webp';
 
 export const HeaderBox = styled.header`
   display: flex;
@@ -11,35 +12,43 @@ export const HeaderBox = styled.header`
   height: 180px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
   background-image: linear-gradient(
+        to right,
+        rgba(47, 48, 58, 0.5),
+        rgba(47, 48, 58, 0.5)
+      ),
+      url(${desktopBg});
+
+  /* background-image: linear-gradient(
       to right,
       rgba(47, 48, 58, 0.4),
       rgba(47, 48, 58, 0.4)
     ),
-    url(${mobileBg});
+    url(${mobileBg}); */
 
   ${device.mobileM} {
     height: 120px;
   }
   
-  ${device.tabletM} {
+  /* ${device.tabletM} {
     background-image: linear-gradient(
         to right,
         rgba(47, 48, 58, 0.4),
         rgba(47, 48, 58, 0.4)
       ),
       url(${tabletBg});
-  }
+  } */
 
-  ${device.desktopM} {
+  /* ${device.desktopM} {
     background-image: linear-gradient(
         to right,
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
+        rgba(47, 48, 58, 0.1),
+        rgba(47, 48, 58, 0.1)
       ),
       url(${desktopBg});
-  }
+  } */
 `
 
 export const FlexContainer = styled.div`
@@ -76,6 +85,7 @@ export const Title = styled.h1`
   font-size: 10vw;
   font-weight: 500;
   color: ${p => p.theme.colors.textMain};
+  text-shadow: 3px 3px 3px black;
 
   ${device.mobileM} {
     font-size: ${p => p.theme.fontSizes.titleMain};
@@ -107,6 +117,7 @@ export const ActiveLink = styled(NavLink)`
   font-size: 5vw;
   line-height: 1.17;
   font-weight: 500;
+  text-shadow: 1px 1px 2px black;
   color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;
   border-radius: 5px;

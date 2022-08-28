@@ -25,7 +25,7 @@ export const Header = () => {
             <NavigationBox>
               <LogoBtn type="button" onClick={() => setShowModal(true)}>
                 <Logo />
-                <Title>Filmoteka</Title>
+                <Title>Movie DB</Title>
               </LogoBtn>
               <NavList>
                 <NavItem>

@@ -1,13 +1,27 @@
 import { ButtonClose } from 'components';
 import {
   BlackBox,
+  Overlay,
   LaunchBox,
   LaunchBtn,
-  LaunchVideo,
-  Overlay,
+  Video,
   TypingTextFirstPart,
   TypingTextSecondPart,
   WhoWeAreText,
+  InsideBox,
+  TextBoxUp,
+  TextBoxDown,
+  YouText,
+  AreText,
+  InsideText,
+  InsideOverlay,
+  TabletsOverlay,
+  TabletTextBox,
+  TabletAnimationOne,
+  TabletAnimationTwo,
+  TabletAnimationThree,
+  ButtonTruth,
+  ButtonLie,
 } from './Launch.styled';
 
 import starlinkImg from '../data/images/where-is-your-starlink.png';
@@ -15,6 +29,7 @@ import startShutle from '../data/video/space-shuttle-launch-countdown.mp4';
 import smallStep from '../data/audio/small-step.mp3';
 import whoWeAreAudio from '../data/audio/who-we-are.mp3';
 import whoWeAreVideo from '../data/video/who-we-are.webm';
+import tabletsAudio from '../data/audio/mortal-combat.mp3';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -31,6 +46,8 @@ export const Launch = ({ closeModal }) => {
   const audioRef = useRef(null);
   const fullwidth = useRef(null);
 
+  let currentWindowHeight = window.innerHeight;
+
   useEffect(() => {
     if (isLoaded !== 2) {
       return;
@@ -38,6 +55,15 @@ export const Launch = ({ closeModal }) => {
     videoRef.current.play();
     audioRef.current.play();
   }, [isLoaded]);
+
+  useEffect(() => {
+    // должно быть всегда 4
+    if (playQueue === 4) {
+      setTimeout(() => {
+        setPlayQueue(s => s + 1);
+      }, 12000);
+    }
+  }, [playQueue]);
 
   const addOverlay = () => {
     let tick = 0;
@@ -63,6 +89,7 @@ export const Launch = ({ closeModal }) => {
     ) {
       return toast.info('Please, flip the device to landscape mode');
     }
+
     setOverlay(true);
 
     setTimeout(() => {
@@ -92,10 +119,10 @@ export const Launch = ({ closeModal }) => {
       {playQueue === 1 && (
         <>
           {overlay && <Overlay timing={'4000ms'} />}
-          <LaunchVideo poster={starlinkImg} autoPlay onPlay={addOverlay}>
+          <Video poster={starlinkImg} autoPlay onPlay={addOverlay}>
             <source src={startShutle} type="video/mp4" />
             Your browser does not support the <code>video</code> element.
-          </LaunchVideo>
+          </Video>
         </>
       )}
       {playQueue === 2 && (
@@ -125,20 +152,16 @@ export const Launch = ({ closeModal }) => {
       )}
       {playQueue === 3 && (
         <>
-          {textTwoReady && <WhoWeAreText>Who we are?</WhoWeAreText>}
+          {isLoaded && <WhoWeAreText>Who we are?</WhoWeAreText>}
 
-          <LaunchVideo
-            ref={videoRef}
-            onLoadedData={() => setIsLoaded(s => s + 1)}
-          >
+          <Video ref={videoRef} onLoadedData={() => setIsLoaded(s => s + 1)}>
             <source src={whoWeAreVideo} type="video/webm" />
             Your browser does not support the <code>video</code> element.
-          </LaunchVideo>
+          </Video>
 
           <audio
             ref={audioRef}
             onLoadedData={() => setIsLoaded(s => s + 1)}
-            onPlay={() => setTextTwoReady(true)}
             onEnded={() => setPlayQueue(4)}
           >
             <source src={whoWeAreAudio} type="audio/mp3" />
@@ -146,12 +169,47 @@ export const Launch = ({ closeModal }) => {
           </audio>
         </>
       )}
-      {/* Сделать уменьшение текста на п.4 в экраны телевизоров */}
       {playQueue === 4 && (
-        <>
-          <WhoWeAreText>You are inside!</WhoWeAreText>
-        </>
+        <InsideOverlay>
+          <InsideBox currentHeight={currentWindowHeight}>
+            <TextBoxUp>
+              <YouText>You</YouText>
+            </TextBoxUp>
+            <InsideText>inside</InsideText>
+            <TextBoxDown>
+              <AreText>are</AreText>
+            </TextBoxDown>
+          </InsideBox>
+        </InsideOverlay>
       )}
+      {playQueue === 5 && (
+        <TabletsOverlay>
+          <audio
+            onLoadedData={() => setTextTwoReady(true)}
+            autoPlay
+            controls
+            loop
+            style={{ height: '20px' }}
+          >
+            <source src={tabletsAudio} type="audio/mp3" />
+            Your browser does not support the <code>audio</code> element.
+          </audio>
+          <ButtonTruth
+            type="button"
+            onClick={() => setPlayQueue(6)}
+          ></ButtonTruth>
+          <ButtonLie type="button" onClick={() => setPlayQueue(7)}></ButtonLie>
+          {textTwoReady && (
+            <TabletTextBox>
+              <TabletAnimationOne>Choose</TabletAnimationOne>
+              <TabletAnimationTwo>your</TabletAnimationTwo>
+              <TabletAnimationThree>destiny!</TabletAnimationThree>
+            </TabletTextBox>
+          )}
+        </TabletsOverlay>
+      )}
+      {playQueue === 6 && <WhoWeAreText>STAR WARS</WhoWeAreText>}
+      {playQueue === 7 && <WhoWeAreText>MATRIX</WhoWeAreText>}
     </BlackBox>
   );
 };

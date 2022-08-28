@@ -24,8 +24,8 @@ import {
   ButtonLie,
 } from './Launch.styled';
 
-import starlinkImg from '../data/images/where-is-your-starlink.png';
-import startShutle from '../data/video/space-shuttle-launch-countdown.mp4';
+import starlink from '../data/images/where-is-your-starlink.png';
+import shuttle from '../data/video/space-shuttle-launch-countdown.mp4';
 import smallStep from '../data/audio/small-step.mp3';
 import whoWeAreAudio from '../data/audio/who-we-are.mp3';
 import whoWeAreVideo from '../data/video/who-we-are.webm';
@@ -34,27 +34,27 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { goMatrix } from 'easteregg/Matrix';
 
 export const Launch = ({ closeModal }) => {
   const [playQueue, setPlayQueue] = useState(0);
   const [overlay, setOverlay] = useState(false);
-  const [textOneReady, setTextOneReady] = useState(false);
-  const [textTwoReady, setTextTwoReady] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(0);
-  const timerId = useRef(null);
-  const videoRef = useRef(null);
-  const audioRef = useRef(null);
-  const fullwidth = useRef(null);
+  const [isAudioLoaded, setIsAudioLoaded] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const overlayTimerIdRef = useRef(null);
+  const whoWeAreVideoRef = useRef(null);
+  const whoWeAreAudioRef = useRef(null);
+  const fullwidthRef = useRef(null);
 
+  // console.log(playQueue, overlay, isAudioLoaded, isVideoLoaded);
   let currentWindowHeight = window.innerHeight;
 
   useEffect(() => {
-    if (isLoaded !== 2) {
-      return;
+    if (isAudioLoaded && isVideoLoaded) {
+      whoWeAreVideoRef.current?.play();
+      whoWeAreAudioRef.current?.play();
     }
-    videoRef.current.play();
-    audioRef.current.play();
-  }, [isLoaded]);
+  }, [isAudioLoaded, isVideoLoaded]);
 
   useEffect(() => {
     // должно быть всегда 4
@@ -67,15 +67,16 @@ export const Launch = ({ closeModal }) => {
 
   const addOverlay = () => {
     let tick = 0;
-    timerId.current = setInterval(() => {
+    overlayTimerIdRef.current = setInterval(() => {
       tick += 1;
 
       if (tick === 15) {
         setOverlay(true);
       }
       if (tick === 19) {
-        clearInterval(timerId.current);
+        clearInterval(overlayTimerIdRef.current);
         setOverlay(false);
+        setIsAudioLoaded(false);
         setPlayQueue(s => s + 1);
       }
     }, 1000);
@@ -95,40 +96,37 @@ export const Launch = ({ closeModal }) => {
     setTimeout(() => {
       setOverlay(false);
       setPlayQueue(1);
-    }, 3000);
+    }, 4000);
 
-    fullwidth.current
+    fullwidthRef.current
       .requestFullscreen({ navigationUI: 'hide' })
       .catch(err => console.log(err)); // проверка на ошибки если не может быть включен фуллскрин, что с ней делать?
-    // fullwidth.current.exitFullscreen() - выход из Fullscreen, применить в конце
+    // fullwidthRef.current.exitFullscreen() - выход из Fullscreen, применить в конце
   };
 
   return (
-    <BlackBox ref={fullwidth}>
-      {playQueue >= 0 && <ButtonClose onClick={() => closeModal(false)} />}
+    <BlackBox ref={fullwidthRef}>
+      <ButtonClose onClick={() => closeModal(false)} />
+      {overlay && <Overlay timing={'4000ms'} />}
+      {/* start */}
       {playQueue === 0 && (
-        <>
-          {overlay && <Overlay timing={'3000ms'} />}
-          <LaunchBox>
-            <LaunchBtn type="button" onClick={launchRocket}>
-              into space
-            </LaunchBtn>
-          </LaunchBox>
-        </>
+        <LaunchBox>
+          <LaunchBtn type="button" onClick={launchRocket}>
+            into space
+          </LaunchBtn>
+        </LaunchBox>
       )}
-      {playQueue === 1 && (
-        <>
-          {overlay && <Overlay timing={'4000ms'} />}
-          <Video poster={starlinkImg} autoPlay onPlay={addOverlay}>
-            <source src={startShutle} type="video/mp4" />
-            Your browser does not support the <code>video</code> element.
-          </Video>
-        </>
+      {/* launch */}
+      {playQueue === -1 && (
+        <Video poster={starlink} autoPlay onPlay={addOverlay}>
+          <source src={shuttle} type="video/mp4" />
+          Your browser does not support the <code>video</code> element.
+        </Video>
       )}
+      {/* small step */}
       {playQueue === 2 && (
         <>
-          {overlay && <Overlay timing={'4000ms'} />}
-          {textOneReady && (
+          {isAudioLoaded && (
             <>
               <TypingTextFirstPart>
                 “That’s one small step for man,
@@ -141,7 +139,7 @@ export const Launch = ({ closeModal }) => {
           <audio
             autoPlay
             onPlay={() => {
-              setTextOneReady(true);
+              setIsAudioLoaded(true);
               addOverlay();
             }}
           >
@@ -150,25 +148,36 @@ export const Launch = ({ closeModal }) => {
           </audio>
         </>
       )}
+      {/* who we are */}
       {playQueue === 3 && (
         <>
-          {isLoaded && <WhoWeAreText>Who we are?</WhoWeAreText>}
+          {isAudioLoaded && isVideoLoaded && (
+            <WhoWeAreText>Who we are?</WhoWeAreText>
+          )}
 
-          <Video ref={videoRef} onLoadedData={() => setIsLoaded(s => s + 1)}>
+          <Video
+            ref={whoWeAreVideoRef}
+            onLoadedData={() => setIsVideoLoaded(true)}
+          >
             <source src={whoWeAreVideo} type="video/webm" />
             Your browser does not support the <code>video</code> element.
           </Video>
 
           <audio
-            ref={audioRef}
-            onLoadedData={() => setIsLoaded(s => s + 1)}
-            onEnded={() => setPlayQueue(4)}
+            ref={whoWeAreAudioRef}
+            onLoadedData={() => setIsAudioLoaded(true)}
+            onEnded={() => {
+              setIsAudioLoaded(false);
+              setIsVideoLoaded(false);
+              setPlayQueue(4);
+            }}
           >
             <source src={whoWeAreAudio} type="audio/mp3" />
             Your browser does not support the <code>audio</code> element.
           </audio>
         </>
       )}
+      {/* inside */}
       {playQueue === 4 && (
         <InsideOverlay>
           <InsideBox currentHeight={currentWindowHeight}>
@@ -182,10 +191,11 @@ export const Launch = ({ closeModal }) => {
           </InsideBox>
         </InsideOverlay>
       )}
-      {playQueue === 5 && (
+      {/* tablets */}
+      {playQueue === 1 && (
         <TabletsOverlay>
           <audio
-            onLoadedData={() => setTextTwoReady(true)}
+            onLoadedData={() => setIsAudioLoaded(true)}
             autoPlay
             controls
             loop
@@ -196,10 +206,20 @@ export const Launch = ({ closeModal }) => {
           </audio>
           <ButtonTruth
             type="button"
-            onClick={() => setPlayQueue(6)}
+            onClick={() => {
+              setIsAudioLoaded(false);
+              setPlayQueue(6);
+            }}
           ></ButtonTruth>
-          <ButtonLie type="button" onClick={() => setPlayQueue(7)}></ButtonLie>
-          {textTwoReady && (
+          <ButtonLie
+            type="button"
+            onClick={() => {
+              setIsAudioLoaded(false);
+              setInterval(goMatrix, 123);
+              closeModal(false);
+            }}
+          ></ButtonLie>
+          {isAudioLoaded && (
             <TabletTextBox>
               <TabletAnimationOne>Choose</TabletAnimationOne>
               <TabletAnimationTwo>your</TabletAnimationTwo>
@@ -208,8 +228,8 @@ export const Launch = ({ closeModal }) => {
           )}
         </TabletsOverlay>
       )}
+      {/* star wars */}
       {playQueue === 6 && <WhoWeAreText>STAR WARS</WhoWeAreText>}
-      {playQueue === 7 && <WhoWeAreText>MATRIX</WhoWeAreText>}
     </BlackBox>
   );
 };

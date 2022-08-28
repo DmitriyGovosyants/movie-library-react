@@ -4,6 +4,8 @@ import starship from '../data/images/launchImg.webp';
 import inside from '../data/images/inside.png';
 import insideMany from '../data/images/insideMany.jpg';
 import tablets from '../data/images/tablets.jpg';
+import neo from '../data/images/neo.png';
+import lie from '../data/images/lie.png';
 
 export const BlackBox = styled.div`
   display: flex;
@@ -591,6 +593,7 @@ export const ButtonTruth = styled.button`
   transform: translateY(-50%);
   width: 20vw;
   height: 20vw;
+  cursor: url(${neo}), auto;
 
   :hover {
     border: 3px solid red;
@@ -621,6 +624,7 @@ export const ButtonLie = styled.button`
   transform: translateY(-50%);
   width: 20vw;
   height: 20vw;
+  cursor: url(${lie}), auto;
 
   :hover {
     border: 3px solid violet;

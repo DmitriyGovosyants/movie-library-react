@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
 import { NavLink } from 'react-router-dom';
 import { device } from "styles/mediaquery";
-import mobileBg from '../../data/images/header/header-bg-mobile@1x.jpg';
-import tabletBg from '../../data/images/header/header-bg-tablet@1x.jpg';
-// import desktopBg from '../../data/images/header/header-bg-desktop@1x.jpg';
 import desktopBg from '../../data/images/header/star-wars.webp';
 
 export const HeaderBox = styled.header`
@@ -21,34 +18,9 @@ export const HeaderBox = styled.header`
       ),
       url(${desktopBg});
 
-  /* background-image: linear-gradient(
-      to right,
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url(${mobileBg}); */
-
   ${device.mobileM} {
     height: 120px;
   }
-  
-  /* ${device.tabletM} {
-    background-image: linear-gradient(
-        to right,
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
-      ),
-      url(${tabletBg});
-  } */
-
-  /* ${device.desktopM} {
-    background-image: linear-gradient(
-        to right,
-        rgba(47, 48, 58, 0.1),
-        rgba(47, 48, 58, 0.1)
-      ),
-      url(${desktopBg});
-  } */
 `
 
 export const FlexContainer = styled.div`

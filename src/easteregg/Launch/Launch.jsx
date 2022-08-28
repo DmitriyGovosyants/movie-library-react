@@ -89,7 +89,7 @@ export const Launch = ({ closeModal }) => {
           </LaunchBox>
         </>
       )}
-      {playQueue === -1 && (
+      {playQueue === 1 && (
         <>
           {overlay && <Overlay timing={'4000ms'} />}
           <LaunchVideo poster={starlinkImg} autoPlay onPlay={addOverlay}>
@@ -98,7 +98,7 @@ export const Launch = ({ closeModal }) => {
           </LaunchVideo>
         </>
       )}
-      {playQueue === -2 && (
+      {playQueue === 2 && (
         <>
           {overlay && <Overlay timing={'4000ms'} />}
           {textOneReady && (
@@ -123,7 +123,7 @@ export const Launch = ({ closeModal }) => {
           </audio>
         </>
       )}
-      {playQueue === 1 && (
+      {playQueue === 3 && (
         <>
           {textTwoReady && <WhoWeAreText>Who we are?</WhoWeAreText>}
 

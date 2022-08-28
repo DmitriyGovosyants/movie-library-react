@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movie-library-react/static/css/main.eb4cfae0.css",
-    "main.js": "/movie-library-react/static/js/main.2669250d.js",
+    "main.js": "/movie-library-react/static/js/main.d4af6b46.js",
     "home-page.js": "/movie-library-react/static/js/home-page.fbc1c1de.chunk.js",
     "library-page.js": "/movie-library-react/static/js/library-page.5d96710e.chunk.js",
     "signin-page.js": "/movie-library-react/static/js/signin-page.8966f6cd.chunk.js",
@@ -14,11 +14,9 @@
     "static/media/avatar6.jpg": "/movie-library-react/static/media/avatar6.7dd8195726a366287615.jpg",
     "static/media/small-step.mp3": "/movie-library-react/static/media/small-step.094111bf2bd28b3d2213.mp3",
     "static/media/launchImg.webp": "/movie-library-react/static/media/launchImg.f6e2e0d84f2386d244c0.webp",
-    "static/media/header-bg-tablet@1x.jpg": "/movie-library-react/static/media/header-bg-tablet@1x.05402a4377c24acee85e.jpg",
     "static/media/avatar2.png": "/movie-library-react/static/media/avatar2.5c6a28a5e7e588ed83ab.png",
     "static/media/star-wars.webp": "/movie-library-react/static/media/star-wars.cb9f41b4241710da080d.webp",
     "static/media/where-is-your-starlink.png": "/movie-library-react/static/media/where-is-your-starlink.960d720a421f4a5f3cad.png",
-    "static/media/header-bg-mobile@1x.jpg": "/movie-library-react/static/media/header-bg-mobile@1x.11b882366ae009ed3424.jpg",
     "static/media/no-poster.jpeg": "/movie-library-react/static/media/no-poster.d7e60210de6e7d4fcc19.jpeg",
     "static/media/avatar1.png": "/movie-library-react/static/media/avatar1.8c9be08082c0dc0c364d.png",
     "static/media/broken-image.png": "/movie-library-react/static/media/broken-image.133a6e7f8f27da36851b.png",
@@ -27,7 +25,7 @@
     "index.html": "/movie-library-react/index.html",
     "static/media/logo.svg": "/movie-library-react/static/media/logo.aae5ff83b03324941d25e85b40d07032.svg",
     "main.eb4cfae0.css.map": "/movie-library-react/static/css/main.eb4cfae0.css.map",
-    "main.2669250d.js.map": "/movie-library-react/static/js/main.2669250d.js.map",
+    "main.d4af6b46.js.map": "/movie-library-react/static/js/main.d4af6b46.js.map",
     "home-page.fbc1c1de.chunk.js.map": "/movie-library-react/static/js/home-page.fbc1c1de.chunk.js.map",
     "library-page.5d96710e.chunk.js.map": "/movie-library-react/static/js/library-page.5d96710e.chunk.js.map",
     "signin-page.8966f6cd.chunk.js.map": "/movie-library-react/static/js/signin-page.8966f6cd.chunk.js.map",
@@ -35,6 +33,6 @@
   },
   "entrypoints": [
     "static/css/main.eb4cfae0.css",
-    "static/js/main.2669250d.js"
+    "static/js/main.d4af6b46.js"
   ]
 }

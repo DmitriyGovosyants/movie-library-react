@@ -25,8 +25,8 @@ export const Overlay = styled.div`
   z-index: 30;
   width: 100%;
   height: 100%;
-  background-color: black;
 
+  background-color: black;
   animation-name: overlay;
   animation-duration: ${p => p.timing};
   animation-timing-function: ease;
@@ -67,11 +67,13 @@ export const LaunchBox = styled.div`
 export const LaunchBtn = styled.button`
   width: 300px;
   height: 300px;
+
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textMain};
+
   background-color: #00000083;
   border-radius: 50%;
   transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
@@ -90,16 +92,19 @@ export const Video = styled.video`
 `
 
 export const ArmstrongTextFirst = styled.div`
+  width: 32ch;
   margin-bottom: ${p => p.theme.spacing(3)};
+  overflow: hidden;
+
+  font-family: monospace;
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
   line-height: 1.5;
-  color: ${p => p.theme.colors.textMain};
-  width: 32ch;
-  font-family: monospace;
   white-space: nowrap;
+  user-select: none;
+  color: ${p => p.theme.colors.textMain};
+  
   border-right: 2px solid transparent;
-  overflow: hidden;
   animation: displayNoneOne 4200ms ease, typingOne 2500ms steps(32) 4200ms, blinkOne 450ms step-end 8 alternate;
 
   @keyframes displayNoneOne {
@@ -131,16 +136,19 @@ export const ArmstrongTextFirst = styled.div`
 `
 
 export const ArmstrongTextSecond = styled.div`
+  width: 29ch;
   margin-bottom: ${p => p.theme.spacing(3)};
+  overflow: hidden;
+
+  font-family: monospace;
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
   line-height: 1.5;
-  color: ${p => p.theme.colors.textMain};
-  width: 29ch;
-  font-family: monospace;
   white-space: nowrap;
+  user-select: none;
+  color: ${p => p.theme.colors.textMain};
+  
   border-right: 2px solid;
-  overflow: hidden;
   animation: displayNoneTwo 9800ms ease, typingTwo 3200ms steps(29) 9800ms, blinkTwo 500ms step-end infinite alternate;
 
   @keyframes displayNoneTwo {
@@ -170,14 +178,15 @@ export const ArmstrongTextSecond = styled.div`
 export const WhoWeAreText = styled.p`
   position: relative;
   z-index: 40;
+  opacity: 0;
+  padding-left: 10px;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: ${p => p.theme.fontSizes.titleBig};
   letter-spacing: 0.2em;
-  color: white;
-  opacity: 0;
-  padding-left: 10px;
   user-select: none;
-
+  color: white;
+  
   animation-name: appearanceWho;
   animation-duration: 11000ms;
   animation-timing-function: ease-in-out;
@@ -342,6 +351,7 @@ export const TextBoxDown = styled.div`
 
 export const YouText = styled.p`
   opacity: 0;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 80px;
   letter-spacing: 0.1em;
@@ -378,6 +388,7 @@ export const YouText = styled.p`
 
 export const AreText = styled.p`
   opacity: 0;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 80px;
   letter-spacing: 0.1em;
@@ -418,6 +429,7 @@ export const AreText = styled.p`
 
 export const InsideText = styled.p`
   opacity: 0;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 6vw;
   line-height: 0.8;
@@ -459,6 +471,7 @@ export const TabletsOverlay = styled.div`
   width: 100%;
   height: 100%;
   padding: 30px 0;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -487,13 +500,14 @@ export const TabletsOverlay = styled.div`
 export const TabletTextBox = styled.div`
   display: flex;
   column-gap: 30px;
+  opacity: 1;
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: ${p => p.theme.fontSizes.titleBig};
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: red;
-  opacity: 1;
   user-select: none;
+  color: red;
 
   ${device.desktopM} {
     font-size: ${p => p.theme.fontSizes.loadScreenBig};
@@ -597,6 +611,7 @@ export const ButtonTruth = styled.button`
   transform: translateY(-50%);
   width: 20vw;
   height: 20vw;
+
   cursor: url(${neo}), auto;
 
   :hover {
@@ -628,6 +643,7 @@ export const ButtonLie = styled.button`
   transform: translateY(-50%);
   width: 20vw;
   height: 20vw;
+  
   cursor: url(${lie}), auto;
 
   :hover {

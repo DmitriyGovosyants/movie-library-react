@@ -3,11 +3,10 @@ import { throttle } from 'throttle-debounce';
 
 export const useSwipe = (currentRef, swipeFn, deps) => {
   return useEffect(() => {
-    // console.log(currentRef, swipeFn, deps)
     if (!currentRef.current) {
       return;
     }
-    // console.log('YEEEEES!!!')
+
     const MAX_VERTICAL = 150;
     
     let swipeDistanceRigth = 180;
@@ -32,7 +31,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       movePoints.push(movePoint);
     };
 
-    const swipeMovieCard = e => {
+    const swiper = e => {
       let endX = e.changedTouches[0].clientX;
       let endY = e.changedTouches[0].clientY;
       const lengthX = endX - startX;
@@ -66,7 +65,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
       startY = e.changedTouches[0].clientY;
     });
     ref.addEventListener('touchmove', throttle(100, e => createPointsArray(e)));
-    ref.addEventListener('touchend', swipeMovieCard);
+    ref.addEventListener('touchend', swiper);
 
     return () => {
       ref.removeEventListener('touchstart', e => {
@@ -74,7 +73,7 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
         startY = e.changedTouches[0].clientY;
       });
       ref.removeEventListener('touchmove', throttle(100, e => createPointsArray(e)));
-      ref.removeEventListener('touchend', swipeMovieCard);
+      ref.removeEventListener('touchend', swiper);
     };
   }, [currentRef, swipeFn, deps]);
 }

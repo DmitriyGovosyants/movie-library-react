@@ -72,13 +72,14 @@ export const LaunchBtn = styled.button`
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textMain};
+  cursor: url(${startCursor}), auto;
 
   background-color: #00000083;
   border-radius: 50%;
   transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
-    background-color: black;
+    background: radial-gradient(circle at 70px 70px,#5cabff,#000000);
   }
 `
 

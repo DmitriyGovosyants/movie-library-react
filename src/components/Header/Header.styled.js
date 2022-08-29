@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { NavLink } from 'react-router-dom';
 import { device } from "styles/mediaquery";
 import desktopBg from '../../data/images/header/star-wars.webp';
+import logoCursor from '../../data/images/header/logo-cursor.png';
 
 export const HeaderBox = styled.header`
   display: flex;
@@ -42,6 +43,7 @@ export const NavigationBox = styled.nav`
 export const LogoBtn = styled.button`
   display: flex;
   align-items: center;
+  cursor: url(${logoCursor}), auto;
 
   ${device.mobileBelowM} {
     margin-bottom: ${p => p.theme.spacing(5)};

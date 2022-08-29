@@ -44,5 +44,4 @@ export function matrixFn() {
   canvasRef.style.display = 'block';
   document.body.style.overflow = 'hidden';
   document.body.style.cursor = `url(${matrixCursor}), auto`;
-  
 }

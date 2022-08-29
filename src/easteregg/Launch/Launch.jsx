@@ -1,4 +1,16 @@
 import { ButtonClose } from 'components';
+import { useState, useEffect, useRef } from 'react';
+import { toast } from 'react-toastify';
+import starlink from '../data/images/where-is-your-starlink.png';
+import shuttle from '../data/video/space-shuttle-launch-countdown.mp4';
+import smallStep from '../data/audio/small-step.mp3';
+import whoWeAreAudio from '../data/audio/who-we-are.mp3';
+import whoWeAreVideo from '../data/video/who-we-are.webm';
+import tabletsAudio from '../data/audio/mortal-combat.mp3';
+import matrixAudio from '../data/audio/matrix.mp3';
+import { matrixFn } from 'easteregg/Matrix';
+import { EEgg } from 'constants/constants';
+import { StarWars } from 'easteregg/StarWars/StarWars';
 import {
   BlackBox,
   Overlay,
@@ -24,20 +36,6 @@ import {
   ButtonLie,
 } from './Launch.styled';
 
-import starlink from '../data/images/where-is-your-starlink.png';
-import shuttle from '../data/video/space-shuttle-launch-countdown.mp4';
-import smallStep from '../data/audio/small-step.mp3';
-import whoWeAreAudio from '../data/audio/who-we-are.mp3';
-import whoWeAreVideo from '../data/video/who-we-are.webm';
-import tabletsAudio from '../data/audio/mortal-combat.mp3';
-import matrixAudio from '../data/audio/matrix.mp3';
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { matrixFn } from 'easteregg/Matrix';
-import { EEgg } from 'constants/constants';
-
 export const Launch = ({ closeModal }) => {
   const [playQueue, setPlayQueue] = useState(EEgg.MENU);
   const [overlay, setOverlay] = useState(false);
@@ -49,8 +47,6 @@ export const Launch = ({ closeModal }) => {
   const combatAudioRef = useRef(null);
   const matrixAudioRef = useRef(null);
   const fullwidthRef = useRef(null);
-
-  let currentWindowHeight = window.innerHeight;
 
   useEffect(() => {
     if (isAudioLoaded && isVideoLoaded) {
@@ -97,7 +93,7 @@ export const Launch = ({ closeModal }) => {
 
     setTimeout(() => {
       setOverlay(false);
-      setPlayQueue(EEgg.LAUNCH);
+      setPlayQueue(EEgg.STAR_WARS);
     }, 4000);
 
     fullwidthRef.current
@@ -117,6 +113,8 @@ export const Launch = ({ closeModal }) => {
     matrixAudioRef.current.play();
     setInterval(matrixFn, 123);
   };
+
+  let currentWindowHeight = window.innerHeight;
 
   return (
     <BlackBox ref={fullwidthRef}>
@@ -246,7 +244,12 @@ export const Launch = ({ closeModal }) => {
         </TabletsOverlay>
       )}
 
-      {playQueue === EEgg.STAR_WARS && <WhoWeAreText>STAR WARS</WhoWeAreText>}
+      {playQueue === EEgg.STAR_WARS && (
+        <StarWars
+          setIsAudioLoaded={setIsAudioLoaded}
+          isAudioLoaded={isAudioLoaded}
+        />
+      )}
     </BlackBox>
   );
 };

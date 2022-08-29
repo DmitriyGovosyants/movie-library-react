@@ -440,6 +440,8 @@ export const ButtonTruth = styled.button`
   cursor: url(${neoCursor}), auto;
 
   ${device.notDesktop} {
+    border: 3px solid red;
+    
     animation-name: tabletLeft;
     animation-duration: 500ms;
     animation-timing-function: ease-in-out;

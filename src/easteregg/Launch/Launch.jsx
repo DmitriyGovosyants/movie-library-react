@@ -96,7 +96,7 @@ export const Launch = ({ closeModal }) => {
 
     setTimeout(() => {
       setOverlay(false);
-      setPlayQueue(EEgg.TABLETS);
+      setPlayQueue(EEgg.LAUNCH);
     }, 4000);
 
     fullwidthRef.current
@@ -110,12 +110,14 @@ export const Launch = ({ closeModal }) => {
   };
 
   const toMatrix = () => {
-    document.exitFullscreen();
     closeModal(false);
     setPlayQueue(EEgg.MATRIX);
     combatAudioRef.current.pause();
     matrixAudioRef.current.play();
     setInterval(matrixFn, 123);
+    setTimeout(() => {
+      window.addEventListener('resize', () => window.location.reload());
+    }, 2000);
   };
 
   let currentWindowHeight = window.innerHeight;

@@ -39,7 +39,7 @@ export const StarWars = ({ setIsAudioLoaded, isAudioLoaded }) => {
           <MainTitle>STAR WARS</MainTitle>
           <TitlesOverlay>
             <TitlesContent>
-              <TitlesCentered>EPISODE IV</TitlesCentered>
+              <TitlesCentered>EPISODE I</TitlesCentered>
               <TitlesCentered>A NEW HOPE</TitlesCentered>
 
               <Titles>

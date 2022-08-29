@@ -8,7 +8,7 @@ let W = 0;
 let H = 0;
 
 if (window.innerWidth < window.innerHeight) {
-  W = (canvasRef.width = window.innerHeight);
+  W = (canvasRef.width = window.innerHeight * 1.5);
   H = (canvasRef.height = window.innerWidth);
 }
 
@@ -44,4 +44,5 @@ export function matrixFn() {
   canvasRef.style.display = 'block';
   document.body.style.overflow = 'hidden';
   document.body.style.cursor = `url(${matrixCursor}), auto`;
+  
 }

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/movie-library-react/static/css/main.eb4cfae0.css",
-    "main.js": "/movie-library-react/static/js/main.cffc4629.js",
+    "main.js": "/movie-library-react/static/js/main.b3d8e127.js",
     "home-page.js": "/movie-library-react/static/js/home-page.6452657c.chunk.js",
     "library-page.js": "/movie-library-react/static/js/library-page.2f57a324.chunk.js",
     "signin-page.js": "/movie-library-react/static/js/signin-page.9658129e.chunk.js",
@@ -30,7 +30,7 @@
     "index.html": "/movie-library-react/index.html",
     "static/media/logo.svg": "/movie-library-react/static/media/logo.aae5ff83b03324941d25e85b40d07032.svg",
     "main.eb4cfae0.css.map": "/movie-library-react/static/css/main.eb4cfae0.css.map",
-    "main.cffc4629.js.map": "/movie-library-react/static/js/main.cffc4629.js.map",
+    "main.b3d8e127.js.map": "/movie-library-react/static/js/main.b3d8e127.js.map",
     "home-page.6452657c.chunk.js.map": "/movie-library-react/static/js/home-page.6452657c.chunk.js.map",
     "library-page.2f57a324.chunk.js.map": "/movie-library-react/static/js/library-page.2f57a324.chunk.js.map",
     "signin-page.9658129e.chunk.js.map": "/movie-library-react/static/js/signin-page.9658129e.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.eb4cfae0.css",
-    "static/js/main.cffc4629.js"
+    "static/js/main.b3d8e127.js"
   ]
 }

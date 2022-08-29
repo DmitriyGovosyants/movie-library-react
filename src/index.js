@@ -8,16 +8,19 @@ import { GlobalStyles, theme } from 'styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from 'hooks/userContext';
+import { IMDBDataProvider } from 'hooks/imdbDataContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="/movie-library-react/">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
-          <ToastContainer autoClose={2500} position="bottom-center" />
-            <UserProvider>
-              <App />
-            </UserProvider>
+        <ToastContainer autoClose={2500} position="bottom-center" />
+        <UserProvider>
+          <IMDBDataProvider>
+            <App />
+          </IMDBDataProvider>
+        </UserProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

@@ -43,7 +43,7 @@ export const Header = () => {
                 )}
                 {user && (
                   <NavItem>
-                    <ActiveLink to="/library">my library</ActiveLink>
+                    <ActiveLink to="/library">library</ActiveLink>
                   </NavItem>
                 )}
               </NavList>

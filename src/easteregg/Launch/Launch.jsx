@@ -93,7 +93,7 @@ export const Launch = ({ closeModal }) => {
 
     setTimeout(() => {
       setOverlay(false);
-      setPlayQueue(EEgg.STAR_WARS);
+      setPlayQueue(EEgg.LAUNCH);
     }, 4000);
 
     fullwidthRef.current

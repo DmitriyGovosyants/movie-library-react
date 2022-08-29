@@ -1,4 +1,4 @@
-import { ButtonClose } from 'components';
+import { ButtonClose, Button } from 'components';
 import {
   BlackBox,
   Overlay,
@@ -211,9 +211,18 @@ export const Launch = ({ closeModal }) => {
               setPlayQueue(6);
             }}
           ></ButtonTruth>
+          {/* <Button
+            onClick={() => {
+              console.log(fullwidthRef.current);
+              document.exitFullscreen();
+            }}
+          >
+            FFFFFFFF
+          </Button> */}
           <ButtonLie
             type="button"
             onClick={() => {
+              document.exitFullscreen();
               closeModal(false);
               setInterval(goMatrix, 123);
             }}

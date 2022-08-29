@@ -14,4 +14,5 @@ export const device = {
   mobileBelowM: `@media screen and (max-width: 479.99px)`,
   mobileOnly: `@media screen and (max-width: 767.99px)`,
   tabletOnly: `@media screen and (min-width: ${size.tabletM}) and (max-width: 1023.99px)`,
+  notDesktop: `@media screen and (max-width: 1023.99px)`,
 }

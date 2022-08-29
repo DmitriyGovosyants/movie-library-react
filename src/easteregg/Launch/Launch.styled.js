@@ -92,6 +92,12 @@ export const Video = styled.video`
 `
 
 export const ArmstrongBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   cursor: url(${armstrongCursor}), auto;
 `
 
@@ -433,9 +439,7 @@ export const ButtonTruth = styled.button`
 
   cursor: url(${neoCursor}), auto;
 
-  :hover {
-    border: 3px solid red;
-
+  ${device.notDesktop} {
     animation-name: tabletLeft;
     animation-duration: 500ms;
     animation-timing-function: ease-in-out;
@@ -445,6 +449,23 @@ export const ButtonTruth = styled.button`
       0% {transform: scale(1) rotateZ(0) translateY(-50%);}
       50% {transform: scale(1.3) rotateZ(10deg) translateY(-50%);}
       100% {transform: scale(1) rotateZ(0) translateY(-50%);}
+    }
+  }
+
+  ${device.desktopM} {
+    :hover {
+      border: 3px solid red;
+
+      animation-name: tabletLeft;
+      animation-duration: 500ms;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+
+      @keyframes tabletLeft {
+        0% {transform: scale(1) rotateZ(0) translateY(-50%);}
+        50% {transform: scale(1.3) rotateZ(10deg) translateY(-50%);}
+        100% {transform: scale(1) rotateZ(0) translateY(-50%);}
+      }
     }
   }
 `
@@ -459,7 +480,7 @@ export const ButtonLie = styled.button`
   
   cursor: url(${lieCursor}), auto;
 
-  :hover {
+  ${device.notDesktop} {
     border: 3px solid violet;
 
     animation-name: tabletRigth;
@@ -471,6 +492,23 @@ export const ButtonLie = styled.button`
       0% {transform: scale(1) rotateZ(0) translateY(-50%);}
       50% {transform: scale(1.3) rotateZ(-10deg) translateY(-50%);}
       100% {transform: scale(1) rotateZ(0) translateY(-50%);}
+    }
+  }
+
+  ${device.desktopM} {
+    :hover {
+      border: 3px solid violet;
+
+      animation-name: tabletRigth;
+      animation-duration: 500ms;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+
+      @keyframes tabletRigth {
+        0% {transform: scale(1) rotateZ(0) translateY(-50%);}
+        50% {transform: scale(1.3) rotateZ(-10deg) translateY(-50%);}
+        100% {transform: scale(1) rotateZ(0) translateY(-50%);}
+      }
     }
   }
 `

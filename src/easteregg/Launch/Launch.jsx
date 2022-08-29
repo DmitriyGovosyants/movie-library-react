@@ -8,6 +8,8 @@ import whoWeAreAudio from '../data/audio/who-we-are.mp3';
 import whoWeAreVideo from '../data/video/who-we-are.webm';
 import tabletsAudio from '../data/audio/mortal-combat.mp3';
 import matrixAudio from '../data/audio/matrix.mp3';
+import launchCursor from '../data/images/launch-cursor.png';
+import whoWeAreCursor from '../data/images/who-we-are-cursor.png';
 import { matrixFn } from 'easteregg/Matrix';
 import { EEgg } from 'constants/constants';
 import { StarWars } from 'easteregg/StarWars/StarWars';
@@ -17,6 +19,7 @@ import {
   LaunchBox,
   LaunchBtn,
   Video,
+  ArmstrongBox,
   ArmstrongTextFirst,
   ArmstrongTextSecond,
   WhoWeAreText,
@@ -134,6 +137,7 @@ export const Launch = ({ closeModal }) => {
           poster={starlink}
           autoPlay
           onPlay={() => addOverlay(EEgg.ARMSTRONG)}
+          cursor={launchCursor}
         >
           <source src={shuttle} type="video/mp4" />
           Your browser does not support the <code>video</code> element.
@@ -143,14 +147,14 @@ export const Launch = ({ closeModal }) => {
       {playQueue === EEgg.ARMSTRONG && (
         <>
           {isAudioLoaded && (
-            <>
+            <ArmstrongBox>
               <ArmstrongTextFirst>
                 “That’s one small step for man,
               </ArmstrongTextFirst>
               <ArmstrongTextSecond>
                 one giant leap for mankind.”
               </ArmstrongTextSecond>
-            </>
+            </ArmstrongBox>
           )}
           <audio
             autoPlay
@@ -174,6 +178,7 @@ export const Launch = ({ closeModal }) => {
           <Video
             ref={whoWeAreVideoRef}
             onLoadedData={() => setIsVideoLoaded(true)}
+            cursor={whoWeAreCursor}
           >
             <source src={whoWeAreVideo} type="video/webm" />
             Your browser does not support the <code>video</code> element.

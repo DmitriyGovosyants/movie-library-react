@@ -1,4 +1,4 @@
-import error from '../easteregg/data/images/404.png';
+import matrixCursor from '../easteregg/data/images/matrix-cursor.png';
 
 const canvasRef = document.querySelector('canvas');
 
@@ -32,5 +32,5 @@ export function matrixFn() {
 
   canvasRef.style.display = 'block';
   document.body.style.overflow = 'hidden';
-  document.body.style.cursor = `url(${error}), auto`;
+  document.body.style.cursor = `url(${matrixCursor}), auto`;
 }

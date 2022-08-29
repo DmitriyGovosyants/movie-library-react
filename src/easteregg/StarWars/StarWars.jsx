@@ -60,7 +60,9 @@ export const StarWars = ({ setIsAudioLoaded, isAudioLoaded }) => {
 
               <Titles>And finally broke the back of true Shadow.</Titles>
 
-              <Titles>May the Force be with us! Glory to Ukraine!</Titles>
+              <Titles>May the Force be with us!</Titles>
+
+              <TitlesCentered>Glory to Ukraine!</TitlesCentered>
             </TitlesContent>
           </TitlesOverlay>
         </StarWarsOverlay>

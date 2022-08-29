@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import starWars from '../data/images/starWars.jpg';
+import starWars from '../data/images/star-wars.jpg';
+import starWarsCursor from '../data/images/star-wars-cursor.png';
 
 export const StarWarsOverlay = styled.div`
   position: relative;
@@ -17,6 +18,7 @@ export const StarWarsOverlay = styled.div`
   background-size: cover;
   background-position: center;
 
+  cursor: url(${starWarsCursor}), auto;
   animation: intro 120000ms ease-out 5000ms;
 
   @keyframes intro {
@@ -125,9 +127,10 @@ export const Titles = styled.p`
 `
 
 export const TitlesCentered = styled.p`
-  font-size: 150%;
   margin: 0.8em 0;
+  font-size: 150%;
   text-align: center;
+  text-transform: uppercase;
 `
 
 export const Light = styled.img`

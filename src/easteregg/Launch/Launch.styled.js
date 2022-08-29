@@ -4,8 +4,11 @@ import starship from '../data/images/launchImg.webp';
 import inside from '../data/images/inside.png';
 import insideMany from '../data/images/insideMany.jpg';
 import tablets from '../data/images/tablets.jpg';
-import neo from '../data/images/neo.png';
-import lie from '../data/images/lie.png';
+import startCursor from '../data/images/start-cursor.png';
+import armstrongCursor from '../data/images/armstrong-cursor.png';
+import insideCursor from '../data/images/inside-cursor.png';
+import neoCursor from '../data/images/neo-cursor.png';
+import lieCursor from '../data/images/lie-cursor.png';
 
 
 export const BlackBox = styled.div`
@@ -44,6 +47,7 @@ export const LaunchBox = styled.div`
   width: 100%;
   height: 100%;
 
+  cursor: url(${startCursor}), auto;
   box-shadow: 3px 3px 10px white,
    -3px 3px 10px white,
     3px -3px 10px white,
@@ -84,6 +88,11 @@ export const Video = styled.video`
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
+  cursor: url(${p => p.cursor}), auto;
+`
+
+export const ArmstrongBox = styled.div`
+  cursor: url(${armstrongCursor}), auto;
 `
 
 export const ArmstrongTextFirst = styled.div`
@@ -155,6 +164,7 @@ export const WhoWeAreText = styled.p`
   letter-spacing: 0.2em;
   user-select: none;
   color: white;
+  pointer-events: none;
   
   animation-name: appearanceWho;
   animation-duration: 11000ms;
@@ -173,6 +183,7 @@ export const InsideOverlay = styled.div`
   height: 100%;
   background-position: center;
 
+  cursor: url(${insideCursor}), auto;
   animation-name: insideOverlay;
   animation-duration: 10000ms;
   animation-delay: 4500ms;
@@ -420,7 +431,7 @@ export const ButtonTruth = styled.button`
   width: 20vw;
   height: 20vw;
 
-  cursor: url(${neo}), auto;
+  cursor: url(${neoCursor}), auto;
 
   :hover {
     border: 3px solid red;
@@ -446,7 +457,7 @@ export const ButtonLie = styled.button`
   width: 20vw;
   height: 20vw;
   
-  cursor: url(${lie}), auto;
+  cursor: url(${lieCursor}), auto;
 
   :hover {
     border: 3px solid violet;

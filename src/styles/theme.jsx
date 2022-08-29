@@ -17,8 +17,6 @@ export const theme = Object.freeze({
     checkColor: '#9452A5',
     btnBg: '#FF2662',
     btnBgDisabled: 'tomato',
-    launchBtn: '#00000083',
-    launchBtnHover: '#000000',
   },
   fontSizes: {
     titleMain: '30px',

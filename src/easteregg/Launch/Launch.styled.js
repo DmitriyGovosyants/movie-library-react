@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-// import { device } from "styles/mediaquery";
+import { device } from "styles/mediaquery";
 import starship from '../data/images/launchImg.webp';
 import inside from '../data/images/inside.png';
 import insideMany from '../data/images/insideMany.jpg';
 import tablets from '../data/images/tablets.jpg';
 import neo from '../data/images/neo.png';
 import lie from '../data/images/lie.png';
+
 
 export const BlackBox = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ export const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 30;
   width: 100%;
   height: 100%;
   background-color: black;
@@ -71,12 +72,12 @@ export const LaunchBtn = styled.button`
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textMain};
-  background-color: ${p => p.theme.colors.launchBtn};
+  background-color: #00000083;
   border-radius: 50%;
   transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
   :hover {
-    background-color: ${p => p.theme.colors.launchBtnHover};
+    background-color: black;
   }
 `
 
@@ -88,7 +89,7 @@ export const Video = styled.video`
   height: 100%;
 `
 
-export const TypingTextFirstPart = styled.div`
+export const ArmstrongTextFirst = styled.div`
   margin-bottom: ${p => p.theme.spacing(3)};
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
@@ -99,7 +100,7 @@ export const TypingTextFirstPart = styled.div`
   white-space: nowrap;
   border-right: 2px solid transparent;
   overflow: hidden;
-  animation: displayNoneTwo 4200ms ease, typingOne 2500ms steps(32) 4200ms, blinkOne 450ms step-end 8 alternate;
+  animation: displayNoneOne 4200ms ease, typingOne 2500ms steps(32) 4200ms, blinkOne 450ms step-end 8 alternate;
 
   @keyframes displayNoneOne {
     from {
@@ -129,7 +130,7 @@ export const TypingTextFirstPart = styled.div`
   }
 `
 
-export const TypingTextSecondPart = styled.div`
+export const ArmstrongTextSecond = styled.div`
   margin-bottom: ${p => p.theme.spacing(3)};
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
@@ -168,7 +169,7 @@ export const TypingTextSecondPart = styled.div`
 
 export const WhoWeAreText = styled.p`
   position: relative;
-  z-index: 10001;
+  z-index: 40;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: ${p => p.theme.fontSizes.titleBig};
   letter-spacing: 0.2em;
@@ -231,7 +232,7 @@ export const InsideBox = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-right: 15vw;
+  padding-right: 12vw;
   padding-bottom: 10vh;
   opacity: 0;
 
@@ -299,7 +300,7 @@ export const TextBoxUp = styled.div`
     }
 
     100% {
-      transform: translateY(0);
+      opacity: 0;
     }
   }
 `
@@ -334,7 +335,7 @@ export const TextBoxDown = styled.div`
     }
 
     100% {
-      transform: translateY(0);
+      opacity: 0;
     }
   }
 `
@@ -418,7 +419,7 @@ export const AreText = styled.p`
 export const InsideText = styled.p`
   opacity: 0;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 10vw;
+  font-size: 6vw;
   line-height: 0.8;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -432,7 +433,6 @@ export const InsideText = styled.p`
   @keyframes appearanceInside {
      0% {
       opacity: 0;
-      
     }
 
     20% {
@@ -494,9 +494,13 @@ export const TabletTextBox = styled.div`
   color: red;
   opacity: 1;
   user-select: none;
+
+  ${device.desktopM} {
+    font-size: ${p => p.theme.fontSizes.loadScreenBig};
+  }
 `
 
-export const TabletAnimationOne = styled.p`
+export const TabletsTextOne = styled.p`
   animation-name: tabletAnimationOne;
   animation-duration: 15000ms;
   animation-timing-function: ease-in-out;
@@ -526,7 +530,7 @@ export const TabletAnimationOne = styled.p`
   }
 `
 
-export const TabletAnimationTwo = styled.p`
+export const TabletsTextTwo = styled.p`
   animation-name: tabletAnimationTwo;
   animation-duration: 15000ms;
   animation-timing-function: ease-in-out;
@@ -556,7 +560,7 @@ export const TabletAnimationTwo = styled.p`
   }
 `
 
-export const TabletAnimationThree = styled.p`
+export const TabletsTextThree = styled.p`
   animation-name: tabletAnimationThree;
   animation-duration: 15000ms;
   animation-timing-function: ease-in-out;

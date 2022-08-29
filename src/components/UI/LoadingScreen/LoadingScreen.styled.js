@@ -14,7 +14,7 @@ export const LoadOverlay = styled.div`
   
 
   background-color: rgba(0, 0, 0, 0.95);
-  z-index: 1200;
+  z-index: 10;
 
   animation-name: screen;
   animation-duration: 1500ms;

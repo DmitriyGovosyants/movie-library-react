@@ -15,7 +15,7 @@ const arr = [];
 
 for (let i = 0; i < col; i++) arr[i] = 1;
 
-export function goMatrix() {
+export function matrixFn() {
   $.fillStyle = 'rgba(0, 0, 0, .05)';
   $.fillRect(0, 0, W, H);
   $.fillStyle = '#0f0';

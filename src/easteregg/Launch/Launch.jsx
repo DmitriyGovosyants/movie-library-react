@@ -5,8 +5,8 @@ import {
   LaunchBox,
   LaunchBtn,
   Video,
-  TypingTextFirstPart,
-  TypingTextSecondPart,
+  ArmstrongTextFirst,
+  ArmstrongTextSecond,
   WhoWeAreText,
   InsideBox,
   TextBoxUp,
@@ -17,9 +17,9 @@ import {
   InsideOverlay,
   TabletsOverlay,
   TabletTextBox,
-  TabletAnimationOne,
-  TabletAnimationTwo,
-  TabletAnimationThree,
+  TabletsTextOne,
+  TabletsTextTwo,
+  TabletsTextThree,
   ButtonTruth,
   ButtonLie,
 } from './Launch.styled';
@@ -35,10 +35,11 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { goMatrix } from 'easteregg/Matrix';
+import { matrixFn } from 'easteregg/Matrix';
+import { EEgg } from 'constants/constants';
 
 export const Launch = ({ closeModal }) => {
-  const [playQueue, setPlayQueue] = useState(0);
+  const [playQueue, setPlayQueue] = useState(EEgg.MENU);
   const [overlay, setOverlay] = useState(false);
   const [isAudioLoaded, setIsAudioLoaded] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -49,7 +50,6 @@ export const Launch = ({ closeModal }) => {
   const matrixAudioRef = useRef(null);
   const fullwidthRef = useRef(null);
 
-  // console.log(playQueue, overlay, isAudioLoaded, isVideoLoaded);
   let currentWindowHeight = window.innerHeight;
 
   useEffect(() => {
@@ -60,15 +60,14 @@ export const Launch = ({ closeModal }) => {
   }, [isAudioLoaded, isVideoLoaded]);
 
   useEffect(() => {
-    // должно быть всегда 4
-    if (playQueue === 4) {
+    if (playQueue === EEgg.INSIDE) {
       setTimeout(() => {
-        setPlayQueue(s => s + 1);
+        setPlayQueue(EEgg.TABLETS);
       }, 12000);
     }
   }, [playQueue]);
 
-  const addOverlay = () => {
+  const addOverlay = queueStatus => {
     let tick = 0;
     overlayTimerIdRef.current = setInterval(() => {
       tick += 1;
@@ -80,12 +79,12 @@ export const Launch = ({ closeModal }) => {
         clearInterval(overlayTimerIdRef.current);
         setOverlay(false);
         setIsAudioLoaded(false);
-        setPlayQueue(s => s + 1);
+        setPlayQueue(queueStatus);
       }
     }, 1000);
   };
 
-  const launchRocket = () => {
+  const toLaunch = () => {
     const orientation = window.screen.orientation.type;
     if (
       orientation === 'portrait-primary' ||
@@ -98,52 +97,68 @@ export const Launch = ({ closeModal }) => {
 
     setTimeout(() => {
       setOverlay(false);
-      setPlayQueue(1);
+      setPlayQueue(EEgg.LAUNCH);
     }, 4000);
 
     fullwidthRef.current
       .requestFullscreen({ navigationUI: 'hide' })
-      .catch(err => console.log(err)); // проверка на ошибки если не может быть включен фуллскрин, что с ней делать?
-    // fullwidthRef.current.exitFullscreen() - выход из Fullscreen, применить в конце
+      .catch(err => console.log(err));
+  };
+
+  const toStarWars = () => {
+    setIsAudioLoaded(false);
+    setPlayQueue(EEgg.STAR_WARS);
+  };
+
+  const toMatrix = () => {
+    document.exitFullscreen();
+    setPlayQueue(EEgg.MATRIX);
+    combatAudioRef.current.pause();
+    matrixAudioRef.current.play();
+    setInterval(matrixFn, 123);
   };
 
   return (
     <BlackBox ref={fullwidthRef}>
       <ButtonClose onClick={() => closeModal(false)} />
       {overlay && <Overlay timing={'4000ms'} />}
-      {/* start */}
-      {playQueue === 0 && (
+
+      {playQueue === EEgg.MENU && (
         <LaunchBox>
-          <LaunchBtn type="button" onClick={launchRocket}>
+          <LaunchBtn type="button" onClick={toLaunch}>
             into space
           </LaunchBtn>
         </LaunchBox>
       )}
-      {/* launch */}
-      {playQueue === -1 && (
-        <Video poster={starlink} autoPlay onPlay={addOverlay}>
+
+      {playQueue === EEgg.LAUNCH && (
+        <Video
+          poster={starlink}
+          autoPlay
+          onPlay={() => addOverlay(EEgg.ARMSTRONG)}
+        >
           <source src={shuttle} type="video/mp4" />
           Your browser does not support the <code>video</code> element.
         </Video>
       )}
-      {/* small step */}
-      {playQueue === 2 && (
+
+      {playQueue === EEgg.ARMSTRONG && (
         <>
           {isAudioLoaded && (
             <>
-              <TypingTextFirstPart>
+              <ArmstrongTextFirst>
                 “That’s one small step for man,
-              </TypingTextFirstPart>
-              <TypingTextSecondPart>
+              </ArmstrongTextFirst>
+              <ArmstrongTextSecond>
                 one giant leap for mankind.”
-              </TypingTextSecondPart>
+              </ArmstrongTextSecond>
             </>
           )}
           <audio
             autoPlay
             onPlay={() => {
               setIsAudioLoaded(true);
-              addOverlay();
+              addOverlay(EEgg.WHO_WE_ARE);
             }}
           >
             <source src={smallStep} type="audio/mp3" />
@@ -151,8 +166,8 @@ export const Launch = ({ closeModal }) => {
           </audio>
         </>
       )}
-      {/* who we are */}
-      {playQueue === 3 && (
+
+      {playQueue === EEgg.WHO_WE_ARE && (
         <>
           {isAudioLoaded && isVideoLoaded && (
             <WhoWeAreText>Who we are?</WhoWeAreText>
@@ -172,7 +187,7 @@ export const Launch = ({ closeModal }) => {
             onEnded={() => {
               setIsAudioLoaded(false);
               setIsVideoLoaded(false);
-              setPlayQueue(4);
+              setPlayQueue(EEgg.INSIDE);
             }}
           >
             <source src={whoWeAreAudio} type="audio/mp3" />
@@ -180,8 +195,8 @@ export const Launch = ({ closeModal }) => {
           </audio>
         </>
       )}
-      {/* inside */}
-      {playQueue === 4 && (
+
+      {playQueue === EEgg.INSIDE && (
         <InsideOverlay>
           <InsideBox currentHeight={currentWindowHeight}>
             <TextBoxUp>
@@ -194,8 +209,8 @@ export const Launch = ({ closeModal }) => {
           </InsideBox>
         </InsideOverlay>
       )}
-      {/* tablets */}
-      {playQueue === 1 && (
+
+      {playQueue === EEgg.TABLETS && (
         <TabletsOverlay>
           <audio
             ref={matrixAudioRef}
@@ -207,7 +222,10 @@ export const Launch = ({ closeModal }) => {
           </audio>
           <audio
             ref={combatAudioRef}
-            onLoadedData={() => (combatAudioRef.current.volume = 0.3)}
+            onLoadedData={() => {
+              combatAudioRef.current.volume = 0.3;
+              setIsAudioLoaded(true);
+            }}
             autoPlay
             controls
             loop
@@ -216,33 +234,19 @@ export const Launch = ({ closeModal }) => {
             <source src={tabletsAudio} type="audio/mp3" />
             Your browser does not support the <code>audio</code> element.
           </audio>
-          <ButtonTruth
-            type="button"
-            onClick={() => {
-              setIsAudioLoaded(false);
-              setPlayQueue(6);
-            }}
-          ></ButtonTruth>
-          <ButtonLie
-            type="button"
-            onClick={() => {
-              document.exitFullscreen();
-              combatAudioRef.current.pause();
-              matrixAudioRef.current.play();
-              setInterval(goMatrix, 123);
-            }}
-          ></ButtonLie>
+          <ButtonTruth type="button" onClick={toStarWars}></ButtonTruth>
+          <ButtonLie type="button" onClick={toMatrix}></ButtonLie>
           {isAudioLoaded && (
             <TabletTextBox>
-              <TabletAnimationOne>Choose</TabletAnimationOne>
-              <TabletAnimationTwo>your</TabletAnimationTwo>
-              <TabletAnimationThree>destiny!</TabletAnimationThree>
+              <TabletsTextOne>Choose</TabletsTextOne>
+              <TabletsTextTwo>your</TabletsTextTwo>
+              <TabletsTextThree>destiny!</TabletsTextThree>
             </TabletTextBox>
           )}
         </TabletsOverlay>
       )}
-      {/* star wars */}
-      {playQueue === 6 && <WhoWeAreText>STAR WARS</WhoWeAreText>}
+
+      {playQueue === EEgg.STAR_WARS && <WhoWeAreText>STAR WARS</WhoWeAreText>}
     </BlackBox>
   );
 };

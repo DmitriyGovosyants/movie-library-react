@@ -12,7 +12,7 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
 
   overflow-y: ${p => p.fullWidth ? 'none' : 'scroll'};
-  z-index: 1200;
+  z-index: 10;
   animation-name: backdrop;
   animation-duration: 300ms;
   animation-timing-function: ease;

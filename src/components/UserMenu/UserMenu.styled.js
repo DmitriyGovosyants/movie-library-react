@@ -23,7 +23,7 @@ export const UserBar = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 2000;
+  z-index: 20;
   overflow-y: scroll;
   overflow-x: hidden;
 

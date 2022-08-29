@@ -1,4 +1,4 @@
-import { ButtonClose, Button } from 'components';
+import { ButtonClose } from 'components';
 import {
   BlackBox,
   Overlay,
@@ -30,6 +30,7 @@ import smallStep from '../data/audio/small-step.mp3';
 import whoWeAreAudio from '../data/audio/who-we-are.mp3';
 import whoWeAreVideo from '../data/video/who-we-are.webm';
 import tabletsAudio from '../data/audio/mortal-combat.mp3';
+import matrixAudio from '../data/audio/matrix.mp3';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -44,6 +45,8 @@ export const Launch = ({ closeModal }) => {
   const overlayTimerIdRef = useRef(null);
   const whoWeAreVideoRef = useRef(null);
   const whoWeAreAudioRef = useRef(null);
+  const combatAudioRef = useRef(null);
+  const matrixAudioRef = useRef(null);
   const fullwidthRef = useRef(null);
 
   // console.log(playQueue, overlay, isAudioLoaded, isVideoLoaded);
@@ -195,7 +198,16 @@ export const Launch = ({ closeModal }) => {
       {playQueue === 1 && (
         <TabletsOverlay>
           <audio
-            onLoadedData={() => setIsAudioLoaded(true)}
+            ref={matrixAudioRef}
+            onLoadedData={() => (matrixAudioRef.current.volume = 0.3)}
+            loop
+          >
+            <source src={matrixAudio} type="audio/mp3" />
+            Your browser does not support the <code>audio</code> element.
+          </audio>
+          <audio
+            ref={combatAudioRef}
+            onLoadedData={() => (combatAudioRef.current.volume = 0.3)}
             autoPlay
             controls
             loop
@@ -211,19 +223,12 @@ export const Launch = ({ closeModal }) => {
               setPlayQueue(6);
             }}
           ></ButtonTruth>
-          {/* <Button
-            onClick={() => {
-              console.log(fullwidthRef.current);
-              document.exitFullscreen();
-            }}
-          >
-            FFFFFFFF
-          </Button> */}
           <ButtonLie
             type="button"
             onClick={() => {
               document.exitFullscreen();
-              closeModal(false);
+              combatAudioRef.current.pause();
+              matrixAudioRef.current.play();
               setInterval(goMatrix, 123);
             }}
           ></ButtonLie>

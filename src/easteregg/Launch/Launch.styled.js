@@ -32,13 +32,8 @@ export const Overlay = styled.div`
   animation-timing-function: ease;
 
   @keyframes overlay {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    0% {opacity: 0;}
+    100% {opacity: 1;}
   }
 `
 
@@ -108,30 +103,16 @@ export const ArmstrongTextFirst = styled.div`
   animation: displayNoneOne 4200ms ease, typingOne 2500ms steps(32) 4200ms, blinkOne 450ms step-end 8 alternate;
 
   @keyframes displayNoneOne {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0;
-    }
+    from {opacity: 0;}
+    to {opacity: 0;}
   }
-
   @keyframes typingOne {
-    from {
-      width: 0;
-    }
+    from {width: 0;}
   }
-      
   @keyframes blinkOne {
-    0% {
-      border-color: transparent;
-    }
-    50% {
-      border-color: white;
-    }
-    100% {
-      border-color: transparent;
-    }
+    0% {border-color: transparent;}
+    50% {border-color: white;}
+    100% {border-color: transparent;}
   }
 `
 
@@ -152,26 +133,14 @@ export const ArmstrongTextSecond = styled.div`
   animation: displayNoneTwo 9800ms ease, typingTwo 3200ms steps(29) 9800ms, blinkTwo 500ms step-end infinite alternate;
 
   @keyframes displayNoneTwo {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0;
-    }
+    from {opacity: 0;}
+    to {opacity: 0;}
   }
-
   @keyframes typingTwo {
-    from {
-      width: 0;
-    }
-    to {
-    }
+    from {width: 0;}
   }
-      
   @keyframes blinkTwo {
-    50% {
-      border-color: transparent;
-    }
+    50% {border-color: transparent;}
   }
 `
 
@@ -192,24 +161,10 @@ export const WhoWeAreText = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes appearanceWho {
-    0% {
-      opacity: 0;
-      transform: scale(1);
-    }
-
-    22% {
-      opacity: 1;
-    }
-
-    33% {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    100% {
-      opacity: 0;
-      transform: scale(10);
-    }
+    0% {opacity: 0; transform: scale(1);}
+    22% {opacity: 1;}
+    33% {opacity: 1; transform: scale(1);}
+    100% {opacity: 0; transform: scale(10);}
   }
 `
 
@@ -224,13 +179,8 @@ export const InsideOverlay = styled.div`
   animation-timing-function: ease-in-out;
 
   @keyframes insideOverlay {
-    0% {
-      background-position: center;
-    }
-    100% {
-      background-image: url(${insideMany});
-      background-position: center;
-    }
+    0% {background-position: center;}
+    100% {background-image: url(${insideMany}); background-position: center;}
   }
 `
 
@@ -256,26 +206,11 @@ export const InsideBox = styled.div`
   animation-timing-function: ease-in-out;
 
   @keyframes insideAnim {
-    0% {
-      opacity: 0;
-    }
-
-    10% {
-      opacity: 1;
-    }
-
-    50% {
-      transform: scale(1);
-    }
-
-    80% {
-      transform: scale(calc(900/${p => p.currentHeight} * 0.078));
-    }
-
-    100% {
-      transform: scale(calc(900/${p => p.currentHeight} * 0.078));
-      opacity: 1;
-    }
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    50% {transform: scale(1);}
+    80% {transform: scale(calc(900/${p => p.currentHeight} * 0.078));}
+    100% {transform: scale(calc(900/${p => p.currentHeight} * 0.078)); opacity: 1;}
   }
 `
 
@@ -288,29 +223,12 @@ export const TextBoxUp = styled.div`
   animation-timing-function: ease-in-out;
 
   @keyframes textBoxUp {
-    0% {
-      transform: translateY(50%);
-    }
-
-    20% {
-      transform: translateY(50%);
-    }
-
-    30% {
-      transform: translateY(0);
-    }
-
-    40% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 0;
-    }
+    0% {transform: translateY(50%);}
+    20% {transform: translateY(50%);}
+    30% {transform: translateY(0);}
+    40% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 0;}
   }
 `
 
@@ -323,29 +241,12 @@ export const TextBoxDown = styled.div`
   animation-timing-function: ease-in-out;
 
   @keyframes textBoxDown {
-    0% {
-      transform: translateY(-50%);
-    }
-
-    20% {
-      transform: translateY(-50%);
-    }
-
-    30% {
-      transform: translateY(0);
-    }
-
-    40% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 0;
-    }
+    0% {transform: translateY(-50%);}
+    20% {transform: translateY(-50%);}
+    30% {transform: translateY(0);}
+    40% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 0;}
   }
 `
 
@@ -363,26 +264,11 @@ export const YouText = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes appearanceYou {
-    0% {
-      opacity: 0;
-    }
-
-    10% {
-      opacity: 1;
-    }
-
-    40% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(110%);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateY(110%);
-    }
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    40% {transform: translateY(0);}
+    50% {transform: translateY(110%);}
+    100% {transform: translateY(110%); opacity: 1;}
   }
 `
 
@@ -400,30 +286,12 @@ export const AreText = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes appearanceAre {
-    0% {
-      opacity: 0;
-    }
-
-    7% {
-      opacity: 0;
-    }
-
-    17% {
-      opacity: 1;
-    }
-    
-    40% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-110%);
-    }
-
-    100% {
-      opacity: 1;
-      transform: translateY(-110%);
-    }
+    0% {opacity: 0;}
+    7% {opacity: 0;}
+    17% {opacity: 1;}
+    40% {transform: translateY(0);}
+    50% {transform: translateY(-110%);}
+    100% {transform: translateY(-110%); opacity: 1;}
   }
 `
 
@@ -443,23 +311,10 @@ export const InsideText = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes appearanceInside {
-     0% {
-      opacity: 0;
-    }
-
-    20% {
-      opacity: 0;
-      transform: scale(0);
-    }
-
-    30% {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    100% {
-      opacity: 1;
-    }
+     0% {opacity: 0;}
+    20% {opacity: 0; transform: scale(0);}
+    30% {opacity: 1; transform: scale(1);}
+    100% {opacity: 1;}
   }
 `
 
@@ -487,13 +342,8 @@ export const TabletsOverlay = styled.div`
   animation-timing-function: ease-in-out;
 
   @keyframes tabletsOverlay {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    0% {opacity: 0;}
+    100% {opacity: 1;}
   }
 `
 
@@ -520,27 +370,13 @@ export const TabletsTextOne = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes tabletAnimationOne {
-    0% {
-      opacity: 0;
-    }
-    31% {
-      opacity: 0;
-    }
-    32% {
-      opacity: 1;
-    }
-    79% {
-      transform: scale(1);
-    }
-    80% {
-      transform: scale(1.2);
-    }
-    85% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
+    0% {opacity: 0;}
+    31% {opacity: 0;}
+    32% {opacity: 1;}
+    79% {transform: scale(1);}
+    80% {transform: scale(1.2);}
+    85% {transform: scale(1.2);}
+    100% {transform: scale(1);}
   }
 `
 
@@ -550,27 +386,13 @@ export const TabletsTextTwo = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes tabletAnimationTwo {
-    0% {
-      opacity: 0;
-    }
-    35% {
-      opacity: 0;
-    }
-    36% {
-      opacity: 1;
-    }
-    83% {
-      transform: scale(1);
-    }
-    84% {
-      transform: scale(1.2);
-    }
-    89% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1.0);
-    }
+    0% {opacity: 0;}
+    35% {opacity: 0;}
+    36% {opacity: 1;}
+    83% {transform: scale(1);}
+    84% {transform: scale(1.2);}
+    89% {transform: scale(1.2);}
+    100% {transform: scale(1.0);}
   }
 `
 
@@ -580,27 +402,13 @@ export const TabletsTextThree = styled.p`
   animation-timing-function: ease-in-out;
 
   @keyframes tabletAnimationThree {
-    0% {
-      opacity: 0;
-    }
-    38% {
-      opacity: 0;
-    }
-    39% {
-      opacity: 1;
-    }
-    87% {
-      transform: scale(1);
-    }
-    88% {
-      transform: scale(1.2);
-    }
-    94% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
+    0% {opacity: 0;}
+    38% {opacity: 0;}
+    39% {opacity: 1;}
+    87% {transform: scale(1);}
+    88% {transform: scale(1.2);}
+    94% {transform: scale(1.2);}
+    100% {transform: scale(1);}
   }
 `
 
@@ -623,15 +431,9 @@ export const ButtonTruth = styled.button`
     animation-iteration-count: infinite;
 
     @keyframes tabletLeft {
-      0% {
-        transform: scale(1) rotateZ(0) translateY(-50%);
-      }
-      50% {
-        transform: scale(1.3) rotateZ(10deg) translateY(-50%);
-      }
-      100% {
-        transform: scale(1) rotateZ(0) translateY(-50%);
-      }
+      0% {transform: scale(1) rotateZ(0) translateY(-50%);}
+      50% {transform: scale(1.3) rotateZ(10deg) translateY(-50%);}
+      100% {transform: scale(1) rotateZ(0) translateY(-50%);}
     }
   }
 `
@@ -655,15 +457,9 @@ export const ButtonLie = styled.button`
     animation-iteration-count: infinite;
 
     @keyframes tabletRigth {
-      0% {
-        transform: scale(1) rotateZ(0) translateY(-50%);
-      }
-      50% {
-        transform: scale(1.3) rotateZ(-10deg) translateY(-50%);
-      }
-      100% {
-        transform: scale(1) rotateZ(0) translateY(-50%);
-      }
+      0% {transform: scale(1) rotateZ(0) translateY(-50%);}
+      50% {transform: scale(1.3) rotateZ(-10deg) translateY(-50%);}
+      100% {transform: scale(1) rotateZ(0) translateY(-50%);}
     }
   }
 `

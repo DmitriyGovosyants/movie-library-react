@@ -34,3 +34,5 @@ export function goMatrix() {
   document.body.style.overflow = 'hidden';
   document.body.style.cursor = `url(${error}), auto`;
 }
+
+// window.addEventListener('resize', () => window.location.reload())

@@ -101,7 +101,9 @@ export const MovieCard = ({
 
     const { title, poster_path, vote_average, release_date, genres, id } =
       movieDetails;
-    const genresNames = genres ? genres.map(e => e.name).join(', ') : null;
+
+    const genresIdList = genres.map(genre => genre.id);
+    // const genresNames = genres ? genres.map(e => e.name).join(', ') : null;
 
     if (!watchedStatus && !queueStatus) {
       try {
@@ -112,7 +114,7 @@ export const MovieCard = ({
           poster_path,
           vote_average,
           release_date,
-          genresNames,
+          genresIdList,
           id
         );
 

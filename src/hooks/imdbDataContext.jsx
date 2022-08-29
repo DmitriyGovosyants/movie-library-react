@@ -21,13 +21,11 @@ export const IMDBDataProvider = ({ children }) => {
         setGenresList(genresSource.data.genres);
         setLanguagesList(dataSource.data);
       } catch (e) {
-        toast.error('Cannot get genres and languages list. Try later');
+        toast.error('Cannot get genres and/or languages list. Try again');
       }
     };
     fetch();
   }, []);
-
-  console.log(genresList, languagesList);
 
   return (
     <IMDBDataContext.Provider value={{ genresList, languagesList }}>

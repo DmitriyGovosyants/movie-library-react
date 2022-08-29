@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Section, Container, MovieList, LibraryControlBar } from 'components';
 import { useUser } from 'hooks/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { SortStatus, ViewStatus } from 'constants/constants';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
+import { useIMDBData } from 'hooks/imdbDataContext';
 
 export const Library = () => {
   const { user } = useUser();
+  const { genresList } = useIMDBData();
   const [, setSearchParams] = useSearchParams();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);
@@ -65,7 +65,7 @@ export const Library = () => {
           movie => movie[viewStatus] === true
         );
 
-        getUniqueGenres(moviesByStatus);
+        getUniqueGenres(moviesByStatus, genresList);
         const sortMovies = sortBy(moviesByStatus);
         const filterMovies = filterBy(sortMovies);
         setLibraryMovies(filterMovies);
@@ -78,6 +78,7 @@ export const Library = () => {
   }, [
     filterBy,
     filterStatus,
+    genresList,
     refreshPage,
     setSearchParams,
     sortBy,
@@ -85,11 +86,11 @@ export const Library = () => {
     viewStatus,
   ]);
 
-  const getUniqueGenres = movieArr => {
+  const getUniqueGenres = (movieArr, genresList) => {
     const uniqueGenres = movieArr
-      .flatMap(movie => movie.genres.split(', '))
-      .filter((movie, index, array) => array.indexOf(movie) === index)
-      .sort((a, b) => a.localeCompare(b));
+      .flatMap(movie => movie.genres)
+      .filter((genreID, index, array) => array.indexOf(genreID) === index)
+      .map(genreID => genresList.find(({ id }) => id === genreID));
 
     setAllGenres(uniqueGenres);
   };

@@ -96,7 +96,7 @@ export const Launch = ({ closeModal }) => {
 
     setTimeout(() => {
       setOverlay(false);
-      setPlayQueue(EEgg.LAUNCH);
+      setPlayQueue(EEgg.TABLETS);
     }, 4000);
 
     fullwidthRef.current
@@ -111,6 +111,7 @@ export const Launch = ({ closeModal }) => {
 
   const toMatrix = () => {
     document.exitFullscreen();
+    closeModal(false);
     setPlayQueue(EEgg.MATRIX);
     combatAudioRef.current.pause();
     matrixAudioRef.current.play();
@@ -230,9 +231,7 @@ export const Launch = ({ closeModal }) => {
               setIsAudioLoaded(true);
             }}
             autoPlay
-            controls
             loop
-            style={{ height: '20px' }}
           >
             <source src={tabletsAudio} type="audio/mp3" />
             Your browser does not support the <code>audio</code> element.

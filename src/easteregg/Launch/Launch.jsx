@@ -85,23 +85,28 @@ export const Launch = ({ closeModal }) => {
 
   const toLaunch = () => {
     const orientation = window.screen.orientation.type;
-    if (
+    const isPortrait =
       orientation === 'portrait-primary' ||
-      orientation === 'portrait-secondary'
-    ) {
-      return toast.info('Please, flip the device to landscape mode');
+      orientation === 'portrait-secondary';
+
+    if (isPortrait) {
+      toast.info('For best viewed rotate the device', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
     }
 
-    setOverlay(true);
+    setTimeout(() => {
+      setOverlay(true);
+    }, 10);
 
     setTimeout(() => {
       setOverlay(false);
       setPlayQueue(EEgg.LAUNCH);
+      fullwidthRef.current
+        .requestFullscreen({ navigationUI: 'hide' })
+        .catch(err => console.log(err));
     }, 4000);
-
-    fullwidthRef.current
-      .requestFullscreen({ navigationUI: 'hide' })
-      .catch(err => console.log(err));
   };
 
   const toStarWars = () => {

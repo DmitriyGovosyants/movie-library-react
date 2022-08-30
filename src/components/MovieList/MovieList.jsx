@@ -19,9 +19,7 @@ export const MovieList = ({ movies, setRefreshPage }) => {
       return setCurrentId(moviesIds[0]);
     }
 
-    // if (nextIdx >= 0 && nextIdx !== moviesIds.length) {
     setCurrentId(moviesIds[nextIdx]);
-    // }
   };
 
   return (

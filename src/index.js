@@ -16,11 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
         <ToastContainer autoClose={2500} position="bottom-center" />
-        <UserProvider>
-          <IMDBDataProvider>
+        <IMDBDataProvider>
+          <UserProvider>
             <App />
-          </IMDBDataProvider>
-        </UserProvider>
+          </UserProvider>
+        </IMDBDataProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

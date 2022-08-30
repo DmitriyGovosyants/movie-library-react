@@ -1,7 +1,8 @@
 export * from './SharedLayout/SharedLayout';
 export * from './Header/Header';
-export * from './Footer/Footer';
+export * from './LanguageSwitcher/LanguageSwitcher';
 export * from './UserMenu/UserMenu';
+export * from './Footer/Footer';
 
 export * from './MovieList/MovieList';
 export * from './MovieItem/MovieItem';

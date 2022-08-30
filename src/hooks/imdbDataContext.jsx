@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { fetchGenres, fetchLanguages } from 'services/movieApi';
+import { fetchGenresList, fetchLanguagesList } from 'services/movieApi';
 
 const { createContext } = require('react');
 const { useContext } = require('react');
@@ -15,8 +15,8 @@ export const IMDBDataProvider = ({ children }) => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const genresSource = await fetchGenres();
-        const dataSource = await fetchLanguages();
+        const genresSource = await fetchGenresList();
+        const dataSource = await fetchLanguagesList();
 
         setGenresList(genresSource.data.genres);
         setLanguagesList(dataSource.data);

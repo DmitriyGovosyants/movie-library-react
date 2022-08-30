@@ -43,7 +43,7 @@ export const MovieCard = ({
   handleChangeMovieCard,
 }) => {
   const location = useLocation();
-  const { user } = useUser();
+  const { user, userLanguage } = useUser();
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieTrailers, setMovieTrailers] = useState([]);
   const [error, setError] = useState(null);
@@ -68,7 +68,7 @@ export const MovieCard = ({
 
     const fetch = async () => {
       try {
-        const { data } = await fetchMovieDetails(itemId);
+        const { data } = await fetchMovieDetails(itemId, userLanguage.value);
         setMovieDetails(data);
       } catch (e) {
         toast.error(e.message);
@@ -77,7 +77,7 @@ export const MovieCard = ({
       }
     };
     fetch();
-  }, [itemId]);
+  }, [itemId, userLanguage.value]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -102,10 +102,8 @@ export const MovieCard = ({
     const { title, poster_path, vote_average, release_date, genres, id } =
       movieDetails;
 
-    const genresIdList = genres.map(genre => genre.id);
-    // const genresNames = genres ? genres.map(e => e.name).join(', ') : null;
-
     if (!watchedStatus && !queueStatus) {
+      const genresIdList = genres.map(genre => genre.id);
       try {
         await addNewMovieInLibrary(
           status,
@@ -196,7 +194,7 @@ export const MovieCard = ({
       try {
         const {
           data: { results },
-        } = await fetchMovieTrailer(itemId);
+        } = await fetchMovieTrailer(itemId, userLanguage.value);
         if (results?.length === 0) {
           setError('>> No trailers found <<');
           return;

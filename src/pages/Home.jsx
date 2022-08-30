@@ -11,8 +11,10 @@ import {
   Pagination,
   Spinner,
 } from 'components';
+import { useUser } from 'hooks/userContext';
 
 const Home = () => {
+  const { userLanguage } = useUser();
   const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -34,7 +36,8 @@ const Home = () => {
       try {
         const {
           data: { results, total_pages },
-        } = await fetchMoviesOnTrend(page);
+        } = await fetchMoviesOnTrend(page, userLanguage.value);
+
         setTotalPage(total_pages);
         setMovies([...results]);
       } catch (e) {
@@ -44,7 +47,7 @@ const Home = () => {
       }
     };
     fetch();
-  }, [page, search]);
+  }, [page, search, userLanguage.value]);
 
   useEffect(() => {
     if (search === '') {
@@ -63,7 +66,7 @@ const Home = () => {
       try {
         const {
           data: { results, total_pages },
-        } = await fetchMoviesByName(page, search);
+        } = await fetchMoviesByName(page, search, userLanguage.value);
 
         setTotalPage(total_pages);
         setMovies([...results]);
@@ -74,7 +77,7 @@ const Home = () => {
       }
     };
     fetch();
-  }, [page, search, prevQuery]);
+  }, [page, search, prevQuery, userLanguage.value]);
 
   return (
     <Section>

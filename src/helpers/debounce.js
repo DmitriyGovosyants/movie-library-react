@@ -1,9 +1,8 @@
 export const debounce = (fn, delay) => {
-  let timeoutID; // Initially undefined
+  let timeoutID;
   
   return function(...args){
     
-    // cancel previously unexecuted timeouts
     if(timeoutID){
       clearTimeout(timeoutID);
     }

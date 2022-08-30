@@ -23,7 +23,7 @@ export const LibraryControlBar = ({
   libraryMovies,
 }) => {
   const genresOption = allGenres.reduce((genres, genre) => {
-    return [...genres, { value: genre.id, label: genre.name }];
+    return [...genres, { value: genre?.id, label: genre?.name }];
   }, []);
 
   return (

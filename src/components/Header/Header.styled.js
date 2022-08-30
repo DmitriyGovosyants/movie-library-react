@@ -27,6 +27,7 @@ export const HeaderBox = styled.header`
 export const FlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 `
 
 export const NavigationBox = styled.nav`

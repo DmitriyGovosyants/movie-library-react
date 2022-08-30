@@ -55,7 +55,7 @@ export const Header = () => {
               </NavList>
             </NavigationBox>
             <LanguageSwitcher />
-            {user && <UserMenu user={user} />}
+            {user && <UserMenu />}
           </FlexContainer>
         </Container>
       </HeaderBox>

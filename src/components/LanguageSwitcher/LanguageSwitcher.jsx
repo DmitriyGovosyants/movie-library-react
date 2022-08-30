@@ -1,7 +1,7 @@
 import { useIMDBData } from 'hooks/imdbDataContext';
 import { useUser } from 'hooks/userContext';
 import Select from 'react-select';
-import { selectStyles } from './LanguageSwitcher.styled';
+import { LangMenuBox, selectStyles } from './LanguageSwitcher.styled';
 
 export const LanguageSwitcher = () => {
   const { languagesList } = useIMDBData();
@@ -16,13 +16,13 @@ export const LanguageSwitcher = () => {
   console.log('SWITCH', userLanguage);
 
   return (
-    <div>
+    <LangMenuBox>
       <Select
         defaultValue={userLanguage}
         onChange={setUserLanguage}
         options={languageOption}
         styles={selectStyles}
       />
-    </div>
+    </LangMenuBox>
   );
 };

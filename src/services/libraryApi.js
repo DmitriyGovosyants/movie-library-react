@@ -32,8 +32,10 @@ export const addNewMovieInLibrary = async (
   }); 
 }
 
-export const addSecondStatus = async (status, user, id) => {
+export const addSecondStatus = async (status, title, vote_average, user, id) => {
   return await update(ref(db, `/users/${user?.uid}/movies/${id}`), {
+    title,
+    vote_average,
     [status]: true,
     [`${status}DateAdded`]: Date.now(),
   });
@@ -42,6 +44,14 @@ export const addSecondStatus = async (status, user, id) => {
 export const removeOneOfTwoStatus = async (status, user, id) => {
   return await update(ref(db, `/users/${user?.uid}/movies/${id}`), {
     [status]: false,
+  });
+}
+
+export const moveToWatched = async (status, user, id) => {
+  return await update(ref(db, `/users/${user?.uid}/movies/${id}`), {
+    [status]: false,
+    watched: true,
+    watchedDateAdded: Date.now(),
   });
 }
 

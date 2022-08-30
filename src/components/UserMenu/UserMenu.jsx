@@ -17,8 +17,10 @@ import { avatarArr } from 'helpers/avatarArray';
 import { CSSTransition } from 'react-transition-group';
 import { addAvatar, fetchAvatar } from 'services/libraryApi';
 import { useEffect } from 'react';
+import { useUser } from 'hooks/userContext';
 
-export const UserMenu = ({ user }) => {
+export const UserMenu = () => {
+  const { user } = useUser();
   const nodeRef = useRef(null);
   const [showUserBar, setShowUserBar] = useState(false);
   const [avatarIndex, setAvatarIndex] = useState(0);

@@ -11,7 +11,6 @@ export const theme = Object.freeze({
     bgThird: 'gray',
 
     bg: '#7f7b83',
-    asdf: '#4a5f75',
     btnArrowBg: '#7f7b8384',
 
     accentColor: 'red',

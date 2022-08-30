@@ -47,14 +47,6 @@ export const removeOneOfTwoStatus = async (status, user, id) => {
   });
 }
 
-export const moveToWatched = async (status, user, id) => {
-  return await update(ref(db, `/users/${user?.uid}/movies/${id}`), {
-    [status]: false,
-    watched: true,
-    watchedDateAdded: Date.now(),
-  });
-}
-
 export const removeFromLibrary = async (user, id) => {
   return await remove(ref(db, `/users/${user?.uid}/movies/${id}`));
 }

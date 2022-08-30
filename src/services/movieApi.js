@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
 export const fetchMoviesOnTrend = async (pageNumber, language) => {
   return await axios.get(`trending/movie/day?api_key=${API_KEY}&page=${pageNumber}&language=${language}`);
+  // return await axios.get(`discover/movie?api_key=${API_KEY}&page=${pageNumber}&language=${language}&with_genres=28`);
 }
 
 export const fetchMoviesByName = async (name, page, language) => {
@@ -27,14 +28,26 @@ export const fetchGenresList = async () => {
   return await axios.get(`genre/movie/list?api_key=${API_KEY}`);
 }
 
-// ЧТО ЕЩЕ МОЖНО ДОБАВИТЬ
 
+// Будет 2 поиска - trend and toprated
+// В каждом можно будет указать жанр
+// Тобто надо добавить фильтр жанров и 2 кнопки поиска
+
+// Кроме того, в карточке фильма можно кликнуть по жанру и перейти на поиск по жанру (привязать к селекту жанра)
+// Также добавить внизу кнопки-ссылки
+// 1 Фильмы-рекомендации
+// 2 Похожие фильмы
+// 3 Картинки
+// 3.1 backdrop
+// 3.2 logos
+// 3.3 posters
+// 4 Команда
+// 4.1 Актеры
+// 4.2 Разработчики
+
+// ЧТО ЕЩЕ МОЖНО ДОБАВИТЬ
 // ГЛАВНАЯ СТРАНИЦА
-// 1 массив - популярные фильмы
-export const fetchMoviePopular = async () => {
-  return await axios.get(`movie/popular?api_key=${API_KEY}`);
-}
-// 1 массив - top rated фильмы
+// 1 массив - top rated фильмы +++
 export const fetchMovieTopRated = async () => {
   return await axios.get(`movie/top_rated?api_key=${API_KEY}`);
 }

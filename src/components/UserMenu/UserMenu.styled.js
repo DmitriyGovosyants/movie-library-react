@@ -59,14 +59,14 @@ export const AvatarBig = styled.img`
 `
 
 export const UserName = styled.p`
-  margin-bottom: ${p => p.theme.spacing(5)};
-  
   width: 300px;
+  margin-bottom: ${p => p.theme.spacing(5)};
 
   font-size: ${p => p.theme.fontSizes.large};
   text-align: center;
   overflow-wrap: break-word;
   color: ${p => p.theme.colors.textMain};
+  text-shadow: 2px 2px 3px darkred;
 `
 
 export const UserContent = styled.div`

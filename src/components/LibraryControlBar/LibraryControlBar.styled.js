@@ -64,7 +64,8 @@ export const selectStyles = {
     ...provided,
     borderBottom: '1px dotted pink',
     color: state.isSelected ? 'white' : 'gray',
-    padding: 18,
+    padding: 15,
+    textAlign: 'center',
   }),
   control: () => ({
     display: 'flex',
@@ -72,6 +73,11 @@ export const selectStyles = {
     width: 250,
     padding: 5,
     border: '1px solid gray',
+    textAlign: 'center',
+  }),
+  placeholder: (provided) => ({
+    ...provided,
+    textTransform: 'none',
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;

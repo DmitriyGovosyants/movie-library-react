@@ -76,7 +76,7 @@ export const LaunchBtn = styled.button`
   text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
   cursor: url(${startCursor}), auto;
 
-  background: radial-gradient(circle at 70px 70px,${p => p.theme.colors.asdf},#000000);
+  background: radial-gradient(circle at 70px 70px, #4a5f75, #000000);
   border-radius: 50%;
   transition: opacity ${p => p.theme.animation.cubicBezierAverageSpeed};
   animation: colorChange 3s infinite alternate linear;
@@ -88,7 +88,7 @@ export const LaunchBtn = styled.button`
         background-size: 100% 100%;
       }
       50% {
-        background-size: 100% 150%;
+        background-size: 100% 130%;
       }
       to {
         background-size: 100% 100%;

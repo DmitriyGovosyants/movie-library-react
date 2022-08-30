@@ -7,7 +7,6 @@ import {
   addSecondStatus,
   removeFromLibrary,
   removeOneOfTwoStatus,
-  moveToWatched,
 } from 'services/libraryApi';
 import { ViewStatus } from 'constants/constants';
 import noPoster from 'data/images/movies/no-poster.jpeg';
@@ -157,7 +156,10 @@ export const MovieCard = ({
       return;
     }
 
-    if (status === ViewStatus.WATCHED && watchedStatus && !queueStatus) {
+    if (
+      (status === ViewStatus.WATCHED && watchedStatus && !queueStatus) ||
+      (status === ViewStatus.QUEUE && !watchedStatus && queueStatus)
+    ) {
       try {
         await removeFromLibrary(user, id);
         setWatchedStatus(false);
@@ -165,18 +167,6 @@ export const MovieCard = ({
         toast.info(`"${title}" has been deleted from ${status}`);
       } catch (error) {
         toast.error(`We cannot delete "${title}" from ${status}`);
-      }
-      return;
-    }
-
-    if (status === ViewStatus.QUEUE && !watchedStatus && queueStatus) {
-      try {
-        await moveToWatched(status, user, id);
-        setWatchedStatus(false);
-        setQueueStatus(false);
-        toast.info(`"${title}" has been moved to watched`);
-      } catch (error) {
-        toast.error(`We cannot moved "${title}" from watched`);
       }
       return;
     }

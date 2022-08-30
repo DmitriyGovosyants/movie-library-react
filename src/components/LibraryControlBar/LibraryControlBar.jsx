@@ -82,6 +82,7 @@ export const LibraryControlBar = ({
         </SortBox>
         <SelectBox>
           <Select
+            placeholder={'- genre -'}
             defaultValue={filterStatus}
             onChange={setFilterStatus}
             options={genresOption}

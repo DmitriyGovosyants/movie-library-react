@@ -66,20 +66,34 @@ export const LaunchBox = styled.div`
 export const LaunchBtn = styled.button`
   width: 300px;
   height: 300px;
+  opacity: 0.8;
 
   font-size: ${p => p.theme.fontSizes.titleBig};
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textMain};
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
   cursor: url(${startCursor}), auto;
 
-  background-color: #00000083;
+  background: radial-gradient(circle at 70px 70px,${p => p.theme.colors.asdf},#000000);
   border-radius: 50%;
-  transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
+  transition: opacity ${p => p.theme.animation.cubicBezierAverageSpeed};
+  animation: colorChange 3s infinite alternate linear;
 
   :hover {
-    background: radial-gradient(circle at 70px 70px,#5cabff,#000000);
+    opacity: 1;
+    @keyframes colorChange {
+      from {
+        background-size: 100% 100%;
+      }
+      50% {
+        background-size: 100% 150%;
+      }
+      to {
+        background-size: 100% 100%;
+      }
+    }
   }
 `
 

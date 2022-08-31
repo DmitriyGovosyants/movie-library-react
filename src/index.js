@@ -7,8 +7,8 @@ import { Global, ThemeProvider } from '@emotion/react';
 import { GlobalStyles, theme } from 'styles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { UserProvider } from 'hooks/userContext';
-import { IMDBDataProvider } from 'hooks/imdbDataContext';
+import { UserProvider } from 'context/userContext';
+import { TMDBDataProvider } from 'context/tmdbDataContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,11 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
         <ToastContainer autoClose={2500} position="bottom-center" />
-        <IMDBDataProvider>
+        <TMDBDataProvider>
           <UserProvider>
             <App />
           </UserProvider>
-        </IMDBDataProvider>
+        </TMDBDataProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

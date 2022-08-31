@@ -1,56 +1,88 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePrevious } from 'hooks/usePrevious';
-import { fetchMoviesOnTrend, fetchMoviesByName } from 'services/movieApi';
+import {
+  fetchMoviesOnTrend,
+  fetchMovieTopRated,
+  fetchMoviesByName,
+} from 'services/movieApi';
 import { scrollToTop } from 'helpers/srcollToTop';
 import {
-  Section,
-  Container,
-  MovieControlBar,
+  HomeControlBar,
   ErrorMessage,
   MovieList,
   Pagination,
   Spinner,
 } from 'components';
-import { useUser } from 'hooks/userContext';
+import { Section, Container } from 'layout';
+import { useUser } from 'context/userContext';
+import { SortStatus } from 'constants/constants';
 
 const Home = () => {
   const { userLanguage } = useUser();
+  const [sortStatus, setSortStatus] = useState(SortStatus.TREND);
+  const [filterStatus, setFilterStatus] = useState('');
   const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState(null);
-
   const prevQuery = usePrevious(search);
 
+  console.log(sortStatus);
+
+  const getMoviesOnTrend = useCallback(async () => {
+    setShowLoader(true);
+    scrollToTop();
+
+    try {
+      const {
+        data: { results, total_pages },
+      } = await fetchMoviesOnTrend(page, userLanguage.value);
+
+      setTotalPage(total_pages);
+      setMovies([...results]);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setShowLoader(false);
+    }
+  }, [page, userLanguage.value]);
+
+  const getMoviesTopRated = useCallback(async () => {
+    setShowLoader(true);
+    scrollToTop();
+
+    try {
+      const {
+        data: { results, total_pages },
+      } = await fetchMovieTopRated(page, userLanguage.value);
+
+      setTotalPage(total_pages);
+      setMovies([...results]);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setShowLoader(false);
+    }
+  }, [page, userLanguage.value]);
+
   useEffect(() => {
-    if (search !== '') {
+    if (sortStatus !== SortStatus.TREND) {
       return;
     }
-
-    const fetch = async () => {
-      setShowLoader(true);
-      scrollToTop();
-
-      try {
-        const {
-          data: { results, total_pages },
-        } = await fetchMoviesOnTrend(page, userLanguage.value);
-
-        setTotalPage(total_pages);
-        setMovies([...results]);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setShowLoader(false);
-      }
-    };
-    fetch();
-  }, [page, search, userLanguage.value]);
+    getMoviesOnTrend();
+  }, [getMoviesOnTrend, sortStatus]);
 
   useEffect(() => {
-    if (search === '') {
+    if (sortStatus !== SortStatus.RATING) {
+      return;
+    }
+    getMoviesTopRated();
+  }, [getMoviesTopRated, sortStatus]);
+
+  useEffect(() => {
+    if (sortStatus !== SortStatus.SEARCH) {
       return;
     }
     if (search !== prevQuery) {
@@ -77,17 +109,21 @@ const Home = () => {
       }
     };
     fetch();
-  }, [page, search, prevQuery, userLanguage.value]);
+  }, [page, search, prevQuery, userLanguage.value, sortStatus]);
 
   return (
     <Section>
       <Container>
-        <MovieControlBar
-          setSearch={setSearch}
+        <HomeControlBar
+          sortStatus={sortStatus}
+          setSortStatus={setSortStatus}
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
           search={search}
+          setSearch={setSearch}
+          setPage={setPage}
           page={page}
           totalPage={totalPage}
-          setPage={setPage}
         />
         {error && <ErrorMessage>{error}</ErrorMessage>}
         {showLoader && <Spinner />}

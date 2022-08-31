@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import { FormBox, Form, Input, SubmitBtn } from './SearchForm.styled';
 
-export const SearchForm = ({ setSearch }) => {
+export const SearchForm = ({ setSortStatus, setSearch }) => {
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = ({ query }) => {
     const queryNormalized = query.trim();
@@ -11,7 +11,7 @@ export const SearchForm = ({ setSearch }) => {
     if (!queryNormalized) {
       return toast('Please, enter the text');
     }
-
+    setSortStatus('search');
     setSearch(queryNormalized);
     reset();
   };

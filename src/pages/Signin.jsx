@@ -1,14 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
 import { useState } from 'react';
-import {
-  Section,
-  Container,
-  Button,
-  Form,
-  FormTitle,
-  FormInput,
-} from 'components';
+import { Button } from 'components';
+import { Section, Container, Form, FormTitle, FormInput } from 'layout';
 import { toast } from 'react-toastify';
 
 export const Signin = () => {

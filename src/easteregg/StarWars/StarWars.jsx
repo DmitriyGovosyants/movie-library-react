@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRef } from 'react';
-import starWarsAudio from '../data/audio/star-wars.mp3';
-import light from '../data/images/light.jpg';
+import starWarsAudio from '../../data/easteregg/audio/star-wars.mp3';
+import light from '../../data/easteregg/images/light.jpg';
 import {
   StarWarsOverlay,
   Start,

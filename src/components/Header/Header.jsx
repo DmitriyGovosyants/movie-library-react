@@ -9,14 +9,9 @@ import {
   ActiveLink,
 } from './Header.styled';
 import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
-import {
-  Container,
-  Modal,
-  Launch,
-  UserMenu,
-  LanguageSwitcher,
-} from 'components';
-import { useUser } from 'hooks/userContext';
+import { Modal, Launch, UserMenu, LanguageSwitcher } from 'components';
+import { Container } from 'layout';
+import { useUser } from 'context/userContext';
 import { useState } from 'react';
 
 export const Header = () => {

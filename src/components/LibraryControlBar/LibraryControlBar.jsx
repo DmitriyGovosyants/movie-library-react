@@ -1,16 +1,8 @@
 import { SortStatus, ViewStatus } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
-import Select from 'react-select';
-import { Button, StatusBox, Breadcrumbs } from 'components';
-import {
-  BtnBox,
-  SortBox,
-  SortBtn,
-  SortInputIsHidden,
-  selectStyles,
-  FormElement,
-  SelectBox,
-} from './LibraryControlBar.styled';
+import { Button, ButtonRadioSort, GenresFilter } from 'components';
+import { ControlBox, SortBox, OptionBox, Breadcrumbs } from 'layout';
+import { BtnBox } from './LibraryControlBar.styled';
 
 export const LibraryControlBar = ({
   sortStatus,
@@ -22,22 +14,18 @@ export const LibraryControlBar = ({
   allGenres,
   libraryMovies,
 }) => {
-  const genresOption = allGenres.reduce((genres, genre) => {
-    return [...genres, { value: genre?.id, label: genre?.name }];
-  }, []);
-
   return (
-    <StatusBox>
+    <ControlBox>
       <BtnBox>
         <Button
-          isCheck={viewStatus === ViewStatus.QUEUE}
           onClick={() => setViewStatus(ViewStatus.QUEUE)}
+          isCheck={viewStatus === ViewStatus.QUEUE}
         >
           Queue
         </Button>
         <Button
-          isCheck={viewStatus === ViewStatus.WATCHED}
           onClick={() => setViewStatus(ViewStatus.WATCHED)}
+          isCheck={viewStatus === ViewStatus.WATCHED}
         >
           Watched
         </Button>
@@ -47,50 +35,30 @@ export const LibraryControlBar = ({
         <FiChevronsRight />
         <span>{libraryMovies?.length}</span>
       </Breadcrumbs>
-      <FormElement>
+      <OptionBox>
         <SortBox>
-          <SortBtn isCheck={sortStatus === SortStatus.LATEST}>
-            latest
-            <SortInputIsHidden
-              type="radio"
-              checked={sortStatus === SortStatus.LATEST}
-              name="sortBy"
-              value={SortStatus.LATEST}
-              onChange={e => setSortStatus(e.target.value)}
-            />
-          </SortBtn>
-          <SortBtn isCheck={sortStatus === SortStatus.RATING}>
-            rating
-            <SortInputIsHidden
-              type="radio"
-              checked={sortStatus === SortStatus.RATING}
-              name="sortBy"
-              value={SortStatus.RATING}
-              onChange={e => setSortStatus(e.target.value)}
-            />
-          </SortBtn>
-          <SortBtn isCheck={sortStatus === SortStatus.YEAR}>
-            year
-            <SortInputIsHidden
-              type="radio"
-              checked={sortStatus === SortStatus.YEAR}
-              name="sortBy"
-              value={SortStatus.YEAR}
-              onChange={e => setSortStatus(e.target.value)}
-            />
-          </SortBtn>
-        </SortBox>
-        <SelectBox>
-          <Select
-            placeholder={'- genre -'}
-            defaultValue={filterStatus}
-            onChange={setFilterStatus}
-            options={genresOption}
-            styles={selectStyles}
-            isClearable
+          <ButtonRadioSort
+            sortStatus={sortStatus}
+            setSortStatus={setSortStatus}
+            btnStatus={SortStatus.LATEST}
           />
-        </SelectBox>
-      </FormElement>
-    </StatusBox>
+          <ButtonRadioSort
+            sortStatus={sortStatus}
+            setSortStatus={setSortStatus}
+            btnStatus={SortStatus.RATING}
+          />
+          <ButtonRadioSort
+            sortStatus={sortStatus}
+            setSortStatus={setSortStatus}
+            btnStatus={SortStatus.YEAR}
+          />
+        </SortBox>
+        <GenresFilter
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          genresOption={allGenres}
+        />
+      </OptionBox>
+    </ControlBox>
   );
 };

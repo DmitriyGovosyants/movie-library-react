@@ -1,4 +1,4 @@
-import matrixCursor from '../easteregg/data/images/matrix-cursor.png';
+import matrixCursor from '../data/easteregg/images/matrix-cursor.png';
 
 const canvasRef = document.querySelector('canvas');
 

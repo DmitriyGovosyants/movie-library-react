@@ -1,4 +1,4 @@
-import { Section, Container } from 'components';
+import { Section, Container } from 'layout';
 import {
   FooterBox,
   FlexContainer,

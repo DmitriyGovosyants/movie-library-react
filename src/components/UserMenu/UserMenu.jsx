@@ -17,7 +17,7 @@ import { avatarArr } from 'helpers/avatarArray';
 import { CSSTransition } from 'react-transition-group';
 import { addAvatar, fetchAvatar } from 'services/libraryApi';
 import { useEffect } from 'react';
-import { useUser } from 'hooks/userContext';
+import { useUser } from 'context/userContext';
 
 export const UserMenu = () => {
   const { user } = useUser();

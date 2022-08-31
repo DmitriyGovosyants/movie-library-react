@@ -13,7 +13,7 @@ export const FormTitle = styled.h2`
   font-size: 30px;
   letter-spacing: 0.05em;
   text-align: center;
-  color: ${p => p.theme.colors.accentColor}
+  color: ${p => p.theme.colors.accentColor};
 `
 
 export const FormInput = styled.input`

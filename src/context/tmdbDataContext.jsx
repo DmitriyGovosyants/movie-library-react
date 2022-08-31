@@ -5,10 +5,10 @@ import { fetchGenresList, fetchLanguagesList } from 'services/movieApi';
 const { createContext } = require('react');
 const { useContext } = require('react');
 
-const IMDBDataContext = createContext();
-export const useIMDBData = () => useContext(IMDBDataContext);
+const TMDBDataContext = createContext();
+export const useTMDBData = () => useContext(TMDBDataContext);
 
-export const IMDBDataProvider = ({ children }) => {
+export const TMDBDataProvider = ({ children }) => {
   const [genresList, setGenresList] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
 
@@ -28,8 +28,8 @@ export const IMDBDataProvider = ({ children }) => {
   }, []);
 
   return (
-    <IMDBDataContext.Provider value={{ genresList, languagesList }}>
+    <TMDBDataContext.Provider value={{ genresList, languagesList }}>
       {children}
-    </IMDBDataContext.Provider>
+    </TMDBDataContext.Provider>
   );
 };

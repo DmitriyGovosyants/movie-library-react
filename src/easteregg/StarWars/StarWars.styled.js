@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import starWars from '../data/images/star-wars.jpg';
-import starWarsCursor from '../data/images/star-wars-cursor.png';
+import starWars from '../../data/easteregg/images/star-wars.jpg';
+import starWarsCursor from '../../data/easteregg/images/star-wars-cursor.png';
 
 export const StarWarsOverlay = styled.div`
   position: relative;

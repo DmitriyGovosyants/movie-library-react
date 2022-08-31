@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ArrowBox = styled.div`
   display: flex;
-  padding: ${p => p.theme.spacing(2)} 0;
+  padding: ${p => p.theme.spacing(1.5)} 0;
   column-gap: ${p => p.theme.spacing(2.5)} 
 `
 

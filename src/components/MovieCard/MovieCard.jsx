@@ -11,7 +11,7 @@ import {
 import { ViewStatus } from 'constants/constants';
 import noPoster from 'data/images/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
-import { useUser } from 'hooks/userContext';
+import { useUser } from 'context/userContext';
 import {
   ErrorMessage,
   Spinner,

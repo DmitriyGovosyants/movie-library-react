@@ -8,6 +8,10 @@ export const fetchMoviesOnTrend = async (pageNumber, language) => {
   // return await axios.get(`discover/movie?api_key=${API_KEY}&page=${pageNumber}&language=${language}&with_genres=28`);
 }
 
+export const fetchMovieTopRated = async (pageNumber, language) => {
+  return await axios.get(`movie/top_rated?api_key=${API_KEY}&page=${pageNumber}&language=${language}`);
+}
+
 export const fetchMoviesByName = async (name, page, language) => {
   return await axios.get(`search/movie?api_key=${API_KEY}&query=${page}&page=${name}&language=${language}`);
 }
@@ -48,9 +52,7 @@ export const fetchGenresList = async () => {
 // ЧТО ЕЩЕ МОЖНО ДОБАВИТЬ
 // ГЛАВНАЯ СТРАНИЦА
 // 1 массив - top rated фильмы +++
-export const fetchMovieTopRated = async () => {
-  return await axios.get(`movie/top_rated?api_key=${API_KEY}`);
-}
+
 // КАРТОЧКА ФИЛЬМА
 // 1 массив - фильмы-рекомендации
 export const fetchMovieRecommendations = async (id) => {

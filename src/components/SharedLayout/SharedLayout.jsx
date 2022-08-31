@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header, Footer, Spinner } from 'components';
-import { useUser } from 'hooks/userContext';
+import { useUser } from 'context/userContext';
 import { FooterPressDown, Main } from './SharedLayout.styled';
 
 export const SharedLayout = () => {

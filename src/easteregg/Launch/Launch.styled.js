@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
-import starship from '../data/images/launchImg.webp';
-import inside from '../data/images/inside.png';
-import insideMany from '../data/images/insideMany.jpg';
-import tablets from '../data/images/tablets.jpg';
-import startCursor from '../data/images/start-cursor.png';
-import armstrongCursor from '../data/images/armstrong-cursor.png';
-import insideCursor from '../data/images/inside-cursor.png';
-import neoCursor from '../data/images/neo-cursor.png';
-import lieCursor from '../data/images/lie-cursor.png';
-
+import starship from '../../data/easteregg/images/launchImg.webp';
+import inside from '../../data/easteregg/images/inside.png';
+import insideMany from '../../data/easteregg/images/insideMany.jpg';
+import tablets from '../../data/easteregg/images/tablets.jpg';
+import startCursor from '../../data/easteregg/images/start-cursor.png';
+import armstrongCursor from '../../data/easteregg/images/armstrong-cursor.png';
+import insideCursor from '../../data/easteregg/images/inside-cursor.png';
+import neoCursor from '../../data/easteregg/images/neo-cursor.png';
+import lieCursor from '../../data/easteregg/images/lie-cursor.png';
 
 export const BlackBox = styled.div`
   display: flex;

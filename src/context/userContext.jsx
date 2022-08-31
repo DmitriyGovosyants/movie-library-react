@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from 'services/firebase/frebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
@@ -13,8 +13,6 @@ export const UserProvider = ({ children }) => {
     value: 'en',
     label: 'English',
   });
-
-  console.log(userLanguage);
 
   useEffect(() => {
     setIsRefreshing(true);

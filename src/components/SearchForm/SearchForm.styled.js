@@ -24,7 +24,7 @@ export const Form = styled.form`
 `
 
 export const Input = styled.input`
-  height: 46px;
+  height: 36px;
   padding-left: ${p => p.theme.spacing(4)};
   padding-right: ${p => p.theme.spacing(10)};
 
@@ -53,7 +53,7 @@ export const Input = styled.input`
 
 export const SubmitBtn = styled.button`
   position: absolute;
-  top: 8px;
+  top: 4px;
   right: 4px;
 
   color: ${p => p.theme.colors.bgThird};

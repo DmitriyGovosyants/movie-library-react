@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
-export const StatusBox = styled.div`
+export const ControlBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,5 +23,38 @@ export const StatusBox = styled.div`
   }
   ${device.tabletM} {
     align-items: center;
+  }
+`
+
+export const OptionBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
+  justify-content: center;
+  ${device.mobileOnly} {
+    width: 100%;
+  }
+  ${device.tabletOnly} {
+    width: 100%;
+  }
+`
+
+export const SortBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: ${p => p.theme.spacing(3)};
+  padding: ${p => p.theme.spacing(2)} 0;
+`
+
+export const Breadcrumbs = styled.p`
+  display: flex;
+  align-items: center;
+  padding: ${p => p.theme.spacing(4)} 0;
+  column-gap: ${p => p.theme.spacing(2)};
+  color: ${p => p.theme.colors.textLinkColor};
+
+  ${device.tabletM} {
+    padding: ${p => p.theme.spacing(4)};
   }
 `

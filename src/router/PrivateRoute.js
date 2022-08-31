@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useUser } from 'hooks/userContext';
+import { useUser } from 'context/userContext';
 
 export const PrivateRoute = ({ redirectTo = '/' }) => {
   const { user } = useUser();

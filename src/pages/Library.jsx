@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Section, Container, MovieList, LibraryControlBar } from 'components';
-import { useUser } from 'hooks/userContext';
+import { MovieList, LibraryControlBar } from 'components';
+import { Section, Container } from 'layout';
+import { useUser } from 'context/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { SortStatus, ViewStatus } from 'constants/constants';
-import { useIMDBData } from 'hooks/imdbDataContext';
+import { useTMDBData } from 'context/tmdbDataContext';
 
 export const Library = () => {
   const { user } = useUser();
-  const { genresList } = useIMDBData();
+  const { genresList } = useTMDBData();
   const [, setSearchParams] = useSearchParams();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);

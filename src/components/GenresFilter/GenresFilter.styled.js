@@ -25,15 +25,12 @@ export const selectStyles = {
     border: '1px solid gray',
     textAlign: 'center',
   }),
-  placeholder: (provided) => ({
-    ...provided,
-    textTransform: 'none',
-  }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
     const padding = '20';
+    const color = 'gray';
 
-    return { ...provided, opacity, transition, padding };
+    return { ...provided, opacity, transition, padding, color };
   },
 }

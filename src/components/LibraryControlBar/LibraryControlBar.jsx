@@ -1,7 +1,7 @@
 import { SortStatus, ViewStatus } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
 import { Button, ButtonRadioSort, GenresFilter } from 'components';
-import { ControlBox, SortBox, OptionBox, Breadcrumbs } from 'layout';
+import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
 import { BtnBox } from './LibraryControlBar.styled';
 
 export const LibraryControlBar = ({
@@ -30,11 +30,11 @@ export const LibraryControlBar = ({
           Watched
         </Button>
       </BtnBox>
-      <Breadcrumbs>
+      <BreadcrumbsBox>
         <span>{viewStatus}</span>
         <FiChevronsRight />
         <span>{libraryMovies?.length}</span>
-      </Breadcrumbs>
+      </BreadcrumbsBox>
       <OptionBox>
         <SortBox>
           <ButtonRadioSort

@@ -6,7 +6,7 @@ export const Btn = styled.button`
   align-items: center;
   width: 100%;
   margin: 0 auto;
-  padding: ${p => p.size === 'small' ? '8px' : '16px'};
+  padding: ${p => p.size === 'small' ? '8px' : '14px'};
 
   color: ${p => p.theme.colors.textMain};
   text-transform: uppercase;

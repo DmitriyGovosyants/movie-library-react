@@ -20,9 +20,9 @@ export const MovieCardControl = ({
         >
           queue
           {queueStatus ? (
-            <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
+            <MdLibraryAddCheck size={30} style={{ marginLeft: 10 }} />
           ) : (
-            <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
+            <MdLibraryAdd size={30} style={{ marginLeft: '10px' }} />
           )}
         </Button>
       </ButtonItem>
@@ -34,9 +34,9 @@ export const MovieCardControl = ({
         >
           watched
           {watchedStatus ? (
-            <MdLibraryAddCheck size={35} style={{ marginLeft: 10 }} />
+            <MdLibraryAddCheck size={30} style={{ marginLeft: 10 }} />
           ) : (
-            <MdLibraryAdd size={35} style={{ marginLeft: '10px' }} />
+            <MdLibraryAdd size={30} style={{ marginLeft: '10px' }} />
           )}
         </Button>
       </ButtonItem>

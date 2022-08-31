@@ -13,7 +13,7 @@ export const GenresFilter = ({
   return (
     <FilterBox>
       <Select
-        placeholder={'select genre'}
+        placeholder={'- genre -'}
         defaultValue={filterStatus}
         onChange={setFilterStatus}
         options={genres}

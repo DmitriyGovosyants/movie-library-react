@@ -24,6 +24,7 @@ export * from './UI/ButtonRadioSort/ButtonRadioSort';
 export * from './UI/Spinner/Spinner';
 export * from './UI/ErrorMessage/ErrorMessage';
 export * from './UI/LoadingScreen/LoadingScreen';
+export * from './UI/MovieQuotes/MovieQuotes';
 export * from './UI/Pagination/Pagination';
 export * from './UI/PaginationArrow/PaginationArrow';
 

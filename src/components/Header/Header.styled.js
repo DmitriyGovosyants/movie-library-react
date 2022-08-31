@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { NavLink } from 'react-router-dom';
 import { device } from "styles/mediaquery";
-import desktopBg from '../../data/images/header/star-wars.webp';
-import logoCursor from '../../data/images/header/logo-cursor.png';
+import desktopBg from '../../data/header/star-wars.webp';
+import logoCursor from '../../data/header/logo-cursor.png';
 
 export const HeaderBox = styled.header`
   display: flex;

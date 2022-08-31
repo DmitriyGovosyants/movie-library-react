@@ -1,9 +1,15 @@
 import { FiChevronsRight } from 'react-icons/fi';
-import { PaginationArrow, SearchForm, Button, GenresFilter } from 'components';
-import { ControlBox, Breadcrumbs } from 'layout';
-import { BtnBox, TrendBox } from './HomeControlBar.styled';
+import {
+  PaginationArrow,
+  SearchForm,
+  GenresFilter,
+  ButtonRadioSort,
+  MovieQuotes,
+} from 'components';
+import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
 import { SortStatus } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
+import { SearchBox } from './HomeControlBar.styled';
 
 export const HomeControlBar = ({
   sortStatus,
@@ -18,15 +24,10 @@ export const HomeControlBar = ({
 }) => {
   const { genresList } = useTMDBData();
 
-  const handleGoToTrend = () => {
-    setSortStatus(SortStatus.TREND);
+  const handleSortStatus = value => {
     setSearch('');
     setPage(1);
-  };
-  const handleGoToTopRated = () => {
-    setSortStatus(SortStatus.RATING);
-    setSearch('');
-    setPage(1);
+    setSortStatus(value);
   };
 
   return (
@@ -34,36 +35,37 @@ export const HomeControlBar = ({
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
 
-        <Breadcrumbs>
+        <BreadcrumbsBox>
           {search ? <span>{search}</span> : <span>{sortStatus}</span>}
           <FiChevronsRight />
           <span>
             {page} / {totalPage}
           </span>
-        </Breadcrumbs>
-        <BtnBox>
-          <TrendBox>
-            <Button
-              onClick={handleGoToTrend}
-              isCheck={sortStatus === SortStatus.TREND}
-            >
-              Trend
-            </Button>
-            <Button
-              onClick={handleGoToTopRated}
-              isCheck={sortStatus === SortStatus.RATING}
-            >
-              Rating
-            </Button>
-          </TrendBox>
-        </BtnBox>
-        <GenresFilter
-          filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
-          genresOption={genresList}
-        />
+        </BreadcrumbsBox>
+        <OptionBox>
+          <SortBox>
+            <ButtonRadioSort
+              sortStatus={sortStatus}
+              setSortStatus={handleSortStatus}
+              btnStatus={SortStatus.TREND}
+            />
+            <ButtonRadioSort
+              sortStatus={sortStatus}
+              setSortStatus={handleSortStatus}
+              btnStatus={SortStatus.RATING}
+            />
+          </SortBox>
+          <GenresFilter
+            filterStatus={filterStatus}
+            setFilterStatus={setFilterStatus}
+            genresOption={genresList}
+          />
+        </OptionBox>
       </ControlBox>
-      <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
+      <SearchBox>
+        <MovieQuotes />
+        <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
+      </SearchBox>
     </>
   );
 };

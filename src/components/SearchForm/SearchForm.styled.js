@@ -1,19 +1,12 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
 
-export const FormBox = styled.div`
-  display: flex;
-  margin-left: auto;
-  
-  ${device.mobileOnly} {
-    margin: ${p => p.theme.spacing(3)} 0;
-  }
-` 
-
 export const Form = styled.form`
   position: relative;
   display: flex;
   width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 
   border: 1px solid ${p => p.theme.colors.bgThird};;
   transition: border-color ${p => p.theme.animation.cubicBezierAverageSpeed};
@@ -21,12 +14,19 @@ export const Form = styled.form`
   :hover {
     border-color: ${p => p.theme.colors.checkColor};
   }
+
+  ${device.tabletM} {
+    width: 350px;
+    margin-left: auto;
+    margin-right: 0;
+  }
 `
 
 export const Input = styled.input`
   height: 36px;
   padding-left: ${p => p.theme.spacing(4)};
   padding-right: ${p => p.theme.spacing(10)};
+  width: 100%;
 
   letter-spacing: 0.03em;
   color: ${p => p.theme.colors.textThird};
@@ -42,11 +42,7 @@ export const Input = styled.input`
     text-transform: uppercase;
   }
 
-  ${device.tabletM} {
-    min-width: 250px;
-  }
   ${device.desktopL} {
-    min-width: 350px;
     font-size: ${p => p.theme.fontSizes.large};
   }
 `

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { device } from "styles/mediaquery";
-import languageMenuCursor from '../../data/images/header/language-menu-cursor.png';
+import languageMenuCursor from '../../data/header/language-menu-cursor.png';
 
 export const LangMenuBox = styled.div`
   position: absolute;

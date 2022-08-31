@@ -8,7 +8,7 @@ import {
   NavItem,
   ActiveLink,
 } from './Header.styled';
-import { ReactComponent as Logo } from '../../data/images/header/logo.svg';
+import { ReactComponent as Logo } from '../../data/header/logo.svg';
 import { Modal, Launch, UserMenu, LanguageSwitcher } from 'components';
 import { Container } from 'layout';
 import { useUser } from 'context/userContext';

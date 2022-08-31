@@ -47,7 +47,7 @@ export const SortBox = styled.div`
   padding: ${p => p.theme.spacing(2)} 0;
 `
 
-export const Breadcrumbs = styled.p`
+export const BreadcrumbsBox = styled.div`
   display: flex;
   align-items: center;
   padding: ${p => p.theme.spacing(4)} 0;

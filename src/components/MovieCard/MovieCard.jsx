@@ -9,7 +9,7 @@ import {
   removeOneOfTwoStatus,
 } from 'services/libraryApi';
 import { ViewStatus } from 'constants/constants';
-import noPoster from 'data/images/movies/no-poster.jpeg';
+import noPoster from 'data/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
 import { useUser } from 'context/userContext';
 import {

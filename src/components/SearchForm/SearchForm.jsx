@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
-import { FormBox, Form, Input, SubmitBtn } from './SearchForm.styled';
+import { Form, Input, SubmitBtn } from './SearchForm.styled';
 
 export const SearchForm = ({ setSortStatus, setSearch }) => {
   const { register, handleSubmit, reset } = useForm();
@@ -17,18 +17,16 @@ export const SearchForm = ({ setSortStatus, setSearch }) => {
   };
 
   return (
-    <FormBox>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          {...register('query')}
-          type="text"
-          placeholder="Movie Search"
-          autoComplete="off"
-        />
-        <SubmitBtn type="submit">
-          <BsSearch size={30} color={'inherit'} />
-        </SubmitBtn>
-      </Form>
-    </FormBox>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        {...register('query')}
+        type="text"
+        placeholder="Movie Search"
+        autoComplete="off"
+      />
+      <SubmitBtn type="submit">
+        <BsSearch size={30} color={'inherit'} />
+      </SubmitBtn>
+    </Form>
   );
 };

@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/movie-library-react/static/css/main.eb4cfae0.css",
-    "main.js": "/movie-library-react/static/js/main.bbfe8b28.js",
-    "home-page.js": "/movie-library-react/static/js/home-page.4658350a.chunk.js",
-    "library-page.js": "/movie-library-react/static/js/library-page.fd07e221.chunk.js",
-    "signin-page.js": "/movie-library-react/static/js/signin-page.5b9f8be3.chunk.js",
-    "login-page.js": "/movie-library-react/static/js/login-page.8253133d.chunk.js",
+    "main.js": "/movie-library-react/static/js/main.ffe46061.js",
+    "home-page.js": "/movie-library-react/static/js/home-page.38f95916.chunk.js",
+    "library-page.js": "/movie-library-react/static/js/library-page.995b440f.chunk.js",
+    "signin-page.js": "/movie-library-react/static/js/signin-page.7e5562a3.chunk.js",
+    "login-page.js": "/movie-library-react/static/js/login-page.608fd63d.chunk.js",
     "static/media/who-we-are.webm": "/movie-library-react/static/media/who-we-are.2e029115016ad7c6a1a7.webm",
     "static/media/star-wars.mp3": "/movie-library-react/static/media/star-wars.7f6cdfcee5445db68405.mp3",
     "static/media/mortal-combat.mp3": "/movie-library-react/static/media/mortal-combat.0f73c528a0477e7efc14.mp3",
@@ -33,14 +33,14 @@
     "index.html": "/movie-library-react/index.html",
     "static/media/logo.svg": "/movie-library-react/static/media/logo.aae5ff83b03324941d25e85b40d07032.svg",
     "main.eb4cfae0.css.map": "/movie-library-react/static/css/main.eb4cfae0.css.map",
-    "main.bbfe8b28.js.map": "/movie-library-react/static/js/main.bbfe8b28.js.map",
-    "home-page.4658350a.chunk.js.map": "/movie-library-react/static/js/home-page.4658350a.chunk.js.map",
-    "library-page.fd07e221.chunk.js.map": "/movie-library-react/static/js/library-page.fd07e221.chunk.js.map",
-    "signin-page.5b9f8be3.chunk.js.map": "/movie-library-react/static/js/signin-page.5b9f8be3.chunk.js.map",
-    "login-page.8253133d.chunk.js.map": "/movie-library-react/static/js/login-page.8253133d.chunk.js.map"
+    "main.ffe46061.js.map": "/movie-library-react/static/js/main.ffe46061.js.map",
+    "home-page.38f95916.chunk.js.map": "/movie-library-react/static/js/home-page.38f95916.chunk.js.map",
+    "library-page.995b440f.chunk.js.map": "/movie-library-react/static/js/library-page.995b440f.chunk.js.map",
+    "signin-page.7e5562a3.chunk.js.map": "/movie-library-react/static/js/signin-page.7e5562a3.chunk.js.map",
+    "login-page.608fd63d.chunk.js.map": "/movie-library-react/static/js/login-page.608fd63d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb4cfae0.css",
-    "static/js/main.bbfe8b28.js"
+    "static/js/main.ffe46061.js"
   ]
 }

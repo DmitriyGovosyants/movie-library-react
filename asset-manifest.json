@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/movie-library-react/static/css/main.eb4cfae0.css",
-    "main.js": "/movie-library-react/static/js/main.ffe46061.js",
-    "home-page.js": "/movie-library-react/static/js/home-page.38f95916.chunk.js",
-    "library-page.js": "/movie-library-react/static/js/library-page.995b440f.chunk.js",
+    "main.js": "/movie-library-react/static/js/main.ed543a0d.js",
+    "home-page.js": "/movie-library-react/static/js/home-page.ec576867.chunk.js",
+    "library-page.js": "/movie-library-react/static/js/library-page.f722340b.chunk.js",
     "signin-page.js": "/movie-library-react/static/js/signin-page.7e5562a3.chunk.js",
     "login-page.js": "/movie-library-react/static/js/login-page.608fd63d.chunk.js",
     "static/media/who-we-are.webm": "/movie-library-react/static/media/who-we-are.2e029115016ad7c6a1a7.webm",
@@ -29,18 +29,19 @@
     "static/media/light.jpg": "/movie-library-react/static/media/light.7c7cc7bfe87521d41eeb.jpg",
     "static/media/broken-image.png": "/movie-library-react/static/media/broken-image.133a6e7f8f27da36851b.png",
     "static/media/avatar5.webp": "/movie-library-react/static/media/avatar5.76e47b7aa773272499f2.webp",
+    "static/media/cinema-poster.png": "/movie-library-react/static/media/cinema-poster.3251792113a273309a3e.png",
     "static/media/avatar7.jpeg": "/movie-library-react/static/media/avatar7.83862de144bf229c63e8.jpeg",
     "index.html": "/movie-library-react/index.html",
     "static/media/logo.svg": "/movie-library-react/static/media/logo.aae5ff83b03324941d25e85b40d07032.svg",
     "main.eb4cfae0.css.map": "/movie-library-react/static/css/main.eb4cfae0.css.map",
-    "main.ffe46061.js.map": "/movie-library-react/static/js/main.ffe46061.js.map",
-    "home-page.38f95916.chunk.js.map": "/movie-library-react/static/js/home-page.38f95916.chunk.js.map",
-    "library-page.995b440f.chunk.js.map": "/movie-library-react/static/js/library-page.995b440f.chunk.js.map",
+    "main.ed543a0d.js.map": "/movie-library-react/static/js/main.ed543a0d.js.map",
+    "home-page.ec576867.chunk.js.map": "/movie-library-react/static/js/home-page.ec576867.chunk.js.map",
+    "library-page.f722340b.chunk.js.map": "/movie-library-react/static/js/library-page.f722340b.chunk.js.map",
     "signin-page.7e5562a3.chunk.js.map": "/movie-library-react/static/js/signin-page.7e5562a3.chunk.js.map",
     "login-page.608fd63d.chunk.js.map": "/movie-library-react/static/js/login-page.608fd63d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.eb4cfae0.css",
-    "static/js/main.ffe46061.js"
+    "static/js/main.ed543a0d.js"
   ]
 }

@@ -11,8 +11,8 @@ export const fetchMovieTopRated = async (pageNumber, language) => {
   return await axios.get(`movie/top_rated?api_key=${API_KEY}&page=${pageNumber}&language=${language}`);
 }
 
-export const fetchMoviesByGenre = async (pageNumber, language, genre) => {
-  return await axios.get(`discover/movie?api_key=${API_KEY}&page=${pageNumber}&sort_by=popularity.desc&language=${language}&with_genres=${genre}`);
+export const fetchMoviesByGenre = async (pageNumber, language, genre, extraSortStatus) => {
+  return await axios.get(`discover/movie?api_key=${API_KEY}&page=${pageNumber}&sort_by=${extraSortStatus}&vote_count.gte=50&language=${language}&with_genres=${genre}`);
 }
 
 export const fetchMoviesByName = async (name, page, language) => {

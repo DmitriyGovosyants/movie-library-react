@@ -72,13 +72,22 @@ const Home = () => {
     setShowLoader(true);
     scrollToTop();
 
+    let extraSortStatus;
+    if (sortStatus === SortConstants.TREND) {
+      extraSortStatus = 'popularity.desc';
+    }
+    if (sortStatus === SortConstants.RATING) {
+      extraSortStatus = 'vote_average.desc';
+    }
+
     try {
       const {
         data: { results, total_pages },
       } = await fetchMoviesByGenre(
         page,
         userLanguage.value,
-        filterStatus.value
+        filterStatus.value,
+        extraSortStatus
       );
 
       setTotalPage(total_pages);
@@ -88,7 +97,7 @@ const Home = () => {
     } finally {
       setShowLoader(false);
     }
-  }, [filterStatus, page, userLanguage.value]);
+  }, [filterStatus?.value, page, sortStatus, userLanguage?.value]);
 
   useEffect(() => {
     if (sortStatus === SortConstants.TREND && !filterStatus) {

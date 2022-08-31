@@ -8,7 +8,7 @@ import {
   removeFromLibrary,
   removeOneOfTwoStatus,
 } from 'services/libraryApi';
-import { ViewStatus } from 'constants/constants';
+import { ViewConstants } from 'constants/constants';
 import noPoster from 'data/movies/no-poster.jpeg';
 import { toast } from 'react-toastify';
 import { useUser } from 'context/userContext';
@@ -115,7 +115,7 @@ export const MovieCard = ({
           id
         );
 
-        status === ViewStatus.WATCHED
+        status === ViewConstants.WATCHED
           ? setWatchedStatus(true)
           : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
@@ -126,13 +126,13 @@ export const MovieCard = ({
     }
 
     if (
-      (status === ViewStatus.WATCHED && !watchedStatus && queueStatus) ||
-      (status === ViewStatus.QUEUE && watchedStatus && !queueStatus)
+      (status === ViewConstants.WATCHED && !watchedStatus && queueStatus) ||
+      (status === ViewConstants.QUEUE && watchedStatus && !queueStatus)
     ) {
       try {
         await addSecondStatus(status, title, vote_average, user, id);
 
-        status === ViewStatus.WATCHED
+        status === ViewConstants.WATCHED
           ? setWatchedStatus(true)
           : setQueueStatus(true);
         toast.success(`"${title}" has been added to ${status}`);
@@ -146,7 +146,7 @@ export const MovieCard = ({
       try {
         await removeOneOfTwoStatus(status, user, id);
 
-        status === ViewStatus.WATCHED
+        status === ViewConstants.WATCHED
           ? setWatchedStatus(false)
           : setQueueStatus(false);
         toast.info(`"${title}" has been deleted from ${status}`);
@@ -157,8 +157,8 @@ export const MovieCard = ({
     }
 
     if (
-      (status === ViewStatus.WATCHED && watchedStatus && !queueStatus) ||
-      (status === ViewStatus.QUEUE && !watchedStatus && queueStatus)
+      (status === ViewConstants.WATCHED && watchedStatus && !queueStatus) ||
+      (status === ViewConstants.QUEUE && !watchedStatus && queueStatus)
     ) {
       try {
         await removeFromLibrary(user, id);

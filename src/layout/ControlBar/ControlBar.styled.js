@@ -7,7 +7,7 @@ export const ControlBox = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: ${p => p.theme.spacing(4)};
-  padding: ${p => p.theme.spacing(2)};
+  padding: ${p => p.theme.spacing(1)} ${p => p.theme.spacing(2)};
 
   font-size: ${p => p.theme.fontSizes.medium};
   font-weight: 500;
@@ -50,11 +50,13 @@ export const SortBox = styled.div`
 export const BreadcrumbsBox = styled.div`
   display: flex;
   align-items: center;
-  padding: ${p => p.theme.spacing(4)} 0;
+  margin-bottom: ${p => p.theme.spacing(2)};
   column-gap: ${p => p.theme.spacing(2)};
+
+  text-transform: uppercase;
   color: ${p => p.theme.colors.textLinkColor};
 
   ${device.tabletM} {
-    padding: ${p => p.theme.spacing(4)};
+    padding: 0 ${p => p.theme.spacing(4)};
   }
 `

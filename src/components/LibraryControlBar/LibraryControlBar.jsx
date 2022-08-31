@@ -1,4 +1,4 @@
-import { SortStatus, ViewStatus } from 'constants/constants';
+import { SortConstants, ViewConstants } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
 import { Button, ButtonRadioSort, GenresFilter } from 'components';
 import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
@@ -15,50 +15,59 @@ export const LibraryControlBar = ({
   libraryMovies,
 }) => {
   return (
-    <ControlBox>
-      <BtnBox>
-        <Button
-          onClick={() => setViewStatus(ViewStatus.QUEUE)}
-          isCheck={viewStatus === ViewStatus.QUEUE}
-        >
-          Queue
-        </Button>
-        <Button
-          onClick={() => setViewStatus(ViewStatus.WATCHED)}
-          isCheck={viewStatus === ViewStatus.WATCHED}
-        >
-          Watched
-        </Button>
-      </BtnBox>
+    <>
       <BreadcrumbsBox>
         <span>{viewStatus}</span>
+        {filterStatus && (
+          <>
+            <FiChevronsRight />
+            <span>{filterStatus.label}</span>
+          </>
+        )}
         <FiChevronsRight />
         <span>{libraryMovies?.length}</span>
       </BreadcrumbsBox>
-      <OptionBox>
-        <SortBox>
-          <ButtonRadioSort
-            sortStatus={sortStatus}
-            setSortStatus={setSortStatus}
-            btnStatus={SortStatus.LATEST}
+      <ControlBox>
+        <BtnBox>
+          <Button
+            onClick={() => setViewStatus(ViewConstants.QUEUE)}
+            isCheck={viewStatus === ViewConstants.QUEUE}
+          >
+            Queue
+          </Button>
+          <Button
+            onClick={() => setViewStatus(ViewConstants.WATCHED)}
+            isCheck={viewStatus === ViewConstants.WATCHED}
+          >
+            Watched
+          </Button>
+        </BtnBox>
+
+        <OptionBox>
+          <SortBox>
+            <ButtonRadioSort
+              sortStatus={sortStatus}
+              setSortStatus={setSortStatus}
+              btnStatus={SortConstants.LATEST}
+            />
+            <ButtonRadioSort
+              sortStatus={sortStatus}
+              setSortStatus={setSortStatus}
+              btnStatus={SortConstants.RATING}
+            />
+            <ButtonRadioSort
+              sortStatus={sortStatus}
+              setSortStatus={setSortStatus}
+              btnStatus={SortConstants.YEAR}
+            />
+          </SortBox>
+          <GenresFilter
+            filterStatus={filterStatus}
+            setFilterStatus={setFilterStatus}
+            genresOption={allGenres}
           />
-          <ButtonRadioSort
-            sortStatus={sortStatus}
-            setSortStatus={setSortStatus}
-            btnStatus={SortStatus.RATING}
-          />
-          <ButtonRadioSort
-            sortStatus={sortStatus}
-            setSortStatus={setSortStatus}
-            btnStatus={SortStatus.YEAR}
-          />
-        </SortBox>
-        <GenresFilter
-          filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
-          genresOption={allGenres}
-        />
-      </OptionBox>
-    </ControlBox>
+        </OptionBox>
+      </ControlBox>
+    </>
   );
 };

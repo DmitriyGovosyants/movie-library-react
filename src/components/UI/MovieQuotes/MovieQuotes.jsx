@@ -16,7 +16,7 @@ export const MovieQuotes = () => {
       clearInterval(timerId);
     };
   }, [quoteIdx]);
-  console.log(quoteIdx);
+
   return (
     <MovieQuotesBox>
       <Quote>{QuotesArr[quoteIdx].quote}</Quote>

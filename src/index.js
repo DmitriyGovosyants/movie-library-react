@@ -11,7 +11,7 @@ import { UserProvider } from 'context/userContext';
 import { TMDBDataProvider } from 'context/tmdbDataContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter basename="/movie-library-react/">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
@@ -23,5 +23,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </TMDBDataProvider>
       </ThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

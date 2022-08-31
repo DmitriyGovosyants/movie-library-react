@@ -1,14 +1,14 @@
-export const ViewStatus = {
+export const ViewConstants = {
   QUEUE: 'queue',
   WATCHED: 'watched',
 }
 
-export const SortStatus = {
-  LATEST: 'latest',
+export const SortConstants = {
+  TREND: 'trend',
   RATING: 'rating',
-  YEAR: 'year',
-  TREND: 'trending',
   SEARCH: 'search',
+  LATEST: 'latest',
+  YEAR: 'year',
 };
 
 export const EEgg = {

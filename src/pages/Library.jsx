@@ -5,7 +5,7 @@ import { MovieList, LibraryControlBar } from 'components';
 import { Section, Container } from 'layout';
 import { useUser } from 'context/userContext';
 import { fetchAllLibraryMovies } from 'services/libraryApi';
-import { SortStatus, ViewStatus } from 'constants/constants';
+import { SortConstants, ViewConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
 
 export const Library = () => {
@@ -14,24 +14,24 @@ export const Library = () => {
   const [, setSearchParams] = useSearchParams();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);
-  const [viewStatus, setViewStatus] = useState(ViewStatus.QUEUE);
-  const [sortStatus, setSortStatus] = useState(SortStatus.LATEST);
+  const [viewStatus, setViewStatus] = useState(ViewConstants.QUEUE);
+  const [sortStatus, setSortStatus] = useState(SortConstants.LATEST);
   const [filterStatus, setFilterStatus] = useState('');
   const [refreshPage, setRefreshPage] = useState(false);
 
   const sortBy = useCallback(
     moviesByStatus => {
-      if (sortStatus === SortStatus.LATEST) {
+      if (sortStatus === SortConstants.LATEST) {
         return [...moviesByStatus].sort(
           (a, b) => b[`${viewStatus}DateAdded`] - a[`${viewStatus}DateAdded`]
         );
       }
-      if (sortStatus === SortStatus.RATING) {
+      if (sortStatus === SortConstants.RATING) {
         return [...moviesByStatus].sort(
           (a, b) => b.vote_average - a.vote_average
         );
       }
-      if (sortStatus === SortStatus.YEAR) {
+      if (sortStatus === SortConstants.YEAR) {
         return [...moviesByStatus].sort((a, b) =>
           b.release_date.localeCompare(a.release_date)
         );

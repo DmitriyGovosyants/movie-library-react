@@ -1,3 +1,4 @@
+import { SortConstants } from 'constants/constants';
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
@@ -11,7 +12,8 @@ export const SearchForm = ({ setSortStatus, setSearch }) => {
     if (!queryNormalized) {
       return toast('Please, enter the text');
     }
-    setSortStatus('search');
+
+    setSortStatus(SortConstants.SEARCH);
     setSearch(queryNormalized);
     reset();
   };

@@ -4,6 +4,7 @@ import {
   fetchMoviesOnTrend,
   fetchMovieTopRated,
   fetchMoviesByName,
+  fetchMoviesByGenre,
 } from 'services/movieApi';
 import { scrollToTop } from 'helpers/srcollToTop';
 import {
@@ -15,12 +16,12 @@ import {
 } from 'components';
 import { Section, Container } from 'layout';
 import { useUser } from 'context/userContext';
-import { SortStatus } from 'constants/constants';
+import { SortConstants } from 'constants/constants';
 
 const Home = () => {
   const { userLanguage } = useUser();
-  const [sortStatus, setSortStatus] = useState(SortStatus.TREND);
-  const [filterStatus, setFilterStatus] = useState('');
+  const [sortStatus, setSortStatus] = useState(SortConstants.TREND);
+  const [filterStatus, setFilterStatus] = useState(null);
   const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -29,7 +30,7 @@ const Home = () => {
   const [error, setError] = useState(null);
   const prevQuery = usePrevious(search);
 
-  console.log(sortStatus);
+  console.log(sortStatus, filterStatus, search);
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
@@ -67,27 +68,57 @@ const Home = () => {
     }
   }, [page, userLanguage.value]);
 
-  useEffect(() => {
-    if (sortStatus !== SortStatus.TREND) {
-      return;
+  const getMoviesByGenre = useCallback(async () => {
+    setShowLoader(true);
+    scrollToTop();
+
+    try {
+      const {
+        data: { results, total_pages },
+      } = await fetchMoviesByGenre(
+        page,
+        userLanguage.value,
+        filterStatus.value
+      );
+
+      setTotalPage(total_pages);
+      setMovies([...results]);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setShowLoader(false);
     }
-    getMoviesOnTrend();
-  }, [getMoviesOnTrend, sortStatus]);
+  }, [filterStatus, page, userLanguage.value]);
 
   useEffect(() => {
-    if (sortStatus !== SortStatus.RATING) {
+    if (sortStatus === SortConstants.TREND && !filterStatus) {
+      getMoviesOnTrend();
       return;
     }
-    getMoviesTopRated();
-  }, [getMoviesTopRated, sortStatus]);
+    if (sortStatus === SortConstants.RATING && !filterStatus) {
+      getMoviesTopRated();
+      return;
+    }
+    if (sortStatus !== SortConstants.SEARCH && filterStatus) {
+      getMoviesByGenre();
+      return;
+    }
+  }, [
+    filterStatus,
+    getMoviesByGenre,
+    getMoviesOnTrend,
+    getMoviesTopRated,
+    sortStatus,
+  ]);
 
   useEffect(() => {
-    if (sortStatus !== SortStatus.SEARCH) {
+    if (sortStatus !== SortConstants.SEARCH) {
       return;
     }
     if (search !== prevQuery) {
       setMovies([]);
       setPage(1);
+      setFilterStatus(null);
       return;
     }
 
@@ -109,7 +140,7 @@ const Home = () => {
       }
     };
     fetch();
-  }, [page, search, prevQuery, userLanguage.value, sortStatus]);
+  }, [page, search, prevQuery, userLanguage.value, sortStatus, filterStatus]);
 
   return (
     <Section>

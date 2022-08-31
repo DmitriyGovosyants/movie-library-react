@@ -18,6 +18,11 @@ export const selectStyles = {
     padding: 15,
     textAlign: 'center',
   }),
+  container: (provided, state) => {
+    const opacity = state.isDisabled ? 0.5 : 1;
+    const transition = 'opacity 300ms';
+    return { ...provided, opacity, transition };
+  },
   control: () => ({
     display: 'flex',
     backgroundColor: 'white',
@@ -26,11 +31,8 @@ export const selectStyles = {
     textAlign: 'center',
   }),
   singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
     const padding = '20';
     const color = 'gray';
-
-    return { ...provided, opacity, transition, padding, color };
+    return { ...provided, padding, color };
   },
 }

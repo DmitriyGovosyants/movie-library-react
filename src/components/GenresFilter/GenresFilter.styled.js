@@ -26,7 +26,7 @@ export const selectStyles = {
   control: () => ({
     display: 'flex',
     backgroundColor: 'white',
-    width: 250,
+    width: 280,
     border: '1px solid gray',
     textAlign: 'center',
   }),

@@ -4,7 +4,7 @@ import { device } from "styles/mediaquery";
 export const Form = styled.form`
   position: relative;
   display: flex;
-  width: 100%;
+  width: 280px;
   margin-left: auto;
   margin-right: auto;
 
@@ -19,6 +19,9 @@ export const Form = styled.form`
     width: 350px;
     margin-left: auto;
     margin-right: 0;
+  }
+  ${device.desktopL} {
+    margin-right: 20px;
   }
 `
 

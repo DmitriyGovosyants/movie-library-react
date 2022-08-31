@@ -38,6 +38,9 @@ export const OptionBox = styled.div`
   ${device.tabletOnly} {
     width: 100%;
   }
+  /* ${device.desktopM} {
+    justify-content: space-between;
+  } */
 `
 
 export const SortBox = styled.div`
@@ -50,6 +53,7 @@ export const SortBox = styled.div`
 export const BreadcrumbsBox = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   margin-bottom: ${p => p.theme.spacing(2)};
   column-gap: ${p => p.theme.spacing(2)};
 

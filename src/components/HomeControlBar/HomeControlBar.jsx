@@ -10,6 +10,8 @@ import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
 import { SortConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
 import { SearchBox } from './HomeControlBar.styled';
+// import { useEffect } from 'react';
+// import { useState } from 'react';
 
 export const HomeControlBar = ({
   sortStatus,
@@ -23,6 +25,15 @@ export const HomeControlBar = ({
   totalPage,
 }) => {
   const { genresList } = useTMDBData();
+  // const [isMobile, setIsMobile] = useState(true);
+
+  // useEffect(() => {
+  //   if (window.matchMedia('(min-width: 1024px)').matches) {
+  //     setIsMobile(false);
+  //   } else {
+  //     setIsMobile(true);
+  //   }
+  // }, []);
 
   const handleSortStatus = value => {
     setSearch('');
@@ -55,9 +66,10 @@ export const HomeControlBar = ({
           {page} / {totalPage}
         </span>
       </BreadcrumbsBox>
+      <MovieQuotes />
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
-
+        <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
         <OptionBox>
           <SortBox>
             <ButtonRadioSort
@@ -79,10 +91,6 @@ export const HomeControlBar = ({
           />
         </OptionBox>
       </ControlBox>
-      <SearchBox>
-        <MovieQuotes />
-        <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
-      </SearchBox>
     </>
   );
 };

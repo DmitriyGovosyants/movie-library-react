@@ -16,17 +16,6 @@ export const LibraryControlBar = ({
 }) => {
   return (
     <>
-      <BreadcrumbsBox>
-        <span>{viewStatus}</span>
-        {filterStatus && (
-          <>
-            <FiChevronsRight />
-            <span>{filterStatus.label}</span>
-          </>
-        )}
-        <FiChevronsRight />
-        <span>{libraryMovies?.length}</span>
-      </BreadcrumbsBox>
       <ControlBox>
         <BtnBox>
           <Button
@@ -68,6 +57,17 @@ export const LibraryControlBar = ({
           />
         </OptionBox>
       </ControlBox>
+      <BreadcrumbsBox>
+        <span>{viewStatus}</span>
+        {filterStatus && (
+          <>
+            <FiChevronsRight />
+            <span>{filterStatus.label}</span>
+          </>
+        )}
+        <FiChevronsRight />
+        <span>{libraryMovies?.length}</span>
+      </BreadcrumbsBox>
     </>
   );
 };

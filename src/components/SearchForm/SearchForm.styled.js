@@ -3,10 +3,7 @@ import { device } from "styles/mediaquery";
 
 export const Form = styled.form`
   position: relative;
-  display: flex;
   width: 280px;
-  margin-left: auto;
-  margin-right: auto;
 
   border: 1px solid ${p => p.theme.colors.bgThird};;
   transition: border-color ${p => p.theme.animation.cubicBezierAverageSpeed};
@@ -17,12 +14,8 @@ export const Form = styled.form`
 
   ${device.tabletM} {
     width: 350px;
-    margin-left: auto;
-    margin-right: 0;
   }
-  ${device.desktopL} {
-    margin-right: 20px;
-  }
+
 `
 
 export const Input = styled.input`

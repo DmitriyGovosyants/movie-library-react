@@ -9,9 +9,7 @@ import {
 import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
 import { SortConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
-import { SearchBox } from './HomeControlBar.styled';
-// import { useEffect } from 'react';
-// import { useState } from 'react';
+import { InfoBox } from './HomeControlBar.styled';
 
 export const HomeControlBar = ({
   sortStatus,
@@ -25,15 +23,6 @@ export const HomeControlBar = ({
   totalPage,
 }) => {
   const { genresList } = useTMDBData();
-  // const [isMobile, setIsMobile] = useState(true);
-
-  // useEffect(() => {
-  //   if (window.matchMedia('(min-width: 1024px)').matches) {
-  //     setIsMobile(false);
-  //   } else {
-  //     setIsMobile(true);
-  //   }
-  // }, []);
 
   const handleSortStatus = value => {
     setSearch('');
@@ -53,20 +42,6 @@ export const HomeControlBar = ({
 
   return (
     <>
-      <BreadcrumbsBox>
-        {search ? <span>{search}</span> : <span>{sortStatus}</span>}
-        {filterStatus && (
-          <>
-            <FiChevronsRight />
-            <span>{filterStatus.label}</span>
-          </>
-        )}
-        <FiChevronsRight />
-        <span>
-          {page} / {totalPage}
-        </span>
-      </BreadcrumbsBox>
-      <MovieQuotes />
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
         <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
@@ -91,6 +66,22 @@ export const HomeControlBar = ({
           />
         </OptionBox>
       </ControlBox>
+      <InfoBox>
+        <BreadcrumbsBox>
+          {search ? <span>{search}</span> : <span>{sortStatus}</span>}
+          {filterStatus && (
+            <>
+              <FiChevronsRight />
+              <span>{filterStatus.label}</span>
+            </>
+          )}
+          <FiChevronsRight />
+          <span>
+            {page} / {totalPage}
+          </span>
+        </BreadcrumbsBox>
+        <MovieQuotes />
+      </InfoBox>
     </>
   );
 };

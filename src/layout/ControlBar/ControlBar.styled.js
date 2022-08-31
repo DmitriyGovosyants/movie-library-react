@@ -21,8 +21,8 @@ export const ControlBox = styled.div`
   ${device.mobileOnly} {
     flex-direction: column;
   }
-  ${device.tabletM} {
-    align-items: center;
+  ${device.desktopL} {
+    flex-direction: row;
   }
 `
 
@@ -30,17 +30,19 @@ export const OptionBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  
-  justify-content: center;
-  ${device.mobileOnly} {
-    width: 100%;
-  }
-  ${device.tabletOnly} {
-    width: 100%;
-  }
-  /* ${device.desktopM} {
+  flex-direction: column;
+
+  ${device.tabletM} {
+    flex-direction: row;
     justify-content: space-between;
-  } */
+  }
+
+  ${device.tabletM} {
+    flex-direction: row;
+  }
+  ${device.notBigDesktop} {
+    width: 100%;
+  }
 `
 
 export const SortBox = styled.div`
@@ -54,7 +56,6 @@ export const BreadcrumbsBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: ${p => p.theme.spacing(2)};
   column-gap: ${p => p.theme.spacing(2)};
 
   text-transform: uppercase;

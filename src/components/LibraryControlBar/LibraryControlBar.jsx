@@ -11,28 +11,41 @@ import {
 import { BtnBox } from './LibraryControlBar.styled';
 
 export const LibraryControlBar = ({
-  sortStatus,
-  setSortStatus,
+  viewing,
+  sorting,
+  setSearchParams,
   filterStatus,
   setFilterStatus,
-  viewStatus,
-  setViewStatus,
   allGenres,
   libraryMovies,
 }) => {
+  const handleViewing = value => {
+    setSearchParams({
+      viewing: value,
+      sorting,
+    });
+  };
+
+  const handleSorting = value => {
+    setSearchParams({
+      viewing,
+      sorting: value,
+    });
+  };
+
   return (
     <>
       <ControlBox>
         <BtnBox>
           <Button
-            onClick={() => setViewStatus(ViewConstants.QUEUE)}
-            isCheck={viewStatus === ViewConstants.QUEUE}
+            onClick={() => handleViewing(ViewConstants.QUEUE)}
+            isCheck={viewing === ViewConstants.QUEUE}
           >
             Queue
           </Button>
           <Button
-            onClick={() => setViewStatus(ViewConstants.WATCHED)}
-            isCheck={viewStatus === ViewConstants.WATCHED}
+            onClick={() => handleViewing(ViewConstants.WATCHED)}
+            isCheck={viewing === ViewConstants.WATCHED}
           >
             Watched
           </Button>
@@ -41,18 +54,18 @@ export const LibraryControlBar = ({
         <OptionBox>
           <SortBox>
             <ButtonRadioSort
-              sortStatus={sortStatus}
-              setSortStatus={setSortStatus}
+              sorting={sorting}
+              handleSorting={handleSorting}
               btnStatus={SortConstants.LATEST}
             />
             <ButtonRadioSort
-              sortStatus={sortStatus}
-              setSortStatus={setSortStatus}
+              sorting={sorting}
+              handleSorting={handleSorting}
               btnStatus={SortConstants.RATING}
             />
             <ButtonRadioSort
-              sortStatus={sortStatus}
-              setSortStatus={setSortStatus}
+              sorting={sorting}
+              handleSorting={handleSorting}
               btnStatus={SortConstants.YEAR}
             />
           </SortBox>
@@ -60,12 +73,13 @@ export const LibraryControlBar = ({
             filterStatus={filterStatus}
             setFilterStatus={setFilterStatus}
             genresOption={allGenres}
+            sorting={sorting}
           />
         </OptionBox>
       </ControlBox>
       <InfoBox>
         <BreadcrumbsBox>
-          <span>{viewStatus}</span>
+          {viewing ? <span>{viewing}</span> : <span>choose viewing</span>}
           {filterStatus && (
             <>
               <FiChevronsRight />

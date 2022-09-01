@@ -5,10 +5,10 @@ import { useEffect } from 'react';
 import { SortConstants } from 'constants/constants';
 
 export const GenresFilter = ({
+  sorting,
   filterStatus,
   setFilterStatus,
   genresOption,
-  sortStatus = null,
 }) => {
   const genreFilterRef = useRef();
 
@@ -32,7 +32,7 @@ export const GenresFilter = ({
         options={genres}
         styles={selectStyles}
         isClearable
-        isDisabled={sortStatus === SortConstants.SEARCH}
+        isDisabled={sorting === SortConstants.SEARCH}
       />
     </FilterBox>
   );

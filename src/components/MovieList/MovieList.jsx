@@ -25,7 +25,7 @@ export const MovieList = ({ movies, setRefreshPage }) => {
   return (
     <>
       <MovieListBox>
-        {movies.map(
+        {movies?.map(
           ({ id, poster_path, title, vote_average, release_date }) => {
             return (
               <MovieItem

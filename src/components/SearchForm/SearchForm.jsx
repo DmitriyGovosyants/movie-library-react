@@ -1,11 +1,14 @@
 import { SortConstants } from 'constants/constants';
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
 
-export const SearchForm = ({ setSortStatus, setSearch }) => {
+export const SearchForm = ({ setSearch }) => {
   const { register, handleSubmit, reset } = useForm();
+  const [, setSearchParams] = useSearchParams();
+
   const onSubmit = ({ query }) => {
     const queryNormalized = query.trim();
 
@@ -13,7 +16,7 @@ export const SearchForm = ({ setSortStatus, setSearch }) => {
       return toast('Please, enter the text');
     }
 
-    setSortStatus(SortConstants.SEARCH);
+    setSearchParams({ sorting: SortConstants.SEARCH });
     setSearch(queryNormalized);
     reset();
   };

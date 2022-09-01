@@ -8,36 +8,43 @@ import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { SortConstants, ViewConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
 
+const defaultParams = {
+  viewing: ViewConstants.QUEUE,
+  sorting: SortConstants.LATEST,
+};
+
 export const Library = () => {
   const { user } = useUser();
   const { genresList } = useTMDBData();
-  const [, setSearchParams] = useSearchParams();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);
-  const [viewStatus, setViewStatus] = useState(ViewConstants.QUEUE);
-  const [sortStatus, setSortStatus] = useState(SortConstants.LATEST);
   const [filterStatus, setFilterStatus] = useState('');
   const [refreshPage, setRefreshPage] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
+  const viewing = searchParams.get('viewing');
+  const sorting = searchParams.get('sorting');
+
+  console.log(searchParams, viewing, sorting);
 
   const sortBy = useCallback(
     moviesByStatus => {
-      if (sortStatus === SortConstants.LATEST) {
+      if (sorting === SortConstants.LATEST) {
         return [...moviesByStatus].sort(
-          (a, b) => b[`${viewStatus}DateAdded`] - a[`${viewStatus}DateAdded`]
+          (a, b) => b[`${viewing}DateAdded`] - a[`${viewing}DateAdded`]
         );
       }
-      if (sortStatus === SortConstants.RATING) {
+      if (sorting === SortConstants.RATING) {
         return [...moviesByStatus].sort(
           (a, b) => b.vote_average - a.vote_average
         );
       }
-      if (sortStatus === SortConstants.YEAR) {
+      if (sorting === SortConstants.YEAR) {
         return [...moviesByStatus].sort((a, b) =>
           b.release_date.localeCompare(a.release_date)
         );
       }
     },
-    [sortStatus, viewStatus]
+    [sorting, viewing]
   );
 
   const filterBy = useCallback(
@@ -58,12 +65,11 @@ export const Library = () => {
   useEffect(() => {
     const fetchLibraryMovies = async () => {
       setRefreshPage(false);
-      setSearchParams({ view: viewStatus });
 
       try {
         const snapshot = await fetchAllLibraryMovies(user);
         const moviesByStatus = Object.values(snapshot.val()).filter(
-          movie => movie[viewStatus] === true
+          movie => movie[viewing] === true
         );
 
         getUniqueGenres(moviesByStatus, genresList);
@@ -71,21 +77,12 @@ export const Library = () => {
         const filterMovies = filterBy(sortMovies);
         setLibraryMovies(filterMovies);
       } catch (error) {
-        toast.info(`You have no movies in ${viewStatus}`);
+        toast.info(`You have no movies in ${viewing}`);
         setLibraryMovies([]);
       }
     };
     fetchLibraryMovies();
-  }, [
-    filterBy,
-    filterStatus,
-    genresList,
-    refreshPage,
-    setSearchParams,
-    sortBy,
-    user,
-    viewStatus,
-  ]);
+  }, [filterBy, filterStatus, genresList, refreshPage, sortBy, user, viewing]);
 
   const getUniqueGenres = (movieArr, genresList) => {
     const uniqueGenres = movieArr
@@ -100,12 +97,11 @@ export const Library = () => {
     <Section>
       <Container>
         <LibraryControlBar
-          sortStatus={sortStatus}
-          setSortStatus={setSortStatus}
+          sorting={sorting}
+          viewing={viewing}
+          setSearchParams={setSearchParams}
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
-          viewStatus={viewStatus}
-          setViewStatus={setViewStatus}
           allGenres={allGenres}
           libraryMovies={libraryMovies}
         />

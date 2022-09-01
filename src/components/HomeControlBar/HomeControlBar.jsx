@@ -17,8 +17,8 @@ import { SortConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
 
 export const HomeControlBar = ({
-  sortStatus,
-  setSortStatus,
+  sorting,
+  setSearchParams,
   filterStatus,
   setFilterStatus,
   search,
@@ -29,10 +29,10 @@ export const HomeControlBar = ({
 }) => {
   const { genresList } = useTMDBData();
 
-  const handleSortStatus = value => {
+  const handleSorting = value => {
     setSearch('');
     setPage(1);
-    setSortStatus(value);
+    setSearchParams({ sorting: value });
   };
 
   const handleGenreStatus = payload => {
@@ -49,17 +49,17 @@ export const HomeControlBar = ({
     <>
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
-        <SearchForm setSearch={setSearch} setSortStatus={setSortStatus} />
+        <SearchForm setSearch={setSearch} />
         <OptionBox>
           <SortBox>
             <ButtonRadioSort
-              sortStatus={sortStatus}
-              setSortStatus={handleSortStatus}
+              sorting={sorting}
+              handleSorting={handleSorting}
               btnStatus={SortConstants.TREND}
             />
             <ButtonRadioSort
-              sortStatus={sortStatus}
-              setSortStatus={handleSortStatus}
+              sorting={sorting}
+              handleSorting={handleSorting}
               btnStatus={SortConstants.RATING}
             />
           </SortBox>
@@ -67,13 +67,13 @@ export const HomeControlBar = ({
             filterStatus={filterStatus}
             setFilterStatus={handleGenreStatus}
             genresOption={genresList}
-            sortStatus={sortStatus}
+            sorting={sorting}
           />
         </OptionBox>
       </ControlBox>
       <InfoBox>
         <BreadcrumbsBox>
-          {search ? <span>{search}</span> : <span>{sortStatus}</span>}
+          {search ? <span>{search}</span> : <span>{sorting}</span>}
           {filterStatus && (
             <>
               <FiChevronsRight />

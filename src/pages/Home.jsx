@@ -12,9 +12,13 @@ import { Section, Container } from 'layout';
 import { useUser } from 'context/userContext';
 import { SortConstants } from 'constants/constants';
 import { toast } from 'react-toastify';
+import { useSearchParams } from 'react-router-dom';
+
+const defaultParams = {
+  sorting: SortConstants.TREND,
+};
 
 const Home = () => {
-  const [sortStatus, setSortStatus] = useState(SortConstants.TREND);
   const [filterStatus, setFilterStatus] = useState(null);
   const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
@@ -23,8 +27,10 @@ const Home = () => {
   const [showLoader, setShowLoader] = useState(false);
   const prevQuery = usePrevious(search);
   const { userLanguage } = useUser();
+  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
+  const sorting = searchParams.get('sorting');
 
-  console.log(sortStatus, filterStatus, search);
+  console.log(sorting, filterStatus, search);
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
@@ -67,10 +73,10 @@ const Home = () => {
     scrollToTop();
 
     let extraSortStatus;
-    if (sortStatus === SortConstants.TREND) {
+    if (sorting === SortConstants.TREND) {
       extraSortStatus = 'popularity.desc';
     }
-    if (sortStatus === SortConstants.RATING) {
+    if (sorting === SortConstants.RATING) {
       extraSortStatus = 'vote_average.desc';
     }
 
@@ -91,7 +97,7 @@ const Home = () => {
     } finally {
       setShowLoader(false);
     }
-  }, [filterStatus?.value, page, sortStatus, userLanguage?.value]);
+  }, [filterStatus?.value, page, sorting, userLanguage?.value]);
 
   const getMoviesByName = useCallback(async () => {
     if (search !== prevQuery) {
@@ -122,19 +128,19 @@ const Home = () => {
   }, [page, prevQuery, search, userLanguage.value]);
 
   useEffect(() => {
-    if (sortStatus === SortConstants.TREND && !filterStatus) {
+    if (sorting === SortConstants.TREND && !filterStatus) {
       getMoviesOnTrend();
       return;
     }
-    if (sortStatus === SortConstants.RATING && !filterStatus) {
+    if (sorting === SortConstants.RATING && !filterStatus) {
       getMoviesTopRated();
       return;
     }
-    if (sortStatus !== SortConstants.SEARCH && filterStatus) {
+    if (sorting !== SortConstants.SEARCH && filterStatus) {
       getMoviesByGenre();
       return;
     }
-    if (sortStatus === SortConstants.SEARCH) {
+    if (sorting === SortConstants.SEARCH) {
       getMoviesByName();
       return;
     }
@@ -144,15 +150,15 @@ const Home = () => {
     getMoviesByName,
     getMoviesOnTrend,
     getMoviesTopRated,
-    sortStatus,
+    sorting,
   ]);
 
   return (
     <Section>
       <Container>
         <HomeControlBar
-          sortStatus={sortStatus}
-          setSortStatus={setSortStatus}
+          sorting={sorting}
+          setSearchParams={setSearchParams}
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
           search={search}

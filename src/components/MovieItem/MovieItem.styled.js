@@ -88,6 +88,7 @@ export const MovieTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.small};
   font-weight: 500;
   line-height: 1.33;
+  overflow-wrap: anywhere;
 
   ${device.mobileOnly} {
     text-align: center;

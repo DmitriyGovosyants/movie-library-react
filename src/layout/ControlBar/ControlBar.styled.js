@@ -65,6 +65,8 @@ export const BreadcrumbsBox = styled.div`
   flex-wrap: wrap;
   column-gap: ${p => p.theme.spacing(2)};
 
+  font-size: ${p => p.theme.fontSizes.medium};
+  font-weight: 500;
   text-transform: uppercase;
   color: ${p => p.theme.colors.textLinkColor};
 

@@ -3,7 +3,7 @@ import { QuotesArr } from 'data/quotesArray';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export const MovieQuotes = () => {
+export const MovieQuotes = ({ speed }) => {
   const [quoteIdx, setQuoteIdx] = useState(() =>
     Math.floor(Math.random() * QuotesArr.length)
   );
@@ -11,11 +11,11 @@ export const MovieQuotes = () => {
   useEffect(() => {
     let timerId = setInterval(() => {
       setQuoteIdx(Math.floor(Math.random() * QuotesArr.length));
-    }, 30000);
+    }, speed);
     return () => {
       clearInterval(timerId);
     };
-  }, [quoteIdx]);
+  }, [quoteIdx, speed]);
 
   return (
     <MovieQuotesBox>

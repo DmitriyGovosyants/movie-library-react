@@ -6,10 +6,15 @@ import {
   ButtonRadioSort,
   MovieQuotes,
 } from 'components';
-import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
+import {
+  ControlBox,
+  SortBox,
+  OptionBox,
+  InfoBox,
+  BreadcrumbsBox,
+} from 'layout';
 import { SortConstants } from 'constants/constants';
 import { useTMDBData } from 'context/tmdbDataContext';
-import { InfoBox } from './HomeControlBar.styled';
 
 export const HomeControlBar = ({
   sortStatus,
@@ -80,7 +85,7 @@ export const HomeControlBar = ({
             {page} / {totalPage}
           </span>
         </BreadcrumbsBox>
-        <MovieQuotes />
+        <MovieQuotes speed={'30000'} />
       </InfoBox>
     </>
   );

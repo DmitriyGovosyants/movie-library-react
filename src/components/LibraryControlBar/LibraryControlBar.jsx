@@ -1,7 +1,13 @@
 import { SortConstants, ViewConstants } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
-import { Button, ButtonRadioSort, GenresFilter } from 'components';
-import { ControlBox, SortBox, OptionBox, BreadcrumbsBox } from 'layout';
+import { Button, ButtonRadioSort, GenresFilter, MovieQuotes } from 'components';
+import {
+  ControlBox,
+  SortBox,
+  OptionBox,
+  BreadcrumbsBox,
+  InfoBox,
+} from 'layout';
 import { BtnBox } from './LibraryControlBar.styled';
 
 export const LibraryControlBar = ({
@@ -57,17 +63,20 @@ export const LibraryControlBar = ({
           />
         </OptionBox>
       </ControlBox>
-      <BreadcrumbsBox>
-        <span>{viewStatus}</span>
-        {filterStatus && (
-          <>
-            <FiChevronsRight />
-            <span>{filterStatus.label}</span>
-          </>
-        )}
-        <FiChevronsRight />
-        <span>{libraryMovies?.length}</span>
-      </BreadcrumbsBox>
+      <InfoBox>
+        <BreadcrumbsBox>
+          <span>{viewStatus}</span>
+          {filterStatus && (
+            <>
+              <FiChevronsRight />
+              <span>{filterStatus.label}</span>
+            </>
+          )}
+          <FiChevronsRight />
+          <span>{libraryMovies?.length}</span>
+        </BreadcrumbsBox>
+        <MovieQuotes speed={'30000'} />
+      </InfoBox>
     </>
   );
 };

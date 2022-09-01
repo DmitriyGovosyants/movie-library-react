@@ -15,7 +15,6 @@ export const PaginationArrow = ({ setPage, page, totalPage }) => {
         onClick={() => setPage(s => s + 1)}
         type="button"
         disabled={page === totalPage}
-        margin={'0'}
       >
         <BiChevronRight size={38} />
       </ArrowBtn>

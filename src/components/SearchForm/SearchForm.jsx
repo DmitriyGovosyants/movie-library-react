@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, Input, SubmitBtn } from './SearchForm.styled';
 
-export const SearchForm = ({ setSearch }) => {
+export const SearchForm = ({ setSearch, setPage }) => {
   const { register, handleSubmit, reset } = useForm();
   const [, setSearchParams] = useSearchParams();
 
@@ -16,8 +16,9 @@ export const SearchForm = ({ setSearch }) => {
       return toast('Please, enter the text');
     }
 
-    setSearchParams({ sorting: SortConstants.SEARCH });
+    setSearchParams({ sorting: SortConstants.SEARCH, search: queryNormalized });
     setSearch(queryNormalized);
+    setPage(1);
     reset();
   };
 

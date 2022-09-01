@@ -13,10 +13,25 @@ import { Modal, Launch, UserMenu, LanguageSwitcher } from 'components';
 import { Container } from 'layout';
 import { useUser } from 'context/userContext';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const Header = () => {
   const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
+  const [homeLocation, setHomeLocation] = useState('');
+  const [libraryLocation, setLibraryLocation] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setHomeLocation(location.search);
+    }
+    if (location.pathname === '/library') {
+      setLibraryLocation(location.search);
+    }
+  }, [location.pathname, location.search]);
+  // console.log('RENDER-/', homeLocation);
 
   return (
     <>
@@ -30,7 +45,7 @@ export const Header = () => {
               </LogoBtn>
               <NavList>
                 <NavItem>
-                  <ActiveLink to="/">home</ActiveLink>
+                  <ActiveLink to={`/${homeLocation}`}>home</ActiveLink>
                 </NavItem>
                 {!user && (
                   <>
@@ -44,7 +59,9 @@ export const Header = () => {
                 )}
                 {user && (
                   <NavItem>
-                    <ActiveLink to="/library">library</ActiveLink>
+                    <ActiveLink to={`/library${libraryLocation}`}>
+                      library
+                    </ActiveLink>
                   </NavItem>
                 )}
               </NavList>

@@ -19,18 +19,22 @@ const defaultParams = {
 };
 
 const Home = () => {
+  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
+  const [search, setSearch] = useState(() => searchParams.get('search') ?? '');
+  const [page, setPage] = useState(Number(searchParams.get('page') ?? 1));
   const [filterStatus, setFilterStatus] = useState(null);
-  const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const prevQuery = usePrevious(search);
   const { userLanguage } = useUser();
-  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
   const sorting = searchParams.get('sorting');
 
-  console.log(sorting, filterStatus, search);
+  console.log(page);
+
+  useEffect(() => {
+    setSearchParams({ sorting, search, page: page });
+  }, [filterStatus, page, search, setSearchParams, sorting]);
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
@@ -102,7 +106,6 @@ const Home = () => {
   const getMoviesByName = useCallback(async () => {
     if (search !== prevQuery) {
       setMovies([]);
-      setPage(1);
       setFilterStatus(null);
       return;
     }
@@ -152,6 +155,11 @@ const Home = () => {
     getMoviesTopRated,
     sorting,
   ]);
+
+  // const hanglePage = value => {
+  //   setPage(value);
+  //   setSearchParams({ sorting, search, page });
+  // };
 
   return (
     <Section>

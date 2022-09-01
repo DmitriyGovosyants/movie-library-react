@@ -24,7 +24,7 @@ export const Library = () => {
   const viewing = searchParams.get('viewing');
   const sorting = searchParams.get('sorting');
 
-  console.log(searchParams, viewing, sorting);
+  // console.log(searchParams, viewing, sorting);
 
   const sortBy = useCallback(
     moviesByStatus => {

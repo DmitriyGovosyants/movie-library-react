@@ -36,12 +36,12 @@ export const HomeControlBar = ({
   };
 
   const handleGenreStatus = payload => {
-    setPage(1);
+    console.log(payload, filterStatus);
 
     if (!payload) {
       return setFilterStatus(null);
     }
-
+    setPage(1);
     setFilterStatus(payload);
   };
 
@@ -49,7 +49,7 @@ export const HomeControlBar = ({
     <>
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
-        <SearchForm setSearch={setSearch} />
+        <SearchForm setSearch={setSearch} setPage={setPage} />
         <OptionBox>
           <SortBox>
             <ButtonRadioSort

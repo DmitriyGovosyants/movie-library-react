@@ -46,7 +46,6 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
         moveLengthY < MAX_VERTICAL
       ) {
         swipeFn(1);
-        console.log('RIGHT');
       }
       if (
         lengthX < swipeDistanceLeft &&
@@ -54,7 +53,6 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
         moveLengthY < MAX_VERTICAL
       ) {
         swipeFn(-1);
-        console.log('LEFT');
       }
 
       movePoints.splice(0, movePoints.length);

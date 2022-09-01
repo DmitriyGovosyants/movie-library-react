@@ -31,8 +31,6 @@ const Home = () => {
   const { userLanguage } = useUser();
   const sorting = searchParams.get('sorting');
 
-  console.log(filterStatus);
-
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
     scrollToTop();

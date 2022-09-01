@@ -7,19 +7,13 @@ import {
   fetchMoviesByGenre,
 } from 'services/movieApi';
 import { scrollToTop } from 'helpers/srcollToTop';
-import {
-  HomeControlBar,
-  ErrorMessage,
-  MovieList,
-  Pagination,
-  Spinner,
-} from 'components';
+import { HomeControlBar, MovieList, Pagination, Spinner } from 'components';
 import { Section, Container } from 'layout';
 import { useUser } from 'context/userContext';
 import { SortConstants } from 'constants/constants';
+import { toast } from 'react-toastify';
 
 const Home = () => {
-  const { userLanguage } = useUser();
   const [sortStatus, setSortStatus] = useState(SortConstants.TREND);
   const [filterStatus, setFilterStatus] = useState(null);
   const [search, setSearch] = useState('');
@@ -27,8 +21,8 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
-  const [error, setError] = useState(null);
   const prevQuery = usePrevious(search);
+  const { userLanguage } = useUser();
 
   console.log(sortStatus, filterStatus, search);
 
@@ -44,7 +38,7 @@ const Home = () => {
       setTotalPage(total_pages);
       setMovies([...results]);
     } catch (e) {
-      setError(e.message);
+      toast.error(e.message);
     } finally {
       setShowLoader(false);
     }
@@ -62,7 +56,7 @@ const Home = () => {
       setTotalPage(total_pages);
       setMovies([...results]);
     } catch (e) {
-      setError(e.message);
+      toast.error(e.message);
     } finally {
       setShowLoader(false);
     }
@@ -93,37 +87,13 @@ const Home = () => {
       setTotalPage(total_pages);
       setMovies([...results]);
     } catch (e) {
-      setError(e.message);
+      toast.error(e.message);
     } finally {
       setShowLoader(false);
     }
   }, [filterStatus?.value, page, sortStatus, userLanguage?.value]);
 
-  useEffect(() => {
-    if (sortStatus === SortConstants.TREND && !filterStatus) {
-      getMoviesOnTrend();
-      return;
-    }
-    if (sortStatus === SortConstants.RATING && !filterStatus) {
-      getMoviesTopRated();
-      return;
-    }
-    if (sortStatus !== SortConstants.SEARCH && filterStatus) {
-      getMoviesByGenre();
-      return;
-    }
-  }, [
-    filterStatus,
-    getMoviesByGenre,
-    getMoviesOnTrend,
-    getMoviesTopRated,
-    sortStatus,
-  ]);
-
-  useEffect(() => {
-    if (sortStatus !== SortConstants.SEARCH) {
-      return;
-    }
+  const getMoviesByName = useCallback(async () => {
     if (search !== prevQuery) {
       setMovies([]);
       setPage(1);
@@ -143,13 +113,39 @@ const Home = () => {
         setTotalPage(total_pages);
         setMovies([...results]);
       } catch (e) {
-        setError(e.message);
+        toast.error(e.message);
       } finally {
         setShowLoader(false);
       }
     };
     fetch();
-  }, [page, search, prevQuery, userLanguage.value, sortStatus, filterStatus]);
+  }, [page, prevQuery, search, userLanguage.value]);
+
+  useEffect(() => {
+    if (sortStatus === SortConstants.TREND && !filterStatus) {
+      getMoviesOnTrend();
+      return;
+    }
+    if (sortStatus === SortConstants.RATING && !filterStatus) {
+      getMoviesTopRated();
+      return;
+    }
+    if (sortStatus !== SortConstants.SEARCH && filterStatus) {
+      getMoviesByGenre();
+      return;
+    }
+    if (sortStatus === SortConstants.SEARCH) {
+      getMoviesByName();
+      return;
+    }
+  }, [
+    filterStatus,
+    getMoviesByGenre,
+    getMoviesByName,
+    getMoviesOnTrend,
+    getMoviesTopRated,
+    sortStatus,
+  ]);
 
   return (
     <Section>
@@ -165,7 +161,6 @@ const Home = () => {
           page={page}
           totalPage={totalPage}
         />
-        {error && <ErrorMessage>{error}</ErrorMessage>}
         {showLoader && <Spinner />}
         {movies.length !== 0 && <MovieList movies={movies} />}
         {movies.length > 0 && (

@@ -1,7 +1,7 @@
 import { MdLibraryAddCheck, MdLibraryAdd } from 'react-icons/md';
+import { ViewConstants } from 'constants/constants';
 import { Button } from 'components';
 import { ButtonList, ButtonItem } from './MovieCardControl.styled';
-import { ViewConstants } from 'constants/constants';
 
 export const MovieCardControl = ({
   queueStatus,

@@ -36,7 +36,6 @@ export const OptionBox = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-
   ${device.tabletM} {
     flex-direction: row;
   }

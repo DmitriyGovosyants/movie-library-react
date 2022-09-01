@@ -11,11 +11,9 @@ export const Form = styled.form`
   :hover {
     border-color: ${p => p.theme.colors.checkColor};
   }
-
   ${device.tabletM} {
     width: 350px;
   }
-
 `
 
 export const Input = styled.input`

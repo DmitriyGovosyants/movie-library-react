@@ -1,5 +1,5 @@
-import { PaginationArrow } from 'components';
 import { HiDotsHorizontal } from 'react-icons/hi';
+import { PaginationArrow } from 'components';
 import { PaginationBox, BtnList, Btn } from './Pagination.styled';
 
 export const Pagination = ({ setPage, page, totalPage }) => {

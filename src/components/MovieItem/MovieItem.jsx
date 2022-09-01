@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import noPoster from 'data/movies/no-poster.jpeg';
 import brokenImg from 'data/movies/broken-image.png';
 import cinemaPoster from 'data/movies/cinema-poster.png';
-
 import {
   MovieItemBox,
   PosterBox,

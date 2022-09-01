@@ -1,5 +1,5 @@
-import { MovieItem, Modal, MovieCard } from 'components';
 import { useState } from 'react';
+import { MovieItem, Modal, MovieCard } from 'components';
 import { MovieListBox } from './MovieList.styled';
 
 export const MovieList = ({ movies, setRefreshPage }) => {

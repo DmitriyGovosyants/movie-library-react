@@ -1,5 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
+import { toast } from 'react-toastify';
+
+import { routesPath } from 'router';
+import noPoster from 'data/movies/no-poster.jpeg';
+import { ViewConstants } from 'constants/constants';
+import { useUser } from 'context/userContext';
+import { useSwipe } from 'hooks/useSwipe';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';
 import {
   fetchLibraryMovieStatus,
@@ -8,10 +16,6 @@ import {
   removeFromLibrary,
   removeOneOfTwoStatus,
 } from 'services/libraryApi';
-import { ViewConstants } from 'constants/constants';
-import noPoster from 'data/movies/no-poster.jpeg';
-import { toast } from 'react-toastify';
-import { useUser } from 'context/userContext';
 import {
   ErrorMessage,
   Spinner,
@@ -31,9 +35,6 @@ import {
   MovieCardContent,
   NavBtn,
 } from './MovieCard.styled';
-import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
-import { useRef } from 'react';
-import { useSwipe } from 'hooks/useSwipe';
 
 export const MovieCard = ({
   itemId,
@@ -52,15 +53,6 @@ export const MovieCard = ({
   const [queueStatus, setQueueStatus] = useState(false);
   const [searchParams] = useSearchParams();
   const movieCardRef = useRef(null);
-
-  const controlCardSwitch = useCallback(
-    payload => {
-      handleChangeMovieCard(payload);
-      setMovieTrailers([]);
-      setError(null);
-    },
-    [handleChangeMovieCard]
-  );
 
   useEffect(() => {
     setShowLoader(true);
@@ -90,6 +82,15 @@ export const MovieCard = ({
     };
     fetch();
   }, [itemId, user]);
+
+  const controlCardSwitch = useCallback(
+    payload => {
+      handleChangeMovieCard(payload);
+      setMovieTrailers([]);
+      setError(null);
+    },
+    [handleChangeMovieCard]
+  );
 
   useSwipe(movieCardRef, controlCardSwitch, movieDetails.length);
 
@@ -173,7 +174,7 @@ export const MovieCard = ({
   };
 
   const refreshLibraryPage = status => {
-    if (location.pathname === '/library') {
+    if (location.pathname === `/${routesPath.library}`) {
       const viewParams = searchParams.get('view');
 
       if (viewParams === status) {

@@ -18,12 +18,7 @@ export const LoaderOverlay = styled.div`
   animation-timing-function: ease;
 
   @keyframes backdrop {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    0% {opacity: 0;}
+    100% {opacity: 1;}
   }
 `

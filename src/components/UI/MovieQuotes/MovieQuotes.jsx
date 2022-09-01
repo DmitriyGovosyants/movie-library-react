@@ -1,7 +1,6 @@
-import { MovieQuotesBox, Quote, Movie } from './MovieQuotes.styled';
+import { useState, useEffect } from 'react';
 import { QuotesArr } from 'data/quotesArray';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { MovieQuotesBox, Quote, Movie } from './MovieQuotes.styled';
 
 export const MovieQuotes = ({ speed }) => {
   const [quoteIdx, setQuoteIdx] = useState(() =>

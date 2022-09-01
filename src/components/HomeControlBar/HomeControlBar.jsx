@@ -1,4 +1,6 @@
 import { FiChevronsRight } from 'react-icons/fi';
+import { SortConstants } from 'constants/constants';
+import { useTMDBData } from 'context/tmdbDataContext';
 import {
   PaginationArrow,
   SearchForm,
@@ -13,8 +15,6 @@ import {
   InfoBox,
   BreadcrumbsBox,
 } from 'layout';
-import { SortConstants } from 'constants/constants';
-import { useTMDBData } from 'context/tmdbDataContext';
 
 export const HomeControlBar = ({
   sorting,
@@ -36,8 +36,6 @@ export const HomeControlBar = ({
   };
 
   const handleGenreStatus = payload => {
-    console.log(payload, filterStatus);
-
     if (!payload) {
       return setFilterStatus(null);
     }
@@ -49,7 +47,11 @@ export const HomeControlBar = ({
     <>
       <ControlBox>
         <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
-        <SearchForm setSearch={setSearch} setPage={setPage} />
+        <SearchForm
+          setSearch={setSearch}
+          setPage={setPage}
+          setSearchParams={setSearchParams}
+        />
         <OptionBox>
           <SortBox>
             <ButtonRadioSort

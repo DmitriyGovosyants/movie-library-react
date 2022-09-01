@@ -9,7 +9,7 @@ export const LangMenuBox = styled.div`
   z-index: 10;
 
   letter-spacing: 0.05em;
-  background-color: ${p => p.theme.colors.btnArrowBg};
+  background-color: ${p => p.theme.colors.lowOpacityBg};
   border-bottom-left-radius: 10px;
   
   ${device.mobileM} {

@@ -9,9 +9,7 @@ export const theme = Object.freeze({
     bgMain: '#ffffff',
     bgSecond: '#e0cbcb',
     bgThird: 'gray',
-
-    bg: '#7f7b83',
-    btnArrowBg: '#7f7b8384',
+    lowOpacityBg: '#7f7b8384',
 
     accentColor: 'red',
     checkColor: '#9452A5',
@@ -21,7 +19,6 @@ export const theme = Object.freeze({
   fontSizes: {
     titleMain: '30px',
     titleBig: '40px',
-    extrasmall: '10px',
     small: '14px',
     medium: '18px',
     large: '24px',

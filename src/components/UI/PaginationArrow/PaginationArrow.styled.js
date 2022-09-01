@@ -21,7 +21,6 @@ export const ArrowBtn = styled.button`
   :disabled {
     opacity: 0.5;
   }
-  
   :hover:enabled {
     background-color: ${p => p.theme.colors.accentColor};
   }

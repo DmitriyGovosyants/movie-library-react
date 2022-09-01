@@ -47,7 +47,6 @@ export const Btn = styled.button`
     padding: 16px 8px;
     font-size: 16px;
   }
-
   ${device.desktopM} {
     :hover:enabled {
       background-color: ${p => p.theme.colors.accentColor};

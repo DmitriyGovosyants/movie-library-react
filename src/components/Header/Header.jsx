@@ -1,3 +1,10 @@
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { routesPath } from 'router';
+import { ReactComponent as Logo } from '../../data/header/logo.svg';
+import { useUser } from 'context/userContext';
+import { Modal, Launch, UserMenu, LanguageSwitcher } from 'components';
+import { Container } from 'layout';
 import {
   HeaderBox,
   FlexContainer,
@@ -8,13 +15,6 @@ import {
   NavItem,
   ActiveLink,
 } from './Header.styled';
-import { ReactComponent as Logo } from '../../data/header/logo.svg';
-import { Modal, Launch, UserMenu, LanguageSwitcher } from 'components';
-import { Container } from 'layout';
-import { useUser } from 'context/userContext';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export const Header = () => {
   const { user } = useUser();
@@ -27,11 +27,10 @@ export const Header = () => {
     if (location.pathname === '/') {
       setHomeLocation(location.search);
     }
-    if (location.pathname === '/library') {
+    if (location.pathname === `/${routesPath.library}`) {
       setLibraryLocation(location.search);
     }
   }, [location.pathname, location.search]);
-  // console.log('RENDER-/', homeLocation);
 
   return (
     <>

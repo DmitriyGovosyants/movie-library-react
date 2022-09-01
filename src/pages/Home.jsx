@@ -1,18 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { SortConstants } from 'constants/constants';
+import { scrollToTop } from 'helpers/srcollToTop';
+import { useUser } from 'context/userContext';
 import { usePrevious } from 'hooks/usePrevious';
+import { useFiltering } from 'hooks/useFiltering';
 import {
   fetchMoviesOnTrend,
   fetchMovieTopRated,
   fetchMoviesByName,
   fetchMoviesByGenre,
 } from 'services/movieApi';
-import { scrollToTop } from 'helpers/srcollToTop';
 import { HomeControlBar, MovieList, Pagination, Spinner } from 'components';
 import { Section, Container } from 'layout';
-import { useUser } from 'context/userContext';
-import { SortConstants } from 'constants/constants';
-import { toast } from 'react-toastify';
-import { useSearchParams } from 'react-router-dom';
 
 const defaultParams = {
   sorting: SortConstants.TREND,
@@ -22,7 +23,7 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams(defaultParams);
   const [search, setSearch] = useState(() => searchParams.get('search') ?? '');
   const [page, setPage] = useState(Number(searchParams.get('page') ?? 1));
-  const [filterStatus, setFilterStatus] = useState(null);
+  const [filterStatus, setFilterStatus] = useFiltering(searchParams);
   const [movies, setMovies] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
@@ -30,11 +31,7 @@ const Home = () => {
   const { userLanguage } = useUser();
   const sorting = searchParams.get('sorting');
 
-  console.log(page);
-
-  useEffect(() => {
-    setSearchParams({ sorting, search, page: page });
-  }, [filterStatus, page, search, setSearchParams, sorting]);
+  console.log(filterStatus);
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
@@ -128,7 +125,18 @@ const Home = () => {
       }
     };
     fetch();
-  }, [page, prevQuery, search, userLanguage.value]);
+  }, [page, prevQuery, search, setFilterStatus, userLanguage.value]);
+
+  useEffect(() => {
+    setSearchParams({
+      sorting,
+      search,
+      filtering: filterStatus
+        ? `${filterStatus?.value}-${filterStatus?.label}`
+        : '',
+      page: page,
+    });
+  }, [filterStatus, page, search, setSearchParams, sorting]);
 
   useEffect(() => {
     if (sorting === SortConstants.TREND && !filterStatus) {
@@ -155,11 +163,6 @@ const Home = () => {
     getMoviesTopRated,
     sorting,
   ]);
-
-  // const hanglePage = value => {
-  //   setPage(value);
-  //   setSearchParams({ sorting, search, page });
-  // };
 
   return (
     <Section>

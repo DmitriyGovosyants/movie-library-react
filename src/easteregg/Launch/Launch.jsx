@@ -1,4 +1,3 @@
-import { ButtonClose } from 'components';
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import starlink from '../../data/easteregg/images/where-is-your-starlink.png';
@@ -10,9 +9,10 @@ import tabletsAudio from '../../data/easteregg/audio/mortal-combat.mp3';
 import matrixAudio from '../../data/easteregg/audio/matrix.mp3';
 import launchCursor from '../../data/easteregg/images/launch-cursor.png';
 import whoWeAreCursor from '../../data/easteregg/images/who-we-are-cursor.png';
-import { matrixFn } from 'easteregg/Matrix';
 import { EEgg } from 'constants/constants';
+import { matrixFn } from 'easteregg/Matrix';
 import { StarWars } from 'easteregg/StarWars/StarWars';
+import { ButtonClose } from 'components';
 import {
   BlackBox,
   Overlay,

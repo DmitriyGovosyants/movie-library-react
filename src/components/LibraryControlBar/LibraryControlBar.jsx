@@ -1,5 +1,5 @@
-import { SortConstants, ViewConstants } from 'constants/constants';
 import { FiChevronsRight } from 'react-icons/fi';
+import { SortConstants, ViewConstants } from 'constants/constants';
 import { Button, ButtonRadioSort, GenresFilter, MovieQuotes } from 'components';
 import {
   ControlBox,

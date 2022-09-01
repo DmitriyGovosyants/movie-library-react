@@ -11,7 +11,6 @@ export const LoadOverlay = styled.div`
   width: 100%;
   height: 100%;
   padding: 20px;
-  
 
   background-color: rgba(0, 0, 0, 0.95);
   z-index: 10;
@@ -21,13 +20,8 @@ export const LoadOverlay = styled.div`
   animation-timing-function: ease;
 
   @keyframes screen {
-    50% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
+    50% {opacity: 1;}
+    100% {opacity: 0;}
   }
 `
 

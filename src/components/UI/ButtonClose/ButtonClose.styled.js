@@ -12,7 +12,6 @@ export const BtnClose = styled.button`
   :hover {
     color: ${p => p.theme.colors.accentColor};
   }
-
   ${device.tabletM} {
     top: 8px;
   }

@@ -1,8 +1,7 @@
-import { FilterBox, selectStyles } from './GenresFilter.styled';
+import { useRef, useEffect } from 'react';
 import Select from 'react-select';
-import { useRef } from 'react';
-import { useEffect } from 'react';
 import { SortConstants } from 'constants/constants';
+import { FilterBox, selectStyles } from './GenresFilter.styled';
 
 export const GenresFilter = ({
   sorting,
@@ -15,6 +14,7 @@ export const GenresFilter = ({
   useEffect(() => {
     if (!filterStatus) {
       genreFilterRef.current.clearValue();
+      return;
     }
   }, [filterStatus]);
 

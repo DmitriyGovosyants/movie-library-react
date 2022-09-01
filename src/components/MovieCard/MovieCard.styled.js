@@ -98,7 +98,7 @@ export const NavBtn = styled.button`
     transition: background-color ${p => p.theme.animation.cubicBezierAverageSpeed};
 
     :active {
-      background-color: ${p => p.theme.colors.btnArrowBg};
+      background-color: ${p => p.theme.colors.lowOpacityBg};
     }
   }
 `

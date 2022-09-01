@@ -1,6 +1,6 @@
-import { useTMDBData } from 'context/tmdbDataContext';
-import { useUser } from 'context/userContext';
 import Select from 'react-select';
+import { useUser } from 'context/userContext';
+import { useTMDBData } from 'context/tmdbDataContext';
 import { LangMenuBox, selectStyles } from './LanguageSwitcher.styled';
 
 export const LanguageSwitcher = () => {

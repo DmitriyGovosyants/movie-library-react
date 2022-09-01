@@ -1,5 +1,14 @@
+import { useState, useEffect, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { toast } from 'react-toastify';
+import { GiEvilBook, GiWyvern } from 'react-icons/gi';
+
+import { avatarArr } from 'data/avatarArray';
 import { signOut } from 'firebase/auth';
 import { auth } from 'services/firebase/frebaseConfig';
+import { addAvatar, fetchAvatar } from 'services/libraryApi';
+import { useUser } from 'context/userContext';
+import { Button, ButtonClose, Modal } from 'components';
 import {
   UserMenuBox,
   Avatar,
@@ -10,14 +19,6 @@ import {
   Title,
   Link,
 } from './UserMenu.styled';
-import { Button, ButtonClose, Modal } from 'components';
-import { useState, useRef } from 'react';
-import { toast } from 'react-toastify';
-import { avatarArr } from 'data/avatarArray';
-import { CSSTransition } from 'react-transition-group';
-import { addAvatar, fetchAvatar } from 'services/libraryApi';
-import { useEffect } from 'react';
-import { useUser } from 'context/userContext';
 
 export const UserMenu = () => {
   const { user } = useUser();
@@ -90,7 +91,7 @@ export const UserMenu = () => {
                 target={'_blank'}
                 aria-label="Developer Linkedin Contact"
               >
-                {'>>'} Movie Library documentation
+                <GiEvilBook /> Movie Library documentation
               </Link>
               <Link
                 href="https://spacerangers.gitlab.io/#/quests"
@@ -98,7 +99,7 @@ export const UserMenu = () => {
                 target={'_blank'}
                 aria-label="text quests"
               >
-                {'>>'} Space Rangers text quests app
+                <GiWyvern /> Space Rangers text quests app
               </Link>
             </UserContent>
             <Button onClick={handleLogOut}>Log out</Button>

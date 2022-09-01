@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { SortConstants, ViewConstants } from 'constants/constants';
+import { useUser } from 'context/userContext';
+import { useTMDBData } from 'context/tmdbDataContext';
+import { useFiltering } from 'hooks/useFiltering';
+import { fetchAllLibraryMovies } from 'services/libraryApi';
 import { MovieList, LibraryControlBar } from 'components';
 import { Section, Container } from 'layout';
-import { useUser } from 'context/userContext';
-import { fetchAllLibraryMovies } from 'services/libraryApi';
-import { SortConstants, ViewConstants } from 'constants/constants';
-import { useTMDBData } from 'context/tmdbDataContext';
 
 const defaultParams = {
   viewing: ViewConstants.QUEUE,
@@ -14,17 +15,25 @@ const defaultParams = {
 };
 
 export const Library = () => {
+  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
   const { user } = useUser();
   const { genresList } = useTMDBData();
   const [libraryMovies, setLibraryMovies] = useState([]);
   const [allGenres, setAllGenres] = useState([]);
-  const [filterStatus, setFilterStatus] = useState('');
   const [refreshPage, setRefreshPage] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams(defaultParams);
+  const [filterStatus, setFilterStatus] = useFiltering(searchParams);
   const viewing = searchParams.get('viewing');
   const sorting = searchParams.get('sorting');
 
-  // console.log(searchParams, viewing, sorting);
+  useEffect(() => {
+    setSearchParams({
+      viewing,
+      sorting,
+      filtering: filterStatus
+        ? `${filterStatus?.value}-${filterStatus?.label}`
+        : '',
+    });
+  }, [filterStatus, setSearchParams, sorting, viewing]);
 
   const sortBy = useCallback(
     moviesByStatus => {

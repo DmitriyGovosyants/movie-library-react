@@ -83,15 +83,9 @@ export const LaunchBtn = styled.button`
   :hover {
     opacity: 1;
     @keyframes colorChange {
-      from {
-        background-size: 100% 100%;
-      }
-      50% {
-        background-size: 100% 130%;
-      }
-      to {
-        background-size: 100% 100%;
-      }
+      from {background-size: 100% 100%;}
+      50% {background-size: 100% 130%;}
+      to {background-size: 100% 100%;}
     }
   }
 `

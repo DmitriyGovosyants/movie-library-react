@@ -5,8 +5,8 @@ import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
 import { toast } from 'react-toastify';
 
 import { routesPath } from 'router';
-import noPoster from 'data/movies/no-poster.jpeg';
 import { ViewConstants } from 'constants/constants';
+import noPoster from 'data/movies/no-poster.jpeg';
 import { useUser } from 'context/userContext';
 import { useSwipe } from 'hooks/useSwipe';
 import { fetchMovieDetails, fetchMovieTrailer } from 'services/movieApi';

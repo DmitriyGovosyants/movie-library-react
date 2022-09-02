@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import noPoster from 'data/movies/no-poster.jpeg';
-import brokenImg from 'data/movies/broken-image.png';
-import cinemaPoster from 'data/movies/cinema-poster.png';
+import { useState } from 'react';
+import noPoster from '../../data/movies/no-poster.jpeg';
+import brokenImg from '../../data/movies/broken-image.png';
+import cinemaPoster from '../../data/movies/cinema-poster.png';
 import {
   MovieItemBox,
   PosterBox,
@@ -23,18 +23,17 @@ export const MovieItem = ({
 }) => {
   const [moviePoster, setMoviePoster] = useState(cinemaPoster);
 
-  useEffect(() => {
-    if (!itemPoster) {
-      return setMoviePoster(noPoster);
-    }
-    return setMoviePoster(`https://image.tmdb.org/t/p/original${itemPoster}`);
-  }, [itemPoster]);
-
-  const handlePosterLoadError = input => {
+  const handlePosterLoad = input => {
     if (!input) {
       return;
     }
     input.onerror = () => setMoviePoster(brokenImg);
+    input.onload = () => {
+      if (!itemPoster) {
+        return setMoviePoster(noPoster);
+      }
+      return setMoviePoster(`https://image.tmdb.org/t/p/original${itemPoster}`);
+    };
   };
 
   const ratingFixed = itemRating?.toFixed(1);
@@ -49,7 +48,7 @@ export const MovieItem = ({
         }}
       >
         <Poster
-          ref={handlePosterLoadError}
+          ref={handlePosterLoad}
           loading="lazy"
           src={moviePoster}
           alt={itemTitle}

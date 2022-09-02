@@ -1,4 +1,4 @@
-**Read documentation: [About](README.md).**
+**Read documentation: [English](README.md), [Русский](README.ru.md).**
 
 # React Deploy
 

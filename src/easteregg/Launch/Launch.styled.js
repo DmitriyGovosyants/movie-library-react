@@ -63,6 +63,11 @@ export const LaunchBox = styled.div`
 `
 
 export const LaunchBtn = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 300px;
   height: 300px;
   opacity: 0.8;

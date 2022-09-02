@@ -136,7 +136,9 @@ export const Launch = ({ closeModal }) => {
       {playQueue === EEgg.MENU && (
         <LaunchBox>
           <LaunchBtn type="button" onClick={toLaunch}>
-            into space
+            <span>into space</span>
+            <span style={{ fontSize: '14px' }}>with</span>
+            <span>Movie DB</span>
           </LaunchBtn>
         </LaunchBox>
       )}

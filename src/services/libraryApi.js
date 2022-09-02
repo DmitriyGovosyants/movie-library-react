@@ -51,6 +51,12 @@ export const removeFromLibrary = async (user, id) => {
   return await remove(ref(db, `/users/${user?.uid}/movies/${id}`));
 }
 
+export const updateRating = async (vote_average, user, id) => {
+  return await update(ref(db, `/users/${user?.uid}/movies/${id}`), {
+    vote_average
+  });
+}
+
 export const addAvatar = async (user, avatarId) => {
   return await set(ref(db, `/users/${user?.uid}/avatar`), {
     avatarId,

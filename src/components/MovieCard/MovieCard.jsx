@@ -16,6 +16,7 @@ import {
   addSecondStatus,
   removeFromLibrary,
   removeOneOfTwoStatus,
+  updateRating,
 } from 'services/libraryApi';
 import {
   ErrorMessage,
@@ -83,6 +84,26 @@ export const MovieCard = ({
     };
     fetch();
   }, [itemId, user]);
+
+  useEffect(() => {
+    if (
+      location.pathname !== `/${routesPath.library}` ||
+      movieDetails.length === 0
+    ) {
+      return;
+    }
+
+    const { vote_average, id } = movieDetails;
+    const fetch = async () => {
+      try {
+        await updateRating(vote_average, user, id);
+        setRefreshPage(true);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetch();
+  }, [location.pathname, movieDetails, setRefreshPage, user]);
 
   const controlCardSwitch = useCallback(
     payload => {

@@ -12,9 +12,7 @@ export const SharedLayout = () => {
       {isRefreshing && <Spinner />}
       {!isRefreshing && (
         <>
-          {/* <IntersectonObserver onIntersect={onPageLoad}> */}
           <Header />
-          {/* </IntersectonObserver> */}
           <FooterPressDown>
             <Main>
               <Suspense fallback={<Spinner />}>

@@ -166,20 +166,20 @@ const Home = () => {
     <Section>
       <Container>
         <HomeControlBar
-          sorting={sorting}
-          setSearchParams={setSearchParams}
-          filterStatus={filterStatus}
-          setFilterStatus={setFilterStatus}
-          search={search}
-          setSearch={setSearch}
-          setPage={setPage}
           page={page}
           totalPage={totalPage}
+          sorting={sorting}
+          filterStatus={filterStatus}
+          search={search}
+          setSearchParams={setSearchParams}
+          setFilterStatus={setFilterStatus}
+          setSearch={setSearch}
+          setPage={setPage}
         />
         {showLoader && <Spinner />}
         {movies.length !== 0 && <MovieList movies={movies} />}
         {movies.length > 0 && (
-          <Pagination setPage={setPage} page={page} totalPage={totalPage} />
+          <Pagination page={page} totalPage={totalPage} setPage={setPage} />
         )}
       </Container>
     </Section>

@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { SortBtn, SortInputIsHidden } from './ButtonRadioSort.styled';
 
-export const ButtonRadioSort = ({ sorting, handleSorting, btnStatus }) => {
+export const ButtonRadioSort = ({ btnStatus, sorting, handleSorting }) => {
   return (
     <SortBtn isCheck={sorting === btnStatus}>
       {btnStatus}
@@ -13,4 +14,10 @@ export const ButtonRadioSort = ({ sorting, handleSorting, btnStatus }) => {
       />
     </SortBtn>
   );
+};
+
+ButtonRadioSort.propTypes = {
+  btnStatus: PropTypes.string.isRequired,
+  sorting: PropTypes.string.isRequired,
+  handleSorting: PropTypes.func.isRequired,
 };

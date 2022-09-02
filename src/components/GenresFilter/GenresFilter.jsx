@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useRef, useEffect } from 'react';
 import Select from 'react-select';
 import { SortConstants } from 'constants/constants';
@@ -6,8 +7,8 @@ import { FilterBox, selectStyles } from './GenresFilter.styled';
 export const GenresFilter = ({
   sorting,
   filterStatus,
-  setFilterStatus,
   genresOption,
+  setFilterStatus,
 }) => {
   const genreFilterRef = useRef();
 
@@ -36,4 +37,19 @@ export const GenresFilter = ({
       />
     </FilterBox>
   );
+};
+
+GenresFilter.propTypes = {
+  sorting: PropTypes.string.isRequired,
+  filterStatus: PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+  }),
+  genresOption: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+  setFilterStatus: PropTypes.func.isRequired,
 };

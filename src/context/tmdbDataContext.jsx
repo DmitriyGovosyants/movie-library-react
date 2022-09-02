@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { fetchGenresList, fetchLanguagesList } from 'services/movieApi';
@@ -32,4 +33,8 @@ export const TMDBDataProvider = ({ children }) => {
       {children}
     </TMDBDataContext.Provider>
   );
+};
+
+TMDBDataProvider.propTypes = {
+  children: PropTypes.node,
 };

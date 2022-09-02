@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { ArrowBox, ArrowBtn } from './PaginationArrow.styled';
 
-export const PaginationArrow = ({ setPage, page, totalPage }) => {
+export const PaginationArrow = ({ page, totalPage, setPage }) => {
   return (
     <ArrowBox>
       <ArrowBtn
@@ -20,4 +21,10 @@ export const PaginationArrow = ({ setPage, page, totalPage }) => {
       </ArrowBtn>
     </ArrowBox>
   );
+};
+
+PaginationArrow.propTypes = {
+  page: PropTypes.number.isRequired,
+  totalPage: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
 };

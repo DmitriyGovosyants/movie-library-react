@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { GoTriangleLeft, GoTriangleRight } from 'react-icons/go';
@@ -173,20 +174,16 @@ export const MovieCard = ({
     }
   };
 
-  const refreshLibraryPage = status => {
-    if (location.pathname === `/${routesPath.library}`) {
-      const viewParams = searchParams.get('view');
-
-      if (viewParams === status) {
-        setRefreshPage(true);
-        setShowModal(false);
-      }
-    }
-  };
-
   const controlLibrary = status => {
     libraryApi(status);
-    refreshLibraryPage(status);
+
+    if (
+      location.pathname === `/${routesPath.library}` &&
+      status === searchParams.get('viewing')
+    ) {
+      setRefreshPage(true);
+      setShowModal(false);
+    }
   };
 
   const controlTrailer = async () => {
@@ -267,4 +264,11 @@ export const MovieCard = ({
       )}
     </>
   );
+};
+
+MovieCard.propTypes = {
+  itemId: PropTypes.number.isRequired,
+  setShowModal: PropTypes.func.isRequired,
+  handleChangeMovieCard: PropTypes.func.isRequired,
+  setRefreshPage: PropTypes.func,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FiChevronsRight } from 'react-icons/fi';
 import { SortConstants, ViewConstants } from 'constants/constants';
 import { Button, ButtonRadioSort, GenresFilter, MovieQuotes } from 'components';
@@ -13,11 +14,11 @@ import { BtnBox } from './LibraryControlBar.styled';
 export const LibraryControlBar = ({
   viewing,
   sorting,
-  setSearchParams,
   filterStatus,
-  setFilterStatus,
-  allGenres,
   libraryMovies,
+  allGenres,
+  setSearchParams,
+  setFilterStatus,
 }) => {
   const handleViewing = value => {
     setSearchParams({
@@ -54,26 +55,26 @@ export const LibraryControlBar = ({
         <OptionBox>
           <SortBox>
             <ButtonRadioSort
-              sorting={sorting}
-              handleSorting={handleSorting}
               btnStatus={SortConstants.LATEST}
-            />
-            <ButtonRadioSort
               sorting={sorting}
               handleSorting={handleSorting}
+            />
+            <ButtonRadioSort
               btnStatus={SortConstants.RATING}
-            />
-            <ButtonRadioSort
               sorting={sorting}
               handleSorting={handleSorting}
+            />
+            <ButtonRadioSort
               btnStatus={SortConstants.YEAR}
+              sorting={sorting}
+              handleSorting={handleSorting}
             />
           </SortBox>
           <GenresFilter
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-            genresOption={allGenres}
             sorting={sorting}
+            filterStatus={filterStatus}
+            genresOption={allGenres}
+            setFilterStatus={setFilterStatus}
           />
         </OptionBox>
       </ControlBox>
@@ -89,8 +90,26 @@ export const LibraryControlBar = ({
           <FiChevronsRight />
           <span>{libraryMovies?.length}</span>
         </BreadcrumbsBox>
-        <MovieQuotes speed={'30000'} />
+        <MovieQuotes speed={30000} />
       </InfoBox>
     </>
   );
+};
+
+LibraryControlBar.propTypes = {
+  viewing: PropTypes.string.isRequired,
+  sorting: PropTypes.string.isRequired,
+  filterStatus: PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+  }),
+  libraryMovies: PropTypes.array.isRequired,
+  allGenres: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+  setSearchParams: PropTypes.func.isRequired,
+  setFilterStatus: PropTypes.func.isRequired,
 };

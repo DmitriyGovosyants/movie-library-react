@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useRef } from "react";
 
 export const usePrevious = value => {
@@ -6,4 +7,8 @@ export const usePrevious = value => {
     ref.current = value;
   }, [value]);
   return ref.current;
+};
+
+usePrevious.propTypes = {
+  value: PropTypes.string.isRequired,
 };

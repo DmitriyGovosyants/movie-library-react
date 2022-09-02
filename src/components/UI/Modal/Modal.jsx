@@ -1,11 +1,11 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
 import { Overlay } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ children, closeModal, fullWidth }) => {
+export const Modal = ({ children, fullWidth, closeModal }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
@@ -37,6 +37,7 @@ export const Modal = ({ children, closeModal, fullWidth }) => {
 };
 
 Modal.propTypes = {
-  toggleModal: PropTypes.func,
   children: PropTypes.node.isRequired,
+  fullWidth: PropTypes.bool,
+  closeModal: PropTypes.func.isRequired,
 };

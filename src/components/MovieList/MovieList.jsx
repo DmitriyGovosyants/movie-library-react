@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { MovieItem, Modal, MovieCard } from 'components';
 import { MovieListBox } from './MovieList.styled';
@@ -31,9 +32,9 @@ export const MovieList = ({ movies, setRefreshPage }) => {
               <MovieItem
                 key={id}
                 itemId={id}
+                itemRating={vote_average}
                 itemPoster={poster_path}
                 itemTitle={title}
-                itemRating={vote_average}
                 itemData={release_date}
                 setShowModal={setShowModal}
                 setCurrentId={setCurrentId}
@@ -54,4 +55,9 @@ export const MovieList = ({ movies, setRefreshPage }) => {
       )}
     </>
   );
+};
+
+MovieList.propTypes = {
+  movies: PropTypes.array.isRequired,
+  setRefreshPage: PropTypes.func,
 };

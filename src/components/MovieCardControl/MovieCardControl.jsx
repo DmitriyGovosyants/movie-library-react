@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdLibraryAddCheck, MdLibraryAdd } from 'react-icons/md';
 import { ViewConstants } from 'constants/constants';
 import { Button } from 'components';
@@ -6,9 +7,9 @@ import { ButtonList, ButtonItem } from './MovieCardControl.styled';
 export const MovieCardControl = ({
   queueStatus,
   watchedStatus,
+  movieTrailers,
   controlLibrary,
   controlTrailer,
-  movieTrailers,
 }) => {
   return (
     <ButtonList>
@@ -47,4 +48,12 @@ export const MovieCardControl = ({
       </ButtonItem>
     </ButtonList>
   );
+};
+
+MovieCardControl.propTypes = {
+  queueStatus: PropTypes.bool.isRequired,
+  watchedStatus: PropTypes.bool.isRequired,
+  movieTrailers: PropTypes.array.isRequired,
+  controlLibrary: PropTypes.func.isRequired,
+  controlTrailer: PropTypes.func.isRequired,
 };

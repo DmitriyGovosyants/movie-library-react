@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { PaginationArrow } from 'components';
 import { PaginationBox, BtnList, Btn } from './Pagination.styled';
 
-export const Pagination = ({ setPage, page, totalPage }) => {
+export const Pagination = ({ page, totalPage, setPage }) => {
   const handlePage = (start, middle, end) => {
     if (page <= 3) {
       return setPage(start);
@@ -81,7 +82,13 @@ export const Pagination = ({ setPage, page, totalPage }) => {
           </Btn>
         )}
       </BtnList>
-      <PaginationArrow setPage={setPage} page={page} totalPage={totalPage} />
+      <PaginationArrow page={page} totalPage={totalPage} setPage={setPage} />
     </PaginationBox>
   );
+};
+
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  totalPage: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
 };

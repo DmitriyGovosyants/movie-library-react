@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
@@ -33,4 +34,10 @@ export const SearchForm = ({ setSearch, setPage, setSearchParams }) => {
       </SubmitBtn>
     </Form>
   );
+};
+
+SearchForm.propTypes = {
+  setSearch: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
+  setSearchParams: PropTypes.func.isRequired,
 };

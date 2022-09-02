@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import starWarsAudio from '../../data/easteregg/audio/star-wars.mp3';
 import light from '../../data/easteregg/images/light.jpg';
@@ -12,7 +13,7 @@ import {
   Light,
 } from './StarWars.styled';
 
-export const StarWars = ({ setIsAudioLoaded, isAudioLoaded }) => {
+export const StarWars = ({ isAudioLoaded, setIsAudioLoaded }) => {
   const starWarsRef = useRef(null);
   const [isLoadImg, setIsLoadImg] = useState(false);
 
@@ -72,4 +73,9 @@ export const StarWars = ({ setIsAudioLoaded, isAudioLoaded }) => {
       </audio>
     </>
   );
+};
+
+StarWars.propTypes = {
+  isAudioLoaded: PropTypes.bool.isRequired,
+  setIsAudioLoaded: PropTypes.func.isRequired,
 };

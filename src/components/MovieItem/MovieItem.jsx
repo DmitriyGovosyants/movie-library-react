@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import noPoster from 'data/movies/no-poster.jpeg';
 import brokenImg from 'data/movies/broken-image.png';
@@ -13,9 +14,9 @@ import {
 
 export const MovieItem = ({
   itemId,
+  itemRating = 0,
   itemPoster,
   itemTitle = 'No title',
-  itemRating = 0,
   itemData = '',
   setShowModal,
   setCurrentId,
@@ -59,4 +60,14 @@ export const MovieItem = ({
       <MovieTitle>{itemTitle}</MovieTitle>
     </MovieItemBox>
   );
+};
+
+MovieItem.propTypes = {
+  itemId: PropTypes.number.isRequired,
+  itemRating: PropTypes.number,
+  itemPoster: PropTypes.string,
+  itemTitle: PropTypes.string,
+  itemData: PropTypes.string,
+  setShowModal: PropTypes.func.isRequired,
+  setCurrentId: PropTypes.func.isRequired,
 };

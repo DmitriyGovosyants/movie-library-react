@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { PaginationArrow } from 'components';
 import { TrailerBox, TotalCount } from './MovieCardTrailer.styled';
 
 export const MovieCardTrailer = ({ movieTrailers }) => {
+  console.log(movieTrailers);
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
 
   return (
@@ -18,9 +20,9 @@ export const MovieCardTrailer = ({ movieTrailers }) => {
       {movieTrailers?.length > 1 && (
         <>
           <PaginationArrow
-            setPage={setTrailerActiveIndex}
             page={trailerActiveIndex + 1}
             totalPage={movieTrailers?.length}
+            setPage={setTrailerActiveIndex}
           />
           <TotalCount>
             {trailerActiveIndex + 1} / {movieTrailers?.length}
@@ -29,4 +31,8 @@ export const MovieCardTrailer = ({ movieTrailers }) => {
       )}
     </TrailerBox>
   );
+};
+
+MovieCardTrailer.propTypes = {
+  movieTrailers: PropTypes.array.isRequired,
 };

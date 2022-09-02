@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   InfoList,
   InfoItem,
@@ -33,4 +34,18 @@ export const MovieCardInfo = ({ movieDetails }) => {
       <AboutText>{overview}</AboutText>
     </>
   );
+};
+
+MovieCardInfo.propTypes = {
+  movieDetails: PropTypes.shape({
+    release_date: PropTypes.string,
+    original_title: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ),
+    overview: PropTypes.string,
+  }),
 };

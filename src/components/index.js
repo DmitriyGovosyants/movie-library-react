@@ -28,5 +28,4 @@ export * from './UI/MovieQuotes/MovieQuotes';
 export * from './UI/Pagination/Pagination';
 export * from './UI/PaginationArrow/PaginationArrow';
 
-export * from '../helpers/IntersectionObserver';
 export * from '../easteregg/Launch/Launch';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import starlink from '../../data/easteregg/images/where-is-your-starlink.png';
@@ -104,7 +105,7 @@ export const Launch = ({ closeModal }) => {
       setOverlay(false);
       setPlayQueue(EEgg.LAUNCH);
       fullwidthRef.current
-        .requestFullscreen({ navigationUI: 'hide' })
+        ?.requestFullscreen({ navigationUI: 'hide' })
         .catch(err => console.log(err));
     }, 4000);
   };
@@ -257,10 +258,14 @@ export const Launch = ({ closeModal }) => {
 
       {playQueue === EEgg.STAR_WARS && (
         <StarWars
-          setIsAudioLoaded={setIsAudioLoaded}
           isAudioLoaded={isAudioLoaded}
+          setIsAudioLoaded={setIsAudioLoaded}
         />
       )}
     </BlackBox>
   );
+};
+
+Launch.propTypes = {
+  closeModal: PropTypes.func.isRequired,
 };

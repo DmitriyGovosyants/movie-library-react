@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { QuotesArr } from 'data/quotesArray';
 import { MovieQuotesBox, Quote, Movie } from './MovieQuotes.styled';
@@ -22,4 +23,8 @@ export const MovieQuotes = ({ speed }) => {
       <Movie>{QuotesArr[quoteIdx].movie}</Movie>
     </MovieQuotesBox>
   );
+};
+
+MovieQuotes.propTypes = {
+  speed: PropTypes.number.isRequired,
 };

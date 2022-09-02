@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from 'services/firebase/frebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -34,4 +35,8 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+UserProvider.propTypes = {
+  children: PropTypes.node,
 };

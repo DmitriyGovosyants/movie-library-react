@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect } from "react";
 import { throttle } from 'throttle-debounce';
 
@@ -75,3 +76,9 @@ export const useSwipe = (currentRef, swipeFn, deps) => {
     };
   }, [currentRef, swipeFn, deps]);
 }
+
+useSwipe.propTypes = {
+  currentRef: PropTypes.node,
+  swipeFn: PropTypes.func.isRequired,
+  deps: PropTypes.node,
+};

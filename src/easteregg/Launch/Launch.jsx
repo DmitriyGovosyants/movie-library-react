@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import starlink from '../../data/easteregg/images/where-is-your-starlink.png';
-import shuttle from '../../data/easteregg/video/space-shuttle-launch-countdown.mp4';
+import shuttleMp4 from '../../data/easteregg/video/space-shuttle-launch-countdown.mp4';
+import shuttleWebm from '../../data/easteregg/video/space-shuttle-launch-countdown.webm';
 import smallStep from '../../data/easteregg/audio/small-step.mp3';
 import whoWeAreAudio from '../../data/easteregg/audio/who-we-are.mp3';
 import whoWeAreVideo from '../../data/easteregg/video/who-we-are.webm';
@@ -150,7 +151,8 @@ export const Launch = ({ closeModal }) => {
           onPlay={() => addOverlay(EEgg.ARMSTRONG)}
           cursor={launchCursor}
         >
-          <source src={shuttle} type="video/mp4" />
+          <source src={shuttleWebm} type="video/webm" />
+          <source src={shuttleMp4} type="video/mp4" />
           Your browser does not support the <code>video</code> element.
         </Video>
       )}

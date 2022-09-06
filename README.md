@@ -17,7 +17,7 @@
 - Custom Pagination
 - Custom Swipe for Mobile devices
 - Localization of the TMDB base
-- Easter Egg
+- Easter Egg (tested on Windows and Android)
 
 ## Authorization functionality
 

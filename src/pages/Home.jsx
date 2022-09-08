@@ -22,14 +22,14 @@ const defaultParams = {
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams(defaultParams);
   const [search, setSearch] = useState(() => searchParams.get('search') ?? '');
-  const [page, setPage] = useState(Number(searchParams.get('page') ?? 1));
+  const [page, setPage] = useState(() => Number(searchParams.get('page') ?? 1));
   const [filterStatus, setFilterStatus] = useFiltering(searchParams);
   const [movies, setMovies] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const prevQuery = usePrevious(search);
   const { userLanguage } = useUser();
-  const sorting = searchParams.get('sorting');
+  const sorting = searchParams.get('sorting'); // 1 url search
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);

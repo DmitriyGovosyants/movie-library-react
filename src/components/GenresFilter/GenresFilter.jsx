@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useRef, useEffect } from 'react';
 import Select from 'react-select';
 import { SortConstants } from 'constants/constants';
-import { FilterBox, selectStyles } from './GenresFilter.styled';
+import { FilterBox, GenresSelect } from './GenresFilter.styled';
 
 export const GenresFilter = ({
   sorting,
@@ -31,7 +31,7 @@ export const GenresFilter = ({
         defaultValue={filterStatus}
         onChange={setFilterStatus}
         options={genres}
-        styles={selectStyles}
+        styles={GenresSelect}
         isClearable
         isDisabled={sorting === SortConstants.SEARCH}
       />

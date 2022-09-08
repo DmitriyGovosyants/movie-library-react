@@ -17,10 +17,10 @@ import {
 } from './Header.styled';
 
 export const Header = () => {
-  const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [homeLocation, setHomeLocation] = useState('');
   const [libraryLocation, setLibraryLocation] = useState('');
+  const { user } = useUser();
   const location = useLocation();
 
   useEffect(() => {

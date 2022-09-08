@@ -10,7 +10,7 @@ export const FilterBox = styled.div`
   }
 `
 
-export const selectStyles = {
+export const GenresSelect = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px dotted pink',

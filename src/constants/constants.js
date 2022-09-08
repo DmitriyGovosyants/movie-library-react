@@ -6,7 +6,7 @@ export const ViewConstants = {
 export const SortConstants = {
   TREND: 'trend',
   RATING: 'rating',
-  SEARCH: 'search',
+  SEARCH: 'byname',
   LATEST: 'latest',
   YEAR: 'year',
 };

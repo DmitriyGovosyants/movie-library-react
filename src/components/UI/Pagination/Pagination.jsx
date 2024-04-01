@@ -4,6 +4,7 @@ import { PaginationArrow } from 'components';
 import { PaginationBox, BtnList, Btn } from './Pagination.styled';
 
 export const Pagination = ({ page, totalPage, setPage }) => {
+  console.log(totalPage);
   const handlePage = (start, middle, end) => {
     if (page <= 3) {
       return setPage(start);

@@ -29,7 +29,7 @@ const Home = () => {
   const [showLoader, setShowLoader] = useState(false);
   const prevQuery = usePrevious(search);
   const { userLanguage } = useUser();
-  const sorting = searchParams.get('sorting'); // 1 url search
+  const sorting = searchParams.get('sorting');
 
   const getMoviesOnTrend = useCallback(async () => {
     setShowLoader(true);
@@ -167,7 +167,7 @@ const Home = () => {
       <Container>
         <HomeControlBar
           page={page}
-          totalPage={totalPage}
+          totalPage={totalPage > 500 ? 500 : totalPage}
           sorting={sorting}
           filterStatus={filterStatus}
           search={search}
@@ -179,7 +179,11 @@ const Home = () => {
         {showLoader && <Spinner />}
         {movies.length !== 0 && <MovieList movies={movies} />}
         {movies.length > 0 && (
-          <Pagination page={page} totalPage={totalPage} setPage={setPage} />
+          <Pagination
+            page={page}
+            totalPage={totalPage > 500 ? 500 : totalPage}
+            setPage={setPage}
+          />
         )}
       </Container>
     </Section>

@@ -124,6 +124,8 @@ export const MovieCard = ({
     const { title, poster_path, vote_average, release_date, genres, id } =
       movieDetails;
 
+    // console.log(1, genres);
+
     if (!watchedStatus && !queueStatus) {
       const genresIdList = genres.map(genre => genre.id);
       try {

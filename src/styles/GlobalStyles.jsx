@@ -23,7 +23,6 @@ export const GlobalStyles = css`
 
     overflow: auto;
     -ms-overflow-style: none;
-    scrollbar-width: none;
 
     ::-webkit-scrollbar {
       width: 0;

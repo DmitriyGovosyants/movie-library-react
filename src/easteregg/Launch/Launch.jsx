@@ -150,6 +150,7 @@ export const Launch = ({ closeModal }) => {
           autoPlay
           onPlay={() => addOverlay(EEgg.ARMSTRONG)}
           cursor={launchCursor}
+          height={'100%'}
         >
           <source src={shuttleWebm} type="video/webm" />
           <source src={shuttleMp4} type="video/mp4" />
@@ -192,6 +193,7 @@ export const Launch = ({ closeModal }) => {
             ref={whoWeAreVideoRef}
             onLoadedData={() => setIsVideoLoaded(true)}
             cursor={whoWeAreCursor}
+            height={'100%'}
           >
             <source src={whoWeAreVideo} type="video/webm" />
             Your browser does not support the <code>video</code> element.

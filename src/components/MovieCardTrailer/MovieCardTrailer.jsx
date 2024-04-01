@@ -4,7 +4,6 @@ import { PaginationArrow } from 'components';
 import { TrailerBox, TotalCount } from './MovieCardTrailer.styled';
 
 export const MovieCardTrailer = ({ movieTrailers }) => {
-  console.log(movieTrailers);
   const [trailerActiveIndex, setTrailerActiveIndex] = useState(0);
 
   return (

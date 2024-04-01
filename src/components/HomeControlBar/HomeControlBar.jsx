@@ -36,12 +36,12 @@ export const HomeControlBar = ({
     setSearchParams({ sorting: value });
   };
 
-  const handleGenreStatus = payload => {
-    if (!payload) {
+  const handleGenreStatus = genre => {
+    if (!genre) {
       return setFilterStatus(null);
     }
     setPage(1);
-    setFilterStatus(payload);
+    setFilterStatus(genre);
   };
 
   return (
